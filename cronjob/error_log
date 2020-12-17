@@ -1,0 +1,8 @@
+[23-Oct-2020 12:32:06 Asia/Jakarta] PHP Warning:  mysqli_connect(): (08004/1040): Too many connections in /home/rebeatne/public_html/koneksi.php on line 2
+[23-Oct-2020 12:32:06 Asia/Jakarta] PHP Warning:  mysqli_connect(): (HY000/1040): Too many connections in /home/rebeatne/public_html/koneksi.php on line 2
+[23-Oct-2020 12:32:07 Asia/Jakarta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/rebeatne/public_html/cronjob/cek_masa_berlaku.php on line 5
+[23-Oct-2020 12:32:07 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/rebeatne/public_html/cronjob/cek_masa_berlaku.php on line 7
+[23-Oct-2020 12:32:07 Asia/Jakarta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/rebeatne/public_html/cronjob/cek_masa_berlaku.php on line 32
+[23-Oct-2020 12:32:07 Asia/Jakarta] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in /home/rebeatne/public_html/cronjob/cek_masa_berlaku.php on line 32
+[23-Oct-2020 12:32:07 Asia/Jakarta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/rebeatne/public_html/cronjob/cek_level.php on line 6
+[23-Oct-2020 12:32:07 Asia/Jakarta] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in /home/rebeatne/public_html/cronjob/cek_level.php on line 6
