@@ -1,7 +1,7 @@
 <?php 
-include '../koneksi.php';
+include __DIR__.'\..\koneksi.php';
 $subject = 'Akun Customer Service';
-include '../pesan/header.php';
+include __DIR__.'\..\pesan/header.php';
 $cek_status = mysqli_query($koneksi, "SELECT * FROM tb_customer 
  where TIMESTAMPDIFF(DAY, masa_berlaku,now()) >= 0 and status='1'");
 while($row = mysqli_fetch_array($cek_status)){

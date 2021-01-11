@@ -12,7 +12,7 @@ if(isset($_SESSION['status'])){
       }
     }
   }
-  include 'header.php';
+  require_once('header_2.php')
 ?>
 
 <body class="bg-gradient-primary login">
@@ -22,7 +22,7 @@ if(isset($_SESSION['status'])){
     <!-- Outer Row -->
     <div class="row justify-content-center">
 
-      <div class="col-xl-6 col-lg-6 col-md-9">
+      <div class="col-xl-8 col-lg-8 col-md-9">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
@@ -44,14 +44,14 @@ if(isset($_SESSION['status'])){
                     <div class="form-group">
                       <input type="token" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Masukkan Token" name="token" id="token" required>
                     </div>
-                    <input type="submit" value="Masuk" class="btn btn-primary btn-user btn-block">
+                    <input type="submit" value="Ganti password" class="btn btn-primary btn-user btn-block">
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="../">Login?</a>
+                    <a class="large" href="../">Login?</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="../register">Buat Akun!</a>
+                    <a class="large" href="../register">Buat Akun!</a>
                   </div>
                 </div>
               </div>

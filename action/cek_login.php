@@ -21,7 +21,7 @@ if($cek > 0){
 	$_SESSION['status'] = "login";
 	$_SESSION['id_akun'] = $data1['Id_akun'];
 	$_SESSION['email'] = $username;
-		$_SESSION['status_akun'] = $data1['status'];
+	$_SESSION['status_akun'] = $data1['status'];
 	if($username!= 'bpn.ph@ap1.co.id'){
 		$data = mysqli_query($koneksi,"SELECT * FROM tb_akun LEFT JOIN tb_unit on tb_akun.id_unit = tb_unit.id_unit LEFT JOIN tb_departemen on tb_departemen.id_departemen = tb_akun.id_departemen WHERE Email='$username' and Password=md5('$password')");
 		$data1 = mysqli_fetch_array($data);
@@ -31,8 +31,22 @@ if($cek > 0){
 		$_SESSION['nama_unit'] = $data1['nama_unit'];
 		$_SESSION['status_akun'] = $data1['status'];
 		$_SESSION['hak_akses'] = $data1['hak_akses'];
-		header("Location:../Admin");
+		if(isset($_SESSION['id_aduan'])){
+			$id_aduan = $_SESSION['id_aduan'];
+			if($_SESSION['detail']=='Aduan'){
+				unset($_SESSION['detail']);
+				unset($_SESSION['id_aduan']);
+				header("Location:../Admin/detail_aduan.php?id=".$id_aduan);
+			}else{
+				unset($_SESSION['detail']);
+				unset($_SESSION['id_aduan']);
+				header("Location:../Admin/detail_request.php?id=".$id_aduan);
+			}
+		}else{
+			header("Location:../Admin");
+		}
 	} else {
+		$_SESSION['id_customer']=0;
 		header("location:../customer");
 	}
 }else{
@@ -42,9 +56,18 @@ if($cek > 0){
 		$data = mysqli_fetch_array($data);
 		$_SESSION['email']=$username;
 		if($data['status']==1){
+			$status_sebelumnya = $_SESSION['status'];
 			$_SESSION['id_customer'] = $data['id_customer'];
 			$_SESSION['status'] = "login customer";
-			header("Location:../customer/");
+			echo $status_sebelumnya;
+			if(isset($_SESSION['id_aduan'])){
+				$id_aduan = $_SESSION['id_aduan'];
+				unset($_SESSION['id_aduan']);
+				header("Location:../customer/tampil_antri.php?id=".$id_aduan);
+			}else{
+				echo "yah dis ini";
+				header("Location:../customer/");
+			}
 		} else if($data['status']==2){
 		    $_SESSION['status']='aktivasi ulang';
 			$_SESSION['id_customer'] = $data['id_customer'];

@@ -21,7 +21,7 @@ include 'header.php';
                         <th>Departemen</th>
                         <th>Unit</th>
                         <th>Perihal</th>
-                          <th class='sorting_asc'>Status</th>
+                          <th class='sorting_desc' aria-sort="descending">Status</th>
                           <th>Level</th>
                       <th>Lakukan</th>  
                     </tr>

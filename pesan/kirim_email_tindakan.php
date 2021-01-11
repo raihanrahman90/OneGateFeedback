@@ -1,6 +1,6 @@
 
 <?php
-    include '../pesan/header.php';
+    include __DIR__.'\..\pesan/header.php';
     $text = '<!DOCTYPE html>
     <html lang="en">
     <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -18,14 +18,17 @@
 $mail->msgHTML($text, __DIR__);
 //Attach an image file
 //send the message, check for errors
-$data = mysqli_query($koneksi, "SELECT token, Email, Nama FROM tb_akun inner join tb_token on tb_akun.id_akun = tb_token.id where id_unit ='$id_unit' and tb_token.status = 'akun'");
-while ($row = mysqli_fetch_array($data)) {
+$data = mysqli_query($koneksi, "SELECT token, Email, Nama FROM tb_akun 
+left join (SELECT * from tb_token where status='akun') as tb_token on tb_token.id = tb_akun.id_akun where (hak_akses ='Admin2' or hak_akses='Super Admin')");
+foreach ($data as $row) {
+  if(!is_null($row['token'])){
     sendPushNotification(
         $row['token'], 
         "Tindakan Baru", 
         "Tindakan baru telah dilakukan pada aduan dengan id ".$id_aduan,
         "/side/aduan-list/aduan-detail/".$id_aduan,
         '','');
+  }
     $mail->addAddress($row['Email'], $row['Nama']);
     $mail->send();
 }

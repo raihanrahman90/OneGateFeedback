@@ -40,7 +40,6 @@
         	</form>
     	</div>
     </div>
-    ///import
 	<script>
 	let dari = document.getElementById('dari');
     let sampai = document.getElementById('sampai');
@@ -80,7 +79,6 @@
               dataType: 'JSON',
               success: function(response) {
                 try{
-                    console.log(response);
                     data=response;
                     config.data.labels=[];
                     for(label in data["label"]){
@@ -138,11 +136,11 @@
         if(ddl<10){ddl='0'+ddl}
         if(mml<10){mml='0'+mml}
         today = yyyy+'-'+mm+'-'+dd; 
-        lastmonth = yyyyl+'-'+mml+'-'+ddl;
+        lastmonth = yyyyl+'-01-01';
         try{
             document.getElementById('dari').value = lastmonth;
             document.getElementById('sampai').value = today;
-            document.getElementById('rentang').value = "Tahun";
+            document.getElementById('rentang').value = "Bulan";
             document.getElementById('jenis').value = "Status";
         } catch(e){
             alert(e);

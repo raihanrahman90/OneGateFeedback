@@ -1,4 +1,5 @@
 <?php 
+    $detail = 'Request';
     include 'hak_akses.php';
     include 'admin1.php';
     include 'header.php';
@@ -264,7 +265,7 @@
                     <span class='icon text-white-50'>
                       <i class='fas fa-plus'></i>
                     </span>
-                    <span class='text'>Tambah Keterangan Tambahan</span>
+                    <span class='text'>Minta Keterangan Tambahan</span>
                   </a>
                   <div class='modal fade' id='keteranganModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                     <div class='modal-dialog' role='document'>

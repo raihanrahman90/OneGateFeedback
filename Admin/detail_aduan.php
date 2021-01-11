@@ -1,5 +1,5 @@
 <?php 
-
+$detail='Aduan';
 include 'hak_akses.php';
 include 'header.php';
 ?>
@@ -29,8 +29,9 @@ include 'header.php';
                     <?php
             				$id = $_GET['id'];///mengambil id dari url
                     #menampilkan data dengan urutan id_progress 
-            				$data = mysqli_query($koneksi, "SELECT jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, status,foto, tindakan, bukti, tb_progress.waktu as waktu_progress, tb_aduan.id_unit as unit from tb_aduan
+            				$data = mysqli_query($koneksi, "SELECT jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, status,foto, tindakan, bukti, tb_progress.waktu as waktu_progress, tb_aduan.id_unit as unit, Departemen from tb_aduan
             				left join tb_unit ON tb_aduan.id_unit=tb_unit.id_unit 
+                    left join tb_departemen on tb_unit.id_departemen = tb_departemen.id_departemen
             				left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan 
             				left join tb_detail_lokasi on tb_aduan.id_detail_lokasi = tb_detail_lokasi.id_detail_lokasi 
             				left join tb_lokasi on tb_lokasi.id_lokasi = tb_detail_lokasi.id_lokasi 
@@ -50,23 +51,38 @@ include 'header.php';
                                     <input type='text' class='form-control' disabled value='".$row['jenis']."'></input>
                                   </div>
                                 </div>";
-                                  if($row['jenis']=='Keluhan'){
+                              if($row['jenis']=='Keluhan'){
                                   echo"
-                				    <div class='row mb-2'>
-                				      <div class='col-lg-4'>
-                				        <label>Lokasi<label>
-                                      </div>
-                                      <div class='col-lg-8'>
-                                        <input type='text' class='form-control' disabled value='";
-                                        
-                                          if(isset($row["nama_unit"])){
-                                              echo $row["nama_unit"];
-                                          }else{
-                                              echo "Unit sudah dihapus dari database";
-                                          }
-                                        echo "'></input>
-                                      </div>
-                                    </div> ";
+                                  <div class='row mb-2'>
+                                  <div class='col-lg-4'>
+                                    <label>Departemen <label>
+                                          </div>
+                                          <div class='col-lg-8'>
+                                            <input type='text' class='form-control' disabled value='";
+                                            
+                                              if(isset($row["Departemen"])){
+                                                  echo $row["Departemen"];
+                                              }else{
+                                                  echo "Departemen sudah dihapus dari database";
+                                              }
+                                            echo "'></input>
+                                          </div>
+                                        </div>
+                                        <div class='row mb-2'>
+                                          <div class='col-lg-4'>
+                                              <label>Unit <label>
+                                                </div>
+                                                <div class='col-lg-8'>
+                                                  <input type='text' class='form-control' disabled value='";
+                                                  
+                                                    if(isset($row["nama_unit"])){
+                                                        echo $row["nama_unit"];
+                                                    }else{
+                                                        echo "Unit sudah dihapus dari database";
+                                                    }
+                                              echo "'></input>
+                                            </div>
+                                          </div> ";
                                   }
                                   echo"
                 				    <div class='row mb-2'>
@@ -120,7 +136,7 @@ include 'header.php';
                                     #bukti kerusakan ditampilkan
                                     echo"                 
                                     <div class='row mb-2'>
-                                        <div class='col-lg-8 offset-4'>
+                                        <div class='col-lg-8 offset-sm-4'>
                                         <!-- Default Card Example -->
                                         <div class='card mb-4'>
                                           <div class='card-header'>
@@ -168,7 +184,7 @@ include 'header.php';
                                         </div>
                                         <div class='card-body'>
                                           
-                                            <label> Tanggal :".$row["waktu"]."</label>";
+                                            <label> Tanggal :".$row["waktu"]."</label><br/>";
                                             if($row['Nama']) echo "<label>Dilakukan oleh :<a href='detail_akun.php?id=".$row['id_akun']."'>".$row['Nama']."</a></label>";
                                           if($row['bukti']) echo"<a href='../gambar/bukti/".$row["bukti"]."' target='_blank'><img src='../gambar/bukti/".$row["bukti"]."' height='auto' width=100%></a>";
                                           echo"
@@ -259,7 +275,7 @@ include 'header.php';
                             ";
                         ///status belum closed & login sebagai customer service
                     } 
-                    if ($status!='Closed' && (($_SESSION['hak_akses']=='Unit' && $_SESSION['id_unit']==$id_unit) || $_SESSION['hak_akses']=='Super Admin')){
+                    if ($status!='Closed' && (($_SESSION['id_unit']==$id_unit) || $_SESSION['hak_akses']=='Super Admin')){
                       #status belum ditutup & bukan customer service
                       echo "<a href='tindakan.php?id=$id' style='margin-left:10px;' class='btn btn-info btn-icon-split float-right'>
                         <span class='icon text-white-50'>

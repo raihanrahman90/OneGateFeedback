@@ -14,7 +14,7 @@ include 'header.php';
 ?>
 	<body class="login">
 		<!-- Google Tag Manager (noscript) -->
-	<div class="image-container set-full-height" style=>
+	<div class="image-container set-full-height">
 	    <!--   Creative Tim Branding   -->
 	    
 
@@ -97,7 +97,7 @@ include 'header.php';
 										</div>
 		                        <div class="wizard-footer">
 		                            <div class="pull-right">
-		                                <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd' name='finish' value='Finish' />
+		                                <input type='submit' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='Kirim' />
 		                            </div>
 		                            <div class="pull-left">
 		                                <a href="index.php" class='btn btn-finish btn-fill btn-secondary btn-wd'>Kembali<a>

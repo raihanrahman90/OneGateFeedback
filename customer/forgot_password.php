@@ -12,7 +12,7 @@ if(isset($_SESSION['status'])){
       }
     }
   }
-require_once('header.php')
+require_once('header_2.php')
 ?>
 
 <body class="bg-gradient-primary login">

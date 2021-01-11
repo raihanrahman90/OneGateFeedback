@@ -11,9 +11,9 @@ include('header.php');
 		                        		if(isset($_SESSION['status'])){
 		                        			if($_SESSION['status']=='Email telah digunakan'){
 		                        				echo '<div class="alert alert-warning alert-dismissible ">
-                              Email telah digunakan
-                          </div>';
-                          $_SESSION['status']='';
+													Email telah digunakan
+												</div>';
+												$_SESSION['status']='';
 		                        			} else if($_SESSION['status']=='daftar'){
 		                        				echo '<div class="alert alert-success alert-dismissible ">
                               							Kami akan konfirmasi data diri anda, silahkan tunggu e-mail konfirmasi
@@ -138,7 +138,7 @@ include('header.php');
 		                        <div class="wizard-footer">
 		                            <div class="pull-right">
 		                                <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='Next' id="next" onmouseenter="validasi_pass_bandara()"/>
-		                                <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd' name='finish' value='Finish' />
+		                                <input type='submit' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='Finish' />
 		                            </div>
 
 		                            <div class="pull-left">

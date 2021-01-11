@@ -25,7 +25,7 @@ include 'header.php';
                     $data = mysqli_query($koneksi, "SELECT * FROM tb_akun left join tb_departemen on tb_departemen.id_departemen = tb_akun.id_departemen left join tb_unit on tb_unit.id_unit = tb_akun.id_unit WHERE id_akun ='$id_akun'") or die(mysqli_error($koneksi));
                     $data =  mysqli_fetch_array($data);
                 }
-                    ?>
+          ?>
           <div class="card shadow mb-4">
             <div class="card-body">
               <div class="table-responsive">

@@ -5,12 +5,17 @@
     $id_aduan = $_GET['id'];
 	if(isset($_SESSION)){
 		if($_SESSION['status']!='login customer' && $_SESSION['status']!='login'){
-		    $_SESSION['status']='nerobos';
+			$_SESSION['status']='nerobos';
+			$_SESSION['id_aduan']=$id_aduan;
 			header("Location:../");
 		} else {
 		    $query=mysqli_query($koneksi, "Select level from tb_aduan where id_aduan='".$id_aduan."'");
-		    $row = mysqli_fetch_array($query);
-		    $level = $row['level'];
+			$row = mysqli_fetch_array($query);
+			if(isset($row['level'])){
+				$level = $row['level'];
+			}else{
+				$level = -2;
+			}
 		}
 	} else {
 	    $_SESSION['status']='nerobos';
@@ -22,9 +27,9 @@
 	<body onpageshow="myFunction()" class="login">
 	<div class="image-container set-full-height">
 	    <!--   Big container   -->
-	    <div class="container">
-	        <div class="row">
-		        <div class="col-sm-6 col-sm-offset-3">
+	    <div class="container h-100">
+	        <div class="row justify-content-center">
+		        <div class="col-sm-6">
 
 		            <!--      Wizard container        -->
 		            <div class="wizard-container">
@@ -70,11 +75,14 @@
 												}
 		                    	        }
 												echo '</div>';
-                                          if($level==-1 && $data['id_customer']==$_SESSION['id_customer']){
-                                                echo"<div class='form-group'>
-            		                                <label>Data aduan anda bisa diubah sampai dengan 30 menit setelah pengiriman atau klik kirim agar customer service bisa segera menindak lanjuti feedback anda</label>
-            		                            </div>";
-            		                      }
+                                          	if($level==-1){
+												/*Hanya tampil pada level -1*/
+												if(!isset($data['id_customer'])||$data['id_customer']==$_SESSION['id_customer']){
+													echo"<div class='form-group'>
+														<label>Data aduan anda bisa diubah sampai dengan 30 menit setelah pengiriman atau klik kirim agar customer service bisa segera menindak lanjuti feedback anda</label>
+													</div>";
+												}
+											}
 		                    	        ?>
 		                    	        <div class="row">
 		                    	            <div class="form-group col-md-12">
@@ -109,7 +117,7 @@
                 		                    	           echo' 
             		                    	            <div class="form-group col-md-12">
             		                    	                <label>Pertanyaan: '.$row['pertanyaan'].'</label><br>
-                        		                                <a href="keterangan_tambahan.php?id='.$row['link'].'" class="btn btn-finish btn-fill btn-primary btn-wd">Jawab</a>
+                        		                                <a href="keterangan_tambahan.php?id='.$row['link'].'" class="btn btn-fill btn-success btn-wd">Jawab</a>
                         		                          </div>';
                         		                        }else {echo' 
             		                    	            <div class="form-group col-md-12">
@@ -231,7 +239,7 @@
                                                             Terkirim</span>
                                                         <i class="timeline__step-marker"></i>
                                                     </li>
-                                                    <li class='timeline__step done' style="float:right;">
+                                                    <li class='timeline__step done'>
 		                    	                        <span class="timeline__step-title">
                                                             Diterima</span>
                                                         <i class="timeline__step-marker"></i>
@@ -253,13 +261,15 @@
 		                            </div>
 		  
 		                            <?php
-                                          if($level==-1 && $data['id_customer']==$_SESSION['id_customer']){
-                                                echo"<div class='pull-right'>
-            		                                <a href='edit_antrian.php?id=".$id_aduan."' class='btn btn-finish btn-fill btn-warning btn-wd'>Edit</a>
-            		                                <form action='../action/terima.php?id=".$id_aduan."' method='post'>
-            		                                    <button type='submit' class='btn btn-finish btn-fill btn-warning btn-wd'>Kirim</button>
-            		                                </form>
-            		                            </div>";
+                                          if($level==-1){
+											  if(!isset($data['id_customer'])||$data['id_customer']==$_SESSION['id_customer']){
+													echo"<div class='pull-right'>
+														<a href='edit_antrian.php?id=".$id_aduan."' class='btn btn-finish btn-fill btn-warning btn-wd'>Edit</a>
+														<form action='../action/terima.php?id=".$id_aduan."' method='post'>
+															<button type='submit' class='btn btn-finish btn-fill btn-success btn-wd'>Kirim</button>
+														</form>
+													</div>";
+											  }
             		                      }
 		                            ?>
 		                            <div class="clearfix"></div>

@@ -1,7 +1,6 @@
 <?php
 session_start();
 include '../koneksi.php';
-echo "a";
 $id_customer = $koneksi -> real_escape_string($_POST['id']);
 $query = mysqli_query($koneksi, "SELECT nama, email from tb_customer where id_customer='$id_customer'") or die(mysqli_error($koneksi));
 $data = mysqli_fetch_array($query);

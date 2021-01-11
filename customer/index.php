@@ -64,10 +64,10 @@
 											</div>
 											<div class="col-sm-6 ">
 												<div class="form-group">
-												    <h3 style="width:100%;padding-top:20%;">Selamat Datang di Layanan Customer Service Bandara SAMS Sepinggan Balikpapan</h3>
+												    <h2 style="width:100%;padding-top:20%;">Selamat Datang di Layanan Customer Service Bandara SAMS Sepinggan Balikpapan</h2>
 												</div>
 												<div class="form-group">
-													<h5>Silahkan pilih next untuk memberikan saran, informasi, atau keluhan.</h5>
+													<h4>Silahkan pilih next untuk memberikan saran, informasi, atau keluhan.</h4>
 												</div>
 											</div>
 											
@@ -77,20 +77,14 @@
 		                                <div class="row">
 											<div class="col-sm-12 col-sm-offset-0">
 											    <div class="col-sm-12 text-center">
-											        <h3>Silahkan pilih menu</h3>
-											        <h5>
+											        <h1>Silahkan pilih menu</h1>
+											        <h3>
 											            Pilih kirim feedback untuk memberikan saran, informasi, atau keluhan. Pilih cari Feedback untuk mengetahui progres dari keluhan yang anda kirimkan
-											        </h5>
+											        </h3>
 											    </div>
 		                                        <div class="col-sm-6">
 		                                            <div class="choice" data-toggle="wizard-checkbox">
-		                                                <?php 
-		                                                    if($_SESSION['status']=='login' && $_SESSION['email']=='bpn.ph@ap1.co.id'){
-		                                                        echo '<a href="aduan_customer_service.php" style="text-decoration:none;">';
-		                                                    }else{
-		                                                        echo '<a href="aduan_customer.php" style="text-decoration:none;">';
-		                                                    }
-		                                                ?>
+		                                                    <a href="aduan_customer.php" style="text-decoration:none;">
 		                                                <div class="card card-checkboxes card-hover-effect">
 		                                                    <i class="ti-export"></i>
 															<p>Kirim Feedback</p>

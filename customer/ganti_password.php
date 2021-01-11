@@ -12,7 +12,7 @@ if(isset($_SESSION['status'])){
       }
     }
   }
-  include 'header.php';
+  require_once('header_2.php')
 ?>
 <body class="bg-gradient-primary login">
 
@@ -30,13 +30,7 @@ if(isset($_SESSION['status'])){
               <div class="col-lg-12">
                 <div class="p-5">
                   <div class="text-center">
-                        <h5>Silahkan Perbarui password anda</h5>
-                        <?php
-                            if(isset($_SESSION['status_jalan'])&&($_SESSION['status_jalan']=="Token tidak ditemukan")){
-                                echo "<div class='alert alert-info alert-dismissible fade show'>Token yang anda masukkan tidak valid</div>";
-                                $_SESSION['status_jalan']="";
-                            }
-                        ?>
+                        <h4 class="mb-5">Silahkan Perbarui password anda</h5>
                   </div>
                   <form action="../action/ganti_password.php" onsubmit="return validasi();" class="user" method="post">
                     <div class="form-group">
@@ -45,7 +39,7 @@ if(isset($_SESSION['status'])){
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Masukkan Lagi Password" name="password2" id="password2" required>
                     </div>
-                    <input type="submit" value="Masuk" class="btn btn-primary btn-user btn-block">
+                    <input type="submit" value="Ganti Password" class="btn btn-primary btn-user btn-block">
                   </form>
                   <hr>
                 </div>

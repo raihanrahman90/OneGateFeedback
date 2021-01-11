@@ -12,7 +12,7 @@
 ?>	
 <!doctype html>
 	<body class="login">
-	<div class="image-container set-full-height" style="background-image: linear-gradient(180deg, #7395fa 10%, #224abe 100%);">
+	<div class="image-container set-full-height">
 	    <!--   Creative Tim Branding   -->
 	    
 

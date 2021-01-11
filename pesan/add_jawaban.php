@@ -1,7 +1,7 @@
 
 <?php
 $subject ='Jawaban telah diberikan';
-include '../pesan/header.php';
+include __DIR__.'\..\pesan\header.php';
 $text = '<!DOCTYPE html>
 <html lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -19,9 +19,11 @@ $text = '<!DOCTYPE html>
 //Attach an image file
 //send the message, check for errors
 $mail->msgHTML($text, __DIR__);
-$data = mysqli_query($koneksi, "SELECT token, Email, Nama FROM tb_akun inner join tb_token on tb_token.id = tb_akun.id_akun where (hak_akses ='Admin2' or hak_akses='Super Admin') and tb_token.status='akun'");
+$data = mysqli_query($koneksi, "SELECT token, Email, Nama FROM tb_akun 
+                                left join (SELECT * from tb_token where status='akun') as tb_token on tb_token.id = tb_akun.id_akun where (hak_akses ='Admin2' or hak_akses='Super Admin')");
 foreach ($data as $row) {
-    sendPushNotification(
+    if(!is_null($row['token'])){
+      sendPushNotification(
         $row['token'], 
         "Keterangan Tambahan", 
         "Keterangan tambahan telah ditambahkan pada aduan dengan id ".$id_aduan, 
@@ -29,6 +31,7 @@ foreach ($data as $row) {
         '',
         ''
     );
+    }
     $mail->addAddress($row['Email'], $row['Nama']);
     $mail->send();
 }

@@ -1,13 +1,13 @@
 <?php
-    include '../link.php';
-    include '../pesan/kirim_notif.php';
-    include '../koneksi.php';
+    include __DIR__.'\..\link.php';
+    include __DIR__.'\..\pesan\kirim_notif.php';
+    include __DIR__.'\..\koneksi.php';
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     
-    require '../phpmailer/src/Exception.php';
-    require '../phpmailer/src/PHPMailer.php';
-    require '../phpmailer/src/SMTP.php';
+    require __DIR__.'\..\phpmailer/src/Exception.php';
+    require __DIR__.'\..\phpmailer/src/PHPMailer.php';
+    require __DIR__.'\..\phpmailer/src/SMTP.php';
     //Create a new PHPMailer instance
 	//Tell PHPMailer to use SMTP
 	$mail = new PHPMailer;
