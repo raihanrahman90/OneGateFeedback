@@ -36,6 +36,7 @@ while($row = mysqli_fetch_array($level2)){
                                     left join (SELECT * from tb_token where status='akun') as tb_token on tb_token.id = tb_akun.id_akun 
                                     where id_unit = '".$row['id_unit']."' or (id_departemen ='".$row['id_departemen']."' and tb_akun.status='Senior Manager')") or die(mysqli_error($koneksi));
     $mail->msgHTML($text_level2, __DIR__);
+    $mail->ClearAllRecipients();
     while($list_email = mysqli_fetch_array($email)){
         if(!is_null($list_email['token'])){
             sendPushNotification(
@@ -48,11 +49,11 @@ while($row = mysqli_fetch_array($level2)){
             );
         }
         $mail->addAddress($list_email['Email'], $list_email['nama']);
-        if(!$mail->send()){
-            echo 'Mailer Error: '. $mail->ErrorInfo;
-        } else {
-            echo 'Message sent!';
-        }
+    }
+    if(!$mail->send()){
+        echo 'Mailer Error: '. $mail->ErrorInfo;
+    } else {
+        echo 'Message sent!';
     }
 }
 mysqli_query($koneksi,"UPDATE tb_aduan set level=2 where TIMESTAMPDIFF(DAY, waktu,now()) >= 1 and status='Open' and level = 1") or die(mysqli_error($koneksi));
@@ -74,6 +75,7 @@ while($row = mysqli_fetch_array($level3)){
                                     (id_departemen ='".$row['id_departemen']."' and tb_akun.status='Senior Manager') or
                                     tb_akun.status='AOC Head'") or die(mysqli_error($koneksi));
     $mail->msgHTML($text_level3, __DIR__);
+    $mail->ClearAllRecipients();
     while($list_email = mysqli_fetch_array($email)){
         if(!is_null($list_email['token'])){
             sendPushNotification(
@@ -86,11 +88,11 @@ while($row = mysqli_fetch_array($level3)){
             );
         }
         $mail->addAddress($list_email['Email'], $list_email['nama']);
-        if(!$mail->send()){
-            echo 'Mailer Error: '. $mail->ErrorInfo;
-        } else {
-            echo 'Message sent!';
-        }
+    }
+    if(!$mail->send()){
+        echo 'Mailer Error: '. $mail->ErrorInfo;
+    } else {
+        echo 'Message sent!';
     }
 }
 
@@ -106,6 +108,7 @@ while($row = mysqli_fetch_array($level4)){
     $id_aduan = $row['id_aduan'];
     $text_level4 = getPesan('4', $id_aduan, $link);
     $mail->msgHTML($text_level4, __DIR__);
+    $mail->ClearAllRecipients();
     $email = mysqli_query($koneksi, "SELECT token,Email, tb_akun.nama as nama from tb_akun
                                     left join (SELECT * from tb_token where status='akun') as tb_token on tb_token.id = tb_akun.id_akun 
                                     where id_unit = '".$row['id_unit']."' or 
@@ -122,12 +125,12 @@ while($row = mysqli_fetch_array($level4)){
               ''
             );
         }
-        $mail->addAddress($list_email['Email'], $list_email['nama']);
-        if(!$mail->send()){
-            echo 'Mailer Error: '. $mail->ErrorInfo;
-        } else {
-            echo 'Message sent!';
-        }
+    }
+    $mail->addAddress($list_email['Email'], $list_email['nama']);
+    if(!$mail->send()){
+        echo 'Mailer Error: '. $mail->ErrorInfo;
+    } else {
+        echo 'Message sent!';
     }
 }
 
