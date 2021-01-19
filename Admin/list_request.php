@@ -1,4 +1,5 @@
 <?php 
+    $halaman = 'Request';
     include 'hak_akses.php';
     include  'admin1.php';
     include 'header.php';
@@ -44,8 +45,13 @@
                       foreach ( $mahasiswa as $row){
                           echo "<tr>
                               <td>".$row['id_aduan']."</td>
-                              <td>".$row['jenis']."</td>
-                              <td>".$row['perihal']."</td>";
+                              <td>".$row['jenis']."</td>";
+                              if($row['urgensi']==1){
+                                echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['perihal']."</span></td>";
+                              }else{
+                                echo
+                                "<td>".$row['perihal']."</td>";
+                              }
                               if($row['status']=='Returned'){
                                 echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['status']."</span></td>";
                               } else {

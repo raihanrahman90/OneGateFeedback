@@ -80,8 +80,34 @@
 												</div>
 											<div class="col-sm-12">
 												<div class="form-group">
-													<label>Perihal<small>(required)</small></label>
-													<input name="perihal" type="text" class="form-control" placeholder="Toilet" value=<?php echo '"'.$row1['perihal'].'"'?> required>
+													<label>Jenis Urgensitas Feedback<small>(required)</small></label>
+													<select  name="perihalUrgent" type="text" class="form-control" placeholder="Toilet" required id="perihalUrgent">
+                                                        <?php
+                                                            $getPerihal = mysqli_query($koneksi,"SELECT * FROM tb_urgensi");
+                                                            foreach($getPerihal as $row){
+																#jika urgent salah, maka semua yang di dalam tb_urgensitas tidak memiliki nilai selected
+																#jika urgent, maka salah satu dari $row adalah selected
+																if($row['urgensi']==1 && $row['perihal']==$row1['perihal']){
+																	echo '<option value="'.$row['perihal'].'" selected>'.$row['perihal'].'</option>';
+																}else{
+																	echo '<option value="'.$row['perihal'].'">'.$row['perihal'].'</option>';
+																}
+															}
+															#memerika apakah perihal adalah urgent
+															if($row1['urgensi']==0){
+																echo '<option value="Tidak Urgent" selected>Lainnya</option>';
+															}else{
+																echo '<option value="Tidak Urgent">Lainnya</option>';
+															}
+                                                        ?>
+                                                    </select>
+													<?php
+														if($row1['urgensi']==0){
+															echo '<input name="perihal" type="text" class="form-control mt-3 placholder="Isikan Perihal Anda" id="perihal" value="'.$row1['perihal'].'">';
+														}else{
+															echo '<input name="perihal" type="text" class="form-control d-none mt-3 placholder="Isikan Perihal Anda" id="perihal">';	
+														}
+													?>
 												</div>
 												<div class="form-group">
 													<label>Keterangan<small>(required)</small></label>
@@ -152,7 +178,7 @@
 		        </div>
 	    	</div><!-- end row -->
 
-	<script type="text/javascript">
+			<script type="text/javascript">
 	    $(document).ready(function(){
 	       $("#lokasi" ).change(function () {    
               var data = $('#myform').serialize();
@@ -165,6 +191,15 @@
                 }
               }); 
             }); 
+			$("#perihalUrgent").change(function(){
+                 if($(this).val()=='Tidak Urgent'){
+					 $('#perihal').removeClass('d-none')
+					 $('#perihal').prop('required', true);
+				 }else{
+					$('#perihal').addClass('d-none')
+					 $('#perihal').prop('required', false);
+				 }
+            })
 	    });
 	</script>
 </body>

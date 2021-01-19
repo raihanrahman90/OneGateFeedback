@@ -1,5 +1,5 @@
 <?php 
-    $detail = 'Request';
+    $halaman = 'Request';
     include 'hak_akses.php';
     include 'admin1.php';
     include 'header.php';
@@ -18,8 +18,6 @@
             				$id_aduan = $_GET['id'];
             				$data = mysqli_query($koneksi, "SELECT pelapor, Nama,no_telp, email,jenis, perihal, ket, tb_aduan.foto, tb_aduan.status, nama_lokasi, nama_detail_lokasi from tb_aduan 
             				    left join tb_customer ON tb_aduan.id_customer=tb_customer.id_customer
-            				    left join tb_detail_lokasi ON tb_aduan.id_detail_lokasi = tb_detail_lokasi.id_detail_lokasi
-            				    left join tb_lokasi on tb_detail_lokasi.id_lokasi = tb_lokasi.id_lokasi
             					where tb_aduan.id_aduan ='$id_aduan' ") or die(mysqli_error($koneksi));
             				$cek = mysqli_num_rows($data);
 							if($cek > 0){

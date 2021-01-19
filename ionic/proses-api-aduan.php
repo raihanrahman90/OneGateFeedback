@@ -108,16 +108,12 @@
 	}elseif($postjson['aksi']=='get-id-aduan'){
 		$dataaduan =array();
 		$query= mysqli_query($koneksi, "SELECT *, tb_aduan.waktu as waktu_aduan, tb_progress.waktu as waktu_progress, now() as sekarang FROM tb_aduan 
-			LEFT JOIN tb_unit ON tb_aduan.id_unit = tb_unit.id_unit 
-			LEFT JOIN tb_departemen ON tb_departemen.id_departemen = tb_unit.id_departemen 
 			LEFT JOIN tb_progress on tb_aduan.id_aduan = tb_progress.id_aduan 
-			LEFT JOIN tb_detail_lokasi on tb_detail_lokasi.id_detail_lokasi = tb_aduan.id_detail_lokasi 
-			LEFT JOIN tb_lokasi on tb_lokasi.id_lokasi = tb_detail_lokasi.id_lokasi 
 			WHERE tb_aduan.id_aduan = '$postjson[id_aduan]' order by id_progress desc") or die(mysqli_error($koneksi));
 		$jumlahdata = mysqli_num_rows($query);
 		if($row = mysqli_fetch_array($query)){
-		    if($row['Departemen']==null) $departemen='Departemen tidak tersedia';
-		    else $departemen=$row['Departemen'];
+		    if($row['nama_departemen']==null) $departemen='Departemen tidak tersedia';
+		    else $departemen=$row['nama_departemen'];
 		    if($row['nama_unit']==null) $nama_unit='Unit tidak tersedia';
 		    else $nama_unit=$row['nama_unit'];
 			$dataaduan[] = array(
@@ -150,13 +146,11 @@
 	    $dataaduan = array();
 	    $data = mysqli_query($koneksi, "SELECT *, tb_aduan.status as status_progress, now() as sekarang from tb_aduan 
 		                        left join tb_progress on tb_aduan.id_aduan = tb_progress.id_aduan
-		                        left join tb_detail_lokasi on tb_detail_lokasi.id_detail_lokasi = tb_aduan.id_detail_lokasi
-		                        left join tb_lokasi on tb_detail_lokasi.id_lokasi = tb_lokasi.id_lokasi
 		                        where tb_aduan.id_aduan = '$id_aduan'");
 		if($row = mysqli_fetch_array($data)){
 			$dataaduan[] = array(
 			    'jenis'=>$row['jenis'],
-				'departemen' => $row['Departemen'],
+				'departemen' => $row['nama_departemen'],
 				'nama_unit' => $row['nama_unit'],
 				'perihal' => $row['perihal'],
 				'keterangan' => $row['ket'],

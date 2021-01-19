@@ -21,7 +21,6 @@
     $data = mysqli_query($koneksi, "SELECT tb_token.token, Email, Nama FROM tb_akun 
                                     left join (SELECT * from tb_token where status='akun') as tb_token on tb_akun.id_akun = tb_token.id where id_unit ='$id_unit'") or die(mysqli_error($koneksi));
     while($row = mysqli_fetch_array($data)) {
-        echo "a";
         sendPushNotification(
             $row['token'], 
             'Feedback Baru Terhadap Unit Anda', 
@@ -30,7 +29,8 @@
             '',
             '');
         $mail->addAddress($row['Email'], $row['Nama']);
-        $mail->send();
     }
+    $mail->send();
+
 
 ?>

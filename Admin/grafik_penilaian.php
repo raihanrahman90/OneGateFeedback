@@ -9,10 +9,10 @@
             	<div class="card shadow mb-4 ">
         	    	<div class="card-header py-3">
         	    	    <div class="row">
-            	    	    <label class="col-12 col-md-2">Kelompok Berdasarkan</label>
+            	    	    <label class="col-12 col-md-2">Nilai</label>
                 	    	<select id="kelompok" name='kelompok' class="col-12 col-md-1 form-control">    
-                				<option value='status' selected="true">Status</option>
-                				<option value='jenis'>Jenis</option>
+                				<option value='rata-rata' selected="true">Rata-rata</option>
+                				<option value='Nilai'>Nilai</option>
                     		</select>
                     		<label class="col-12 col-md-2">Periode</label>
                     		<select id="rentang" name='rentang' class="col-12 col-md-1 form-control">    
@@ -72,11 +72,12 @@
           }
       };
       var myChart = new Chart(ctx, config);
+      /**Fungsi merubah konfigurasi */
     function gantiRange(format){
         $.ajax({
             data: $("#myform").serialize(),
               type: 'POST',
-              url: "../action/datasets.php",
+              url: "../action/datasets_penilaian.php",
               dataType: 'JSON',
               success: function(response) {
                 try{
@@ -94,14 +95,14 @@
                                 ///kondisi data tidak ditemukan
                                 datamasuk.push('"null"');
                             } else {
-                                ///menambahkan data baru ke datamasuk
+                                ///menambahkan data baru kedatamasuk
                                 datamasuk.push(data["data"][garis][data["label"][label]]);
                             }
                         }
-                        var tambah = '{"label":"'+garis+'", "fill":false, "borderWidth":1, "borderColor":"'+warna[a]+'", "connectNullData":true, "showLine":true,"backgroundColor":"'+warna[a]+'", "data":['+datamasuk+']}';
-                        a=a+1;
+                         var tambah = '{"label":"'+garis+'", "fill":false, "borderWidth":1, "borderColor":"'+warna[a]+'", "connectNullData":true, "showLine":true,"backgroundColor":"'+warna[a]+'", "data":['+datamasuk+']}';
+                      a=a+1;
                         var obj = JSON.parse(tambah);
-                        config.data.datasets.push(obj);
+                      config.data.datasets.push(obj);
                     }
                     if(myChart){
                         myChart.destroy();
@@ -118,8 +119,9 @@
             }
         });
     }
+      /**Fungsi merubah konfigurasi */
     $(document).ready(function() {
-        /** Setting Tanggal Default */
+        /**Mensetting Tanggal */
         /** Tanggal 1 Tahun lalu */
         var today = new Date();
         var lastmonth = new Date();
@@ -139,7 +141,7 @@
         if(mml<10){mml='0'+mml}
         today = yyyy+'-'+mm+'-'+dd; 
         lastmonth = yyyyl+'-01-01';
-        /** Setting Tanggal Default */
+        /**Mensetting Tanggal */
         try{
             document.getElementById('dari').value = lastmonth;
             document.getElementById('sampai').value = today;
@@ -151,7 +153,7 @@
         $.ajax({
             data: $("#myform").serialize(),
               type: 'POST',
-              url: "../action/datasets.php",
+              url: "../action/datasets_penilaian.php",
               dataType: 'JSON',
               success: function(response) {
                 try{

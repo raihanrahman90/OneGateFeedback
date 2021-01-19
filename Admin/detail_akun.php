@@ -1,6 +1,6 @@
 <?php 
 
-$halaman = 'akun';
+$halaman = 'Akun';
 include 'hak_akses.php';
 include 'header.php';
 ?>

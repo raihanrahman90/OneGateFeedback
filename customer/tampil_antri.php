@@ -26,6 +26,40 @@
 <!doctype html>
 	<body onpageshow="myFunction()" class="login">
 	<div class="image-container set-full-height">
+	
+	<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="d-flex h-100 w-100 d-flex">
+					<div class="row align-self-center modal-dialog d-flex col-12 col-md-6" role="document">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Ganti Nama Lokasi</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<form action='../action/add_penilaian.php' method='post'>
+							<div class="modal-body">
+								<label>Berikan Penilaian</label><br/>
+									<input type='hidden' value='0' id="nilai" name="nilai"/>
+									<button id="nilai_1" type="button" class="btn penilaian"><span class='fa fa-star'></span></button>
+									<button id="nilai_2" type="button" class="btn penilaian"><span class='fa fa-star'></span></button>
+									<button id="nilai_3" type="button" class="btn penilaian"><span class='fa fa-star'></span></button>
+									<button id="nilai_4" type="button" class="btn penilaian"><span class='fa fa-star'></span></button>
+									<button id="nilai_5" type="button" class="btn penilaian"><span class='fa fa-star'></span></button>
+									<br/>
+									<label>Komentar</label>
+									<input type='text' class='form-control' placeholder='Masukkan Komentar Anda' name='ulasan'>
+									<?php echo '<input type="hidden" name="id_aduan" value="'.$id_aduan.'"/>';?>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+								<button type="submit" class="btn btn-primary">Kirim</button>
+							</div>
+						</form>
+						</div>
+					</div>
+				</div>
+			</div>
 	    <!--   Big container   -->
 	    <div class="container h-100">
 	        <div class="row justify-content-center">
@@ -38,8 +72,7 @@
 		                        $id_aduan = $_GET['id'];
 		                        $data1 = mysqli_query($koneksi, "SELECT *, tb_aduan.status as status_progress from tb_aduan 
                                 		                        left join tb_progress on tb_aduan.id_aduan = tb_progress.id_aduan
-                                		                        left join tb_detail_lokasi on tb_detail_lokasi.id_detail_lokasi = tb_aduan.id_detail_lokasi
-                                		                        left join tb_lokasi on tb_detail_lokasi.id_lokasi = tb_lokasi.id_lokasi
+																left join tb_penilaian on tb_penilaian.id_aduan = tb_aduan.id_aduan
                                 		                        where tb_aduan.id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
 		                        $data = mysqli_fetch_array($data1);
 		                        ?>
@@ -261,6 +294,22 @@
 		                            </div>
 		  
 		                            <?php
+									/**Button Penilaian */
+									if(mysqli_num_rows($data1)!=0 && $data['id_customer']==$_SESSION['id_customer'] && is_null($data['ulasan']) && $data['status']=='Closed' && $data['level']>-1	){
+										echo '<div class="pull-right">
+										<button type="button" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#exampleModal">
+											<span class="icon text-white-50">
+												<i class="fas fa-star"></i>
+											</span>
+											<span class="text">
+												Beri Penilaian
+											</span>
+										</button>
+									</div>';
+									}
+										
+									/**Button penilaian */
+									/**button  edit */
                                           if($level==-1){
 											  if(!isset($data['id_customer'])||$data['id_customer']==$_SESSION['id_customer']){
 													echo"<div class='pull-right'>
@@ -278,7 +327,7 @@
 		            </div> <!-- wizard container -->
 		        </div>
 	    	</div><!-- end row -->
-    <script >
+			<script >
         if (window.name == "reloader") {
             window.name = "";
             location.reload();
@@ -288,5 +337,58 @@
             window.name = "reloader"; 
         }
     </script>
+	
+	<script src="../vendor/jquery/jquery.min.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="../assets/js/sb-admin-2.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#nilai_1').click(function(){
+				$('#nilai').val(1)
+				$('#nilai_1').addClass('penilaian-checked')
+				$('#nilai_2').removeClass('penilaian-checked')
+				$('#nilai_3').removeClass('penilaian-checked')
+				$('#nilai_4').removeClass('penilaian-checked')
+				$('#nilai_5').removeClass('penilaian-checked')
+			})
+			$('#nilai_2').click(function(){
+				$('#nilai').val(2)
+				$('#nilai_1').addClass('penilaian-checked')
+				$('#nilai_2').addClass('penilaian-checked')
+				$('#nilai_3').removeClass('penilaian-checked')
+				$('#nilai_4').removeClass('penilaian-checked')
+				$('#nilai_5').removeClass('penilaian-checked')
+			})
+			$('#nilai_3').click(function(){
+				$('#nilai').val(3)
+				$('#nilai_1').addClass('penilaian-checked')
+				$('#nilai_2').addClass('penilaian-checked')
+				$('#nilai_3').addClass('penilaian-checked')
+				$('#nilai_4').removeClass('penilaian-checked')
+				$('#nilai_5').removeClass('penilaian-checked')
+			})
+			$('#nilai_4').click(function(){
+				$('#nilai').val(4)
+				$('#nilai_1').addClass('penilaian-checked')
+				$('#nilai_2').addClass('penilaian-checked')
+				$('#nilai_3').addClass('penilaian-checked')
+				$('#nilai_4').addClass('penilaian-checked')
+				$('#nilai_5').removeClass('penilaian-checked')
+			})
+			$('#nilai_5').click(function(){
+				$('#nilai').val(5)
+				$('#nilai_1').addClass('penilaian-checked')
+				$('#nilai_2').addClass('penilaian-checked')
+				$('#nilai_3').addClass('penilaian-checked')
+				$('#nilai_4').addClass('penilaian-checked')
+				$('#nilai_5').addClass('penilaian-checked')
+			})
+		})
+	</script>
 </body>
 </html>

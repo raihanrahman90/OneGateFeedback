@@ -1,6 +1,7 @@
 
 <?php 
 
+$halaman = 'Kustomer';
 include 'hak_akses.php';
 include 'header.php';
 ?>

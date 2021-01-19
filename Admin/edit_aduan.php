@@ -1,4 +1,5 @@
 <?php 
+$halaman = 'Aduan';
 include 'header.php';
 $id = $_GET['id'];
 $data = mysqli_query($koneksi, "SELECT id_departemen, tb_aduan.id_unit, pelapor, perihal, ket,foto, status FROM tb_aduan inner join tb_unit on tb_unit.id_unit = tb_aduan.id_unit WHERE id_aduan ='".$id."'") or die(mysqli_error($koneksi));

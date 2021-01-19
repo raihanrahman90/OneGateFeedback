@@ -60,8 +60,17 @@ include 'header.php';
 											</div>
 											<div class="col-sm-10 col-sm-offset-1">
 												<div class="form-group">
-													<label>Perihal<small>(required)</small></label>
-													<input name="perihal" type="text" class="form-control" placeholder="Toilet" required>
+													<label>Jenis Urgency Feedback<small>(required)</small></label>
+													<select  name="perihalUrgent" type="text" class="form-control" placeholder="Toilet" required id="perihalUrgent">
+                                                        <?php
+                                                            $getPerihal = mysqli_query($koneksi,"SELECT * FROM tb_urgensi");
+                                                            foreach($getPerihal as $row){
+                                                                echo '<option value="'.$row['perihal'].'">'.$row['perihal'].'</option>';
+                                                            }
+                                                        ?>
+														<option value="Tidak Urgent">Lainnya</option>
+                                                    </select>
+													<input name="perihal" type="text" class="form-control d-none mt-3" placeholder="Isikan perihal anda" id="perihal">
 												</div>
 												<div class="form-group">
 													<label>Keterangan<small>(required)</small></label>
@@ -111,7 +120,7 @@ include 'header.php';
 	    	</div><!-- end row -->
 		</div> <!--  big container -->
 	</div>
-	<script type="text/javascript">
+    <script type="text/javascript">
 	    $(document).ready(function(){
 	       $("#lokasi" ).change(function () {    
               var data = $('#myform').serialize();
@@ -124,6 +133,15 @@ include 'header.php';
                 }
               }); 
             }); 
+			$("#perihalUrgent").change(function(){
+                 if($(this).val()=='Tidak Urgent'){
+					 $('#perihal').removeClass('d-none')
+					 $('#perihal').prop('required', true);
+				 }else{
+					$('#perihal').addClass('d-none')
+					 $('#perihal').prop('required', false);
+				 }
+            })
 	    });
 	</script>
 </body>

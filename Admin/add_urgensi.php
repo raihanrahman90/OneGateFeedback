@@ -1,6 +1,6 @@
 <?php 
 
-$halaman ='Departemen';
+$halaman = 'Urgensi';
 include 'hak_akses.php';
 include 'super_admin.php';
 include 'header.php';
@@ -9,19 +9,18 @@ include 'header.php';
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tambah Unit</h1>
+          <h1 class="h3 mb-2 text-gray-800">Tambah Urgensi</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-body">
               <div class="table-responsive">
-            	<form action="../action/add_unit.php" id="my_form" method="post">
+            	<form action="../action/add_urgensi.php" id="my_form" method="post">
             		<table class="table" width="100%" cellspacing="0">
                         <thead>
                 		    <tr>
-                				<td><label>Unit</label></td>
+                				<td><label>Perihal</label></td>
                 				<td><label>:</label></td>
-                				<td colspan="3"><input type="text" name="unit" class="form-control form-control-user" required></td>
-            		            <input type="hidden" name="id" value=<?php echo '"'.$_GET['id'].'"';?> >
+                				<td colspan="3"><input type="text" name="perihal" class="form-control form-control-user" required></td>
             				</tr>
                         </thead>
                 	

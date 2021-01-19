@@ -1,5 +1,5 @@
 <?php 
-$detail='Aduan';
+$halaman='Aduan';
 include 'hak_akses.php';
 include 'header.php';
 ?>
@@ -29,12 +29,8 @@ include 'header.php';
                     <?php
             				$id = $_GET['id'];///mengambil id dari url
                     #menampilkan data dengan urutan id_progress 
-            				$data = mysqli_query($koneksi, "SELECT jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, status,foto, tindakan, bukti, tb_progress.waktu as waktu_progress, tb_aduan.id_unit as unit, Departemen from tb_aduan
-            				left join tb_unit ON tb_aduan.id_unit=tb_unit.id_unit 
-                    left join tb_departemen on tb_unit.id_departemen = tb_departemen.id_departemen
+            				$data = mysqli_query($koneksi, "SELECT jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, status, foto, tindakan, bukti, tb_progress.waktu as waktu_progress, tb_aduan.id_unit as unit, nama_departemen, nama_unit from tb_aduan
             				left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan 
-            				left join tb_detail_lokasi on tb_aduan.id_detail_lokasi = tb_detail_lokasi.id_detail_lokasi 
-            				left join tb_lokasi on tb_lokasi.id_lokasi = tb_detail_lokasi.id_lokasi 
             				where tb_aduan.id_aduan ='$id' ORDER BY id_progress ASC") or die(mysqli_error($koneksi));
 							 $row = mysqli_fetch_assoc($data);
 							 $status = $row["status"];
@@ -60,8 +56,8 @@ include 'header.php';
                                           <div class='col-lg-8'>
                                             <input type='text' class='form-control' disabled value='";
                                             
-                                              if(isset($row["Departemen"])){
-                                                  echo $row["Departemen"];
+                                              if(isset($row["nama_departemen"])){
+                                                  echo $row["nama_departemen"];
                                               }else{
                                                   echo "Departemen sudah dihapus dari database";
                                               }

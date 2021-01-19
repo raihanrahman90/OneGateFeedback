@@ -30,6 +30,7 @@ foreach ($data as $row) {
         '','');
   }
     $mail->addAddress($row['Email'], $row['Nama']);
-    $mail->send();
 }
+$mail->send();
+
 ?>

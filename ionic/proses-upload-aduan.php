@@ -2,8 +2,25 @@
 	include 'header.php';// menangkap data yang dikirim dari form
 	$jenis = $koneksi -> real_escape_string($_POST['jenis']);
 	$perihal = $koneksi -> real_escape_string($_POST['perihal']);
-	$keterangan = $koneksi -> real_escape_string($_POST['keterangan']);
-	$id_detail_lokasi = $koneksi -> real_escape_string($_POST['id_detail_lokasi']);
+	$keterangan = $koneksi -> real_escape_string($_POST['keterangan']);		
+	$perihalUrgent = $koneksi ->real_escape_string($_POST['perihalUrgent']);
+	if($perihalUrgent=='Tidak Urgent'){
+		$urgensi = 0;
+		$perihal = $koneksi -> real_escape_string($_POST['perihal']);
+	}else{
+		$urgensi = 1;
+		$perihal = $perihalUrgent;
+	}
+	/**setting lokasi */
+	$id_lokasi = $koneksi -> real_escape_string($_POST['lokasi']);
+	$id_detail_lokasi = $koneksi -> real_escape_string($_POST['detail-lokasi']);
+	$data_lokasi = mysqli_query($koneksi, "SELECT nama_lokasi, nama_detail_lokasi from tb_lokasi
+											inner join tb_detail_lokasi on tb_lokasi.id_lokasi = tb_detail_lokasi.id_lokasi
+											where tb_lokasi.id_lokasi=$id_lokasi and tb_detail_lokasi.id_detail_lokasi=$id_detail_lokasi") or die(mysqli_error($koneksi));
+	$data_lokasi = mysqli_fetch_array($data_lokasi);
+	$nama_lokasi = $data_lokasi['nama_lokasi'];
+	$nama_detail_lokasi = $data_lokasi['nama_detail_lokasi'];
+	/**Setting Lokasi */
 	if($jenis=="Keluhan"){
 	    $status = 'Request';
 	} else {
@@ -11,7 +28,7 @@
 	}
 	if($_POST['aksi']=='insert'){
 	    $pelapor = $koneksi -> real_escape_string($_POST['pelapor']);
-        $id_akun = $koneksi -> real_escape_string($_POST['id_customer']);
+		$id_akun = $koneksi -> real_escape_string($_POST['id_customer']);
         if($_POST['email']=='bpn.ph@ap1.co.id'){
             $sintax = "INSERT INTO tb_aduan VALUES(
         	0,
@@ -19,6 +36,8 @@
         	NULL,
         	NULL,
         	'$id_detail_lokasi',
+			'$nama_lokasi',
+			'$nama_detail_lokasi',
         	'$jenis',
         	'$perihal',
         	'$pelapor',
@@ -28,7 +47,6 @@
         	now(),
         	NULL,
         	-1)";
-                
         }else{
             $sintax = "INSERT INTO tb_aduan VALUES(
         	0,

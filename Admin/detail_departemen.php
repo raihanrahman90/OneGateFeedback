@@ -1,5 +1,5 @@
 <?php 
-
+$halaman = 'Departemen';
 include 'hak_akses.php';
 include 'super_admin.php';
 include 'header.php';

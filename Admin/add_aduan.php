@@ -1,4 +1,5 @@
 <?php 
+  $halaman ='Aduan';
   include 'header.php';
 ?>
         <!-- Begin Page Content -->

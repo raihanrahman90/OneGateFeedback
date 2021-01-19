@@ -30,6 +30,6 @@ while($row = mysqli_fetch_array($data)) {
         '',
         '');
     $mail->addAddress($row['Email'], $row['Nama']);
-    $mail->send();
 }
+$mail->send();
 ?>

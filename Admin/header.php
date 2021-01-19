@@ -48,7 +48,7 @@
       <div class="sidebar-heading">
         Menu
       </div>
-            <li class="nav-item">
+            <?php echo'<li class="nav-item '.($halaman=='Aduan'?'active':'').'">'; ?>
                 <a class="nav-link" href="../Admin/">
                   <i class="fas fa-fw fa-comments"></i>
                   <span id="notifFeedback">
@@ -61,7 +61,7 @@
        <?php
     if($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin1'){
             echo '
-             <li class="nav-item">
+             <li class="nav-item '.($halaman=='Request'?'active':'').'">
                 <a class="nav-link" href="../Admin/list_request.php">
                   <i class="fas fa-fw fa-folder"></i>
                   <span id="notifRequest">
@@ -74,7 +74,7 @@
     
     
     if($_SESSION['hak_akses']=='Super Admin'){
-      echo '<li class="nav-item">
+      echo '<li class="nav-item '.($halaman=='Departemen'?'active':'').'">
         <a class="nav-link" href="../Admin/list_departemen.php">
           <i class="fas fa-fw fa-building"></i>
           <span>Departemen</span>
@@ -82,12 +82,12 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item '.($halaman=='Akun'?'active':'').'">
         <a class="nav-link" href="../Admin/list_account.php">
           <i class="fas fa-fw fa-user"></i>
           <span>Akun</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item '.($halaman=='Kustomer'?'active':'').'">
         <a class="nav-link" href="../Admin/list_customer.php">
           <i class="fas fa-fw fa-users"></i>
           <span id="notifCustomer">
@@ -95,19 +95,35 @@
           </span>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item '.($halaman=='Lokasi'?'active':'').'">
         <a class="nav-link" href="../Admin/list_lokasi.php">
           <i class="fas fa-fw fa-map-marker"></i>
           <span>Lokasi</span></a>
+      </li>
+      <li class="nav-item '.($halaman=='Urgensi'?'active':'').'">
+        <a class="nav-link" href="../Admin/list_urgensi.php">
+          <i class="fas fa-fw fa-podcast"></i>
+          <span>Urgensi</span></a>
       </li>';
     }
         ?>
         
-      <li class="nav-item">
+      <?php echo '<li class="nav-item '.($halaman=='Laporan'?'active':'').'">'; ?>
         <a class="nav-link" href="grafik.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Laporan</span></a>
       </li>
+      <?php
+        if($_SESSION['hak_akses']!='Unit'){
+          echo'
+          <li class="nav-item '.($halaman=='Penilaian'?'active':'').'">
+            <a class="nav-link" href="grafik_penilaian.php">
+              <i class="fas fa-fw fa-star"></i>
+              <span>Laporan Penilaian</span></a>
+          </li>
+          ';
+        }
+      ?>
       <!-- Nav Item - Pages Collapse Menu -->
       
       <!-- Nav Item - Charts -->
