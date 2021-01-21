@@ -4,16 +4,17 @@
     if($postjson==null){
 		echo json_encode(array('success'=>false));
 	}elseif($postjson['aksi']=='get-request'){
-	    $data=array();
+		$data=array();
+		$id_akun = $postjson['id_akun'];
         if($postjson['hak_akses']=='Super Admin' || $postjson['hak_akses']=='Admin1'){
             $query = mysqli_query($koneksi, "SELECT *, tb_aduan.status as status_aduan from tb_aduan 
-             left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
-            WHERE (tb_aduan.status = 'Request' or tb_aduan.status='Returned') 
-            and level>-1 
-            ORDER BY waktu ASC") or die(mysqli_error($koneksi));
+											left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
+											WHERE (tb_aduan.status = 'Request' or tb_aduan.status='Returned') 
+											and level>-1 
+											ORDER BY waktu ASC") or die(mysqli_error($koneksi));
         } else {
             $query = mysqli_query($koneksi, "SELECT * from tb_aduan where 
-            id_akun='$postjson[id_akun]' ORDER BY waktu DESC");
+            id_akun='$id_akun' ORDER BY waktu DESC");
         }
 		while($row = mysqli_fetch_array($query)){
 			$data[] = array(
@@ -21,7 +22,8 @@
 				'perihal' => $row['perihal'],
 				'status'=>$row['status_aduan'],
 				'waktu' => $row['waktu'],
-				'nama_perusahaan'=>$row['nama_perusahaan']
+				'nama_perusahaan'=>$row['nama_perusahaan'],
+				'urgensi'=>$row['urgensi']
 			);
 	    }
 	    if($query) $result=json_encode(array('success'=>true, 'result'=>$data));
@@ -30,8 +32,6 @@
 	}elseif($postjson['aksi']=='get-id-request'){
 		$datareqest = array();
 		$query=mysqli_query($koneksi,"SELECT * FROM tb_aduan 
-			LEFT JOIN tb_detail_lokasi on tb_detail_lokasi.id_detail_lokasi = tb_aduan.id_detail_lokasi 
-			LEFT JOIN tb_lokasi on tb_lokasi.id_lokasi = tb_detail_lokasi.id_lokasi 
 			where id_aduan='$postjson[id_aduan]'");
 		$count = mysqli_num_rows($query);
 		if($count > 0){
@@ -52,10 +52,15 @@
 		$subject = 'Keluhan Baru Terhadap unit Anda';
 		$id_aduan = $postjson['id_aduan'];
 		$id_akun = $postjson['id_akun'];
-		$query =mysqli_query($koneksi, "UPDATE tb_aduan SET status='Open', id_unit = '$postjson[id_unit]', id_akun='$postjson[id_akun]', level=1 where id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
-    	$tindakan = mysqli_query($koneksi, "INSERT INTO tb_progress values(0, $id_akun,'$id_aduan', 'Diteruskan ke unit', NULL, now())");
-		$id_aduan = $postjson['id_aduan'];
 		$id_unit = $postjson['id_unit'];
+		$data_departemen = mysqli_query($koneksi, "SELECT * FROM tb_unit inner join tb_departemen on tb_departemen.id_departemen=tb_unit.id_departemen where id_unit='$id_unit'");
+		$data_departemen = mysqli_fetch_array($data_departemen);
+		$nama_departemen = $data_departemen['Departemen'];
+		$nama_unit = $data_departemenp['nama_unit'];
+		$query = mysqli_query($koneksi, "UPDATE tb_aduan SET status='Open', id_unit = '$id_unit', id_akun='$id_akun', level=1, 
+										nama_departemen ='$nama_departemen', nama_unit='$nama_unit'
+										where id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
+    	$tindakan = mysqli_query($koneksi, "INSERT INTO tb_progress values(0, $id_akun,'$id_aduan', 'Diteruskan ke unit', NULL, now())");
 		include "../pesan/kirim_email_unit.php";
 		if($query) $result=json_encode(array('success'=>true));
 		else $result =json_encode(array('success'=>false));
