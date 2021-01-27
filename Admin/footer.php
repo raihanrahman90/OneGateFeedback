@@ -57,18 +57,32 @@
   <script src="../assets/js/demo/datatables-demo.js"></script>
   <script>
       $(document).ready(function(){
+          /**Mengecek jumlah data yang akan ditampilkan di sidebar */
           $('#notifCustomer').load("notifCustomer.php");
+          $('#notifRequest').load("notifRequest.php");
+          $('#notifFeedback').load("notifFeedback.php");
+          <?php
+            if($_SESSION['hak_akses']!='Unit'){
+              echo "
+                $('#notifPenilaian').load('notifPenilaian.php');
+                setInterval(function(){
+                  $('#notifPenilaian').load('notifPenilaian.php');
+                },30000);
+              ";
+            }
+          ?>
+          /**Mengecek jumlah data yang akan ditampilkan di sidebar */
+          /**Mengecek Ulang data setiap 30 detik*/
           setInterval(function(){
               $('#notifCustomer').load("notifCustomer.php");
-          }, 3000);          
-          $('#notifRequest').load("notifRequest.php");
+          }, 15000);          
           setInterval(function(){
               $('#notifRequest').load("notifRequest.php");
-          }, 3000);    
-          $('#notifFeedback').load("notifFeedback.php");
+          }, 15000);    
           setInterval(function(){
               $('#notifFeedback').load("notifFeedback.php");
-          }, 3000);
+          }, 15000);
+          /**Mengecek Ulang data setiap 30 detik*/
       })
   </script>
 

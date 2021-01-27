@@ -9,7 +9,7 @@
         if($row['id_customer']!=$_SESSION['id_customer']){
             echo 'Anda tidak memiliki akses ke halaman ini';
         }else{
-            $query = mysqli_query($koneksi, "INSERT INTO tb_penilaian value('$id_aduan','$nilai', '$ulasan')") or die(mysqli_error($koneksi));
+            $query = mysqli_query($koneksi, "INSERT INTO tb_penilaian value('$id_aduan','$nilai', '$ulasan',0)") or die(mysqli_error($koneksi));
             header('Location:../customer/tampil_antri.php?id='.$id_aduan);
         }
     }else{

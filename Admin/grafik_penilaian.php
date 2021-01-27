@@ -1,5 +1,5 @@
 <?php
-    $halaman='Laporan';
+    $halaman='Penilaian';
     include 'hak_akses.php';
 	include "header.php"
 ?>
@@ -8,34 +8,94 @@
         	<form id="myform" method="post">
             	<div class="card shadow mb-4 ">
         	    	<div class="card-header py-3">
-        	    	    <div class="row">
-            	    	    <label class="col-12 col-md-2">Nilai</label>
-                	    	<select id="kelompok" name='kelompok' class="col-12 col-md-1 form-control">    
-                				<option value='rata-rata' selected="true">Rata-rata</option>
-                				<option value='Nilai'>Nilai</option>
-                    		</select>
-                    		<label class="col-12 col-md-2">Periode</label>
-                    		<select id="rentang" name='rentang' class="col-12 col-md-1 form-control">    
-                				<option value='Tahun' selected="true">Tahun</option>
-                				<option value='Bulan'>Bulan</option>
-                    			<option value='Hari'>Hari</option>
-                    		</select>
-                    		<select id="jenis" name='jenis' class="col-12 col-md-1 form-control">    
-                				<option value='line' selected="true">Line</option>
-                				<option value='bar'>Bar</option>
-                    		</select>
-                    	</div>
-                		<div id='input_date' class="row">
-                		    <label class="col-12 col-md-1">From :</label>
-            			    <input type="date" name='from' id='dari' class="col-12 col-md-2 form-control">
-            			    <label class="col-12 col-md-2">To :</label>
-                		    <input type="date" name="to" id='sampai' class="col-12 col-md-2 form-control">
-                        </div>
+                        <button class="btn btn-primary px-5" id="btn-grafik" type="button">Grafik</button>
+                        <button class="btn btn-outline-primary px-5" id="btn-table" type="button">Table</button>
                     </div>
                     <div class="card-body">
-                        <div style="width: 80%;height: 1000px;">
-                    		<canvas id="myChart"></canvas>
-                    	</div>
+                        <div id="form-grafik">
+                            <div class="row">
+                                <label class="col-12 col-md-2">Nilai</label>
+                                <select id="kelompok" name='kelompok' class="col-12 col-md-1 form-control">    
+                                    <option value='rata-rata' selected="true">Rata-rata</option>
+                                    <option value='Nilai'>Nilai</option>
+                                </select>
+                                <label class="col-12 col-md-2">Periode</label>
+                                <select id="rentang" name='rentang' class="col-12 col-md-1 form-control">    
+                                    <option value='Tahun' selected="true">Tahun</option>
+                                    <option value='Bulan'>Bulan</option>
+                                    <option value='Hari'>Hari</option>
+                                </select>
+                                <select id="jenis" name='jenis' class="col-12 col-md-1 form-control">    
+                                    <option value='line' selected="true">Line</option>
+                                    <option value='bar'>Bar</option>
+                                </select>
+                            </div>
+                            <div id='input_date' class="row">
+                                <label class="col-12 col-md-1">From :</label>
+                                <input type="date" name='from' id='dari' class="col-12 col-md-2 form-control">
+                                <label class="col-12 col-md-2">To :</label>
+                                <input type="date" name="to" id='sampai' class="col-12 col-md-2 form-control">
+                            </div>
+                            <div style="width: 80%;height: 1000px;">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                        <div id="form-table" class="d-none">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Id Aduan</th>
+                                            <th>Open</th>
+                                            <th>Penilaian</th>
+                                            <th>Lakukan</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Id Aduan</th>
+                                            <th>Open</th> 
+                                            <th>Penilaian</th>
+                                            <th>Lakukan</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <?php
+                                        $mahasiswa = mysqli_query($koneksi, "SELECT tb_penilaian.* from tb_penilaian
+                                                                            inner join tb_aduan on tb_aduan.id_aduan=tb_penilaian.id_aduan  
+                                                                            ORDER BY open") or die(mysqli_error($koneksi));
+                                        $no=1;
+                                        foreach ( $mahasiswa as $row){
+                                            echo "
+                                                <tr>
+                                                    <td>$no</td>
+                                                    <td>".$row['id_aduan']."</td>
+                                                    <td>".($row['open']==0?'<span class="badge badge-pill badge-success">Belum Dibuka</span>':'Telah dibuka')."</td>
+                                                    <td>";
+                                                    for($x = 0; $x < $row['penilaian']; $x++){
+                                                        echo"<span class='penilaian penilaian-checked fa fa-star'></span>";
+                                                    }
+                                                    for($x = 0; $x < 5-$row['penilaian']; $x++){
+                                                        echo"<span class='penilaian fa fa-star'></span>";
+                                                    }
+                                                echo"
+                                                    </td>
+                                                    <td>
+                                                        <a href='detail_aduan.php?id=".$row['id_aduan']."' class='btn btn-info btn-circle btn-sm'>
+                                                            <i class='fas fa-info-circle'></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>";
+                                            $no++;
+                                        }
+
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
             	</div>
         	</form>
@@ -68,6 +128,14 @@
             },
             legend: {
               display: true
+            },
+            scales: {
+                yAxes:[{
+                    ticks:{
+                        suggestedMin:0,
+                        suggestedMax:5.1
+                    }
+                }]
             }
           }
       };
@@ -222,6 +290,23 @@
                     myChart = new Chart(ctx, temp);
         });
         /**Listen Jenis Grafik */
+        /**ganti ke grafik */
+        $("#btn-grafik").click(function(){
+            $("#btn-grafik").removeClass('btn-outline-primary');
+            $("#btn-grafik").addClass('btn-primary');
+            $("#btn-table").addClass('btn-outline-primary');
+            $("#btn-table").removeClass('btn-primary');
+            $("#form-table").addClass('d-none');
+            $("#form-grafik").removeClass('d-none');
+        })
+        $("#btn-table").click(function(){
+            $("#btn-table").removeClass('btn-outline-primary');
+            $("#btn-table").addClass('btn-primary');
+            $("#btn-grafik").addClass('btn-outline-primary');
+            $("#btn-grafik").removeClass('btn-primary');
+            $("#form-table").removeClass('d-none');
+            $("#form-grafik").addClass('d-none');
+        })
     });
   </script>
   <?php

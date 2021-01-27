@@ -11,7 +11,7 @@ $text = '<!DOCTYPE html>
 <div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;">
   <div align="left">
     Customer Service Bandara SAMS Sepinggan Balikpapan telah menutup keluhan dengan nomor antrian '.$id_aduan.'<br>
-    Silahkan lihat pada link berikut
+    Silahkan beri penilaian atas layanan customer service kami pada link berikut
     <a href="'.$link.'customer/tampil_antri.php?id='.$id_aduan.'">Klik Disini</a>
   </div>
 </div>

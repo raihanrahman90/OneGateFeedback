@@ -119,7 +119,7 @@
           <li class="nav-item '.($halaman=='Penilaian'?'active':'').'">
             <a class="nav-link" href="grafik_penilaian.php">
               <i class="fas fa-fw fa-star"></i>
-              <span>Laporan Penilaian</span></a>
+              <span id="notifPenilaian">Laporan Penilaian</span></a>
           </li>
           ';
         }

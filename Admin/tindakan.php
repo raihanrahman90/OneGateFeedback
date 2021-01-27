@@ -1,5 +1,6 @@
 <?php 
-
+    
+    $halaman = 'Aduan';
     include 'hak_akses.php';
     include 'header.php';
 ?>

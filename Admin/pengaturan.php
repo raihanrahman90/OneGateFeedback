@@ -1,5 +1,6 @@
 <?php 
 
+$halaman = 'Pengaturan';
     include 'hak_akses.php';
 include 'header.php';
 ?>

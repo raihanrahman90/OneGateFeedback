@@ -29,19 +29,54 @@ include 'header.php';
                     <?php
             				$id = $_GET['id'];///mengambil id dari url
                     #menampilkan data dengan urutan id_progress 
-            				$data = mysqli_query($koneksi, "SELECT jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, status, foto, tindakan, bukti, tb_progress.waktu as waktu_progress, tb_aduan.id_unit as unit, nama_departemen, nama_unit from tb_aduan
-            				left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan 
-            				where tb_aduan.id_aduan ='$id' ORDER BY id_progress ASC") or die(mysqli_error($koneksi));
-							 $row = mysqli_fetch_assoc($data);
-							 $status = $row["status"];
-							 $id_unit = $row['unit'];
-            				$cek = mysqli_num_rows($data);
-              #---kondisi data diecho
-							if($cek > 0){
+            				$data = mysqli_query($koneksi, "SELECT jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, status, foto, tindakan, bukti, tb_progress.waktu as waktu_progress, tb_aduan.id_unit as unit, nama_departemen, nama_unit, penilaian, ulasan from tb_aduan
+                                                    left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan 
+                                                    left join tb_penilaian on tb_penilaian.id_aduan = tb_aduan.id_aduan
+                                                    where tb_aduan.id_aduan ='$id' ORDER BY id_progress ASC") or die(mysqli_error($koneksi));
+                    $row = mysqli_fetch_assoc($data);
+                    $status = $row["status"];
+                    $id_unit = $row['unit'];
+                          $cek = mysqli_num_rows($data);
+                    #---kondisi data diecho
+                    if($cek > 0){
+                        if($row['penilaian']!=null){
+                          /**Menampilkan penilaian bintang */
+                          echo"
+                          <div class='row mb-2'>
+                            <div class='col-lg-4'>
+                              <label>Penilaian Customer<label>
+                            </div>
+                            <div class='col-lg-8'>";
+                            for($x = 0; $x < $row['penilaian']; $x++){
+                              echo"<span class='penilaian penilaian-checked fa fa-star'></span>";
+                            }
+                            for($x = 0; $x < 5-$row['penilaian']; $x++){
+                              echo"<span class='penilaian fa fa-star'></span>";
+                            }
+                          echo"
+                            </div>
+                          </div>
+                          ";
+                          /**Menampilkan penilaian bintang */
+                          /**Menampilkan ulasan customer */
+                          echo"
+                            <div class='row mb-2'>
+                              <div class='col-lg-4'>
+                                <label>Ulasan Customer<label>
+                              </div>
+                              <div class='col-lg-8'>
+                                <input type='text' class='form-control' disabled value='".$row['ulasan']."'></input>
+                              </div>
+                            </div>";
+                          /**Menampilkan ulasan customer */
+                          /**Mengupdate data aduan telah dibuka */
+                          mysqli_query($koneksi, "update tb_penilaian set open=1 where id_aduan=".$id) or die(mysqli_error($koneksi));
+                          /**Mengupdate data aduan telah dibuka */
+                        }
                                    echo"
-            				    <div class='row mb-2'>
-            				      <div class='col-lg-4'>
-            				        <label>Jenis<label>
+                                <div class='row mb-2'>
+                                  <div class='col-lg-4'>
+                                    <label>Jenis<label>
                                   </div>
                                   <div class='col-lg-8'>
                                     <input type='text' class='form-control' disabled value='".$row['jenis']."'></input>

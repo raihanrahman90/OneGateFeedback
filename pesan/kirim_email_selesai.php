@@ -11,7 +11,7 @@ $subject = 'Feedback Bandara SAMS Sepinggan Balikpapan';
     <div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;">
       <div align="left">
         Tindakan baru telah dimasukkan. Silahkan buka tautan berikut<br>
-        <a href="'.$link.'/Admin/detail_aduan.php?id='.$id_aduan.'">Klik Disini</a>
+        <a href="'.$link.'Admin/detail_aduan.php?id='.$id_aduan.'">Klik Disini</a>
       </div>
     </div>
     </body>
