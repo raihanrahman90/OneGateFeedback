@@ -60,7 +60,7 @@
                     </tr>
                     <tr>
                       <td colspan="3">
-                        <button type="submit" class="btn btn-info btn-icon-split float-right">
+                        <button type="submit" class="btn btn-info btn-icon-split float-right" data-toggle='modal' data-target='#kembaliModal'>
                           <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                           </span>
@@ -71,7 +71,7 @@
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                </table>  
                 <?php
                   echo "<input type='hidden' name='id_aduan' value='".$_GET['id']."'>";
                 ?>

@@ -228,3 +228,11 @@ body.login{
 .btn.penilaian-checked:focus{
   color: orange;
 }
+.loading{
+  position: absolute;
+  width: auto;
+  margin: 0.5rem;
+  pointer-events: none;
+  top:45%;
+  left:50%;
+}

@@ -134,9 +134,15 @@ include 'header.php';
                               <td>".$row['id_aduan']."</td>
                               <td>".$row['jenis']."</td>
                               <td>".$row['Departemen']."</td>
-                              <td>".$row['nama_unit']."</td>
-                              <td>".$row['perihal']."</td>";
-                                
+                              <td>".$row['nama_unit']."</td>";
+                              ###mewarnai aduan yang berstatus urgen    
+                              if($row['urgensi']==1){
+                                echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['perihal']."</span></td>";
+                              }else{
+                                echo
+                                "<td>".$row['perihal']."</td>";
+                              }
+                              
                                 ###status
                                 if($row['status']=='Closed'){  
                                     echo"<td><span class='badge badge-pill badge-success' style='width:100px;'>".$row['status']."</span></td>";

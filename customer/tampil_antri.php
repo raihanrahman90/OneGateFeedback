@@ -237,12 +237,29 @@
                                                     <?php
 		                    	                        if(($data['status_progress']=='Closed' || $data['status_progress']=='Complete' || $data['status_progress']=='Progress')){
 															echo  "<li class='timeline__step done'>";
+															$selesai = true;
 		                    	                        } else {
 															echo  "<li class='timeline__step'>";
+															$selesai = false;
 		                    	                        }
 		                    	                    ?>
                                                         <span class="timeline__step-title">
-                                                            Complete</br>
+															Complete
+															<?php 
+																if($selesai){
+																	$gambar= mysqli_query($koneksi, "SELECT * FROM tb_progress 
+																									where id_aduan='$id_aduan' and 
+																									tindakan<>'Diteruskan ke unit' and
+																									tindakan<>'Dikembalikan ke cs dengan keterangan Kurang Data' and
+																									tindakan<>'Closed'
+																									order by id_progress desc") or die(mysqli_error($koneksi));
+																	if($gambar = mysqli_fetch_array($gambar)){
+																		if(!is_null($gambar['bukti'])){
+																			echo '<a href="../gambar/bukti/'.$gambar['bukti'].'" class="btn btn-success">Bukti</a>';
+																		}
+																	}
+																}
+															?></br>
 															<span class="timeline__step-subtitle">
 																Keluhan ditindaklanjuti dan menunggu konfirmasi dari customer service
 															</span></span>

@@ -18,11 +18,15 @@
 	        if($postjson['status']=='Manager'||$postjson['status']=='Unit'){
 				/**Hak akses manager dan unit */
 				if($status=='All'){
-					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan where status <> 'Request' and status <> 'Returned' and id_unit='".$postjson['id_unit']."'") or die(mysqli_error($koneksi));
+					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan 
+															where status <> 'Request' and status <> 'Returned' and id_unit='".$postjson['id_unit']."'") 
+															or die(mysqli_error($koneksi));
 					$get_jumlah = mysqli_fetch_array($get_jumlah);
 					$jumlah = $get_jumlah['jumlah'];
 				}else{
-					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan where status='$status' and id_unit='".$postjson['id_unit']."'") or die(mysqli_error($koneksi));
+					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan 
+															where status='$status' and id_unit='".$postjson['id_unit']."'") 
+															or die(mysqli_error($koneksi));
 					$get_jumlah = mysqli_fetch_array($get_jumlah);
 					$jumlah = $get_jumlah['jumlah'];
 				}
@@ -48,38 +52,47 @@
                     	    $get_jumlah = mysqli_fetch_array($get_jumlah);
                 	        $jumlah = $get_jumlah['jumlah'];
             	        }
-                        $sintax="SELECT * FROM tb_aduan 
-                        inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit 
-                        inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen 
-                        where tb_departemen.id_departemen = '".$postjson['id_departemen']."' and level>=2".$kondisi_status." order by tb_aduan.id_aduan DESC limit ".$limit." offset ".$offset;
+                        $sintax="SELECT tb_aduan.* FROM tb_aduan 
+								inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit 
+								inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen 
+								where tb_departemen.id_departemen = '".$postjson['id_departemen']."' and level>=2".$kondisi_status." 
+								order by tb_aduan.id_aduan DESC limit ".$limit." offset ".$offset;
 				/** Hak akses senior manager */
 			} else if($postjson['status_akun']=='AOC Head'){
+				/** Hak akses AOC Head */
 				if($status=='All'){
-					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan where status <> 'Request' and status <> 'Returned' and level>=3") or die(mysqli_error($koneksi));
+					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan 
+														  where status <> 'Request' and status <> 'Returned' and level>=3") or die(mysqli_error($koneksi));
 					$get_jumlah = mysqli_fetch_array($get_jumlah);
 					$jumlah = $get_jumlah['jumlah'];
 				}else{
-					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan where status='$status' and level>=3") or die(mysqli_error($koneksi));
+					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan 
+					                                      where status='$status' and level>=3") or die(mysqli_error($koneksi));
 					$get_jumlah = mysqli_fetch_array($get_jumlah);
 					$jumlah = $get_jumlah['jumlah'];
 				}
 				$sintax="SELECT * FROM tb_aduan
 						where level>=3".$kondisi_status." order by tb_aduan.id_aduan DESC limit ".$limit." offset ".$offset;
+				/** Hak akses AOC Head */
             }else {
+				/** Hak akses General Manager */
 				if($status=='All'){
-					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan where status <> 'Request' and status <> 'Returned' and level=4") or die(mysqli_error($koneksi));
+					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan 
+															where status <> 'Request' and status <> 'Returned' and level=4") or die(mysqli_error($koneksi));
 					$get_jumlah = mysqli_fetch_array($get_jumlah);
 					$jumlah = $get_jumlah['jumlah'];
 				}else{
-					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan where status='$status' and level=4") or die(mysqli_error($koneksi));
+					$get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan 
+															where status='$status' and level=4") or die(mysqli_error($koneksi));
 					$get_jumlah = mysqli_fetch_array($get_jumlah);
 					$jumlah = $get_jumlah['jumlah'];
 				}
 				$sintax="SELECT * FROM tb_aduan
 				where level=4".$kondisi_status." order by tb_aduan.id_aduan DESC limit ".$limit." offset ".$offset;
+				/** Hak akses General Manager */
 			}
 			/**Tutup hak akses unit */
-	    }  else {
+	    } else {
 			/**hak akses super admin dan admin 2 */
 	        if($status=='All'){
         	    $get_jumlah = mysqli_query($koneksi, "SELECT count(id_aduan) as jumlah from tb_aduan where status <> 'Request' and status <> 'Returned'") or die(mysqli_error($koneksi));
@@ -102,7 +115,8 @@
 				'nama_unit' => $row['nama_unit'],
 				'status' => $row['status'],
 				'perihal'=> $row['perihal'],
-				'level'=>$row['level']
+				'level'=>$row['level'],
+				'urgensi'=>$row['urgensi']
 			);
 		}
 		if($query) $result=json_encode(array('success'=>true, 'jumlah'=>$jumlah, 'result'=>$data));
@@ -112,16 +126,17 @@
 		$dataaduan =array();
 		$query= mysqli_query($koneksi, "SELECT *, tb_aduan.waktu as waktu_aduan, tb_progress.waktu as waktu_progress, now() as sekarang FROM tb_aduan 
 										LEFT JOIN tb_progress on tb_aduan.id_aduan = tb_progress.id_aduan 
+										LEFT JOIN tb_penilaian on tb_aduan.id_aduan = tb_penilaian.id_aduan
 										WHERE tb_aduan.id_aduan = '$postjson[id_aduan]' order by id_progress desc") or die(mysqli_error($koneksi));
 		$jumlahdata = mysqli_num_rows($query);
 		if($row = mysqli_fetch_array($query)){
-		    if($row['nama_departemen']==null) $departemen='Departemen tidak tersedia';
-		    else $departemen=$row['nama_departemen'];
+		    if($row['nama_departemen']==null) $nama_departemen='Departemen tidak tersedia';
+		    else $nama_departemen=$row['nama_departemen'];
 		    if($row['nama_unit']==null) $nama_unit='Unit tidak tersedia';
 		    else $nama_unit=$row['nama_unit'];
 			$dataaduan[] = array(
 			    'jenis'=>$row['jenis'],
-				'departemen' => $departemen,
+				'departemen' => $nama_departemen,
 				'nama_unit' => $nama_unit,
 				'perihal' => $row['perihal'],
 				'keterangan' => $row['ket'],
@@ -135,9 +150,11 @@
 				'tindakan' => $row['tindakan'],
 				'foto'=> $row['foto'],
 				'id_detail_lokasi'=>$row['id_detail_lokasi'],
-				'id_lokasi'=>$row['id_lokasi'],
 				'id_customer'=>$row['id_customer'],
-				'sekarang' =>$row['sekarang']
+				'sekarang' =>$row['sekarang'],
+				'urgensi'=>$row['urgensi'],
+				'penilaian'=>$row['penilaian'],
+				'ulasan'=>$row['ulasan']
 			);
 		}
 		if($query && $jumlahdata>0) $result= json_encode(array('success'=>true,'result'=>$dataaduan));
@@ -182,7 +199,7 @@
     	if($data) $result = json_encode(array('success'=>true));
     	else $result = json_encode(array('success'=>false));
     	$data = mysqli_query($koneksi, "SELECT nama, email from tb_aduan 
-    	inner join tb_customer on tb_customer.id_customer = tb_aduan.id_customer where id_aduan='$id_aduan'");
+										inner join tb_customer on tb_customer.id_customer = tb_aduan.id_customer where id_aduan='$id_aduan'");
     	$tindakan = mysqli_query($koneksi, "INSERT INTO tb_progress values(0,$id_akun, '$id_aduan', 'Closed', NULL, now())");
     	$data1 = mysqli_fetch_array($data);
     	$nama = $data1['nama'];
@@ -190,10 +207,11 @@
     	include '../pesan/closed_aduan.php';
     	echo $result;
 	} elseif($postjson['aksi']=='get-tindakan'){
+		$id = $koneksi -> real_escape_string($postjson['id_aduan']);
 	    $hasil = array();
 	    $query = mysqli_query($koneksi, "SELECT tindakan, bukti, waktu, tb_akun.id_akun, Nama FROM tb_progress 
 	                                    left join tb_akun on tb_akun.id_akun = tb_progress.id_akun 
-	                                    where id_aduan='$postjson[id_aduan]'");
+	                                    where id_aduan='$id'");
 	    while($row = mysqli_fetch_array($query)){
 	        $hasil[] = array(
 	            'tindakan'=>$row['tindakan'],
@@ -202,8 +220,10 @@
 	            'id_akun'=>$row['id_akun'],
 	            'nama'=>$row['Nama']
 	        );
-	    }
-	    if($query) $result = json_encode(array('success'=>true,'result'=>$hasil));
+		}
+		$status = mysqli_query($koneksi,"SELECT status from tb_aduan where id_aduan = '$id'");
+		$status = mysqli_fetch_array($status)['status'];
+	    if($query) $result = json_encode(array('success'=>true,'result'=>$hasil, 'status'=>$status));
 	    else $result=json_encode(array('success'=>false));
 	    echo $result;
 	}elseif($postjson['aksi']=='kembalikan'){
@@ -216,5 +236,13 @@
         if($data && $data1) $result = json_encode(array('success'=>true));
         else $result =json_encode(array('success'=>false));
         echo $result;
+	}elseif($postjson['aksi']=='insert-penilaian'){
+		$nilai = $postjson['nilai'];
+		$ulasan = $koneksi->real_escape_string($postjson['ulasan']);
+		$id_aduan = $koneksi ->real_escape_string($postjson['id_aduan']);		
+		$query = mysqli_query($koneksi, "INSERT INTO tb_penilaian value('$id_aduan','$nilai', '$ulasan',0)") or die(mysqli_error($koneksi));
+		if($query) $result = json_encode(array('success'=>true));
+		else $result = json_encode(array('success'=>false));
+		echo $result;
 	}
 ?>

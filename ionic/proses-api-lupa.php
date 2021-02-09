@@ -5,11 +5,13 @@
 	}elseif($postjson['aksi']=='forgot-password'){
 		$email = $koneksi -> real_escape_string($postjson['email']);
         $pengecekan = mysqli_query($koneksi, "SELECT * FROM tb_customer WHERE Email='$email'") or die(mysqli_error($koneksi));
-        if(mysqli_num_rows($pengecekan)>0){
+        if($row = mysqli_fetch_array($pengecekan)){
+            $nama = $row['nama'];
             $status_akun = 'customer';
         } else {
             $pengecekan = mysqli_query($koneksi, "SELECT * FROM tb_akun WHERE Email='$email'") or die(mysqli_error($koneksi));
-            if(mysqli_num_rows($pengecekan)>0){
+            if($row = mysqli_fetch_array($pengecekan)){
+                $nama = $row['Nama'];
                 $status_akun = 'admin';
             } else {
                 echo json_encode(array('succeess'=>false,'msg'=>'Email tidak ditemukan'));

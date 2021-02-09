@@ -12,7 +12,7 @@
   <script type="text/javascript" src="../assets/js/Chart.js"></script>
 	<script src="../assets/js/jquery.js"></script> 
 	<script src="../assets/js/zoom.js"></script> 
-  <title>Customer Service</title>
+  <title>One Gate Feedback</title>
 
   <!-- Custom fonts for this template -->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,6 +22,7 @@
   <link href="../assets/css/sb-admin-2.css" rel="stylesheet">
   <link href="../assets/css/custom.css" rel="stylesheet" type="text/css">
 
+  <link rel="icon" href="../assets/logo.png">
   <!-- Custom styles for this page -->
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>

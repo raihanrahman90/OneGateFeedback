@@ -21,8 +21,8 @@ $query = mysqli_query($koneksi, "SELECT token from tb_customer inner join tb_tok
 if($result = mysqli_fetch_array($query)){
     sendPushNotification(
         $result['token'], 
-        'Feedback Customer Service telah ditutup', 
-        'Customer Service telah menutup keluhan anda',
+        'Beri Penilaian Pada Customer Service', 
+        'Customer Service telah menutup keluhan anda, silahkan berikan penilaian',
         '/customer/customer-aduan-detail/'.$id_aduan,
         '',
         ''

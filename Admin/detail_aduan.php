@@ -216,8 +216,10 @@ include 'header.php';
                                         <div class='card-body'>
                                           
                                             <label> Tanggal :".$row["waktu"]."</label><br/>";
+                                            // jika akun ditemukan
                                             if($row['Nama']) echo "<label>Dilakukan oleh :<a href='detail_akun.php?id=".$row['id_akun']."'>".$row['Nama']."</a></label>";
-                                          if($row['bukti']) echo"<a href='../gambar/bukti/".$row["bukti"]."' target='_blank'><img src='../gambar/bukti/".$row["bukti"]."' height='auto' width=100%></a>";
+                                            //Jika terdapat foro
+                                            if($row['bukti']) echo"<a href='../gambar/bukti/".$row["bukti"]."' target='_blank'><img src='../gambar/bukti/".$row["bukti"]."' height='auto' width=100%></a>";
                                           echo"
                                         </div>
                                       </div>

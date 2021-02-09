@@ -4,7 +4,7 @@
 	$perihal = $koneksi -> real_escape_string($_POST['perihal']);
 	$keterangan = $koneksi -> real_escape_string($_POST['keterangan']);		
 	$perihalUrgent = $koneksi ->real_escape_string($_POST['perihalUrgent']);
-	if($perihalUrgent=='Tidak Urgent'){
+	if($perihalUrgent=="0"){
 		$urgensi = 0;
 		$perihal = $koneksi -> real_escape_string($_POST['perihal']);
 	}else{
@@ -12,8 +12,8 @@
 		$perihal = $perihalUrgent;
 	}
 	/**setting lokasi */
-	$id_lokasi = $koneksi -> real_escape_string($_POST['lokasi']);
-	$id_detail_lokasi = $koneksi -> real_escape_string($_POST['detail-lokasi']);
+	$id_lokasi = $koneksi -> real_escape_string($_POST['id_lokasi']);
+	$id_detail_lokasi = $koneksi -> real_escape_string($_POST['id_detail_lokasi']);
 	$data_lokasi = mysqli_query($koneksi, "SELECT nama_lokasi, nama_detail_lokasi from tb_lokasi
 											inner join tb_detail_lokasi on tb_lokasi.id_lokasi = tb_detail_lokasi.id_lokasi
 											where tb_lokasi.id_lokasi=$id_lokasi and tb_detail_lokasi.id_detail_lokasi=$id_detail_lokasi") or die(mysqli_error($koneksi));
@@ -41,6 +41,7 @@
 			'$nama_lokasi',
 			'$nama_detail_lokasi',
         	'$jenis',
+			$urgensi,
         	'$perihal',
         	'$pelapor',
         	'$keterangan',
@@ -61,6 +62,7 @@
 			'$nama_lokasi',
 			'$nama_detail_lokasi',
         	'$jenis',
+			$urgensi,
         	'$perihal',
         	'$pelapor',
         	'$keterangan',
@@ -70,7 +72,7 @@
         	NULL,
         	-1)";
         }
-		$data = mysqli_query($koneksi,$sintax);
+		$data = mysqli_query($koneksi,$sintax) or die(mysqli_error($koneksi));
     	$id = mysqli_insert_id($koneksi);
         if(!empty($_FILES)){
         	$nama = $_FILES['Bukti']['name'];
@@ -98,7 +100,7 @@
             $nama = $query['nama'];
             $subject = 'Feedback Angkasa Pura';
             include "../pesan/aduan_customer.php";
-            if($data && $query&& $pesan) $result = json_encode(array('success'=>true, 'id_aduan'=>$id));
+            if($data && $query) $result = json_encode(array('success'=>true, 'id_aduan'=>$id));
             else $result = json_encode(array('success'=>false, 'msg'=>'Gagal mengirim feedback', 'sintax'=>$sintax));
         }else{
             if($data) $result = json_encode(array('success'=>true, 'id_aduan'=>$id));
