@@ -115,7 +115,7 @@
 				        <label>Keterangan<label>
                       </div>
                       <div class='col-lg-8'>
-                        <input type='text' class='form-control' disabled value='".$row['ket']."'></input>
+                        <textarea class='form-control' disabled rows=8>".$row['ket']."</textarea>
                       </div>
                     </div>";
                       if($row["status"]=="Returned"){

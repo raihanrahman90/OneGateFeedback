@@ -4,7 +4,7 @@
 	include '../koneksi.php';
 	$id_akun = $_SESSION['id_customer'];
 	$jenis = $koneksi -> real_escape_string($_POST['jenis']);
-	$keterangan = $koneksi -> real_escape_string($_POST['keterangan']);
+	$keterangan = $koneksi -> real_escape_string(htmlspecialchars($_POST['keterangan']));
 	if($jenis=="Keluhan"){
 	    $status = 'Request';
 	} else {

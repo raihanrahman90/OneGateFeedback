@@ -19,5 +19,5 @@
   <!-- Custom styles for this template-->
   <link href="../assets/css/sb-admin-2.css" rel="stylesheet">
   <link href="../assets/css/custom.css" rel="stylesheet" />
-  <link rel="icon" href="./assets/logo.png">
+  <link rel="icon" href="../assets/logo.png">
 </head>

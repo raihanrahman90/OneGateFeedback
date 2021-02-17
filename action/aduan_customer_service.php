@@ -5,7 +5,7 @@
 	$id_akun = $_SESSION['id_akun'];
 	$jenis = $koneksi -> real_escape_string($_POST['jenis']);
 	$perihal = $koneksi -> real_escape_string($_POST['perihal']);
-	$keterangan = $koneksi -> real_escape_string($_POST['keterangan']);
+	$keterangan = $koneksi -> real_escape_string(htmlspecialchars($_POST['keterangan']));
 	$pengguna = $koneksi -> real_escape_string($_POST['pengguna']);
 	$pelapor = $koneksi -> real_escape_string($_SESSION['id_perusahaan']);
 	$perihalUrgent = $koneksi ->real_escape_string($_POST['perihalUrgent']);

@@ -61,6 +61,26 @@
           $('#notifCustomer').load("notifCustomer.php");
           $('#notifRequest').load("notifRequest.php");
           $('#notifFeedback').load("notifFeedback.php");
+          /**menghilangkan required pada tindakan jika status adalah progres */
+          $('#tindakan-progres').change(
+            ()=>{
+              if($(this).val()=='Yes'){
+                $('#bukti').prop('required', true)
+              }else{
+                $('#bukti').prop('required', false)
+              }
+            }
+          )
+          $('#tindakan-complete').change(
+            ()=>{
+              console.log($(this).val())
+              if($(this).val()=='Yes'){
+                $('#bukti').prop('required', false)
+              }else{
+                $('#bukti').prop('required', true)
+              }
+            }
+          )
           <?php
             if($_SESSION['hak_akses']!='Unit'){
               echo "

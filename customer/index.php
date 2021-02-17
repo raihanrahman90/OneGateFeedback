@@ -64,7 +64,7 @@
 											</div>
 											<div class="col-sm-6 ">
 												<div class="form-group">
-												    <h2 style="width:100%;padding-top:20%;">Selamat Datang di Layanan Customer Service Bandara SAMS Sepinggan Balikpapan</h2>
+												    <h2 style="width:100%;padding-top:20%;">Selamat Datang di Layanan One Gate Feedback Solution Bandara SAMS Sepinggan Balikpapan</h2>
 												</div>
 												<div class="form-group">
 													<h4>Silahkan pilih next untuk memberikan saran, informasi, atau keluhan.</h4>

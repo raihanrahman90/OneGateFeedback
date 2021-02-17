@@ -114,11 +114,14 @@
 	    ket='$keterangan', 
 	    perihal='$perihal', 
 	    status='$status', 
-	    id_detail_lokasi='$id_detail_lokasi' 
+	    id_detail_lokasi='$id_detail_lokasi',
+		nama_lokasi = '$nama_lokasi',
+		nama_detail_lokasi = '$nama_detail_lokasi',
+		urgensi='$urgensi' 
 	    WHERE id_aduan = '$id_aduan'";
 	    $data = mysqli_query($koneksi, $sintax);
 	    $cek = true;
-    	if(is_uploaded_file($_FILES['Bukti']['tmp_name'])){
+    	if(!empty($_FILES)){
         	$nama = $_FILES['Bukti']['name'];
         	$x = explode('.', $nama);
         	$ekstensi = strtolower(end($x));

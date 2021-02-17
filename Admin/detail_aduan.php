@@ -159,7 +159,7 @@ include 'header.php';
             				        <label>Keterangan<label>
                                   </div>
                                   <div class='col-lg-8'>
-                                    <input type='text' class='form-control' disabled value='".$row['ket']."'></input>
+                                    <textarea class='form-control' disabled rows=8>".$row['ket']."</textarea>
                                   </div>
                                 </div>";
                                   
@@ -339,7 +339,7 @@ include 'header.php';
                                 <label>Pilih Keterangan.</label>
                                 <select class='form-control form-control-user' name='keterangan'>
                                   <option value='Kurang Data'>Kurang Data</option>
-                                  <option value='Bukan unit'>Bukan Tanggung Jawab Saya</option>
+                                  <option value='Bukan Tanggung Jawab Unit Saya'>Bukan Tanggung Jawab Unit Saya</option>
                                 </select>
                               </div>
                                     <div class='modal-footer'>

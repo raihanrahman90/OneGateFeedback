@@ -28,6 +28,7 @@
       <!-- Custom styles for this template-->
       <link href="../assets/css/sb-admin-2.css" rel="stylesheet">
       <link href="../assets/css/custom.css" rel="stylesheet" />
+  <link rel="icon" href="../assets/logo.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../assets/js/jquery.js"></script>  
   <!-- Custom styles for this template -->

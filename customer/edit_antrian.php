@@ -110,8 +110,9 @@
 													?>
 												</div>
 												<div class="form-group">
-													<label>Keterangan<small>(required)</small></label>
-													<input name="keterangan" type="text" class="form-control" placeholder="Toilet pria mati air" value=<?php echo '"'.$row1['ket'].'"'?> required>
+													<label>Keterangan<small>(required)</small></label>												
+													<textarea name="keterangan" rows="4" class="form-control" placeholder="Toilet pria mati air" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'><?php echo $data['ket']?></textarea>
+
 												</div>
 												<div class="form-group">
 												    <label>Lokasi<small>(required)</small></label>

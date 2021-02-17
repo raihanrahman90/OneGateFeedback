@@ -124,9 +124,10 @@
 		echo $result;
 	}elseif($postjson['aksi']=='get-id-aduan'){
 		$dataaduan =array();
-		$query= mysqli_query($koneksi, "SELECT *, tb_aduan.waktu as waktu_aduan, tb_progress.waktu as waktu_progress, now() as sekarang FROM tb_aduan 
+		$query= mysqli_query($koneksi, "SELECT *, tb_aduan.waktu as waktu_aduan, tb_progress.waktu as waktu_progress, now() as sekarang, tb_detail_lokasi.id_lokasi FROM tb_aduan 
 										LEFT JOIN tb_progress on tb_aduan.id_aduan = tb_progress.id_aduan 
 										LEFT JOIN tb_penilaian on tb_aduan.id_aduan = tb_penilaian.id_aduan
+										LEFT JOIN tb_detail_lokasi on tb_aduan.id_detail_lokasi = tb_detail_lokasi.id_detail_lokasi
 										WHERE tb_aduan.id_aduan = '$postjson[id_aduan]' order by id_progress desc") or die(mysqli_error($koneksi));
 		$jumlahdata = mysqli_num_rows($query);
 		if($row = mysqli_fetch_array($query)){
@@ -150,6 +151,7 @@
 				'tindakan' => $row['tindakan'],
 				'foto'=> $row['foto'],
 				'id_detail_lokasi'=>$row['id_detail_lokasi'],
+				'id_lokasi'=>$row['id_lokasi'],
 				'id_customer'=>$row['id_customer'],
 				'sekarang' =>$row['sekarang'],
 				'urgensi'=>$row['urgensi'],
@@ -242,6 +244,12 @@
 		$id_aduan = $koneksi ->real_escape_string($postjson['id_aduan']);		
 		$query = mysqli_query($koneksi, "INSERT INTO tb_penilaian value('$id_aduan','$nilai', '$ulasan',0)") or die(mysqli_error($koneksi));
 		if($query) $result = json_encode(array('success'=>true));
+		else $result = json_encode(array('success'=>false));
+		echo $result;
+	}elseif($postjson['aksi']=='kirim'){
+		$id_aduan = $postjson['id_aduan'];
+		$query = mysqli_query($koneksi, "UPDATE tb_aduan set level=0 where id_aduan=$id_aduan") or die(mysqli_error($koneksi));
+		if($query) $result= json_encode(array('success'=>true));
 		else $result = json_encode(array('success'=>false));
 		echo $result;
 	}

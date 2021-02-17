@@ -132,7 +132,7 @@
 		                    	            </div>
 		                    	            <div class="form-group col-md-12">
 		                    	                <label>Keterangan</label>
-		                    	                <input class="form-control" type="text" value=<?php echo "'".$data['ket']."'"?> readonly>
+												<textarea name="keterangan" rows="4" class="form-control" placeholder="Toilet pria mati air" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' disabled><?php echo $data['ket']?></textarea>
 		                    	            </div>
 		                    	            <div class="form-group col-md-12">
 		                    	                <label>Lokasi</label>
@@ -312,7 +312,9 @@
 		  
 		                            <?php
 									/**Button Penilaian */
-									if(mysqli_num_rows($data1)!=0 && $data['id_customer']==$_SESSION['id_customer'] && is_null($data['ulasan']) && $data['status']=='Closed' && $data['level']>-1	){
+									if(mysqli_num_rows($data1)!=0 && isset($_SESSION['id_customer'])&&
+										$data['id_customer']==$_SESSION['id_customer'] && is_null($data['ulasan']) 
+										&& $data['status']=='Closed' && $data['level']>-1	){
 										echo '<div class="pull-right">
 										<button type="button" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#exampleModal">
 											<span class="icon text-white-50">

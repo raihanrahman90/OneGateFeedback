@@ -6,7 +6,7 @@ session_start();
 include '../koneksi.php';
 // menangkap data yang dikirim dari form
 $id_aduan = $koneksi -> real_escape_string($_POST['id_aduan']);
-$keterangan = $koneksi -> real_escape_string($_POST['keterangan']);
+$keterangan = $koneksi -> real_escape_string(htmlspecialchars($_POST['keterangan']));
 $jenis = $koneksi -> real_escape_string($_POST['jenis']);
 /**setting lokasi */
 $id_lokasi = $koneksi -> real_escape_string($_POST['lokasi']);

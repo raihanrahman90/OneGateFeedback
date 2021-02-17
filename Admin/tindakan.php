@@ -31,11 +31,11 @@
                       <td><label>:</label></td>
                       <td><div class="form-group-checked row">
                   <div class="col-sm-6 mb-3-checked mb-sm-0">
-                    <input class="form-control-checked"type="radio" value="Progress" text="Progress" name="status" checked>
+                    <input class="form-control-checked"type="radio" value="Progress" text="Progress" name="status" checked id="tindakan-progres">
                     <label class="form-check-label form-control-checked">Progress</label>
                   </div>
                   <div class="col-sm-6 mb-3-checked mb-sm-0">
-                    <input type="radio" class="form-control-checked" value="Complete"  text="Complete" name="status">
+                    <input type="radio" class="form-control-checked" value="Complete"  text="Complete" name="status" id="tindakan-complete">
                     <label class="form-check-label form-control-checked">Selesai</label>
                   </div>
                 </div>
@@ -50,13 +50,7 @@
                     <tr>
                       <td><label>Bukti</label></td>
                       <td><label>:</label></td>
-                     <?php
-                        if($_SESSION['status_akun']=='Senior Manager' || $_SESSION['status_akun']=='Duty Manager' ||  $_SESSION['status_akun']=='General Manager'){
-                            echo '<td><input type="file" name="Bukti"></td>';
-                        } else {
-                            echo '<td><input type="file" name="Bukti" required></td>';
-                        }
-                    ?>
+                      <td><input type="file" name="Bukti" id="bukti"></td>
                     </tr>
                     <tr>
                       <td colspan="3">
