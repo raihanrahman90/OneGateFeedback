@@ -22,6 +22,7 @@ if($cek = mysqli_fetch_array($data)){
         $nama = $koneksi -> real_escape_string($_POST['nama']);
         $telp = $koneksi -> real_escape_string($_POST['no_telp']);
         $masa_berlaku = $koneksi -> real_escape_string($_POST['masa_berlaku']);
+		$kontrak = (isset($_POST['kontrak'])?$koneksi -> real_escape_string($_POST['kontrak']):null);
         if(empty($masa_berlaku)){
         	$masa_berlaku=date('Y-m-d', strtotime('+1 year'));
         }
@@ -37,6 +38,7 @@ if($cek = mysqli_fetch_array($data)){
     		password=MD5('$password'),
     		status='0',
     		masa_berlaku='$masa_berlaku', 
+			kontak='$kontrak',
     		id_pass_bandara='$id_pass_bandara',
     		pass_bandara=NULL,
     		foto=NULL
@@ -89,6 +91,7 @@ if($cek = mysqli_fetch_array($data)){
     $nama = $koneksi -> real_escape_string($_POST['nama']);
     $telp = $koneksi -> real_escape_string($_POST['no_telp']);
     $masa_berlaku = $koneksi -> real_escape_string($_POST['masa_berlaku']);
+	$kontrak = (isset($_POST['kontrak'])?$koneksi -> real_escape_string($_POST['kontrak']):null);
     if(empty($masa_berlaku)){
     	$masa_berlaku=date('Y-m-d', strtotime('+1 year'));
     }
@@ -105,6 +108,7 @@ if($cek = mysqli_fetch_array($data)){
 		MD5('$password'),
 		'0',
 		'$masa_berlaku', 
+		'$kontrak',
 		'$id_pass_bandara',
 		NULL,
 		NULL

@@ -64,7 +64,7 @@ include('header.php');
 											</div>
 											<div class="col-sm-12">
 												<div class="form-group">
-												    <label>Masukkan Id sisi darat atau foto pass bandara</label>
+												    <label>Masukkan Id Sisi Darat atau Foto Pass Bandara</label>
 												    <div class="row">
     												    <div class="col-sm-6">
     													    <input type="file" id="pass_bandara" accept="image/*" name='pass_bandara' required/>
@@ -77,8 +77,14 @@ include('header.php');
         									</div>
         									<div class="col-sm-12">
         									    <div class="form-group">
-        									        <label>Masa berlaku pass bandara</label>
+        									        <label>Masa Berlaku Pass Bandara<small>(required)</small></label>
         									        <input type="date" name="masa_berlaku" class="form-control">
+        									    </div>
+        									</div>
+        									<div class="col-sm-12">
+        									    <div class="form-group">
+        									        <label>Masa Berlaku Kontak</label>
+        									        <input type="date" name="kontrak" class="form-control">
         									    </div>
         									</div>
 											<div class="col-sm-12 text-center pull-right">

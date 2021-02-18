@@ -26,7 +26,8 @@ include 'header.php';
                       }
                     }
             				$id = $_GET['id'];
-            				$data = mysqli_query($koneksi, "SELECT nama_perusahaan,gerai, nama, email, no_telp, pass_bandara, foto, status, id_pass_bandara from tb_customer where tb_customer.id_customer ='$id'") or die(mysqli_error($koneksi));
+            				$data = mysqli_query($koneksi, "SELECT nama_perusahaan,gerai, nama, email, no_telp, pass_bandara, foto, status, id_pass_bandara, masa_berlaku, kontrak 
+                                                    from tb_customer where tb_customer.id_customer ='$id'") or die(mysqli_error($koneksi));
             				$cek = mysqli_num_rows($data);
 							if($cek > 0){
 								$row = mysqli_fetch_assoc($data);
@@ -80,6 +81,28 @@ include 'header.php';
                                 <input type='text' class='form-control' disabled value='".$row['no_telp']."'>
                             </div>
                         </div>
+                        <div class='row mb-2'>
+                          <!-- Default Card Example -->
+                            <label class='col-lg-4'>
+                              Masa Berlaku
+                            </label>
+                            <div class='col-lg-8'>
+                                <input type='text' class='form-control' disabled value='".$row['masa_berlaku']."'>
+                            </div>
+                        </div>";
+                        if(isset($row['kontrak'])){
+                          echo"
+                          <div class='row mb-2'>
+                            <!-- Default Card Example -->
+                              <label class='col-lg-4'>
+                                Kontrak
+                              </label>
+                              <div class='col-lg-8'>
+                                  <input type='text' class='form-control' disabled value='".$row['kontrak']."'>
+                              </div>
+                          </div>";
+                        }
+                        echo"
                         <div class='row mb-2'>
                           <!-- Default Card Example -->
                             <label class='col-lg-4'>
