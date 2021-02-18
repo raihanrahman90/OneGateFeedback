@@ -78,7 +78,7 @@ include('header.php');
         									<div class="col-sm-12">
         									    <div class="form-group">
         									        <label>Masa Berlaku Pass Bandara<small>(required)</small></label>
-        									        <input type="date" name="masa_berlaku" class="form-control">
+        									        <input type="date" name="masa_berlaku" class="form-control" required>
         									    </div>
         									</div>
         									<div class="col-sm-12">
