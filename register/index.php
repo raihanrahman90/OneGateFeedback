@@ -83,7 +83,7 @@ include('header.php');
         									</div>
         									<div class="col-sm-12">
         									    <div class="form-group">
-        									        <label>Masa Berlaku Kontak</label>
+        									        <label>Masa Berlaku Kontrak</label>
         									        <input type="date" name="kontrak" class="form-control">
         									    </div>
         									</div>
