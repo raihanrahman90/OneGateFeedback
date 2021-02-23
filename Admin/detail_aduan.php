@@ -352,6 +352,12 @@ include 'header.php';
                         </form>";
                       ///akhir kasus ditutup
                         }
+                        echo"<a href='laporan.php?id=$id' style='margin-left:10px;' class='btn btn-info btn-icon-split float-right'>
+                        <span class='icon text-white-50'>
+                          <i class='fas fa-sticky-note'></i>
+                        </span>
+                        <span class='text'>Buat Laporan</span>
+                      </a>";
                     }////kondisi data ditemukan
                     #Data tidak ditemukan
                     else {

@@ -34,6 +34,7 @@ include 'header.php';
                           <option value='Super Admin'>Super Admin</option>
                           <option value='Admin1'>Admin 1</option>
                           <option value='Admin2'>Admin 2</option>
+                          <option value='Pengawas'>Pengawas</option>
                           <option value='Unit' selected>Unit</option>
                         </select>
                       </td>

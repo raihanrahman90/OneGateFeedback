@@ -9,11 +9,6 @@
             	<div class="card shadow mb-4 ">
         	    	<div class="card-header py-3">
         	    	    <div class="row">
-            	    	    <label class="col-12 col-md-2">Kelompok Berdasarkan</label>
-                	    	<select id="kelompok" name='kelompok' class="col-12 col-md-1 form-control">    
-                				<option value='status' selected="true">Status</option>
-                				<option value='jenis'>Jenis</option>
-                    		</select>
                     		<label class="col-12 col-md-2">Periode</label>
                     		<select id="rentang" name='rentang' class="col-12 col-md-1 form-control">    
                 				<option value='Tahun' selected="true">Tahun</option>
@@ -24,7 +19,36 @@
                 				<option value='line' selected="true">Line</option>
                 				<option value='bar'>Bar</option>
                     		</select>
+            	    	    <label class="col-12 col-md-2">Kelompok Berdasarkan</label>
+                	    	<select id="kelompok" name='kelompok' class="col-12 col-md-1 form-control">    
+                				<option value='status' selected="true">Status</option>
+                				<option value='jenis'>Jenis</option>
+                    		</select>
+            	    	    
                     	</div>
+                        <div id="form_departemen" class="row">
+                        <label class="col-12 col-md-2">Departemen</label>
+                	    	<select id="departemen" name='departemen' class="col-12 col-md-1 form-control ">   
+                				<option value='all' selected="true">All</option>   
+                                <?php
+                                    $query = mysqli_query($koneksi, "SELECT * FROM tb_departemen");
+                                    foreach($query as $departemen){
+                                        echo"<option value='".$departemen['id_departemen']."'>".$departemen['Departemen']."</option>";
+                                    }
+                                ?>
+                    		</select>
+            	    	    <label class="col-12 col-md-2">Unit</label>
+                	    	<select id="unit" name='unit' class="col-12 col-md-1 form-control">    
+                				<option value='all' selected="true">All</option>
+                                <?php
+                                    $query = mysqli_query($koneksi, "Select * from tb_unit where id_departemen=(select id_departemen from tb_departemen LIMIT 1)");
+                                    foreach($query as $unit){
+
+                                        echo"<option value='".$departemen['id_unit']."'>".$departemen['nama_unit']."</option>";
+                                    }
+                                ?>
+                    		</select>
+                        </div>
                 		<div id='input_date' class="row">
                 		    <label class="col-12 col-md-1">From :</label>
             			    <input type="date" name='from' id='dari' class="col-12 col-md-2 form-control">
@@ -173,7 +197,30 @@
                 alert("Error1 "+ jqXHR.status);
             }
         }); 
-        
+        /** Filter unit sesuai departemen */
+        $("#departemen" ) .change(function () {    
+            var data = $('#myform').serialize();
+            $.ajax({
+                type: 'POST',
+                url: "../action/options_unit_grafik.php",
+                data: data,
+                success: function(response) {
+                    let isi = "<option value='all' selected='true'>All</option>"+response
+                    $("#unit").html(isi);
+                    gantiRange(document.getElementById('rentang').value);
+                }
+            }); 
+        });
+        /** Filter unit berdasarkan departemen */
+        /**Listen Tanggal Awal */
+        $("#unit").change(function () {
+            if(dari.value>sampai.value){
+                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
+            } else {
+                gantiRange(document.getElementById('rentang').value);
+            }
+        });
+        /**Listen Tanggal Awal */
         /**Listen Tanggal Awal */
         $("#dari").change(function () {
             if(dari.value>sampai.value){

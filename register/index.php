@@ -88,7 +88,7 @@ include('header.php');
         									    </div>
         									</div>
 											<div class="col-sm-12 text-center pull-right">
-												<a href="../">Sudah memiliki Akun? Silahkan Login</a>
+												<a href="../">Sudah memiliki Akun? Silahkan 	Login</a>
 											</div><div class="col-sm-12 text-center pull-right">
 												<a href="../customer/forgot_password.php">Lupa Password?</a>
 											</div>

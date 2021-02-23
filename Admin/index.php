@@ -44,10 +44,10 @@ include 'header.php';
                     ###login sebagai unit
                     if($_SESSION['hak_akses']!='Unit'){
                       $mahasiswa = mysqli_query($koneksi, "SELECT * from tb_aduan 
-                      left join tb_unit ON tb_aduan.id_unit=tb_unit.id_unit 
-                      left join tb_departemen on tb_unit.id_departemen = tb_departemen.id_departemen 
-                      WHERE status <> 'Request' and status <> 'Returned' 
-                      ORDER BY field(status,'Progress' ,'Open', 'Closed'), waktu DESC") or die(mysqli_error($koneksi));
+                          left join tb_unit ON tb_aduan.id_unit=tb_unit.id_unit 
+                          left join tb_departemen on tb_unit.id_departemen = tb_departemen.id_departemen 
+                          WHERE status <> 'Request' and status <> 'Returned' 
+                          ORDER BY field(status,'Progress' ,'Open', 'Closed'), waktu DESC") or die(mysqli_error($koneksi));
                       $edit =false;
                       foreach ( $mahasiswa as $row){
                           echo "<tr>

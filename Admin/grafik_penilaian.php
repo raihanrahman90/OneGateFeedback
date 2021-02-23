@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <div id="form-grafik">
                             <div class="row">
-                                <label class="col-12 col-md-2">Nilai</label>
+                                <label class="col-12 col-md-2">Nilai Y</label>
                                 <select id="kelompok" name='kelompok' class="col-12 col-md-1 form-control">    
                                     <option value='rata-rata' selected="true">Rata-rata</option>
                                     <option value='Nilai'>Nilai</option>
@@ -30,6 +30,23 @@
                                     <option value='bar'>Bar</option>
                                 </select>
                             </div>
+                        <div id="form_departemen" class="row">
+                        <label class="col-12 col-md-2">Kelompokkan berdasarkan</label>
+                	    	<select id="departemen" name='departemen' class="col-12 col-md-1 form-control ">   
+                				<option value='all' selected="true">All</option>  
+                				<option value='departemen'>Berdasarkan departemen</option>   
+                                <?php
+                                    $query = mysqli_query($koneksi, "SELECT * FROM tb_departemen");
+                                    foreach($query as $departemen){
+                                        echo"<option value='".$departemen['id_departemen']."'>".$departemen['Departemen']."</option>";
+                                    }
+                                ?>
+                    		</select>
+            	    	    <label class="col-12 col-md-2">Unit</label>
+                	    	<select id="unit" name='unit' class="col-12 col-md-1 form-control">    
+                                    <option value='all'>All</option>
+                    		</select>
+                        </div>
                             <div id='input_date' class="row">
                                 <label class="col-12 col-md-1">From :</label>
                                 <input type="date" name='from' id='dari' class="col-12 col-md-2 form-control">
@@ -253,6 +270,44 @@
             }
         });
         /**Listen Tanggal Awal */
+        $('#unit').change(function(){
+            
+            if(dari.value>sampai.value){
+                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
+            } else {
+                gantiRange(document.getElementById('rentang').value);
+            }
+        })
+        /** Filter unit sesuai departemen */
+        $("#departemen" ) .change(function () {    
+            let departemen = $(this).val();
+            let kelompok = $('#kelompok').val();
+            var data = $('#myform').serialize();
+            if(departemen=='all' || departemen=='departemen'){
+                $('#unit').html('<option value="all" selected="true">All</option>')
+            }else{
+                $.ajax({
+                    type: 'POST',
+                    url: "../action/options_unit_grafik.php",
+                    data: data,
+                    success: function(response) {
+                        let isi;
+                        if(kelompok=='rata-rata'){
+                            isi = "<option value='all' selected='true'>All</option><option value='unit'>Berdasarkan unit</option>"+response
+                        }else{
+                            isi = "<option value='all' selected='true'>All</option>"+response
+                        }
+                        $("#unit").html(isi);
+                    },
+                    error: function(err){
+                    }
+                }); 
+            }
+            gantiRange(document.getElementById('rentang').value);
+            
+        });
+        /** Filter unit berdasarkan departemen */
+
         /**Listen Tanggal Akhir */
         $("#sampai").change(function () {
             if(dari.value>sampai.value){
@@ -267,7 +322,24 @@
             if(dari.value>sampai.value){
                 alert("Tanggal awal harus lebih kecil dari tanggal akhir");
             } else {
-                gantiRange(document.getElementById('rentang').value);
+                let kelompok = $(this).val()
+                var data = $('#myform').serialize();
+                $.ajax({
+                type: 'POST',
+                url: "../action/options_departemen.php",
+                data: data,
+                success: function(response) {
+                        let isi;
+                        if(kelompok=='rata-rata'){
+                            isi = "<option value='all' selected='true'>All</option><option value='departemen'>Berdasarkan departemen</option>"+response
+                        }else{
+                            isi = "<option value='all' selected='true'>All</option>"+response
+                        }
+                        $("#unit").html("<option value='all'>All</option>")
+                        $("#departemen").html(isi);
+                    gantiRange(document.getElementById('rentang').value);
+                }
+                }); 
             }
         });
         /**Listen Pengelompokkan */
