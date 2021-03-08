@@ -20,6 +20,50 @@ function getPesan($level, $id, $link){
     </html>';
     return $text;
 }
+
+$level0 = mysqli_query($koneksi, "SELECT * FROM tb_aduan 
+where TIMESTAMPDIFF(MINUTE, waktu,now()) >= 30 and level=-1");
+
+while($row = mysqli_fetch_array($level2)){
+    $id_aduan = $row['id_aduan'];
+    $text = '<!DOCTYPE html>
+    <html lang="en">
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>Feedback memasuki level '.$level.'</title>
+    </head>
+    <body>
+    <div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;">
+      <div align="left">
+        Feedback baru telah masuk dengan nomor aduan '.$id_aduan.'<br>
+        Silahkan periksa pada tautan berikut <a href="'.$link.'Admin/detail_request.php?id='.$id_aduan.'">Klik Disini</a>
+      </div>
+    </div>
+    </body>
+    </html>';
+    $email = mysqli_query($koneksi, "SELECT token, Email, tb_akun.nama as nama from tb_akun 
+                                    left join (SELECT * from tb_token where status='akun') as tb_token on tb_token.id = tb_akun.id_akun 
+                                    where tb_akun.status='Admin1'") or die(mysqli_error($koneksi));
+    $mail->msgHTML($text, __DIR__);
+    $mail->ClearAllRecipients();
+    while($list_email = mysqli_fetch_array($email)){
+        if(!is_null($list_email['token'])){
+            sendPushNotification(
+              $list_email['token'], 
+              "Feedback baru telah diterima", 
+              "Feedback baru telah dikirim oleh customer", 
+              '/side/request-list/request-detail/'.$id_aduan,
+              '',
+              ''
+            );
+        }
+        $mail->addAddress($list_email['Email'], $list_email['nama']);
+    }
+    if(!$mail->send()){
+        echo 'Mailer Error: '. $mail->ErrorInfo;
+    } else {
+        echo 'Message sent!';
+    }
+}
 $level1 = mysqli_query($koneksi, "UPDATE tb_aduan set level=0 where TIMESTAMPDIFF(MINUTE, waktu,now()) >= 30 and level=-1") or die(mysqli_error($koneksi));
 
 ///level2

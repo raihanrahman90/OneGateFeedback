@@ -19,14 +19,8 @@
 		$perihal = $perihalUrgent;
 	}
 	/**setting lokasi */
-	$id_lokasi = $koneksi -> real_escape_string($_POST['lokasi']);
-	$id_detail_lokasi = $koneksi -> real_escape_string($_POST['detail-lokasi']);
-	$data_lokasi = mysqli_query($koneksi, "SELECT nama_lokasi, nama_detail_lokasi from tb_lokasi
-											inner join tb_detail_lokasi on tb_lokasi.id_lokasi = tb_detail_lokasi.id_lokasi
-											where tb_lokasi.id_lokasi=$id_lokasi and tb_detail_lokasi.id_detail_lokasi=$id_detail_lokasi") or die(mysqli_error($koneksi));
-	$data_lokasi = mysqli_fetch_array($data_lokasi);
-	$nama_lokasi = $data_lokasi['nama_lokasi'];
-	$nama_detail_lokasi = $data_lokasi['nama_detail_lokasi'];
+	$lokasi = $koneksi -> real_escape_string($_POST['lokasi']);
+	$detail_lokasi = $koneksi -> real_escape_string($_POST['detail_lokasi']);
 	/**Setting Lokasi */
 	$data = mysqli_query($koneksi,"INSERT INTO tb_aduan VALUES(
 	0,
@@ -35,9 +29,8 @@
 	NULL,
 	NULL,
 	NULL,
-	$id_detail_lokasi,
-	'$nama_lokasi',
-	'$nama_detail_lokasi',
+	'$lokasi',
+	'$detail_lokasi',
 	'$jenis',
 	$urgensi,
 	'$perihal',

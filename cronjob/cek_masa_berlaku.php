@@ -5,7 +5,7 @@ include __DIR__.'\..\pesan/header.php';
 $cek_status = mysqli_query($koneksi, "SELECT * FROM tb_customer 
  where TIMESTAMPDIFF(DAY, masa_berlaku,now()) >= 0 and status='1'");
 while($row = mysqli_fetch_array($cek_status)){
- $text_level4 = '<!DOCTYPE html>
+    $text_level4 = '<!DOCTYPE html>
     <html lang="en">
     <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       
@@ -31,6 +31,7 @@ while($row = mysqli_fetch_array($cek_status)){
 
 mysqli_query($koneksi,"UPDATE tb_customer set status=2 where TIMESTAMPDIFF(DAY, masa_berlaku,now()) >= 0 and status='1'") or die(mysqli_error($koneksi));
 $mail->Subject = 'Akun Customer Service Bandara SAMS Sepinggan Balikpapan';
+
 $cek_notif = mysqli_query($koneksi, "SELECT email FROM tb_notif where waktu<now()") or die(mysqli_error($koneksi));
 while($row = mysqli_fetch_array($cek_notif)){
     $email = $row['email'];
@@ -60,5 +61,5 @@ while($row = mysqli_fetch_array($cek_notif)){
         } else {
             echo 'Message sent!';
         }
-}
+    }
 ?>

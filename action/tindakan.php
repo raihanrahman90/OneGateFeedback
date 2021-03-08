@@ -25,11 +25,8 @@ if(is_uploaded_file($_FILES['Bukti']['tmp_name'])){
     $la = mysqli_query($koneksi,"UPDATE tb_aduan set status='$status' WHERE id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
     move_uploaded_file($tmp_file, "../gambar/bukti/".$id1);
 }
-if($_SESSION['status_akun']!='Unit' && $_SESSION['status_akun'] != 'Manager'){
-    $subject = 'Perintah Tindakan Baru';
-	include "../pesan/kirim_email_tindakan.php";
-} else{
-    $subject = 'Tidakan Baru Dilakukan';
+if($status='Complete'){
+    $subject = 'Satu keluhan telah diselesaikan';
     include '../pesan/kirim_email_selesai.php';
 }
 header("Location:../Admin");	

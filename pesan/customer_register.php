@@ -14,7 +14,7 @@ $text = '<!DOCTYPE html>
   <div align="left">
     Data anda sudah kami terima, mohon menunggu proses konfirmasi. Setelah konfirmasi selesai, anda akan diberitahu melalui Email dalam kurun waktu 1x24 jam(hari kerja)<br>
     apabila dalam kurun waktu 1 x 24 jam tidak mendapat email notifikasi , silahkan melakukan pendaftaran ulang pada link berikut <a href="'.$link.'register">Klik di sini</a> 
-    atau hubungi Admin Customer Service pada email berikut nawang.ayunanda@ap1.co.id theodora.Davita@ap1.co.id
+    atau hubungi Admin Customer Service pada email berikut nawang.ayunanda@ap1.co.id  atau theodora.Davita@ap1.co.id
   </div>
 </div>
 </body>

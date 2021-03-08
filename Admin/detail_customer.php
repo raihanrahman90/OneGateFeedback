@@ -179,14 +179,25 @@ include 'header.php';
                   <?php 
                     echo "<input type='hidden' value = '$id' name='id'>";
                   
-                      if($_SESSION['hak_akses']=='Super Admin'&& $row['status'] =='0'){
-            echo "<a href='javascript:{}' onclick='lakukan()'.submit();' type='submit' value='Tambah' class='btn btn-info btn-icon-split float-right'>
-                    <span class='icon text-white-50'>
-                      <i class='fas fa-check'></i>
-                    </span>
-                    <span class='text'>Aktifkan</span>
-                  </a>
-                  ";
+                    if($_SESSION['hak_akses']=='Super Admin'&& $row['status'] =='0'){
+                      echo  
+                      "<a href='javascript:{}' onclick='lakukan()'.submit();' type='submit' value='Tambah' class='btn btn-info btn-icon-split float-right'>
+                        <span class='icon text-white-50'>
+                          <i class='fas fa-check'></i>
+                        </span>
+                        <span class='text'>Aktifkan</span>
+                      </a>
+                      ";
+                    }
+                    if($_SESSION['hak_akses']=='Super Admin'&& $row['status'] =='1'){
+                      echo  
+                      "<a href='javascript:{}' onclick='lakukan()'.submit();' type='submit' value='Tambah' class='btn btn-danger btn-icon-split float-right'>
+                        <span class='icon text-white-50'>
+                          <i class='fas fa-info'></i>
+                        </span>
+                        <span class='text'>Non-Aktifkan</span>
+                      </a>
+                      ";
                     }
                   ?>
               </form>

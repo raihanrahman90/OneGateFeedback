@@ -83,21 +83,14 @@ include 'header.php';
 												        <?php
 												            $query = mysqli_query($koneksi, "SELECT * from tb_lokasi") or die(mysqli_error($koneksi));
 												            foreach($query as $row){
-												                echo "<option value='".$row['id_lokasi']."'>".$row['nama_lokasi']."</option>";
+												                echo "<option value='".$row['nama_lokasi']."'>".$row['nama_lokasi']."</option>";
 												            }
 												        ?>
 												    </select>
 												</div>
 												<div class="form-group">
 												    <label>Detail Lokasi<small>(required)</small></label>
-												    <select name="detail-lokasi" class="form-control" id="detail-lokasi">
-												        <?php
-                                                        $departemen = mysqli_query($koneksi, "Select * from tb_detail_lokasi where id_lokasi=(select id_lokasi from tb_lokasi LIMIT 1)");
-                                                        foreach($departemen as $row){
-                                                          echo "<option value='".$row['id_detail_lokasi']."'>".$row['nama_detail_lokasi']."</option>";
-                                                        }
-                                                      ?>
-												    </select>
+													<input name="detail_lokasi" type="text" class="form-control" placeholder="Detail Lokasi" id="detail_lokasi" required>
 												</div>
 												<div class="form-group">
 													<label>Foto</label>
@@ -123,17 +116,6 @@ include 'header.php';
 	</div>
     <script type="text/javascript">
 	    $(document).ready(function(){
-	       $("#lokasi" ).change(function () {    
-              var data = $('#myform').serialize();
-              $.ajax({
-                type: 'POST',
-                url: "../action/options_lokasi.php",
-                data: data,
-                success: function(response) {
-                  $("#detail-lokasi").html(response) ;
-                }
-              }); 
-            }); 
 			$("#perihalUrgent").change(function(){
                  if($(this).val()=='Tidak Urgent'){
 					 $('#perihal').removeClass('d-none')

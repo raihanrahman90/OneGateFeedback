@@ -8,10 +8,8 @@
 		    $_SESSION['status']='nerobos';
 			header("Location:../");
 		} else {
-		    $query=mysqli_query($koneksi, "Select *, now() as sekarang, tb_aduan.id_detail_lokasi as detail_lokasi_id, tb_detail_lokasi.id_lokasi as lokasi_id 
+		    $query=mysqli_query($koneksi, "Select *, now() as sekarang 
 		    from tb_aduan 
-		    inner join tb_detail_lokasi on tb_detail_lokasi.id_detail_lokasi = tb_aduan.id_detail_lokasi
-		    inner join tb_lokasi on tb_lokasi.id_lokasi = tb_detail_lokasi.id_lokasi
 		    where id_aduan='".$id_aduan."'") or die(mysqli_error($koneksi));
 		    if($row1 = mysqli_fetch_array($query)){
 		        if($_SESSION['id_customer']!=$row1['id_customer']){
@@ -120,10 +118,10 @@
 												        <?php
 												            $query = mysqli_query($koneksi, "SELECT * from tb_lokasi") or die(mysqli_error($koneksi));
 												            foreach($query as $row){
-												                if($row['id_lokasi']==$row1['lokasi_id']){
-												                    echo "<option value='".$row['id_lokasi']."' selected>".$row['nama_lokasi']."</option>";
+												                if($row['nama_lokasi']==$row1['nama_lokasi']){
+												                    echo "<option value='".$row['nama_lokasi']."' selected>".$row['nama_lokasi']."</option>";
 												                }else {
-												                    echo "<option value='".$row['id_lokasi']."'>".$row['nama_lokasi']."</option>";
+												                    echo "<option value='".$row['nama_lokasi']."'>".$row['nama_lokasi']."</option>";
 												                }
 												            }
 												        ?>
@@ -131,18 +129,10 @@
 												</div>
 												<div class="form-group">
 												    <label>Detail Lokasi<small>(required)</small></label>
-												    <select name="detail-lokasi" class="form-control" id="detail-lokasi">
-												        <?php
-                                                        $departemen = mysqli_query($koneksi, "Select * from tb_detail_lokasi where id_lokasi='".$row1['lokasi_id']."'");
-                                                        foreach($departemen as $row){
-                                                          if($row['id_detail_lokasi']==$row1['detail_lokasi_id']){
-												                    echo "<option value='".$row['id_detail_lokasi']."' selected>".$row['nama_detail_lokasi']."</option>";
-												                }else {
-												                    echo "<option value='".$row['id_detail_lokasi']."'>".$row['nama_detail_lokasi']."</option>";
-												                }
-                                                        }
-                                                      ?>
-												    </select>
+													<?php
+														echo '<input name="detail_lokasi" type="text" class="form-control" placeholder="Detail Lokasi" id="detail_lokasi" value="'.$row1['nama_detail_lokasi'].'" required>';
+													?>
+													
 												</div>
 												<div class="form-group">
 													<label>Foto</label>

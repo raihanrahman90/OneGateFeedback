@@ -54,9 +54,36 @@
   <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="../assets/js/demo/datatables-demo.js"></script>
   <script>
       $(document).ready(function(){
+        $('#dataTable thead tr').clone(true).appendTo( '#dataTable thead' );
+        var column_count = $("table > tbody > tr:first > td").length
+        $('#dataTable thead tr:eq(1) th').each( function (i) {
+            if(i<column_count-1){
+              var title = $(this).text();
+              $(this).html( '<input type="text" placeholder="Search '+title+'" style="width:100%;" />' );
+      
+              $( 'input', this ).on( 'keyup change', function () {
+                  if ( table.column(i).search() !== this.value ) {
+                      table
+                          .column(i)
+                          .search( this.value )
+                          .draw();
+                  }
+              } );
+            }else{
+              $(this).html( '' );
+            }
+        } );
+        var table = $('#dataTable').DataTable( {
+            orderCellsTop: true,
+            fixedHeader: true
+            <?php 
+              if($halaman=='aduan'){
+                echo ",'order':[[5]]";
+              }
+            ?>
+        } );
           /**Mengecek jumlah data yang akan ditampilkan di sidebar */
           $('#notifCustomer').load("notifCustomer.php");
           $('#notifRequest').load("notifRequest.php");

@@ -48,13 +48,13 @@
                               <td>".$row['Departemen']."</td>
                               <td>".$row['count(id_unit)']."</td>
                               <td>
-                              <a href='detail_departemen.php?id=".$row['id_departemen']."' class='btn btn-info btn-circle btn-sm'>
-                                <i class='fas fa-info-circle'></i>
-                              </a><a href='../action/delete_departemen.php?id=".$row['id_departemen']."' class='btn btn-danger btn-circle btn-sm' name='hapus' onclick='return";
-                                echo ' confirm("Apakah ingin menghapus departemen atas nama '.$row['Departemen'].'?")';
-                                echo"'>
-                                <i class='fas fa-trash'></i>
-                              </a>
+                                <a href='detail_departemen.php?id=".$row['id_departemen']."' class='btn btn-info btn-circle btn-sm'>
+                                  <i class='fas fa-info-circle'></i>
+                                </a><a href='../action/delete_departemen.php?id=".$row['id_departemen']."' class='btn btn-danger btn-circle btn-sm' name='hapus' onclick='return";
+                                  echo ' confirm("Apakah ingin menghapus departemen atas nama '.$row['Departemen'].'?")';
+                                  echo"'>
+                                  <i class='fas fa-trash'></i>
+                                </a>
                               </td>
                             </tr>";
                           $no++;
