@@ -46,7 +46,6 @@ if($cek = mysqli_fetch_array($data)){
     	") or die(mysqli_error($koneksi));
         $id = $cek['id_customer'];
     	if(is_uploaded_file($_FILES['foto']['tmp_name'])){
-    	    
             $tmp_foto = $_FILES['foto']['tmp_name'];
         	$id_foto = $id.".jpg";
         	$cek = mysqli_query($koneksi,"UPDATE tb_customer SET foto='$id_foto' WHERE id_customer = '$id'") or die(mysqli_error($koneksi));
@@ -115,7 +114,6 @@ if($cek = mysqli_fetch_array($data)){
 	)") or die(mysqli_error($koneksi));
     $id = mysqli_insert_id($koneksi);
 	if(is_uploaded_file($_FILES['foto']['tmp_name'])){
-	    
         $tmp_foto = $_FILES['foto']['tmp_name'];
     	$id_foto = $id.".jpg";
     	$cek = mysqli_query($koneksi,"UPDATE tb_customer SET foto='$id_foto' WHERE id_customer = '$id'") or die(mysqli_error($koneksi));

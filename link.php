@@ -1,3 +1,3 @@
 <?php
-    $link = 'http://192.168.60.18/Bandara/';
+    $link = 'http://ogfs-bpn.sepinggan-airport.com/Bandara/';
 ?>
