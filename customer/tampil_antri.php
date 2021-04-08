@@ -146,7 +146,7 @@
 		                    	                $query = mysqli_query($koneksi, "SELECT * FROM tb_keterangan_tambahan inner join tb_aduan on tb_aduan.id_aduan = tb_keterangan_tambahan.id_aduan where tb_keterangan_tambahan.id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
     		                    	            while($row = mysqli_fetch_array($query)){
     		                    	                if($row['jawaban']==null){
-    		                    	                    if($row['id_customer']==$_SESSION['id_customer']){
+    		                    	                    if(isset($_SESSION['id_customer']) && $row['id_customer']==$_SESSION['id_customer']){
                 		                    	           echo' 
             		                    	            <div class="form-group col-md-12">
             		                    	                <label>Pertanyaan: '.$row['pertanyaan'].'</label><br>
@@ -154,7 +154,7 @@
                         		                          </div>';
                         		                        }else {echo' 
             		                    	            <div class="form-group col-md-12">
-            		                    	                <label>'.$row['pertanyaan'].'</label>
+            		                    	                <label>'.$row['pertanyaan'].'<div class="text-danger">Silahkan Login Dengan Email Pengirim Untuk Menjawab Pertanyaan</div></label>
                         		                                <input class="form-control" type="text" value="Belum Terjawab" disabled>
                         		                            </div>';
                         		                        }

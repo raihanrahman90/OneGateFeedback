@@ -388,20 +388,30 @@ function addLine( $ligne, $tab )
 
 	$ordonnee     = 10;
 	$maxSize      = $ligne;
-
+	$lastMax = 0;
 	reset( $colonnes );
 	while ( list( $lib, $pos ) = each ($colonnes) )
 	{
 		$longCell  = $pos -2;
 		$texte     = $tab[ $lib ];
 		$length    = $this->GetStringWidth( $texte );
+		if($length==0){
+			$length=1;
+		}
 		$tailleTexte = $this->sizeOfText( $texte, $length );
 		$formText  = $format[ $lib ];
+		$maxSize = $this->GetY() ;	
+		if($ligne>270 && $lib > 1){
+			
+			$lastMax = $ligne;
+			$ligne=10;
+		}
 		$this->SetXY( $ordonnee, $ligne-1);
 		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
-		if ( $maxSize < ($this->GetY()  ) )
-			$maxSize = $this->GetY() ;
 		$ordonnee += $pos;
+	}
+	if($lastMax!=0){
+		return ($maxSize-$lastMax);
 	}
 	return ( $maxSize - $ligne );
 }

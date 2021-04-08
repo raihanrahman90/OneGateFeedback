@@ -22,12 +22,6 @@ include 'header.php';
                     				<td colspan="3"><input type="text" name="nama_lokasi" class="form-control form-control-user" required></td>
                         	    </tr>
                             </thead>
-                            <tbody id="field_div">
-                          		<tr>
-                        			<td><label>Lokasi Detail</label></td>
-                        			<td colspan="3"><input type="button" value="Tambah Detail" onclick="add_field();"></td>
-                        		</tr>
-                            </tbody>
                             <tfoot>
                                 <tr>
                                   <td colspan="4">
@@ -49,20 +43,6 @@ include 'header.php';
         <!-- /.container-fluid -->
 
       </div>
-      <script>
-        function add_field()
-        {
-          var total_text=document.getElementsByClassName("input_text");
-          total_text=total_text.length+1;
-          document.getElementById("field_div").innerHTML=document.getElementById("field_div").innerHTML+
-          "<tr id='input_text"+total_text+"_wrapper'><td><label>Lokasi Detail</label></td><td><input name='detail[]' type='text' class='input_text form-control form-control-user' id='input_text"+total_text+"' placeholder='Enter Text'></td><td>:</td><td><input type='button' value='Remove' onclick=remove_field('input_text"+total_text+"');></td></tr>";
-        }
-        function remove_field(id)
-        {
-          var div = document.getElementById(id+"_wrapper");
-          div.parentNode.removeChild(div);
-        }
-        </script>
       <!-- End of Main Content -->
 <?php include 'footer.php';
 ?>
