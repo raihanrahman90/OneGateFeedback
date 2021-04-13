@@ -10,7 +10,7 @@ $subject = 'Feedback Bandara SAMS Sepinggan Balikpapan';
     <body>
     <div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;">
       <div align="left">
-        Aduan dengan id '.$id.' telah dikembalikan pada Customer Service<br>
+        Aduan dengan id '.$id.' telah dikembalikan pada Customer Service oleh unit terkait<br>
         <a href="'.$link.'/Admin/detail_aduan.php?id='.$id_aduan.'">Klik Disini</a>
       </div>
     </div>
@@ -29,7 +29,10 @@ while($row = mysqli_fetch_array($data)) {
         '/side/request-list/request-detail/'.$id,
         '',
         '');
-    $mail->addAddress($row['Email'], $row['Nama']);
+}
+$data = mysqli_query($koneksi, "SELECT Email, Nama FROM tb_akun where (hak_akses ='Admin1' or hak_akses='Super Admin')");
+while($row = mysqli_fetch_array($data)) {
+  $mail->addAddress($row['Email'], $row['Nama']);
 }
 $mail->send();
 ?>
