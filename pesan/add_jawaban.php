@@ -20,7 +20,7 @@ $text = '<!DOCTYPE html>
 //send the message, check for errors
 $mail->msgHTML($text, __DIR__);
 $data = mysqli_query($koneksi, "SELECT token, Email, Nama FROM tb_akun 
-                                left join (SELECT * from tb_token where status='akun') as tb_token on tb_token.id = tb_akun.id_akun where (hak_akses ='Admin2' or hak_akses='Super Admin')");
+                                left join (SELECT * from tb_token where status='akun') as tb_token on tb_token.id = tb_akun.id_akun where (hak_akses ='Admin1' or hak_akses='Super Admin')");
 foreach ($data as $row) {
     if(!is_null($row['token'])){
       sendPushNotification(

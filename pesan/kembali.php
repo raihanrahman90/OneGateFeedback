@@ -20,7 +20,7 @@ $mail->msgHTML($text, __DIR__);
 //Replace the plain text body with one created manually
 //Attach an image file
 //send the message, check for errors
-$data = mysqli_query($koneksi, "SELECT token, Email, Nama FROM tb_akun inner join tb_token on tb_akun.id_akun = tb_token.id where (hak_akses ='Admin2' or hak_akses='Super Admin') and tb_token.status = 'akun'");
+$data = mysqli_query($koneksi, "SELECT token, Email, Nama FROM tb_akun inner join tb_token on tb_akun.id_akun = tb_token.id where (hak_akses ='Admin1' or hak_akses='Super Admin') and tb_token.status = 'akun'");
 while($row = mysqli_fetch_array($data)) {
     sendPushNotification(
         $row['token'], 
