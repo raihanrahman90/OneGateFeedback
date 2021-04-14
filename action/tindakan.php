@@ -8,6 +8,11 @@ include '../koneksi.php';
 // menangkap data yang dikirim dari form
 $tindakan = $koneksi -> real_escape_string($_POST['tindakan']);
 $status = $koneksi -> real_escape_string($_POST['status']);
+if($status =='Complete'){
+    $tindakan = "Feedback telah selesai ditindaklanjuti oleh unit dengan keterangan ".$tindakan;
+}else if($status=='Progress'){
+    $tindakan = "Feedback direspons oleh unit dengan keterangan ".$tindakan;
+}
 $id_aduan = $_POST['id_aduan'];
 $id_akun = $_SESSION['id_akun'];
 // menyeleksi data admin dengan username dan password yang sesuai

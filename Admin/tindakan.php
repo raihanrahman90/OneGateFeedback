@@ -44,7 +44,7 @@
                     <tr>
                       <td><label>Tindakan</label></td>
                       <td><label>:</label></td>
-                      <td><input type="text" class ="form-control" name="tindakan">
+                      <td><input type="text" class ="form-control" name="tindakan" required>
                       </td>
                     </tr>
                     <tr>
