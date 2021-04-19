@@ -29,9 +29,10 @@ include 'header.php';
                     <?php
             				$id = $_GET['id'];///mengambil id dari url
                     #menampilkan data dengan urutan id_progress 
-            				$data = mysqli_query($koneksi, "SELECT jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, status, foto, tindakan, bukti, tb_progress.waktu as waktu_progress, tb_aduan.id_unit as unit, nama_departemen, nama_unit, penilaian, ulasan from tb_aduan
+            				$data = mysqli_query($koneksi, "SELECT Email, jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, tb_aduan.status, tb_aduan.foto, tindakan, bukti, tb_progress.waktu as waktu_progress, tb_aduan.id_unit as unit, nama_departemen, nama_unit, penilaian, ulasan from tb_aduan
                                                     left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan 
                                                     left join tb_penilaian on tb_penilaian.id_aduan = tb_aduan.id_aduan
+                                                    left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
                                                     where tb_aduan.id_aduan ='$id' ORDER BY id_progress ASC") or die(mysqli_error($koneksi));
                     $row = mysqli_fetch_assoc($data);
                     $status = $row["status"];
@@ -119,11 +120,20 @@ include 'header.php';
                 				    <div class='row mb-2'>
                 				      <div class='col-lg-4'>
                 				        <label>Pelapor<label>
-                                      </div>
-                                      <div class='col-lg-8'>
-                                        <input type='text' class='form-control' disabled value='".$row['pelapor']."'></input>
-                                      </div>
-                                    </div>
+                              </div>
+                              <div class='col-lg-8'>
+                                <input type='text' class='form-control' disabled value='".$row['pelapor']."'></input>
+                              </div>
+                            </div>
+                            <div class='row mb-2'>
+                				      <div class='col-lg-4'>
+                				        <label>Email Pelapor<label>
+                              </div>
+                              <div class='col-lg-8'>
+                                <input type='text' class='form-control' disabled value='".$row['Email']."'></input>
+                              </div>
+                            </div>
+                            
                 				    <div class='row mb-2'>
                 				      <div class='col-lg-4'>
                 				        <label>Lokasi<label>
