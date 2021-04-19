@@ -14,7 +14,8 @@ $text = '<!DOCTYPE html>
     Akun Customer Service Bandara SAMS Sepinggan Balikpapan anda telah dinonaktifkan oleh Bandara SAMS Sepinggan Balikpapan<br>
     Silahkan hubungi kontak berikut jika ini merupakan kesalahan <br>
     nawang.ayunanda@ap1.co.id<br>
-    Theodora.Davita@ap1.co.id
+    Theodora.Davita@ap1.co.id<br>
+    tasyakha.a@gmail.com
     <a href="'.$link.'">Klik Disini</a>
   </div>
 </div>

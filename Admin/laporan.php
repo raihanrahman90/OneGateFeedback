@@ -161,7 +161,7 @@ $y   += $size + 2;
         $line = array(  "1" => " ",
                         "2" => $row['tindakan']);
         $size = $pdf->addLine( $y, $line );
-        $y   += $size + 4;
+        $y   += $size + 10;
     }
 // $line = array( "REFERENCE"    => "REF2",
 //                "DESIGNATION"  => "C�ble RS232",

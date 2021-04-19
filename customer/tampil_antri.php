@@ -212,7 +212,7 @@
 		                    	                        }
 		                    	                    ?>
                                                         <span class="timeline__step-title">
-                                                            Open level 2</br>
+                                                            Keluhan telah naik ke level 2</br>
 															<span class="timeline__step-subtitle">
 																Keluhan telah naik ke level 2 untuk dikoordinasikan oleh departemen
 															</span></span>
@@ -227,7 +227,7 @@
 		                    	                        }
 		                    	                    ?>
                                                         <span class="timeline__step-title">
-                                                            Open level 3</br>
+                                                            Keluhan telah naik ke level 3</br>
 															<span class="timeline__step-subtitle">
 																Keluhan telah naik ke level 3 untuk dikoordinasikan oleh Manajer
 															</span></span>
@@ -236,6 +236,36 @@
                                                     </li>
                                                     <?php
 		                    	                        if(($data['status_progress']=='Closed' || $data['status_progress']=='Complete' || $data['status_progress']=='Progress')){
+															echo  "<li class='timeline__step done'>";
+															$selesai = true;
+		                    	                        } else {
+															echo  "<li class='timeline__step'>";
+															$selesai = false;
+		                    	                        }
+		                    	                    ?>
+                                                        <span class="timeline__step-title">
+															Progress</br>
+															<?php 
+																$progresQuery= mysqli_query($koneksi, "SELECT * FROM tb_progress 
+																								where id_aduan='$id_aduan' and 
+																								tindakan like 'Feedback direspons oleh unit dengan keterangan%'
+																								order by id_progress desc") or die(mysqli_error($koneksi));
+																if($progres = mysqli_fetch_array($progresQuery)){
+																	echo 
+																	'<span class="timeline__step-subtitle">
+																		'.$progres['tindakan'].'
+																	</span></span>';
+																}else{
+																	echo 
+																	'<span class="timeline__step-subtitle">
+																		Keluhan sedang diproses oleh unit terkait
+																	</span></span>';
+																}
+															?>
+															
+                                                        <i class="timeline__step-marker"></i>
+                                                    </li> <?php
+		                    	                        if(($data['status_progress']=='Closed' || $data['status_progress']=='Complete')){
 															echo  "<li class='timeline__step done'>";
 															$selesai = true;
 		                    	                        } else {

@@ -336,12 +336,15 @@ include 'header.php';
                               </button>
                             </div>
                               <div class='modal-body'>
-                                <label>Pilih Keterangan.</label>
-                                <select class='form-control form-control-user' name='keterangan'>
-                                  <option value='Kurang Data'>Kurang Data</option>
-                                  <option value='Bukan Tanggung Jawab Unit Saya'>Bukan Tanggung Jawab Unit Saya</option>
-                                </select>
-                              </div>
+                                  <label>Pilih Keterangan.</label>
+                                  <select class='form-control form-control-user' name='keterangan'>
+                                    <option value='Kurang Data'>Kurang Data</option>
+                                    <option value='Bukan Tanggung Jawab Unit Saya'>Bukan Tanggung Jawab Unit Saya</option>
+                                  </select>
+                                  <label>Tambahkan Penjelasan.</label>
+                                  <input type='text' class='form-control form-control-user' name='penjelasan' placeholder='Membutuhkan data nomor kursi' required>
+                                  </input>
+                                  </div>
                                     <div class='modal-footer'>
                                         <button class='btn btn-secondary' type='button' data-dismiss='modal'>Batal</button>
                                         <button class='btn btn-info' type='submit'>Kirim</a>
@@ -353,11 +356,44 @@ include 'header.php';
                       ///akhir kasus ditutup
                         }
                         echo"<a href='laporan.php?id=$id' style='margin-left:10px;' class='btn btn-info btn-icon-split float-right'>
-                        <span class='icon text-white-50'>
-                          <i class='fas fa-sticky-note'></i>
-                        </span>
-                        <span class='text'>Buat Laporan</span>
-                      </a>";
+                          <span class='icon text-white-50'>
+                            <i class='fas fa-sticky-note'></i>
+                          </span>
+                          <span class='text'>Buat Laporan</span>
+                        </a>";
+                        if($status=='Complete' && ($_SESSION['hak_akses']=='Admin2'||$_SESSION['hak_akses']=='Super Admin')){
+                          echo"
+                          <a href='#' data-toggle='modal' data-target='#kembaliKeUnitModal' class='btn btn-danger btn-icon-split float-right' >
+                            <span class='icon text-white-50'>
+                              <i class='fas fa-undo'></i>
+                            </span>
+                            <span class='text'>Kembalikan ke Unit Teknis</span>
+                          </a>
+                          <!-- Logout Modal-->
+                          <form action='../action/kembali_ke_unit_teknis.php' method='post'>
+                          <input type='hidden' value = '$id' name='id'>
+                          <div class='modal fade' id='kembaliKeUnitModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                            <div class='modal-dialog' role='document'>
+                              <div class='modal-content'>
+                                <div class='modal-header'>
+                                  <h5 class='modal-title' id='kembaliModalLabel'>Mengembalikan Keluhan ke Unit Teknis</h5>
+                                  <button class='close' type='button' data-dismiss='modal' aria-label='Close'>
+                                    <span aria-hidden='true'>×</span>
+                                  </button>
+                                </div>
+                                  <div class='modal-body'>
+                                      <input type='text' class='form-control form-control-user' name='keterangan' placeholder='Wifi masih rusak' required>
+                                      </input>
+                                      </div>
+                                        <div class='modal-footer'>
+                                            <button class='btn btn-secondary' type='button' data-dismiss='modal'>Batal</button>
+                                            <button class='btn btn-info' type='submit'>Kirim</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>";
+                        }
                     }////kondisi data ditemukan
                     #Data tidak ditemukan
                     else {

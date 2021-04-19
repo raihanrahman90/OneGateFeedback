@@ -15,7 +15,8 @@ $text = '<!DOCTYPE html>
     <a href="'.$link.'register">Klik Disini</a><br>
         Atau hubungi Admin pada email berikut<br>
         nawang.ayunanda@ap1.co.id<br>
-        Theodora.Davita@ap1.co.id
+        Theodora.Davita@ap1.co.id<br>
+        tasyakha.a@gmail.com
   </div>
 </div>
 </body>
