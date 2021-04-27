@@ -17,6 +17,7 @@ $id_aduan = $_POST['id_aduan'];
 $id_akun = $_SESSION['id_akun'];
 // menyeleksi data admin dengan username dan password yang sesuai
 $data = mysqli_query($koneksi,"INSERT INTO tb_progress VALUES(0,$id_akun,$id_aduan, '$tindakan',NULL,now())") or die(mysqli_error($koneksi));
+$id = mysqli_insert_id($koneksi);
 $la = mysqli_query($koneksi,"UPDATE tb_aduan set status='$status' WHERE id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
 if(is_uploaded_file($_FILES['Bukti']['tmp_name'])){
     $nama = $_FILES['Bukti']['name'];
@@ -24,7 +25,6 @@ if(is_uploaded_file($_FILES['Bukti']['tmp_name'])){
     $ekstensi = strtolower(end($x));
     $tipe_file = $_FILES['Bukti']['type'];
     $tmp_file = $_FILES['Bukti']['tmp_name'];
-    $id = mysqli_insert_id($koneksi);
     $id1 = $id.".".$ekstensi;
     // menghitung jumlah data yang ditemukan
     $cek = mysqli_query($koneksi,"UPDATE tb_progress SET bukti='$id1' WHERE id_progress = '$id'") or die(mysqli_error($koneksi));
