@@ -14,7 +14,13 @@
     $id_keterangan = $data['id_keterangan'];
     $id_aduan = $data['id_aduan'];
     if(is_uploaded_file($_FILES['bukti']['tmp_name'])){
-        $nama_foto = $id_keterangan.'.jpg';
+        $nama = $_FILES['bukti']['name'];
+        $x = explode('.', $nama);
+        $ekstensi = strtolower(end($x));
+        $tipe_file = $_FILES['bukti']['type'];
+        $tmp_file = $_FILES['bukti']['tmp_name'];
+        // menyeleksi data ke dalam tb_aduan
+        $nama_foto = $id_keterangan.".".$ekstensi;
         mysqli_query($koneksi, "UPDATE tb_keterangan_tambahan SET bukti='$nama_foto' WHERE link ='$link'") or die(mysqli_error($koneksi));
     	move_uploaded_file($_FILES['bukti']['tmp_name'], "../gambar/keterangan_tambahan/".$nama_foto);
     }

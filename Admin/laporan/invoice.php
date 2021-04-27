@@ -400,14 +400,16 @@ function addLine( $ligne, $tab )
 		}
 		$tailleTexte = $this->sizeOfText( $texte, $length );
 		$formText  = $format[ $lib ];	
-		if($ligne>270 && $lib > 1){
+		if($ligne>272 && $lib > 1){
 			$lastMax = $ligne;
 			$ligne=10;
 		}
 		$this->SetXY( $ordonnee, $ligne-1);
 		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
 		$ordonnee += $pos;
-		$maxSize = $this->GetY();
+		if($this->GetY() > $maxSize ||  $maxSize - $ligne>265){
+			$maxSize = $this->GetY();
+		}
 	}
 	if($lastMax!=0){
 		return ($maxSize-$lastMax);

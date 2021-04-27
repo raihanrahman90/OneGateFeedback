@@ -92,7 +92,7 @@ $y   += $size + 2;
     $line = array(  "1" => "Keterangan",
                     "2" => $data['ket'],
                     "3" =>" ","4"=>" ");
-    $size = $pdf->addLine( $y, $line );
+    $size = $pdf->addLine($y, $line );
     $y   += $size + 2;
 
 

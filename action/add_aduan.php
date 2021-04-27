@@ -28,8 +28,6 @@ if(is_uploaded_file($_FILES['myfile']['tmp_name'])){
 	$tipe_file = $_FILES['Bukti']['type'];
 	$tmp_file = $_FILES['Bukti']['tmp_name'];
 	// menyeleksi data ke dalam tb_aduan
-	
-
 	$id = mysqli_insert_id($koneksi);
 	$id1 = $id.".".$ekstensi;
 	// menghitung jumlah data yang ditemukan

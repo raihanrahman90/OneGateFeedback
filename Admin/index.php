@@ -57,7 +57,7 @@ include 'header.php';
                               <td>".$row['nama_unit']."</td>";
                               ###mewarnai aduan yang berstatus urgen    
                               if($row['urgensi']==1){
-                                echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['perihal']."</span></td>";
+                                echo"<td><span class='badge badge-pill badge-danger' style='auto;'>".$row['perihal']."</span></td>";
                               }else{
                                 echo
                                 "<td>".$row['perihal']."</td>";

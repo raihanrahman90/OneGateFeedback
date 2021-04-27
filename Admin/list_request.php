@@ -47,16 +47,16 @@
                               <td>".$row['id_aduan']."</td>
                               <td>".$row['jenis']."</td>";
                               if($row['urgensi']==1){
-                                echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['perihal']."</span></td>";
+                                echo"<td><span class='badge badge-pill badge-danger' style='width:auto;'>".$row['perihal']."</span></td>";
                               }else{
                                 echo
                                 "<td>".$row['perihal']."</td>";
                               }
                               if($row['status']=='Returned'){
-                                echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['status']."</span></td>";
+                                echo"<td><span class='badge badge-pill badge-danger' style='width:auto;'>".$row['status']."</span></td>";
                               } else {
                                     echo"<td> 
-                                          <span class='badge badge-pill badge-success' style='width:100px;'>".$row['status']."</span>
+                                          <span class='badge badge-pill badge-success' style='width:auto;'>".$row['status']."</span>
                                     </td>";
 
                               }

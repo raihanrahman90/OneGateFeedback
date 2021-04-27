@@ -35,7 +35,7 @@ if(is_uploaded_file($_FILES['foto']['tmp_name'])){
 	$tmp_file = $_FILES['foto']['tmp_name'];
 	// menyeleksi data ke dalam tb_aduan
 	$id = $data['id_aduan'];
-	$id1 = $id.".jpeg";
+	$id1 = $id.".".$ekstensi;
 	// menghitung jumlah data yang ditemukan
 	unlink('../gambar/aduan/'.$id1);
 	move_uploaded_file($tmp_file, "../gambar/aduan/".$id1);

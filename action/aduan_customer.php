@@ -53,7 +53,7 @@ if(is_uploaded_file($_FILES['foto']['tmp_name'])){
 	// menyeleksi data ke dalam tb_aduan
 	
 	$id = mysqli_insert_id($koneksi);
-	$id1 = $id.".jpeg";
+	$id1 = $id.".".$ekstensi;
 	// menghitung jumlah data yang ditemukan
 	$cek = mysqli_query($koneksi,"UPDATE tb_aduan SET foto='$id1' WHERE id_aduan = '$id'") or die(mysqli_error($koneksi));
 	move_uploaded_file($tmp_file, "../gambar/aduan/".$id1);

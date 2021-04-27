@@ -115,13 +115,21 @@ if($cek = mysqli_fetch_array($data)){
     $id = mysqli_insert_id($koneksi);
 	if(is_uploaded_file($_FILES['foto']['tmp_name'])){
         $tmp_foto = $_FILES['foto']['tmp_name'];
-    	$id_foto = $id.".jpg";
+		$nama = $_FILES['foto']['name'];
+		$x = explode('.', $nama);
+		$ekstensi = strtolower(end($x));
+		// menyeleksi data ke dalam tb_aduan
+		
+		$id_foto = $id.".".$ekstensi;
     	$cek = mysqli_query($koneksi,"UPDATE tb_customer SET foto='$id_foto' WHERE id_customer = '$id'") or die(mysqli_error($koneksi));
     	move_uploaded_file($tmp_foto, $path_foto.$id_foto);
 	}
 	if(is_uploaded_file($_FILES['pass_bandara']['tmp_name'])){
 	    $tmp_pass = $_FILES['pass_bandara']['tmp_name'];
-        $id_pass = $id.".jpg";
+		$nama = $_FILES['foto']['name'];
+		$x = explode('.', $nama);
+		$ekstensi = strtolower(end($x));
+        $id_pass = $id.".".$ekstensi;
 		$cek = mysqli_query($koneksi,"UPDATE tb_customer SET pass_bandara='$id_pass' WHERE id_customer = '$id'") or die(mysqli_error($koneksi));
     	move_uploaded_file($tmp_pass, $path_bandara.$id_pass);
 	}
