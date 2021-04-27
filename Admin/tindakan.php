@@ -24,7 +24,7 @@
             <div class="card-body">
               <div class="table-responsive">
               <form action="../action/tindakan.php" method="post" enctype="multipart/form-data">
-                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <table class="table" id="" width="100%" cellspacing="0">
                   <tbody>
                     <tr>
                       <td><label>Status</label></td>

@@ -24,7 +24,7 @@ include 'header.php';
             <div class="card-body">
               <div class="table-responsive">
               <form action="../action/add_account.php" id="my_form" method="post" onsubmit="return validasi();">
-                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <table class="table" id="" width="100%" cellspacing="0">
                   <tbody>
                     <tr>
                       <td><label>Hak Akses</label></td>

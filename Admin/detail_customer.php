@@ -14,7 +14,7 @@ include 'header.php';
             <div class="card-body">
               <div class="table-responsive">
                 <form action='../action/aktifkan.php' method='post' id="my_form">
-                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <table class="table" id="" width="100%" cellspacing="0">
           <!-- DataTales Example -->
             				<?php
                     if(isset($_SESSION['langgar'])){
