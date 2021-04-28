@@ -54,7 +54,7 @@ include 'header.php';
                         <td>
                             <select name="hak_akses" class="form-control edit" id="hak_akses" required disabled>
                                 <?php
-                          $status = array('Super Admin','Admin1','Admin2','Unit');
+                          $status = array('Super Admin','Admin1','Admin2','Unit', 'Pengawas');
                           foreach($status as $row){
                             if($row == $data['hak_akses']){
                               echo "<option value='".$row."' selected>".$row."</option>";

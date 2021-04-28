@@ -136,10 +136,10 @@ $y   += $size + 2;
         $y   += $size + 2;
         if(is_null($row['jawaban'])){
             $line = array(  "1" => "Answer",
-            "2" => $row['jawaban']);
+            "2" => "Not Answered");
         }else{
             $line = array(  "1" => "Answer",
-            "2" => "Not Answered");
+            "2" => $row['jawaban']);
         }
         $size = $pdf->addLine( $y, $line );
         $y   += $size + 2;

@@ -12,7 +12,7 @@
           <div class="card shadow mb-4">
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <table class="table" id="" width="100%" cellspacing="0">
           <!-- DataTales Example -->
             				<?php
             				$id_aduan = $_GET['id'];

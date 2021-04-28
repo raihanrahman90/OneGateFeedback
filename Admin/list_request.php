@@ -36,7 +36,7 @@
                     <?php
                     $pertanyaan = 'Ingin mengapus data?';
                     $id_akun = $_SESSION['id_akun'];
-                   if($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin1'){
+                   if($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin1' || $_SESSION['hak_akses']=='Pengawas'){
                         $mahasiswa = mysqli_query($koneksi, "SELECT * from tb_aduan WHERE (status = 'Request' or status='Returned') and level > -1 ORDER BY waktu DESC") or die(mysqli_error($koneksi));
                     } else {
                         $mahasiswa = mysqli_query($koneksi, "SELECT * from tb_aduan where id_akun='$id_akun' ORDER BY waktu DESC");
