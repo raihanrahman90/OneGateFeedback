@@ -30,7 +30,7 @@ include 'header.php';
             <div class="card-body">
               <div class="table-responsive">
               <form action="../action/edit_account.php" id="my_form" method="post" onsubmit="return validasi();">
-                <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <table class="table" id="" width="100%" cellspacing="0">
                   <tbody>
                       <?php
                       if(isset($_SESSION['status_jalan'])){
@@ -54,7 +54,7 @@ include 'header.php';
                         <td>
                             <select name="hak_akses" class="form-control edit" id="hak_akses" required disabled>
                                 <?php
-                          $status = array('Super Admin','Admin1','Admin2','Unit', 'Pengawas');
+                          $status = array('Super Admin','Admin1','Admin2','Unit', 'Pengawas Internal');
                           foreach($status as $row){
                             if($row == $data['hak_akses']){
                               echo "<option value='".$row."' selected>".$row."</option>";

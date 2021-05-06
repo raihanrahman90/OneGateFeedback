@@ -103,6 +103,7 @@ $y   += $size + 2;
     $y   += $size + 2;
 
     $y = $y+10;
+    /**Menampilkan gambar aduan */
     if(!is_null($data['gambar_aduan']) && file_exists('../gambar/aduan/'.$data['gambar_aduan'])){
         $line = array(  "1" => "Gambar",
                         "2" => " ",
@@ -110,18 +111,19 @@ $y   += $size + 2;
         $size = $pdf->addLine( $y, $line );
         $y   += $size + 2;
         $pdf->Image('../gambar/aduan/'.$data['gambar_aduan'], 10, $y,80, 80);
+        $y += $pdf->GetY();
     }
-    $y += $pdf->GetY();
+    /**Menampilkan gambar aduan */
     $cols=array( "1"    => 40,
-                "2"    => 80);
+                "2"    => 150);
     $pdf->addCols( $cols, $y);
     $cols=array( "1"    =>  "L",
                 "2"    =>  "L");
                 $pdf->addLineFormat($cols);
     //Informasi Tambahan
 
-    
     $tindakan = mysqli_query($koneksi, "SELECT * FROM tb_keterangan_tambahan where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
+    /**Menampilkan title Informasi Tambahan */    
     if(mysqli_num_rows($tindakan) > 0){
 
         $line = array(  "1" => "Informasi Tambahan",
@@ -129,6 +131,8 @@ $y   += $size + 2;
         $size = $pdf->addLine( $y, $line );
         $y   += $size + 2;
     }
+    /**Menampilkan title Informasi Tambahan */    
+    /**Menampilkan Informasi Tambahan */    
     foreach($tindakan as $row){
         $line = array(  "1" => "Question",
                         "2" => $row['pertanyaan']);
@@ -143,8 +147,18 @@ $y   += $size + 2;
         }
         $size = $pdf->addLine( $y, $line );
         $y   += $size + 2;
+        /**Menampilkan gambar keterangan tambahan */
+        if(!is_null($row['bukti'])&& file_exists('../gambar/keterangan_tambahan/'.$row['bukti'])){
+            $pdf->Image('../gambar/keterangan_tambahan/'.$row['bukti'], 50, $y,40, 40);
+            $y += 40;
+        }
+        /**Menampilkan gambar keterangan tambahan */
     }
+    /**Menampilkan Informasi Tambahan */    
+
+    $y += 20;
     //Informasi Tambahan
+    /**Tindakan */
     $line = array(  "1" => "Tindakan",
                     "2" => " ");
     $size = $pdf->addLine( $y, $line );
@@ -153,6 +167,14 @@ $y   += $size + 2;
     $tindakan = mysqli_query($koneksi, "SELECT * FROM tb_progress
                                          left join tb_akun on tb_akun.id_akun = tb_progress.id_akun
                                          where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
+    /**Kondisi tidak ditemukan tindakan */
+    if(mysqli_num_rows($tindakan)==0){
+        $line = array(  "1"=>   'Belum dilakukan tindakan',
+                        "2"=>   ' ');
+        $size = $pdf->addLine($y, $line);
+        $y += $size+2;
+    }
+    /**Akhir Kondisi tidak ditemukan tindakan */
     foreach($tindakan as $row){
         $line = array(  "1" => $row['waktu'],
                         "2" => $row['Nama']);
@@ -162,7 +184,15 @@ $y   += $size + 2;
                         "2" => $row['tindakan']);
         $size = $pdf->addLine( $y, $line );
         $y   += $size + 10;
+        /** Menampilkan gambar tindakan */
+        if(!is_null($row['bukti'])&& file_exists('../gambar/bukti/'.$row['bukti'])){
+            $pdf->Image('../gambar/bukti/'.$row['bukti'], 50, $y,40, 40);
+            $y += 60;
+        }
+        /** Menampilkan gambar tindakan */
     }
+    /**Akhir Tindakan */
+    
 // $line = array( "REFERENCE"    => "REF2",
 //                "DESIGNATION"  => "C�ble RS232",
 //                "QUANTITE"     => "1",

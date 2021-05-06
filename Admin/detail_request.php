@@ -24,6 +24,7 @@
 								$row = mysqli_fetch_assoc($data);
 				
 				if($row['Nama']==NULL){
+          /**Kodisi Nama Tidak ditemukan */
 				    echo "
 				    <div class='row mb-2'>
 				      <div class='col-lg-4'>
@@ -34,7 +35,11 @@
                       </div>
                     </div>
                       ";
+                      
+          /**Akhir Kodisi Nama Tidak ditemukan */
 				}else{
+          
+          /**Kodisi Nama ditemukan */
 				    echo "
 				    <div class='row mb-2'>
 				      <div class='col-lg-4'>
@@ -61,6 +66,7 @@
                       </div>
                     </div>
                       ";
+          /**Akhir Kodisi Nama ditemukan */
 				}
                 echo "
 
@@ -118,6 +124,7 @@
                         <textarea class='form-control' disabled rows=8>".$row['ket']."</textarea>
                       </div>
                     </div>";
+                    /**Menampilkan keterangan returned jika status Returned */
                       if($row["status"]=="Returned"){
                           $keterangan_kembali = mysqli_query($koneksi, "SELECT * from tb_progress where id_aduan = '$id_aduan' Order by id_progress DESC");
                           if($keterangan_kembali_row = mysqli_fetch_array($keterangan_kembali)){
@@ -132,6 +139,10 @@
                                     </div>";
                           }
                       }
+                      
+                    /**Akhir Menampilkan keterangan returned jika status Returned */
+                    
+                    /**Menampilkan Foto jika tidak null */
                       if($row["foto"]!=NULL){
                         echo"
                         <div class='row mb-2'>
@@ -155,6 +166,7 @@
                         </div>
                         ";
                       }
+                    /**Akhir Menampilkan Foto jika tidak null */
                       echo "
                       <button type='button' data-toggle='modal' data-target='#lihatketeranganModal' style='margin-left:10px;' class='btn btn-primary btn-icon-split float-right' >
                         <span class='icon text-white-50'>
@@ -177,12 +189,13 @@
                                   inner join tb_aduan on tb_keterangan_tambahan.id_aduan = tb_aduan.id_aduan
                                   where tb_aduan.id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
                                     if(mysqli_num_rows($keterangan_tambahan)==0){
-                                        
+                                      /** Kondisi tidak ada keterangan tambahan */
                                       echo '<div class="alert alert-warning alert-dismissible fade show">
                                               Tidak ditemukan keterangan tambahan
                                           </div>';   
-                                          
+                                        /** Akhir kondisi tidak ada keterangan tambahan */
                                     }else{
+                                        /**Kondisi ada keterangan tambahan */
                                         while($row1 = mysqli_fetch_array($keterangan_tambahan)){
                                           echo "
                                           <div class='row mb-2'>
@@ -207,6 +220,7 @@
                                               </div>
                                             </div>";
                                         }
+                                        /**Akhir Kondisi ada keterangan tambahan */
                                     }
                              echo"</div>
                                     <div class='modal-footer'>
@@ -216,7 +230,7 @@
                             </div>
                         </div>";
                       if(($_SESSION['hak_akses']=='Super Admin'||$_SESSION['hak_akses']=='Admin1')&& ($row["status"] =='Request' || $row["status"]=="Returned")){
-                          
+                      /**Menampilkan Minta keterangan Tambahan dan Terukan ke unit */
                   echo "
                   <a href='#' data-toggle='modal' data-target='#kembaliModal' class='btn btn-info btn-icon-split float-right' >
                     <span class='icon text-white-50'>
@@ -288,12 +302,16 @@
                       </div>
                     </div>
                   </div>";
+                      /**Menampilkan Minta keterangan Tambahan dan Terukan ke unit */
+
                     }
-                    } else {
-            					echo"<tr>
-            						<td><label>Data tidak Ditemukan</label></td>
-            					</tr>";
-            				}
+              } else {
+                /** Data tidak ditemukan */
+                echo"<tr>
+                  <td><label>Data tidak Ditemukan</label></td>
+                </tr>";
+                /** AKhir data tidak ditemukan */
+              }
             				?>
                     <tbody>
                   </table>
@@ -307,7 +325,8 @@
       </div>
       <script type="text/javascript">
         $(document).ready(function() {
-        $("#departemen" ) .change(function () {    
+        $("#departemen" ) .change(function () {  
+          /**Merefresh isi pilihan unit ketika departemen diganti */  
         var data = $('#my_form').serialize();
         $.ajax({
           type: 'POST',
@@ -317,7 +336,8 @@
             $("#unit").html(response) ;
           }
         }); 
-        });  
+        });
+        /**Akhir Merefresh isi pilihan unit ketika departemen diganti */
       });
       </script>
       <!-- End of Main Content -->

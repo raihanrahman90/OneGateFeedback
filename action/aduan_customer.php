@@ -23,24 +23,24 @@
 	$detail_lokasi = $koneksi -> real_escape_string($_POST['detail_lokasi']);
 	/**Setting Lokasi */
 	$data = mysqli_query($koneksi,"INSERT INTO tb_aduan VALUES(
-	0,
-	NULL,
-	'$id_akun',
-	NULL,
-	NULL,
-	NULL,
-	'$lokasi',
-	'$detail_lokasi',
-	'$jenis',
-	$urgensi,
-	'$perihal',
-	'Mitra',
-	'$keterangan',
-	'$status',
-	now(),
-	now(),
-	NULL,
-	-1)") or die(mysqli_error($koneksi));
+	0,#id_aduan
+	NULL,#id_akun
+	'$id_akun',#id_customer
+	NULL,#id_unit
+	NULL,#nama_unit
+	NULL,#nama_departemen
+	'$detail_lokasi',#nama_detail_lokasi
+	'$lokasi',#nama_lokasi
+	'$jenis',#jenis
+	$urgensi,#urgensi
+	'$perihal',#perihal
+	'Mitra',#pelapor
+	'$keterangan',#keterangan	
+	'$status',#status
+	now(),#waktu
+	now(),#waktu_kirim
+	NULL,#foto
+	-1)") or die(mysqli_error($koneksi));#level
 	
 	
 	$id = mysqli_insert_id($koneksi);

@@ -390,6 +390,8 @@ function addLine( $ligne, $tab )
 	$maxSize      = $ligne;
 	$lastMax = 0;
 	$reset = False;
+	$newPage = False;
+	$posisiPertama = $ligne;
 	reset( $colonnes );
 	while ( list( $lib, $pos ) = each ($colonnes) )
 	{
@@ -404,16 +406,22 @@ function addLine( $ligne, $tab )
 		if($ligne>270 && $lib > 1){
 			$lastMax = $ligne;
 			$ligne = 10;
+			$newPage = True;
+			$maxSize = $this->GetY();
+		}else if($lib==1 && $ligne > 270){
+			$lastMax = $ligne;
+			$ligne = 280; 
 		}
 		$this->SetXY( $ordonnee, $ligne-1);
-		$maxSize = $this->GetY();
 		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
 		$ordonnee += $pos;
 		if($this->GetY() > $maxSize ||  $maxSize - $ligne>265){
 			$maxSize = $this->GetY();
 		}
 	}
-	if($lastMax!=0){
+	if ($newPage){
+		return ($maxSize-$posisiPertama);
+	}else if($lastMax!=0){
 		return ($maxSize-$lastMax);
 	}
 	return ( $maxSize - $ligne );

@@ -29,24 +29,24 @@
 	$detail_lokasi = $koneksi -> real_escape_string($_POST['detail_lokasi']);
 	/**Setting Lokasi */
 	$data = mysqli_query($koneksi,"INSERT INTO tb_aduan VALUES(
-	0,
-	'$id_akun',
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	'$lokasi',
-	'$detail_lokasi',
-	'$jenis',
-	$urgensi,
-	'$perihal',
-	'$pengguna',
-	'$keterangan',
-	'$status',
-	now(),
-	now(),
-	NULL,
-	-1)") or die(mysqli_error($koneksi));
+	0,#id_aduan
+	'$id_akun',#id_akun
+	NULL,#id_customer
+	NULL,#id_unit
+	NULL,#nama_unit
+	NULL,#nama_departemen
+	'$detail_lokasi',#nama_detail_lokasi
+	'$lokasi',#nama_lokasi
+	'$jenis',#jenis
+	$urgensi,#urgensi
+	'$perihal',#perihal
+	'$pengguna',#pelapor
+	'$keterangan',#keterangan
+	'$status',#status
+	now(),#waktu untuk level
+	now(),#waktu kirim
+	NULL,#foto
+	-1)") or die(mysqli_error($koneksi)); #level
 	
 	$id = mysqli_insert_id($koneksi);
 if(is_uploaded_file($_FILES['foto']['tmp_name'])){

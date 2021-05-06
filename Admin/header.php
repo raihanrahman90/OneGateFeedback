@@ -47,7 +47,7 @@
       <hr class="sidebar-divider">
       <!-- Heading -->
       <div class="sidebar-heading">
-        Menu
+        <?php echo $_SESSION['hak_akses'];?>
       </div>
             <?php echo'<li class="nav-item '.($halaman=='Aduan'?'active':'').'">'; ?>
                 <a class="nav-link" href="../Admin/">
@@ -60,7 +60,7 @@
           
       
        <?php
-    if($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin1' || $_SESSION['hak_akses']=='Pengawas'){
+    if($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin1' || $_SESSION['status_akun']=='AOC Head' || $_SESSION['status_akun']=='General Manager'){
             echo '
              <li class="nav-item '.($halaman=='Request'?'active':'').'">
                 <a class="nav-link" href="../Admin/list_request.php">
@@ -109,13 +109,15 @@
     }
         ?>
         
-      <?php echo '<li class="nav-item '.($halaman=='Laporan'?'active':'').'">'; ?>
+      <?php 
+      if($_SESSION['hak_akses']!='Pengawas Internal'){
+        echo '<li class="nav-item '.($halaman=='Laporan'?'active':'').'">
         <a class="nav-link" href="grafik.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Laporan</span></a>
-      </li>
-      <?php
-        if($_SESSION['hak_akses']!='Unit'){
+      </li>';
+      }
+        if(($_SESSION['status_akun']=='AOC Head' || $_SESSION['status_akun']=='General Manager')||$_SESSION['hak_akses']!='Unit' && $_SESSION['hak_akses']!='Pengawas Internal'){
           echo'
           <li class="nav-item '.($halaman=='Penilaian'?'active':'').'">
             <a class="nav-link" href="grafik_penilaian.php">

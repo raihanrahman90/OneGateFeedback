@@ -42,14 +42,31 @@ include 'header.php';
                   <tbody>
                     <?php
                     ###login sebagai unit
-                    if($_SESSION['hak_akses']!='Unit'){
-                      $mahasiswa = mysqli_query($koneksi, "SELECT * from tb_aduan 
+                    if(($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses'] == 'Admin2' || $_SESSION['hak_akses']=='Pengawas Internal') || ($_SESSION['status_akun']=='AOC Head' || $_SESSION['status_akun']=='General Manager')){
+                      $sintax = "SELECT tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, status, level, progress.id_aduan as merah, tb_aduan.waktu from tb_aduan 
                           left join tb_unit ON tb_aduan.id_unit=tb_unit.id_unit 
                           left join tb_departemen on tb_unit.id_departemen = tb_departemen.id_departemen 
+                          left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
+                                on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu
                           WHERE status <> 'Request' and status <> 'Returned' 
-                          ORDER BY field(status,'Progress' ,'Open', 'Closed'), waktu DESC") or die(mysqli_error($koneksi));
+                          GROUP BY tb_aduan.id_aduan
+                          ORDER BY field(status,'Progress' ,'Open', 'Closed'), tb_aduan.waktu DESC";
+                    }else if($_SESSION['status_akun']=='Manager'||$_SESSION['status_akun']=='Unit'){
+                      $sintax="SELECT  tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, status, level, progress.id_aduan as merah, tb_aduan.waktu from tb_aduan 
+                                inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen 
+                                left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
+                                        on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu
+                                where tb_unit.id_unit = '".$_SESSION['id_unit']."'";
+                    }else if($_SESSION['status_akun']=='Senior Manager'){
+                      $sintax="SELECT  tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, status, level, progress.id_aduan as merah, tb_aduan.waktu from tb_aduan 
+                              inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen 
+                              left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
+                                    on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu 
+                              where tb_departemen.id_departemen = '".$_SESSION['id_departemen']."'";
+                    }
+                      $query = mysqli_query($koneksi, $sintax) or die(mysqli_error($koneksi));
                       $edit =false;
-                      foreach ( $mahasiswa as $row){
+                      foreach ( $query as $row){
                           echo "<tr>
                               <td>".$row['id_aduan']."</td>
                               <td>".$row['jenis']."</td>
@@ -82,7 +99,11 @@ include 'header.php';
                               }else if($row['status']=="Returned"){
                                 echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['status']."</span></td>";
                               }else if($row['status']=='Open'){
-                                 echo"<td><span class='badge badge-pill badge-warning' style='width:100px;'>".$row['status']."</span></td>";
+                                if(is_null($row['merah'])){
+                                  echo"<td><span class='badge badge-pill badge-warning' style='width:100px;'>".$row['status']."</span></td>";
+                                }else{
+                                  echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['status']."</span></td>";
+                                }
                               }else{
                                 echo"<td><span class='badge badge-pill badge-info' style='width:100px;'>".$row['status']."</span></td>";
                               }
@@ -111,88 +132,8 @@ include 'header.php';
                               </td>
                             </tr>";                      
                           }
-                    } 
                     ###login sebagai unit
                     
-                    
-                    ###login selain unit
-                    else {
-                      if($_SESSION['status_akun']=='Manager'||$_SESSION['status_akun']=='Unit'){
-                        $sintax="SELECT * FROM tb_aduan inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen where tb_unit.id_unit = '".$_SESSION['id_unit']."'";
-                      }else if($_SESSION['status_akun']=='Senior Manager'){
-                        $sintax="SELECT * FROM tb_aduan inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen where tb_departemen.id_departemen = '".$_SESSION['id_departemen']."' and level>=2";
-                      } else if($_SESSION['status_akun']=='AOC Head'){
-                        $sintax="SELECT * FROM tb_aduan inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen where level>=3";
-                      } else {
-                        $sintax="SELECT * FROM tb_aduan inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen where level=4";
-                      }
-                        $data = mysqli_query($koneksi, $sintax) or die(mysqli_error($koneksi));
-                        $edit = true;
-                        #perulangan untuk setiap row
-                        foreach ( $data as $row){
-                            echo "<tr>
-                              <td>".$row['id_aduan']."</td>
-                              <td>".$row['jenis']."</td>
-                              <td>".$row['Departemen']."</td>
-                              <td>".$row['nama_unit']."</td>";
-                              ###mewarnai aduan yang berstatus urgen    
-                              if($row['urgensi']==1){
-                                echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['perihal']."</span></td>";
-                              }else{
-                                echo
-                                "<td>".$row['perihal']."</td>";
-                              }
-                              
-                                ###status
-                                if($row['status']=='Closed'){  
-                                    echo"<td><span class='badge badge-pill badge-success' style='width:100px;'>".$row['status']."</span></td>";
-                                } else if($row['status']=="Progress"){
-                                  #kondisi progres sudah lebih dari 1 bulan
-                                  $d1 = new DateTime($row['waktu']);
-                                  $d2 = new DateTime();
-                                  $interval = $d2->diff($d1);
-                                  $interval = $interval->m;
-                                  if($interval>1){
-                                  echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['status']."</span></td>";
-                                  } else {
-                                    echo"<td><span class='badge badge-pill badge-warning' style='width:100px;'>".$row['status']."</span></td>";
-                                  }
-                                }else if($row['status']=="Returned"){
-                                  echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['status']."</span></td>";
-                                }else if($row['status']=='Open'){
-                                    echo"<td><span class='badge badge-pill badge-warning' style='width:100px;'>".$row['status']."</span></td>";
-                                }else{
-                                    echo"<td><span class='badge badge-pill badge-info' style='width:100px;'>".$row['status']."</span></td>";
-                                }
-                                ###tutup status
-                                
-                                ####level
-                              if($row['level']=='0'){  
-                                echo"<td><span class='badge badge-pill badge-secondary'  >".$row['level']."</span></td>";
-                              } else if($row['level']=="1"){
-                                echo"<td><span class='badge badge-pill badge-success'  >".$row['level']."</span></td>";
-                              }else if($row['level']=="2"){
-                                echo"<td><span class='badge badge-pill badge-info'  >".$row['level']."</span></td>";
-                              }else if($row['level']=="3"){
-                                echo"<td><span class='badge badge-pill badge-warning'  >".$row['level']."</span></td>";
-                              }else{
-                                echo "<td><span class='badge badge-pill badge-danger' >".$row['level']."</span></td>";
-                              }
-                              ###tutup level
-                              
-                              
-                                echo"
-                                <td>
-                                    <a href='detail_aduan.php?id=".$row['id_aduan']."' class='btn btn-info btn-circle btn-sm'>
-                                      <i class='fas fa-info-circle'></i>
-                                    </a>
-                                </td>
-                              </tr>";
-                        }
-                        ###tutup perulangan
-                    }
-                     ###tutup else selain unit
-
                     ?>
                   </tbody>
                 </table>
