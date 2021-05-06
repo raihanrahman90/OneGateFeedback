@@ -52,17 +52,22 @@ include 'header.php';
                           GROUP BY tb_aduan.id_aduan
                           ORDER BY field(status,'Progress' ,'Open', 'Closed'), tb_aduan.waktu DESC";
                     }else if($_SESSION['status_akun']=='Manager'||$_SESSION['status_akun']=='Unit'){
+                      /** Hanya menampilkan aduan terhadap unit */
                       $sintax="SELECT  tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, status, level, progress.id_aduan as merah, tb_aduan.waktu from tb_aduan 
                                 inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen 
                                 left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
                                         on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu
                                 where tb_unit.id_unit = '".$_SESSION['id_unit']."'";
+                      /** Hanya menampilkan aduan terhadap unit */
+
                     }else if($_SESSION['status_akun']=='Senior Manager'){
+                      /** Hanya menampilkan aduan terhadap departemen dari senior manager */
                       $sintax="SELECT  tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, status, level, progress.id_aduan as merah, tb_aduan.waktu from tb_aduan 
                               inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen 
                               left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
                                     on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu 
                               where tb_departemen.id_departemen = '".$_SESSION['id_departemen']."'";
+                      /** Hanya menampilkan aduan terhadap departemen dari senior manager */
                     }
                       $query = mysqli_query($koneksi, $sintax) or die(mysqli_error($koneksi));
                       $edit =false;
@@ -72,21 +77,21 @@ include 'header.php';
                               <td>".$row['jenis']."</td>
                               <td>".$row['Departemen']."</td>
                               <td>".$row['nama_unit']."</td>";
-                              ###mewarnai aduan yang berstatus urgen    
+                              /**mewarnai aduan yang berstatus urgen**/    
                               if($row['urgensi']==1){
                                 echo"<td><span class='badge badge-pill badge-danger' style='auto;'>".$row['perihal']."</span></td>";
                               }else{
                                 echo
                                 "<td>".$row['perihal']."</td>";
                               }
-                              
+                              /**mewarnai aduan yang berstatus urgen**/
                               ####status
                               if($row['status']=='Closed'){  
                                   echo"<td> 
                                           <span class='badge badge-pill badge-success' style='width:100px;'>".$row['status']."</span>
                                     </td>";
                               } else if($row['status']=="Progress"){
-                                  #kondisi progres sudah lebih dari 1 bulan
+                                  #kondisi progres sudah lebih dari 1 bulan akan berwarna merah
                                   $d1 = new DateTime($row['waktu']);
                                   $d2 = new DateTime();
                                   $interval = $d2->diff($d1);
@@ -96,6 +101,7 @@ include 'header.php';
                                   } else {
                                     echo"<td><span class='badge badge-pill badge-warning' style='width:100px;'>".$row['status']."</span></td>";
                                   }
+                                  #kondisi progres sudah lebih dari 1 bulan akan berwarna merah
                               }else if($row['status']=="Returned"){
                                 echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['status']."</span></td>";
                               }else if($row['status']=='Open'){
