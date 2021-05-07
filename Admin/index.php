@@ -42,7 +42,7 @@ include 'header.php';
                   <tbody>
                     <?php
                     ###login sebagai unit
-                    if(($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses'] == 'Admin2' || $_SESSION['hak_akses']=='Pengawas Internal') || ($_SESSION['status_akun']=='AOC Head' || $_SESSION['status_akun']=='General Manager')){
+                    if(($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses'] == 'Admin2' || $_SESSION['hak_akses']=='Pengawas Internal' || $_SESSION['hak_akses']=='Admin1') || ($_SESSION['status_akun']=='AOC Head' || $_SESSION['status_akun']=='General Manager')){
                       $sintax = "SELECT tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, status, level, progress.id_aduan as merah, tb_aduan.waktu from tb_aduan 
                           left join tb_unit ON tb_aduan.id_unit=tb_unit.id_unit 
                           left join tb_departemen on tb_unit.id_departemen = tb_departemen.id_departemen 
