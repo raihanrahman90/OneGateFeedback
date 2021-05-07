@@ -4,7 +4,7 @@
         $jumlah_complete = '';
         $jumlah_open = '';
         $status_akun = $_SESSION['status_akun'];
-        if($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin2'){
+        if($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin2' || $_SESSION['hak_akses']=='Pengawas Internal'){
             $jumlah_complete = mysqli_query($koneksi, "SELECT id_aduan from tb_aduan where status='Complete'") or die(mysqli_error($koneksi));
             $jumlah_complete = mysqli_num_rows($jumlah_complete);
             if($jumlah_complete>0){
