@@ -89,9 +89,15 @@ $y   += $size + 2;
     $size = $pdf->addLine( $y, $line );
     $y   += $size + 2;
 
-    $line = array(  "1" => "Keterangan",
-                    "2" => $data['ket'],
+    $line = array(  "1" => "Perihal",
+                    "2" => $data['perihal'],
                     "3" =>" ","4"=>" ");
+    $size = $pdf->addLine($y, $line );
+    $y   += $size + 2;
+    
+    $line = array(  "1" => "Keterangan",
+    "2" => $data['ket'],
+    "3" =>" ","4"=>" ");
     $size = $pdf->addLine($y, $line );
     $y   += $size + 2;
 
@@ -111,7 +117,7 @@ $y   += $size + 2;
         $size = $pdf->addLine( $y, $line );
         $y   += $size + 2;
         $pdf->Image('../gambar/aduan/'.$data['gambar_aduan'], 10, $y,80, 80);
-        $y += $pdf->GetY();
+        $y += $size + 80;
     }
     /**Menampilkan gambar aduan */
     $cols=array( "1"    => 40,
@@ -134,7 +140,7 @@ $y   += $size + 2;
     /**Menampilkan title Informasi Tambahan */    
     /**Menampilkan Informasi Tambahan */    
     foreach($tindakan as $row){
-        $line = array(  "1" => "Question",
+        $line = array(  "1" => $size,
                         "2" => $row['pertanyaan']);
         $size = $pdf->addLine( $y, $line );
         $y   += $size + 2;
@@ -149,6 +155,9 @@ $y   += $size + 2;
         $y   += $size + 2;
         /**Menampilkan gambar keterangan tambahan */
         if(!is_null($row['bukti'])&& file_exists('../gambar/keterangan_tambahan/'.$row['bukti'])){
+            if($y+40 > 270){
+                $y=270;
+            }
             $pdf->Image('../gambar/keterangan_tambahan/'.$row['bukti'], 50, $y,40, 40);
             $y += 40;
         }
@@ -180,14 +189,35 @@ $y   += $size + 2;
                         "2" => $row['Nama']);
         $size = $pdf->addLine( $y, $line );
         $y   += $size + 2;
-        $line = array(  "1" => " ",
+        $line = array(  "1" => "",
                         "2" => $row['tindakan']);
         $size = $pdf->addLine( $y, $line );
-        $y   += $size + 10;
         /** Menampilkan gambar tindakan */
+        
+        if(file_exists('../gambar/bukti/'.$row['id_progress'].'.pdf')){
+            $y   += $size + 2;
+            $line = array(  "1" => " ",
+                    "2" => 'Link pdf : http://ogfs-bpn.sepinggan-airport.com/Bandara/gambar/bukti/'.$row['id_progress'].'.pdf');
+            $size = $pdf->addLine( $y, $line );
+        }
         if(!is_null($row['bukti'])&& file_exists('../gambar/bukti/'.$row['bukti'])){
-            $pdf->Image('../gambar/bukti/'.$row['bukti'], 50, $y,40, 40);
-            $y += 60;
+            
+            try{
+                $y   += $size + 10;
+                if($y+40 > 270){
+                    $pdf->addPage();
+                    $y = 10;
+                }
+                $pdf->Image('../gambar/bukti/'.$row['bukti'], 50, $y,40, 40);   
+                $y += 60;
+            } catch(Exception $e){
+                $line = array(  "1" => " ",
+                        "2" => 'Gambar Tidak dapat ditampilkan : http://ogfs-bpn.sepinggan-airport.com/Bandara/gambar/bukti/'.$row['bukti']);
+                $size = $pdf->addLine( $y-8, $line );            
+                $y   +=  $size + 10;
+            }
+        }else{
+            $y   += $size + 10;
         }
         /** Menampilkan gambar tindakan */
     }

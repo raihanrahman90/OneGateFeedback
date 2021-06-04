@@ -11,12 +11,12 @@
           <h1 class="h3 mb-2 text-gray-800">Tindakan</h1>
           <!-- DataTales Example -->
           <?php 
-                      if(isset($_SESSION['status'])){
-                        if($_SESSION['status'] == "Email telah digunakan"){
+                      if(isset($_SESSION['status_jalan'])){
+                        if($_SESSION['status_jalan'] == "Gambar is missing"){
                         echo '<div class="alert alert-warning alert-dismissible fade show">
-                              Email telah digunakan
+                              Tindakan dengan status Complete harus menyertakan bukti gambar
                           </div>';
-                          $_SESSION['status'] = "";
+                          unset($_SESSION['status_jalan']);
                         }
                       }
                     ?>
@@ -25,7 +25,17 @@
               <div class="table-responsive">
               <form action="../action/tindakan.php" method="post" enctype="multipart/form-data">
                 <table class="table" id="" width="100%" cellspacing="0">
+                
                   <tbody>
+                    <noscript>
+                    <tr>
+                      <td colspan=4>
+                        <div  class="alert alert-danger alert-dismissible">
+                          Halaman web ini membutuhkan javascript untuk bekerja dengan baik, mohon aktifkan javacript pada peramban Anda. 
+                        </div>
+                      </td>
+                    </tr>
+                    </noscript>
                     <tr>
                       <td><label>Status</label></td>
                       <td><label>:</label></td>
@@ -48,9 +58,15 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><label>Bukti</label></td>
+                      <td><label>Bukti Gambar</label></td>
                       <td><label>:</label></td>
-                      <td><input type="file" name="Bukti" id="bukti"></td>
+                      <td><input type="file" name="Bukti" id="bukti" accept='image/*'></td>
+                    </tr>
+                    <tr>
+                      <td><label>Laporan</label></td>
+                      <td><label>:</label></td>
+                      <td><input type="file" name="laporan" id="laporan" accept='application/pdf,application/vnd.ms-excel'><br>
+                          <span class="text-danger">Masukkan laporan pdf jika perlu</span></td>
                     </tr>
                     <tr>
                       <td colspan="3">

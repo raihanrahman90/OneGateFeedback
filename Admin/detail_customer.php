@@ -84,7 +84,7 @@ include 'header.php';
                         <div class='row mb-2'>
                           <!-- Default Card Example -->
                             <label class='col-lg-4'>
-                              Masa Berlaku
+                              Masa Berlaku Pass Bandara
                             </label>
                             <div class='col-lg-8'>
                                 <input type='text' class='form-control' disabled value='".$row['masa_berlaku']."'>
@@ -95,7 +95,7 @@ include 'header.php';
                           <div class='row mb-2'>
                             <!-- Default Card Example -->
                               <label class='col-lg-4'>
-                                Kontrak
+                                Masa Aktif Kontrak
                               </label>
                               <div class='col-lg-8'>
                                   <input type='text' class='form-control' disabled value='".$row['kontrak']."'>

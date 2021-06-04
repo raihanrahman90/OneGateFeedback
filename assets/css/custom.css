@@ -3,6 +3,9 @@
   background-image: linear-gradient(180deg, #36b9cc, #81ecec);
   background-size: cover;
 }
+.text-danger{
+  color:#994433
+}
 .sidebar-new .sidebar-brand {
   color: #2d3436;
 }

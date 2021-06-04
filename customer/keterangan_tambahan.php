@@ -92,7 +92,7 @@
 		                    	        <div class="row" style="margin-bottom:50px;">
 		                    	            <div class="col-md-8 offset-md-4 form-group pull-right">
 		                    	                <label>Masukkan gambar jika perlu</label>
-		                    	                <input type="file" name="bukti" onchange="readURL(this);" >
+		                    	                <input type="file" name="bukti" onchange="readURL(this);"  accept='image/*' >
 		                    	                <img id="blah" src="http://placehold.it/180" alt="your image" />
 		                    	            </div>
 		                    	        </div>

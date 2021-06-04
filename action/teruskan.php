@@ -15,7 +15,7 @@
 		/** get nama departemen dan unit */
 		$data = mysqli_query($koneksi, "UPDATE tb_aduan SET status = 'Open', id_unit='$id_unit',waktu=now(),id_akun='$id_akun', level=1, nama_departemen='$nama_departemen', nama_unit='$nama_unit'
 										Where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
-	    $tindakan = mysqli_query($koneksi, "INSERT INTO tb_progress values(0,'$id_akun' , '$id_aduan', 'Diteruskan ke unit', NULL, now())");
+	    $tindakan = mysqli_query($koneksi, "INSERT INTO tb_progress values(0,'$id_akun' , '$id_aduan', 'Diteruskan ke unit $nama_unit', NULL, now())");
 		$_SESSION['terjadi']='meneruskan';
 		$subject = 'Keluhan Baru Terhadap unit Anda';
 		include "../pesan/kirim_email_unit.php";

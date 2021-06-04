@@ -16,8 +16,9 @@
           <!-- DataTales Example -->
             				<?php
             				$id_aduan = $_GET['id'];
-            				$data = mysqli_query($koneksi, "SELECT pelapor, Nama,no_telp, email,jenis, perihal, ket, tb_aduan.foto, tb_aduan.status, nama_lokasi, nama_detail_lokasi from tb_aduan 
+            				$data = mysqli_query($koneksi, "SELECT pelapor, Nama,no_telp, email,jenis, perihal, ket, tb_aduan.foto, tb_aduan.status, nama_lokasi, nama_detail_lokasi, tindakan from tb_aduan 
             				    left join tb_customer ON tb_aduan.id_customer=tb_customer.id_customer
+                        left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan
             					where tb_aduan.id_aduan ='$id_aduan' ") or die(mysqli_error($koneksi));
             				$cek = mysqli_num_rows($data);
 							if($cek > 0){
@@ -72,36 +73,28 @@
 
 				    <div class='row mb-2'>
 				      <div class='col-lg-4'>
-				        <label>Jenis Feedback<label>
-                      </div>
-                      <div class='col-lg-8'>
-                        <input type='text' class='form-control' disabled value='".$row['jenis']."'></input>
-                      </div>
-                    </div>
-				    <div class='row mb-2'>
-				      <div class='col-lg-4'>
-				        <label>Perihal<label>
-                      </div>
-                      <div class='col-lg-8'>
-                        <input type='text' class='form-control' disabled value='".$row['perihal']."'></input>
-                      </div>
-                    </div>
+                <label>Jenis Feedback<label>
+              </div>
+              <div class='col-lg-8'>
+                <input type='text' class='form-control' disabled value='".$row['jenis']."'></input>
+              </div>
+            </div>
 				    <div class='row mb-2'>
 				      <div class='col-lg-4'>
 				        <label>Lokasi<label>
-                      </div>
-                      <div class='col-lg-8'>
-                        <input type='text' class='form-control' disabled value='";
-                        
-                          if(isset($row["nama_lokasi"])){
-                              echo $row["nama_lokasi"];
-                          }else{
-                              echo "Lokasi sudah dihapus dari database";
-                          }
-                        echo "'></input>
-                      </div>
-                    </div> 
-                    <div class='row mb-2'>
+              </div>
+              <div class='col-lg-8'>
+                <input type='text' class='form-control' disabled value='";
+                
+                  if(isset($row["nama_lokasi"])){
+                      echo $row["nama_lokasi"];
+                  }else{
+                      echo "Lokasi sudah dihapus dari database";
+                  }
+                echo "'></input>
+              </div>
+            </div> 
+            <div class='row mb-2'>
 				      <div class='col-lg-4'>
 				        <label>Detail Lokasi<label>
                       </div>
@@ -115,7 +108,16 @@
                           }
                         echo "'></input>
                       </div>
-                    </div>                  
+                    </div>
+            
+				    <div class='row mb-2'>
+              <div class='col-lg-4'>
+                <label>Perihal<label>
+              </div>
+              <div class='col-lg-8'>
+                <input type='text' class='form-control' disabled value='".$row['perihal']."'></input>
+              </div>
+            </div>               
 				    <div class='row mb-2'>
 				      <div class='col-lg-4'>
 				        <label>Keterangan<label>
@@ -165,6 +167,54 @@
                           </div>
                         </div>
                         ";
+                      }
+                      
+                      
+                      if($row["tindakan"]!=NULL){
+                        #tindakan ditemukan
+                        echo"
+                        <div class='row'>
+                          <div class='col-lg-12'>
+                            <div class='card mb-4'>
+                              <div class='card-header'>
+                                Tindakan
+                              </div>
+                              <div class='card-body'>
+                                  <div class='col-lg-12'>
+                                <div class='row'>";
+                                $data_progress = mysqli_query($koneksi, "SELECT Nama, tindakan, bukti, tb_akun.id_akun, waktu, id_progress FROM tb_progress
+                                                                         left join tb_akun on tb_akun.id_akun = tb_progress.id_akun
+                                                                         where id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
+                              while($rowTindakan = mysqli_fetch_assoc($data_progress)){
+                                #perulangan menampilkan semua bukti
+                                echo"
+                                    <div class='col-sm-4'>
+                                      <div class='card shadow mb-4'>
+                                        <div class='card-header'>
+                                          ".$rowTindakan["tindakan"]."
+                                        </div>
+                                        <div class='card-body'>
+                                          
+                                            <label> Tanggal :".$rowTindakan["waktu"]."</label><br/>";
+                                            // jika akun ditemukan
+                                            if($rowTindakan['Nama']) echo "<label>Dilakukan oleh :<a href='detail_akun.php?id=".$rowTindakan['id_akun']."'>".$rowTindakan['Nama']."</a></label>";
+                                            if(file_exists('../gambar/bukti/'.$rowTindakan['id_progress'].'.pdf')) echo '<br/>Laporan PDF <a href="../gambar/bukti/'.$rowTindakan['id_progress'].'.pdf" target="_blank">Lihat</a>';
+                                            //Jika terdapat foto
+                                            if($rowTindakan['bukti']) echo"<a href='../gambar/bukti/".$rowTindakan["bukti"]."' target='_blank'><img src='../gambar/bukti/".$rowTindakan["bukti"]."' height='auto' width=100%></a>";
+                                          echo"
+                                        </div>
+                                      </div>
+                                    </div>";
+                                    ///perulangan menampilkan semua bukti
+                              }
+                              echo"
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>";
+                        ///tindakan ditemukan
                       }
                     /**Akhir Menampilkan Foto jika tidak null */
                       echo "

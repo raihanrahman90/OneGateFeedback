@@ -99,7 +99,7 @@ include 'header.php';
                                   if($interval>1){
                                     echo"<td><span class='badge badge-pill badge-danger' style='width:100px;'>".$row['status']."</span></td>";
                                   } else {
-                                    echo"<td><span class='badge badge-pill badge-warning' style='width:100px;'>".$row['status']."</span></td>";
+                                    echo"<td><span class='badge badge-pill badge-secondary' style='width:100px;'>".$row['status']."</span></td>";
                                   }
                                   #kondisi progres sudah lebih dari 1 bulan akan berwarna merah
                               }else if($row['status']=="Returned"){

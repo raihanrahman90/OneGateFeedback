@@ -16,7 +16,7 @@ include 'header.php';
                         echo '<div class="alert alert-warning alert-dismissible fade show">
                               Email telah digunakan
                           </div>';
-                          $_SESSION['status_jalan'] = "";
+                          unset($_SESSION['status_jalan']);
                         }
                       }
                     ?>

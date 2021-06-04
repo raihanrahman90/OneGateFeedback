@@ -23,7 +23,10 @@ if($cek > 0){
 	$_SESSION['email'] = $username;
 	$_SESSION['status_akun'] = $data1['status'];
 	if($username!= 'bpn.ph@ap1.co.id'){
-		$data = mysqli_query($koneksi,"SELECT * FROM tb_akun LEFT JOIN tb_unit on tb_akun.id_unit = tb_unit.id_unit LEFT JOIN tb_departemen on tb_departemen.id_departemen = tb_akun.id_departemen WHERE Email='$username' and Password=md5('$password')");
+		$data = mysqli_query($koneksi,"SELECT * FROM tb_akun 
+										LEFT JOIN tb_unit on tb_akun.id_unit = tb_unit.id_unit 
+										LEFT JOIN tb_departemen on tb_departemen.id_departemen = tb_akun.id_departemen 
+										WHERE Email='$username' and Password=md5('$password')");
 		$data1 = mysqli_fetch_array($data);
 		$_SESSION['departemen'] = $data1['Departemen'];
 		$_SESSION['id_departemen'] = $data1['id_departemen'];

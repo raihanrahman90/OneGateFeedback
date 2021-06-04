@@ -29,7 +29,10 @@ include 'header.php';
                     <?php
             				$id = $_GET['id'];///mengambil id dari url
                     #menampilkan data dengan urutan id_progress 
-            				$data = mysqli_query($koneksi, "SELECT Email, jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, tb_aduan.status, tb_aduan.foto, tindakan, bukti, tb_progress.waktu as waktu_progress, tb_aduan.id_unit as unit, nama_departemen, nama_unit, penilaian, ulasan from tb_aduan
+            				$data = mysqli_query($koneksi, "SELECT Email, jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, 
+                                                            tb_aduan.status, tb_aduan.foto, tindakan, bukti, tb_progress.waktu as waktu_progress, 
+                                                            tb_aduan.id_unit as unit, nama_departemen, nama_unit, penilaian, ulasan, perihal
+                                                            from tb_aduan
                                                     left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan 
                                                     left join tb_penilaian on tb_penilaian.id_aduan = tb_aduan.id_aduan
                                                     left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
@@ -164,9 +167,17 @@ include 'header.php';
                                     echo "'></input>
                                   </div>
                                 </div>                     
-            				    <div class='row mb-2'>
-            				      <div class='col-lg-4'>
-            				        <label>Keterangan<label>
+                                <div class='row mb-2'>
+                                  <div class='col-lg-4'>
+                                    <label>Perihal<label>
+                                  </div>
+                                  <div class='col-lg-8'>
+                                  <input type='text' class='form-control' disabled value='".$row['perihal']."'></input>
+                                  </div>
+                                </div>
+                                <div class='row mb-2'>
+                                  <div class='col-lg-4'>
+                                    <label>Keterangan<label>
                                   </div>
                                   <div class='col-lg-8'>
                                     <textarea class='form-control' disabled rows=8>".$row['ket']."</textarea>
@@ -212,7 +223,7 @@ include 'header.php';
                               <div class='card-body'>
                                   <div class='col-lg-12'>
                                 <div class='row'>";
-                                $data_progress = mysqli_query($koneksi, "SELECT Nama, tindakan, bukti, tb_akun.id_akun, waktu FROM tb_progress
+                                $data_progress = mysqli_query($koneksi, "SELECT Nama, tindakan, bukti, tb_akun.id_akun, waktu, id_progress FROM tb_progress
                                                                          left join tb_akun on tb_akun.id_akun = tb_progress.id_akun
                                                                          where id_aduan = '$id'") or die(mysqli_error($koneksi));
                               while($row = mysqli_fetch_assoc($data_progress)){
@@ -228,7 +239,8 @@ include 'header.php';
                                             <label> Tanggal :".$row["waktu"]."</label><br/>";
                                             // jika akun ditemukan
                                             if($row['Nama']) echo "<label>Dilakukan oleh :<a href='detail_akun.php?id=".$row['id_akun']."'>".$row['Nama']."</a></label>";
-                                            //Jika terdapat foro
+                                            if(file_exists('../gambar/bukti/'.$row['id_progress'].'.pdf')) echo '<br/>Laporan PDF <a href="../gambar/bukti/'.$row['id_progress'].'.pdf" target="_blank">Lihat</a>';
+                                            //Jika terdapat foto
                                             if($row['bukti']) echo"<a href='../gambar/bukti/".$row["bukti"]."' target='_blank'><img src='../gambar/bukti/".$row["bukti"]."' height='auto' width=100%></a>";
                                           echo"
                                         </div>

@@ -1,7 +1,13 @@
 <?php
     $halaman='Penilaian';
     include 'hak_akses.php';
-	include "header.php"
+	include "header.php";
+    if($_SESSION['status_akun']=='Unit'){
+        $id_unit = $_SESSION['id_unit'];
+        $id_departemen = $_SESSION['id_departemen'];
+        $nama_unit = $_SESSION['nama_unit'];
+        $nama_departemen = $_SESSION['departemen'];
+    }
 ?>
     <div class='container-fluid'>
     	<h1 class="h3 mb-2 text-gray-800">Laporan Customer Service</h1>
@@ -10,9 +16,13 @@
         	    	<div class="card-header py-3">
                         <button class="btn btn-primary px-5" id="btn-grafik" type="button">Grafik</button>
                         <button class="btn btn-outline-primary px-5" id="btn-table" type="button">Table</button>
+                        <noscript class="alert alert-danger alert-dismissible">
+                            Halaman web ini membutuhkan javascript untuk bekerja dengan baik, mohon aktifkan javacript pada peramban Anda. 
+                        </noscript>
                     </div>
                     <div class="card-body">
                         <div id="form-grafik">
+                        
                             <div class="row">
                                 <label class="col-12 col-md-2">Nilai Y</label>
                                 <select id="kelompok" name='kelompok' class="col-12 col-md-1 form-control">    
@@ -32,19 +42,32 @@
                             </div>
                         <div id="form_departemen" class="row">
                         <label class="col-12 col-md-2">Kelompokkan berdasarkan</label>
-                	    	<select id="departemen" name='departemen' class="col-12 col-md-1 form-control ">   
-                				<option value='all' selected="true">All</option>  
-                				<option value='departemen'>Berdasarkan departemen</option>   
-                                <?php
-                                    $query = mysqli_query($koneksi, "SELECT * FROM tb_departemen");
-                                    foreach($query as $departemen){
-                                        echo"<option value='".$departemen['id_departemen']."'>".$departemen['Departemen']."</option>";
+                	    	<select id="departemen" name='departemen' class="col-12 col-md-1 form-control ">
+                                <?php   
+                                    if($_SESSION['status_akun']=='Unit'){
+                                        echo "
+                                        <option value='$id_departemen'>$nama_departemen</option>
+                                        ";
+                                    }else{
+                                        echo 
+                                        "<option value='all' selected='true'>All</option>  
+                                        <option value='departemen'>Berdasarkan departemen</option>";
+                                        $query = mysqli_query($koneksi, "SELECT * FROM tb_departemen");
+                                        foreach($query as $departemen){
+                                            echo"<option value='".$departemen['id_departemen']."'>".$departemen['Departemen']."</option>";
+                                        }
                                     }
                                 ?>
                     		</select>
             	    	    <label class="col-12 col-md-2">Unit</label>
-                	    	<select id="unit" name='unit' class="col-12 col-md-1 form-control">    
-                                    <option value='all'>All</option>
+                	    	<select id="unit" name='unit' class="col-12 col-md-2 form-control">    
+                                <?php
+                                    if($_SESSION['status_akun']=='Unit'){
+                                        echo "<option value='$id_unit'>$nama_unit</option>";
+                                    }else{
+                                        echo"<option value='all'>All</option>";
+                                    }
+                                ?>
                     		</select>
                         </div>
                             <div id='input_date' class="row">
@@ -80,9 +103,16 @@
                                     </tfoot>
                                     <tbody>
                                         <?php
-                                        $mahasiswa = mysqli_query($koneksi, "SELECT tb_penilaian.* from tb_penilaian
-                                                                            inner join tb_aduan on tb_aduan.id_aduan=tb_penilaian.id_aduan  
-                                                                            ORDER BY open") or die(mysqli_error($koneksi));
+                                        if($_SESSION['status_akun']=='Unit'){
+                                            $mahasiswa = mysqli_query($koneksi, "SELECT tb_penilaian.* from tb_penilaian
+                                            inner join tb_aduan on tb_aduan.id_aduan=tb_penilaian.id_aduan 
+                                            where id_unit = '$id_unit' 
+                                            ORDER BY open") or die(mysqli_error($koneksi));
+                                        }else{
+                                            $mahasiswa = mysqli_query($koneksi, "SELECT tb_penilaian.* from tb_penilaian
+                                            inner join tb_aduan on tb_aduan.id_aduan=tb_penilaian.id_aduan  
+                                            ORDER BY open") or die(mysqli_error($koneksi));
+                                        }
                                         $no=1;
                                         foreach ( $mahasiswa as $row){
                                             echo "
