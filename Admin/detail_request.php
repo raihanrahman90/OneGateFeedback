@@ -313,6 +313,9 @@
                               echo "<option value='".$row['id_unit']."'>".$row['nama_unit']."</option>";
                             }
                         echo"</select>
+                        
+                            <label>Keterangan.</label>
+                            <input type='text' name='keterangan' class='form-control unit' />
                           </div>
                           <div class='modal-footer'>
                             <button class='btn btn-secondary' type='button' data-dismiss='modal'>Batal</button>

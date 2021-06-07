@@ -4,6 +4,7 @@
 	if($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin1'){
 		$id_aduan = $koneksi -> real_escape_string($_POST['id']);
 		$id_unit = $koneksi -> real_escape_string($_POST['unit']);
+		$keterangan = $koneksi -> real_escape_string($_POST['keterangan']);
 		$id_akun = $_SESSION['id_akun'];
 		/** get nama departemen dan unit */
 		$data_departemen = mysqli_query($koneksi, "SELECT * FROM tb_departemen 
@@ -13,9 +14,14 @@
 		$nama_departemen = $data_departemen['Departemen'];
 		$nama_unit = $data_departemen['nama_unit'];
 		/** get nama departemen dan unit */
+		if(empty($keterangan)){
+			$keterangan = "Diteruskan ke unit $nama_unit";
+		}else{
+			$keterangan = "Diteruskan ke unit $nama_unit, $keterangan";
+		}
 		$data = mysqli_query($koneksi, "UPDATE tb_aduan SET status = 'Open', id_unit='$id_unit',waktu=now(),id_akun='$id_akun', level=1, nama_departemen='$nama_departemen', nama_unit='$nama_unit'
 										Where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
-	    $tindakan = mysqli_query($koneksi, "INSERT INTO tb_progress values(0,'$id_akun' , '$id_aduan', 'Diteruskan ke unit $nama_unit', NULL, now())");
+	    $tindakan = mysqli_query($koneksi, "INSERT INTO tb_progress values(0,'$id_akun' , '$id_aduan', '$keterangan', NULL, now())") or die(mysqli_error($koneksi));
 		$_SESSION['terjadi']='meneruskan';
 		$subject = 'Keluhan Baru Terhadap unit Anda';
 		include "../pesan/kirim_email_unit.php";
