@@ -15,7 +15,6 @@
 	$perihal = $koneksi -> real_escape_string($_POST['perihal']);
 	$keterangan = $koneksi -> real_escape_string(htmlspecialchars($_POST['keterangan']));
 	$pengguna = $koneksi -> real_escape_string($_POST['pengguna']);
-	$pelapor = $koneksi -> real_escape_string($_SESSION['id_perusahaan']);
 	$perihalUrgent = $koneksi ->real_escape_string($_POST['perihalUrgent']);
 	/**Setting Urgensi */
 	if($perihalUrgent=='Tidak Urgent'){
@@ -54,7 +53,7 @@
 	now(),#waktu untuk level
 	now(),#waktu kirim
 	'$tanggal_kejadian',#tanggal_kejadian
-	$keterangan_3_hari,#keterangan_kejadian
+	$keterangan_kejadian,#keterangan_kejadian
 	NULL,#foto
 	-1)") or die(mysqli_error($koneksi)); #level
 	
