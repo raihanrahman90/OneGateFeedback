@@ -29,6 +29,16 @@
 		            <div class="wizard-container">
 		            	
 		                <div class="card wizard-card" data-color="blue" id="wizardProfile">
+							<noscript>
+								<style type="text/css">
+								form{
+									display:none;
+								}
+								</style>
+								<div  class="alert alert-danger alert-dismissible">
+								Halaman web ini membutuhkan javascript untuk bekerja dengan baik, mohon aktifkan javascript pada peramban Anda. 
+								</div>
+							</noscript>
 		                    <form method="post" action="../action/register.php" onsubmit="return validasi();" enctype="multipart/form-data">
 		                <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
 								<div class="wizard-navigation" hidden>

@@ -1,9 +1,16 @@
 <?php
-
 	session_start();
 	include '../koneksi.php';
+	include 'tanggal_format.php';
 	$id_akun = $_SESSION['id_customer'];
 	$jenis = $koneksi -> real_escape_string($_POST['jenis']);
+	$check_box_3_hari = isset($_POST['hari']);
+	$tanggal_kejadian = $koneksi -> real_escape_string($_POST['tanggal_kejadian']);
+	if(!$check_box_3_hari){
+		$keterangan_kejadian = "'".($koneksi -> real_escape_string($_POST['keterangan_kejadian']))."'";
+	}else{
+		$keterangan_kejadian = "NULL";
+	}
 	$keterangan = $koneksi -> real_escape_string(htmlspecialchars($_POST['keterangan']));
 	if($jenis=="Keluhan"){
 	    $status = 'Request';
@@ -29,16 +36,18 @@
 	NULL,#id_unit
 	NULL,#nama_unit
 	NULL,#nama_departemen
-	'$detail_lokasi',#nama_detail_lokasi
-	'$lokasi',#nama_lokasi
+	'$detail_lokasi',#detail_lokasi
+	'$lokasi',#lokasi
 	'$jenis',#jenis
 	$urgensi,#urgensi
 	'$perihal',#perihal
 	'Mitra',#pelapor
-	'$keterangan',#keterangan	
+	'$keterangan',#keterangan
 	'$status',#status
-	now(),#waktu
+	now(),#waktu untuk level
 	now(),#waktu_kirim
+	'$tanggal_kejadian',#waktu_kejadian
+	$keterangan_kejadian,#keterangan_kejadian
 	NULL,#foto
 	-1)") or die(mysqli_error($koneksi));#level
 	

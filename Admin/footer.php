@@ -39,6 +39,7 @@
     </div>
   </div>
 
+  <div id="loader"></div>
   <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -55,7 +56,15 @@
 
   <!-- Page level custom scripts -->
   <script>
+        var spinner = $('#loader');
+        
+
+        $('form').submit(function(e) {
+          $('button[type="submit"]').attr('disabled',true)
+          $('button[type="submit"]').html("Mohon Tunggu")
+        });
       $(document).ready(function(){
+        
         if($('#dataTable').length){
           $('#dataTable thead tr').clone(true).appendTo( '#dataTable thead' );
           var column_count = $("table > tbody > tr:first > td").length
@@ -131,6 +140,7 @@
               $('#notifFeedback').load("notifFeedback.php");
           }, 15000);
           /**Mengecek Ulang data setiap 30 detik*/
+
       })
   </script>
 

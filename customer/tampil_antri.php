@@ -142,6 +142,22 @@
 		                    	                <label>Lokasi Detail</label>
 		                    	                <input class="form-control" type="text" value=<?php echo "'".$data['nama_detail_lokasi']."'"?> readonly>
 		                    	            </div>
+		                    	            <div class="form-group col-md-12">
+		                    	                <label>Tanggal Kejadian</label>
+												
+		                    	                <input class="form-control" type="text" value=<?php echo "'".$data['waktu_kejadian']."'"?> readonly>
+		                    	            </div>
+											<?php
+												if(!is_null($data['keterangan_kejadian'])){
+													?>
+													<div class="form-group col-md-12">
+															<label>Keterangan Kejadian</label>
+															<textarea name="keterangan_kejadian" rows="4" class="form-control" placeholder="Toilet pria mati air" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' disabled><?php echo $data['keterangan_kejadian']?></textarea>
+
+														</div>
+													<?php
+												}
+											?>
 		                    	            <?php
 		                    	                $query = mysqli_query($koneksi, "SELECT * FROM tb_keterangan_tambahan inner join tb_aduan on tb_aduan.id_aduan = tb_keterangan_tambahan.id_aduan where tb_keterangan_tambahan.id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
     		                    	            while($row = mysqli_fetch_array($query)){

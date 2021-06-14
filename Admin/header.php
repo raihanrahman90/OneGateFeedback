@@ -208,3 +208,17 @@
 
         </nav>
         <!-- End of Topbar -->
+        
+        <noscript>
+            <style type="text/css">
+              .container-fluid{
+                display:none;
+              }
+              .container{
+                display:none;
+              }
+            </style>
+            <div  class="alert alert-danger alert-dismissible">
+              Halaman web ini membutuhkan javascript untuk bekerja dengan baik, mohon aktifkan javacript pada peramban Anda. 
+            </div>
+        </noscript>

@@ -3,6 +3,14 @@
 	session_start();
 	include '../koneksi.php';
 	$id_akun = $_SESSION['id_akun'];
+	
+	$check_box_3_hari = isset($_POST['hari']);
+	$tanggal_kejadian = $koneksi -> real_escape_string($_POST['tanggal_kejadian']);
+	if(!$check_box_3_hari){
+		$keterangan_kejadian = "'".($koneksi -> real_escape_string($_POST['keterangan_kejadian']))."'";
+	}else{
+		$keterangan_kejadian = "NULL";
+	}
 	$jenis = $koneksi -> real_escape_string($_POST['jenis']);
 	$perihal = $koneksi -> real_escape_string($_POST['perihal']);
 	$keterangan = $koneksi -> real_escape_string(htmlspecialchars($_POST['keterangan']));
@@ -45,6 +53,8 @@
 	'$status',#status
 	now(),#waktu untuk level
 	now(),#waktu kirim
+	'$tanggal_kejadian',#tanggal_kejadian
+	$keterangan_3_hari,#keterangan_kejadian
 	NULL,#foto
 	-1)") or die(mysqli_error($koneksi)); #level
 	

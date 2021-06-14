@@ -8,7 +8,7 @@
 		    $_SESSION['status']='nerobos';
 			header("Location:../");
 		} else {
-		    $query=mysqli_query($koneksi, "Select *, now() as sekarang 
+		    $query=mysqli_query($koneksi, "Select *, now() as sekarang, IF(DATEDIFF(waktu_kirim, waktu_kejadian)>3, TRUE, FALSE) as 3hari 
 		    from tb_aduan 
 		    where id_aduan='".$id_aduan."'") or die(mysqli_error($koneksi));
 		    if($row1 = mysqli_fetch_array($query)){
@@ -135,17 +135,34 @@
 													
 												</div>
 												<div class="form-group">
+												    <label>Tanggal Kejadian<small>(required)</small></label>
+													
+													<div class="form-group">
+														<div class="custom-control custom-checkbox">
+															<input type="checkbox" class="custom-control-input" name="hari" id='hari' <?php echo($row1['3hari']==1?"":"checked")?> />
+															<label class="custom-control-label" for='hari'>3 Hari terakhir</label>
+														</div>
+													</div>
+													<?php
+														echo '<input name="waktu_kejadian" type="date" class="form-control" id="tanggal_kejadian" value="'.$row1['waktu_kejadian'].'" required />';
+													?>
+												</div>
+												<div class=<?php echo ($row1['3hari']==1?"'form-group'":"'form-group d-none'")?> id="form_keterangan_kejadian">
+													<label>Keterangan Kejadian</label>
+													<textarea id="keterangan_kejadian" name="keterangan_kejadian" rows="4" 
+																class="form-control" 
+																placeholder="Toilet pria mati air" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'><?php echo $data['keterangan_kejadian']?></textarea>
+												</div>
+												<div class="form-group">
 													<label>Foto</label>
 													<input name="foto" type="file">
 												</div>
 											</div>
-		                    	            <input type='hidden' name='id_aduan' value=<?php echo '"'.$id_aduan.'"'?>
-		                    	        </div>
+		                    	            <input type='hidden' name='id_aduan' value=<?php echo '"'.$id_aduan.'"'?> />
 		                    	        <?php
 		                    	    }
 		                    	?>
-		                    	</div>
-		                    <div class="wizard-footer">
+		                    	<div class="wizard-footer">
 		                            
 		                            <?php
 		                            echo "<div class='pull-left'>
@@ -164,35 +181,76 @@
 		                            <div class="clearfix"></div>
 		                        </div>
 		                
+		                    	</div>
 		                    </form>
 		            </div> <!-- wizard container -->
 		        </div>
 	    	</div><!-- end row -->
 
 			<script type="text/javascript">
-	    $(document).ready(function(){
-	       $("#lokasi" ).change(function () {    
-              var data = $('#myform').serialize();
-              $.ajax({
-                type: 'POST',
-                url: "../action/options_lokasi.php",
-                data: data,
-                success: function(response) {
-                  $("#detail-lokasi").html(response) ;
-                }
-              }); 
-            }); 
-			$("#perihalUrgent").change(function(){
-                 if($(this).val()=='Tidak Urgent'){
-					 $('#perihal').removeClass('d-none')
-					 $('#perihal').prop('required', true);
-				 }else{
-					$('#perihal').addClass('d-none')
-					 $('#perihal').prop('required', false);
-				 }
-            })
-	    });
-	</script>
+			
+				function getDateString(date){
+					dd = date.getDate()
+					mm = date.getMonth()+1
+					yy = date.getFullYear()
+					if(mm<10){
+						mm = "0"+mm
+					}
+					if(dd<10){
+						dd = "0"+dd
+					}
+					return yy+"-"+mm+"-"+dd
+				}
+				$(document).ready(function(){
+				$("#lokasi" ).change(function () {    
+					var data = $('#myform').serialize();
+					$.ajax({
+						type: 'POST',
+						url: "../action/options_lokasi.php",
+						data: data,
+						success: function(response) {
+							$("#detail-lokasi").html(response) ;
+						}
+					}); 
+					}); 
+					$("#perihalUrgent").change(function(){
+						if($(this).val()=='Tidak Urgent'){
+							$('#perihal').removeClass('d-none')
+							$('#perihal').prop('required', true);
+						}else{
+							$('#perihal').addClass('d-none')
+							$('#perihal').prop('required', false);
+						}
+					})
+					var today = new Date()
+					$('#tanggal_kejadian').attr('min', minimum)
+					var maximum = getDateString(today)
+					var minimum = new Date(Date.now() - 1000*60*60*48);
+					minimum = getDateString(minimum)
+					$('#tanggal_kejadian').attr('max', maximum)
+					<?php
+						if($row1['3hari']==0){
+					?>
+					$('#tanggal_kejadian').attr('min', minimum)
+					<?php
+						}
+					?>
+					$('#hari').change(function(){
+						if($('#hari').is(":checked")){
+							$('#tanggal_kejadian').attr('max', maximum)
+							$('#tanggal_kejadian').attr('min', minimum)
+							$('#form_keterangan_kejadian').addClass('d-none')
+							$('#keterangan_kejadian').prop('required', false)
+							$('#tanggal_kejadian').val(maximum)
+						}else{
+							$('#form_keterangan_kejadian').removeClass('d-none')
+							$('#keterangan_kejadian').prop('required', true)
+							$('#tanggal_kejadian').attr('max', maximum)
+							$('#tanggal_kejadian').attr('min', '2000-01-01')
+						}
+					})
+				});
+			</script>
 </body>
 </html>
 

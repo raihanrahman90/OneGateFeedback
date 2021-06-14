@@ -23,33 +23,25 @@
           <div class="card shadow mb-4">
             <div class="card-body">
               <div class="table-responsive">
-              <form action="../action/tindakan.php" method="post" enctype="multipart/form-data">
+              <form action="../action/tindakan.php" method="post" enctype="multipart/form-data" id="form">
                 <table class="table" id="" width="100%" cellspacing="0">
                 
                   <tbody>
-                    <noscript>
-                    <tr>
-                      <td colspan=4>
-                        <div  class="alert alert-danger alert-dismissible">
-                          Halaman web ini membutuhkan javascript untuk bekerja dengan baik, mohon aktifkan javacript pada peramban Anda. 
-                        </div>
-                      </td>
-                    </tr>
-                    </noscript>
                     <tr>
                       <td><label>Status</label></td>
                       <td><label>:</label></td>
-                      <td><div class="form-group-checked row">
-                  <div class="col-sm-6 mb-3-checked mb-sm-0">
-                    <input class="form-control-checked"type="radio" value="Progress" text="Progress" name="status" checked id="tindakan-progres">
-                    <label class="form-check-label form-control-checked">Progress</label>
-                  </div>
-                  <div class="col-sm-6 mb-3-checked mb-sm-0">
-                    <input type="radio" class="form-control-checked" value="Complete"  text="Complete" name="status" id="tindakan-complete">
-                    <label class="form-check-label form-control-checked">Selesai</label>
-                  </div>
-                </div>
-              </td>
+                      <td>
+                        <div class="form-group-checked row">
+                          <div class="col-sm-6 mb-3-checked mb-sm-0">
+                            <input class="form-control-checked"type="radio" value="Progress" text="Progress" name="status" checked id="tindakan-progres">
+                            <label class="form-check-label form-control-checked">Progress</label>
+                          </div>
+                          <div class="col-sm-6 mb-3-checked mb-sm-0">
+                            <input type="radio" class="form-control-checked" value="Complete"  text="Complete" name="status" id="tindakan-complete">
+                            <label class="form-check-label form-control-checked">Selesai</label>
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                       <td><label>Tindakan</label></td>

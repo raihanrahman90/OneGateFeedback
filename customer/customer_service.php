@@ -25,6 +25,7 @@
 		            <!--      Wizard container        -->
 		            <div class="wizard-container">
 		                <div class="card wizard-card" data-color="blue" id="wizardProfile">
+							
 		                    <form method="post" action="../action/register.php" onsubmit="return validasi();">
 		                <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
 

@@ -16,9 +16,13 @@
           <!-- DataTales Example -->
             				<?php
             				$id_aduan = $_GET['id'];
-            				$data = mysqli_query($koneksi, "SELECT pelapor, Nama,no_telp, email,jenis, perihal, ket, tb_aduan.foto, tb_aduan.status, nama_lokasi, nama_detail_lokasi, tindakan from tb_aduan 
-            				    left join tb_customer ON tb_aduan.id_customer=tb_customer.id_customer
-                        left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan
+            				$data = mysqli_query($koneksi, "SELECT pelapor, Nama,no_telp, email,jenis, 
+                                                      perihal, ket, tb_aduan.foto, tb_aduan.status, 
+                                                      nama_lokasi, nama_detail_lokasi, tindakan,
+                                                      nama_perusahaan, gerai, waktu_kejadian, keterangan_kejadian 
+                                                      from tb_aduan 
+                                                      left join tb_customer ON tb_aduan.id_customer=tb_customer.id_customer
+                                                      left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan
             					where tb_aduan.id_aduan ='$id_aduan' ") or die(mysqli_error($koneksi));
             				$cek = mysqli_num_rows($data);
 							if($cek > 0){
@@ -30,13 +34,12 @@
 				    <div class='row mb-2'>
 				      <div class='col-lg-4'>
 				        <label>Pelapor<label>
-                      </div>
-                      <div class='col-lg-8'>
-                        <input type='text' class='form-control' disabled value='".$row['pelapor']."'></input>
-                      </div>
-                    </div>
-                      ";
-                      
+              </div>
+              <div class='col-lg-8'>
+                <input type='text' class='form-control' disabled value='".$row['pelapor']."'></input>
+              </div>
+            </div>
+              ";
           /**Akhir Kodisi Nama Tidak ditemukan */
 				}else{
           
@@ -45,28 +48,36 @@
 				    <div class='row mb-2'>
 				      <div class='col-lg-4'>
 				        <label>Nama<label>
-                      </div>
-                      <div class='col-lg-8'>
-                        <input type='text' class='form-control' disabled value='".$row['Nama']."'></input>
-                      </div>
-                    </div>
+                </div>
+                <div class='col-lg-8'>
+                  <input type='text' class='form-control' disabled value='".$row['Nama']."'></input>
+                </div>
+              </div>
 				    <div class='row mb-2'>
 				      <div class='col-lg-4'>
 				        <label>No Telp<label>
-                      </div>
-                      <div class='col-lg-8'>
-                        <input type='text' class='form-control' disabled value='".$row['no_telp']."'></input>
-                      </div>
+                </div>
+                <div class='col-lg-8'>
+                  <input type='text' class='form-control' disabled value='".$row['no_telp']."'></input>
+                </div>
+              </div>
+              <div class='row mb-2'>
+                <div class='col-lg-4'>
+                  <label>Perusahaan pelapor<label>
+                  </div>
+                  <div class='col-lg-8'>
+                    <input type='text' class='form-control' disabled value='".$row['nama_perusahaan']."'></input>
+                  </div>
+                </div>
+                <div class='row mb-2'>
+                  <div class='col-lg-4'>
+                    <label>Gerai Perusahaan<label>
                     </div>
-				    <div class='row mb-2'>
-				      <div class='col-lg-4'>
-				        <label>Email<label>
-                      </div>
-                      <div class='col-lg-8'>
-                        <input type='text' class='form-control' disabled value='".$row['email']."'></input>
-                      </div>
+                    <div class='col-lg-8'>
+                      <input type='text' class='form-control' disabled value='".$row['gerai']."'></input>
                     </div>
-                      ";
+                  </div>
+                ";
           /**Akhir Kodisi Nama ditemukan */
 				}
                 echo "
@@ -110,7 +121,7 @@
                       </div>
                     </div>
             
-				    <div class='row mb-2'>
+            <div class='row mb-2'>
               <div class='col-lg-4'>
                 <label>Perihal<label>
               </div>
@@ -121,11 +132,35 @@
 				    <div class='row mb-2'>
 				      <div class='col-lg-4'>
 				        <label>Keterangan<label>
-                      </div>
-                      <div class='col-lg-8'>
-                        <textarea class='form-control' disabled rows=8>".$row['ket']."</textarea>
-                      </div>
-                    </div>";
+              </div>
+              <div class='col-lg-8'>
+                <textarea class='form-control' disabled rows=4>".$row['ket']."</textarea>
+              </div>
+            </div>
+            
+				    <div class='row mb-2'>
+              <div class='col-lg-4'>
+                <label>Tanggal Kejadian<label>
+              </div>
+              <div class='col-lg-8'>
+                <input type='text' class='form-control' disabled value='".$row['waktu_kejadian']."'></input>
+              </div>
+            </div>
+            
+            ";
+              if(!is_null($row['keterangan_kejadian'])){
+                echo "
+                <div class='row mb-2'>
+                  <div class='col-lg-4'>
+                    <label>Keterangan Kejadian<label>
+                  </div>
+                  <div class='col-lg-8'>
+                    <textarea class='form-control' disabled rows=4>".$row['ket']."</textarea>
+                  </div>
+                </div>
+                ";
+              }
+
                     /**Menampilkan keterangan returned jika status Returned */
                       if($row["status"]=="Returned"){
                           $keterangan_kembali = mysqli_query($koneksi, "SELECT * from tb_progress where id_aduan = '$id_aduan' Order by id_progress DESC");

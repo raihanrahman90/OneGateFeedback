@@ -31,7 +31,8 @@ include 'header.php';
                     #menampilkan data dengan urutan id_progress 
             				$data = mysqli_query($koneksi, "SELECT Email, jenis, nama_unit, pelapor, ket, nama_lokasi, nama_detail_lokasi, 
                                                             tb_aduan.status, tb_aduan.foto, tindakan, bukti, tb_progress.waktu as waktu_progress, 
-                                                            tb_aduan.id_unit as unit, nama_departemen, nama_unit, penilaian, ulasan, perihal
+                                                            tb_aduan.id_unit as unit, nama_departemen, nama_unit, penilaian, ulasan, perihal,
+                                                            nama_perusahaan, gerai, waktu_kejadian, keterangan_kejadian
                                                             from tb_aduan
                                                     left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan 
                                                     left join tb_penilaian on tb_penilaian.id_aduan = tb_aduan.id_aduan
@@ -89,8 +90,8 @@ include 'header.php';
                               if($row['jenis']=='Keluhan'){
                                   echo"
                                   <div class='row mb-2'>
-                                  <div class='col-lg-4'>
-                                    <label>Departemen <label>
+                                    <div class='col-lg-4'>
+                                      <label>Departemen <label>
                                           </div>
                                           <div class='col-lg-8'>
                                             <input type='text' class='form-control' disabled value='";
@@ -130,29 +131,37 @@ include 'header.php';
                             </div>
                             <div class='row mb-2'>
                 				      <div class='col-lg-4'>
-                				        <label>Email Pelapor<label>
+                				        <label>Perusahaan Pelapor<label>
                               </div>
                               <div class='col-lg-8'>
-                                <input type='text' class='form-control' disabled value='".$row['Email']."'></input>
+                                <input type='text' class='form-control' disabled value='".$row['nama_perusahaan']."'></input>
+                              </div>
+                            </div>
+                            <div class='row mb-2'>
+                				      <div class='col-lg-4'>
+                				        <label>Gerai Perusahaan<label>
+                              </div>
+                              <div class='col-lg-8'>
+                                <input type='text' class='form-control' disabled value='".$row['gerai']."'></input>
                               </div>
                             </div>
                             
                 				    <div class='row mb-2'>
                 				      <div class='col-lg-4'>
                 				        <label>Lokasi<label>
-                                      </div>
-                                      <div class='col-lg-8'>
-                                        <input type='text' class='form-control' disabled value='";
-                                        
-                                          if(isset($row["nama_lokasi"])){
-                                              echo $row["nama_lokasi"];
-                                          }else{
-                                              echo "Lokasi sudah dihapus dari database";
-                                          }
-                                        echo "'></input>
-                                      </div>
-                                    </div> 
-                                 <div class='row mb-2'>
+                              </div>
+                              <div class='col-lg-8'>
+                                <input type='text' class='form-control' disabled value='";
+                                
+                                  if(isset($row["nama_lokasi"])){
+                                      echo $row["nama_lokasi"];
+                                  }else{
+                                      echo "Lokasi sudah dihapus dari database";
+                                  }
+                                echo "'></input>
+                              </div>
+                            </div> 
+                            <div class='row mb-2'>
             				      <div class='col-lg-4'>
             				        <label>Detail Lokasi<label>
                                   </div>
@@ -180,10 +189,29 @@ include 'header.php';
                                     <label>Keterangan<label>
                                   </div>
                                   <div class='col-lg-8'>
-                                    <textarea class='form-control' disabled rows=8>".$row['ket']."</textarea>
+                                    <textarea class='form-control' disabled rows=4>".$row['ket']."</textarea>
+                                  </div>
+                                </div>
+                                <div class='row mb-2'>
+                                  <div class='col-lg-4'>
+                                    <label>Tanggal Kejadian<label>
+                                  </div>
+                                  <div class='col-lg-8'>
+                                    <input type='text' class='form-control' disabled value='".$row['waktu_kejadian']."'></input>
                                   </div>
                                 </div>";
-                                  
+                                  if($row['keterangan_kejadian']){
+                                    echo "
+                                    <div class='row mb-2'>
+                                      <div class='col-lg-4'>
+                                        <label>Keterangan Kejadian<label>
+                                      </div>
+                                      <div class='col-lg-8'>
+                                        <textarea class='form-control' disabled rows=4>".$row['keterangan_kejadian']."</textarea>
+                                      </div>
+                                    </div>
+                                    ";
+                                  }
                                     if($row["foto"]!=NULL){
                                     #bukti kerusakan ditampilkan
                                     echo"                 
