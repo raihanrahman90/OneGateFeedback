@@ -155,7 +155,7 @@
                     <label>Keterangan Kejadian<label>
                   </div>
                   <div class='col-lg-8'>
-                    <textarea class='form-control' disabled rows=4>".$row['ket']."</textarea>
+                    <textarea class='form-control' disabled rows=4>".$row['keterangan_kejadian']."</textarea>
                   </div>
                 </div>
                 ";
