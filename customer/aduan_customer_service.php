@@ -114,8 +114,7 @@ include 'header.php'
 															<label class="custom-control-label" for='hari'>3 Hari terakhir</label>
 														</div>
 													</div>
-													<input name="tanggal_kejadian" type="date" class="form-control tm" 
-														data-date-format="DD/MM/YYYY" placeholder="dd/mm/yyyy"
+													<input name="tanggal_kejadian" type="text" class="form-control"  autocomplete="off" 
 														 id="tanggal_kejadian" required />
 												</div>
 												<div class="form-group d-none" id="form_keterangan_kejadian">
@@ -172,12 +171,6 @@ include 'header.php'
             })
 			
 			var today = new Date()
-			$('#tanggal_kejadian').attr('min', minimum)
-			var maximum = getDateString(today)
-			var minimum = new Date(Date.now() - 1000*60*60*48);
-			minimum = getDateString(minimum)
-			$('#tanggal_kejadian').attr('max', maximum)
-			$('#tanggal_kejadian').attr('min', minimum)
 			$('#hari').change(function(){
 				if($('#hari').is(":checked")){
 					$('#form_keterangan_kejadian').addClass('d-none')

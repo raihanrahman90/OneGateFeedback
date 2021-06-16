@@ -101,7 +101,6 @@ include 'header.php';
 												<div class="form-group">
 												    <label>Detail Lokasi<small>(required)</small></label>
 													<input name="detail_lokasi" type="text" class="form-control tm" placeholder="Detail Lokasi" 
-														data-date-format="DD/MMM/YYYY" placeholder="dd/mm/yyyy"
 														id="detail_lokasi" required>
 												</div>
 												<div class="form-group">
@@ -112,7 +111,7 @@ include 'header.php';
 															<label class="custom-control-label" for='hari'>3 Hari terakhir</label>
 														</div>
 													</div>
-													<input name="tanggal_kejadian" type="text" class="form-control" 
+													<input name="tanggal_kejadian" type="text" class="form-control"  autocomplete="off"
 													id="tanggal_kejadian" required />
 												</div>
 												<div class="form-group d-none" id="form_keterangan_kejadian">
