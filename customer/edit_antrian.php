@@ -146,7 +146,7 @@
 															<label class="custom-control-label" for='hari'>3 Hari terakhir</label>
 														</div>
 													</div>
-														<input name="waktu_kejadian" type="text" class="form-control" 
+														<input name="waktu_kejadian" type="text" class="form-control" autocomplete="off"
 																id="tanggal_kejadian" required />
 												</div>
 												<div class=<?php echo ($row1['3hari']==1?"'form-group'":"'form-group d-none'")?> id="form_keterangan_kejadian">
