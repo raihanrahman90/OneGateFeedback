@@ -73,9 +73,9 @@
                         </div>
                             <div id='input_date' class="row">
                                 <label class="col-12 col-md-1">From :</label>
-                                <input type="date" name='from' id='dari' class="col-12 col-md-2 form-control">
+                                <input type="text" name='from' id='dari' class="col-12 col-md-2 form-control">
                                 <label class="col-12 col-md-2">To :</label>
-                                <input type="date" name="to" id='sampai' class="col-12 col-md-2 form-control">
+                                <input type="text" name="to" id='sampai' class="col-12 col-md-2 form-control">
                             </div>
                             <div style="width: 80%;height: 1000px;">
                                 <canvas id="myChart"></canvas>
@@ -239,6 +239,10 @@
     $(document).ready(function() {
         /**Mensetting Tanggal */
         /** Tanggal 1 Tahun lalu */
+        $( "#dari" ).datepicker();
+        $( "#sampai" ).datepicker();
+        $( "#dari" ).datepicker("option", "dateFormat", "dd/mm/yy");
+        $( "#sampai" ).datepicker("option", "dateFormat", "dd/mm/yy");
         var today = new Date();
         var lastmonth = new Date();
         var dd = today.getDate();
@@ -255,8 +259,8 @@
         }
         if(ddl<10){ddl='0'+ddl}
         if(mml<10){mml='0'+mml}
-        today = yyyy+'-'+mm+'-'+dd; 
-        lastmonth = yyyyl+'-01-01';
+        today = dd+'/'+mm+'/'+yyyy; 
+        lastmonth = '01/01/'+yyyyl;
         /**Mensetting Tanggal */
         try{
             document.getElementById('dari').value = lastmonth;
@@ -294,20 +298,11 @@
         
         /**Listen Tanggal Awal */
         $("#dari").change(function () {
-            if(dari.value>sampai.value){
-                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
-            } else {
-                gantiRange(document.getElementById('rentang').value);
-            }
+            gantiRange(document.getElementById('rentang').value);
         });
         /**Listen Tanggal Awal */
         $('#unit').change(function(){
-            
-            if(dari.value>sampai.value){
-                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
-            } else {
-                gantiRange(document.getElementById('rentang').value);
-            }
+            gantiRange(document.getElementById('rentang').value);
         })
         /** Filter unit sesuai departemen */
         $("#departemen" ) .change(function () {    
@@ -341,46 +336,34 @@
 
         /**Listen Tanggal Akhir */
         $("#sampai").change(function () {
-            if(dari.value>sampai.value){
-                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
-            } else {
-                gantiRange(document.getElementById('rentang').value);
-            }
+            gantiRange(document.getElementById('rentang').value);
         });
         /**Listen Tanggal Akhir */
         /**Listen Pengelompokkan */
         $("#kelompok").change(function () {
-            if(dari.value>sampai.value){
-                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
-            } else {
-                let kelompok = $(this).val()
-                var data = $('#myform').serialize();
-                $.ajax({
-                type: 'POST',
-                url: "../action/options_departemen.php",
-                data: data,
-                success: function(response) {
-                        let isi;
-                        if(kelompok=='rata-rata'){
-                            isi = "<option value='all' selected='true'>All</option><option value='departemen'>Berdasarkan departemen</option>"+response
-                        }else{
-                            isi = "<option value='all' selected='true'>All</option>"+response
-                        }
-                        $("#unit").html("<option value='all'>All</option>")
-                        $("#departemen").html(isi);
-                    gantiRange(document.getElementById('rentang').value);
-                }
-                }); 
+            let kelompok = $(this).val()
+            var data = $('#myform').serialize();
+            $.ajax({
+            type: 'POST',
+            url: "../action/options_departemen.php",
+            data: data,
+            success: function(response) {
+                    let isi;
+                    if(kelompok=='rata-rata'){
+                        isi = "<option value='all' selected='true'>All</option><option value='departemen'>Berdasarkan departemen</option>"+response
+                    }else{
+                        isi = "<option value='all' selected='true'>All</option>"+response
+                    }
+                    $("#unit").html("<option value='all'>All</option>")
+                    $("#departemen").html(isi);
+                gantiRange(document.getElementById('rentang').value);
             }
+            }); 
         });
         /**Listen Pengelompokkan */
         /**Listen Rentang */
         $("#rentang").change(function () {
-            if(dari.value>sampai.value){
-                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
-            } else {
-                gantiRange(document.getElementById('rentang').value);
-            }
+            gantiRange(document.getElementById('rentang').value);
         });
         /**Listen Rentang */
         /**Listen Jenis Grafik */

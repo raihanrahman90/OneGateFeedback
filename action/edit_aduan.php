@@ -6,7 +6,9 @@ session_start();
 include '../koneksi.php';
 // menangkap data yang dikirim dari form
 $id_aduan = $koneksi -> real_escape_string($_POST['id_aduan']);
-$waktu_kejadian = $koneksi-> real_escape_string($_POST['waktu_kejadian']);
+$tanggal_kejadian = $koneksi-> real_escape_string($_POST['waktu_kejadian']);
+$tanggal_kejadian = date_create_from_format('d/m/Y', $tanggal_kejadian);
+$tanggal_kejadian = date_format($tanggal_kejadian, 'Y-m-d');
 if(!isset($_POST['hari'])){
 	$keterangan_kejadian = "'".$koneksi->real_escape_string($_POST['keterangan_kejadian'])."'";
 }else{
@@ -49,7 +51,7 @@ if(is_uploaded_file($_FILES['foto']['tmp_name'])){
     
 }
     $cek = mysqli_query($koneksi,"UPDATE tb_aduan SET jenis='$jenis', ket='$keterangan', perihal='$perihal', status='$status', urgensi='$urgensi',
-									nama_lokasi='$lokasi', nama_detail_lokasi='$detail_lokasi', waktu_kejadian='$waktu_kejadian', keterangan_kejadian=$keterangan_kejadian
+									nama_lokasi='$lokasi', nama_detail_lokasi='$detail_lokasi', waktu_kejadian='$tanggal_kejadian', keterangan_kejadian=$keterangan_kejadian
 									WHERE id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
 	echo "UPDATE tb_aduan SET jenis='$jenis', ket='$keterangan', perihal='$perihal', status='$status', urgensi='$urgensi',
 	nama_lokasi='$lokasi', nama_detail_lokasi='$detail_lokasi', waktu_kejadian='$waktu_kejadian', keterangan_kejadian=$keterangan_kejadian

@@ -250,3 +250,16 @@ body.login{
   top:45%;
   left:50%;
 }
+.tm:before {
+    content: attr(data-date);
+}
+
+.tm::-webkit-datetime-edit, .tm::-webkit-inner-spin-button, .tm::-webkit-clear-button {
+    display: none;
+}
+
+.tm::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 10px;
+    color: #495057;
+}

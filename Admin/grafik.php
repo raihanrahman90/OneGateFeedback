@@ -3,10 +3,13 @@
     include 'hak_akses.php';
 	include "header.php";
     
-    if($_SESSION['status_akun']=='Unit'){
+    if($_SESSION['status_akun']=='Unit' || $_SESSION['status_akun']=='Manager'){
         $id_unit = $_SESSION['id_unit'];
         $id_departemen = $_SESSION['id_departemen'];
         $nama_unit = $_SESSION['nama_unit'];
+        $nama_departemen = $_SESSION['departemen'];
+    }else if($_SESSION['status_akun']=='Senior Manager'){
+        $id_departemen = $_SESSION['id_departemen'];
         $nama_departemen = $_SESSION['departemen'];
     }
 ?>
@@ -20,8 +23,8 @@
                                 Halaman web ini membutuhkan javascript untuk bekerja dengan baik, mohon aktifkan javacript pada peramban Anda. 
                             </noscript>
                         </div>
-        	    	    <div class="row">
-                    		<label class="col-12 col-md-2">Periode</label>
+        	    	    <div class="row mb-2">
+                    		<label class="col-12 col-md-1">Periode</label>
                     		<select id="rentang" name='rentang' class="col-12 col-md-1 form-control">    
                 				<option value='Tahun' selected="true">Tahun</option>
                 				<option value='Bulan'>Bulan</option>
@@ -38,11 +41,11 @@
                     		</select>
             	    	    
                     	</div>
-                        <div id="form_departemen" class="row">
+                        <div id="form_departemen" class="row mb-2">
                         <label class="col-12 col-md-2">Departemen</label>
                 	    	<select id="departemen" name='departemen' class="col-12 col-md-1 form-control ">   
                                 <?php
-                                    if($_SESSION['status_akun']=='Unit'){
+                                    if(($_SESSION['status_akun']=='Unit' || $_SESSION['status_akun']=='Manager' || $_SESSION['status_akun']=='Senior Manager') && $_SESSION['hak_akses']=='Unit'){
                                         echo "
                                         <option value='$id_departemen'>$nama_departemen</option>
                                         ";
@@ -59,24 +62,21 @@
             	    	    <label class="col-12 col-md-2">Unit</label>
                 	    	<select id="unit" name='unit' class="col-12 col-md-2 form-control">    
                                 <?php
-                                    if($_SESSION['status_akun']=='Unit'){
+                                    if(($_SESSION['status_akun']=='Unit' || $_SESSION['status_akun']=='Manager') && $_SESSION['hak_akses']=='Unit'){
                                         echo "<option value='$id_unit'>$nama_unit</option>";
+                                    }else if($_SESSION['status_akun']=='Senior Manger'){
+                                        echo"<option value='all' selected='true'>All</option>";
                                     }else{
                                         echo"<option value='all' selected='true'>All</option>";
-                                        $query = mysqli_query($koneksi, "Select * from tb_unit where id_departemen=(select id_departemen from tb_departemen LIMIT 1)");
-                                        foreach($query as $unit){
-
-                                            echo"<option value='".$departemen['id_unit']."'>".$departemen['nama_unit']."</option>";
-                                        }
                                     }
                                 ?>
                     		</select>
                         </div>
                 		<div id='input_date' class="row">
                 		    <label class="col-12 col-md-1">From :</label>
-            			    <input type="date" name='from' id='dari' class="col-12 col-md-2 form-control">
+            			    <input type="text" name='from' id='dari' class="col-12 col-md-2 form-control">
             			    <label class="col-12 col-md-2">To :</label>
-                		    <input type="date" name="to" id='sampai' class="col-12 col-md-2 form-control">
+                		    <input type="text" name="to" id='sampai' class="col-12 col-md-2 form-control">
                         </div>
                     </div>
                     <div class="card-body">
@@ -161,13 +161,17 @@
                     
                 },
               error:function(jqXHR, textStatus, errorThrown){
-                alert("Error "+ jqXHR.status);
+                alert("Error "+ errorThrow);
             }
         });
     }
     $(document).ready(function() {
         /** Setting Tanggal Default */
         /** Tanggal 1 Tahun lalu */
+        $( "#dari" ).datepicker();
+        $( "#sampai" ).datepicker();
+        $( "#dari" ).datepicker("option", "dateFormat", "dd/mm/yy");
+        $( "#sampai" ).datepicker("option", "dateFormat", "dd/mm/yy");
         var today = new Date();
         var lastmonth = new Date();
         var dd = today.getDate();
@@ -184,8 +188,8 @@
         }
         if(ddl<10){ddl='0'+ddl}
         if(mml<10){mml='0'+mml}
-        today = yyyy+'-'+mm+'-'+dd; 
-        lastmonth = yyyyl+'-01-01';
+        today = dd+'/'+mm+'/'+yyyy; 
+        lastmonth = '01/01/'+yyyyl;
         /** Setting Tanggal Default */
         try{
             document.getElementById('dari').value = lastmonth;
@@ -195,6 +199,25 @@
         } catch(e){
             alert(e);
         }
+        var data = $('#myform').serialize();
+        //Merefresh unit jika status adalah senior manager
+        <?php
+            if($_SESSION['status_akun']=='Senior Manager'){
+        ?>
+        $.ajax({
+            type: 'POST',
+            url: "../action/options_unit_grafik.php",
+            data: data,
+            success: function(response) {
+                let isi = "<option value='all' selected='true'>All</option>"+response
+                $("#unit").html(isi);
+                gantiRange(document.getElementById('rentang').value);
+            }
+        }); 
+        <?php
+            }
+        ?>
+        //Akhir merefresh unit jika status adalah senior manager
         $.ajax({
             data: $("#myform").serialize(),
               type: 'POST',
@@ -237,47 +260,27 @@
         /** Filter unit berdasarkan departemen */
         /**Listen Tanggal Awal */
         $("#unit").change(function () {
-            if(dari.value>sampai.value){
-                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
-            } else {
-                gantiRange(document.getElementById('rentang').value);
-            }
+            gantiRange(document.getElementById('rentang').value);
         });
         /**Listen Tanggal Awal */
         /**Listen Tanggal Awal */
         $("#dari").change(function () {
-            if(dari.value>sampai.value){
-                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
-            } else {
-                gantiRange(document.getElementById('rentang').value);
-            }
+            gantiRange(document.getElementById('rentang').value);
         });
         /**Listen Tanggal Awal */
         /**Listen Tanggal Akhir */
         $("#sampai").change(function () {
-            if(dari.value>sampai.value){
-                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
-            } else {
-                gantiRange(document.getElementById('rentang').value);
-            }
+            gantiRange(document.getElementById('rentang').value);
         });
         /**Listen Tanggal Akhir */
         /**Listen Pengelompokkan */
         $("#kelompok").change(function () {
-            if(dari.value>sampai.value){
-                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
-            } else {
-                gantiRange(document.getElementById('rentang').value);
-            }
+            gantiRange(document.getElementById('rentang').value);
         });
         /**Listen Pengelompokkan */
         /**Listen Rentang */
         $("#rentang").change(function () {
-            if(dari.value>sampai.value){
-                alert("Tanggal awal harus lebih kecil dari tanggal akhir");
-            } else {
-                gantiRange(document.getElementById('rentang').value);
-            }
+            gantiRange(document.getElementById('rentang').value);
         });
         /**Listen Rentang */
         /**Listen Jenis Grafik */

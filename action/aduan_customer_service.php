@@ -6,6 +6,8 @@
 	
 	$check_box_3_hari = isset($_POST['hari']);
 	$tanggal_kejadian = $koneksi -> real_escape_string($_POST['tanggal_kejadian']);
+	$tanggal_kejadian = date_create_from_format('d/m/Y', $tanggal_kejadian);
+	$tanggal_kejadian = date_format($tanggal_kejadian, 'Y-m-d');
 	if(!$check_box_3_hari){
 		$keterangan_kejadian = "'".($koneksi -> real_escape_string($_POST['keterangan_kejadian']))."'";
 	}else{

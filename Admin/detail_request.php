@@ -167,8 +167,8 @@
                           if($keterangan_kembali_row = mysqli_fetch_array($keterangan_kembali)){
                               echo"                  
                                     <div class='row mb-2 2'>
-                				      <div class='col-lg-4'>
-                				        <label>Keterangan Return<label>
+                                      <div class='col-lg-4'>
+                                        <label>Keterangan Return<label>
                                       </div>
                                       <div class='col-lg-8'>
                                         <input type='text' class='form-control' disabled value='".$keterangan_kembali_row['tindakan']."'></input>

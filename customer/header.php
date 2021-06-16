@@ -34,4 +34,11 @@
   <!-- Custom styles for this template -->
   <!-- Custom styles for this page -->
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+		<script src="../vendor/jquery/jquery.min.js"></script>
+		<link rel="stylesheet" href="../assets/jquery-ui/jquery-ui.min.css">
+		<script src="../assets/jquery-ui/external/jquery/jquery.js"></script>
+		<script src="../assets/jquery-ui/jquery-ui.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js">
+	</script>
 	</head>

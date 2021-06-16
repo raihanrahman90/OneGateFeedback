@@ -100,7 +100,9 @@ include 'header.php';
 												</div>
 												<div class="form-group">
 												    <label>Detail Lokasi<small>(required)</small></label>
-													<input name="detail_lokasi" type="text" class="form-control" placeholder="Detail Lokasi" id="detail_lokasi" required>
+													<input name="detail_lokasi" type="text" class="form-control tm" placeholder="Detail Lokasi" 
+														data-date-format="DD/MMM/YYYY" placeholder="dd/mm/yyyy"
+														id="detail_lokasi" required>
 												</div>
 												<div class="form-group">
 												    <label>Tanggal Kejadian<small>(required)</small></label><br/>
@@ -110,11 +112,12 @@ include 'header.php';
 															<label class="custom-control-label" for='hari'>3 Hari terakhir</label>
 														</div>
 													</div>
-													<input name="tanggal_kejadian" type="date" class="form-control" placeholder="tanggal_kejadian" id="tanggal_kejadian" required>
+													<input name="tanggal_kejadian" type="text" class="form-control" 
+													id="tanggal_kejadian" required />
 												</div>
 												<div class="form-group d-none" id="form_keterangan_kejadian">
 												    <label>Keterangan Tanggal Kejadian<small>(required)</small></label><br/>
-													<textarea name="keterangan_kejadian" id='keterangan_kejadian' rows="4" class="form-control" placeholder="Bulan lalu ketika saya berangkat ke bandung" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+													<textarea name="keterangan_kejadian" id='keterangan_kejadian' rows="4" class="form-control" placeholder="alasan pelaporan lebih dari 3 hari" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 												</div>
 												<div class="form-group">
 													<label>Foto</label>
@@ -151,6 +154,8 @@ include 'header.php';
 			}
 			return yy+"-"+mm+"-"+dd
 		}
+		$('#tanggal_kejadian').datepicker({'minDate':"-2D", 'maxDate':-0})
+		$('#tanggal_kejadian').datepicker('option', 'dateFormat', 'dd/mm/yy')
 	    $(document).ready(function(){
 			$("#perihalUrgent").change(function(){
                  if($(this).val()=='Tidak Urgent'){
@@ -161,25 +166,15 @@ include 'header.php';
 					 $('#perihal').prop('required', false);
 				 }
             })
-			var today = new Date()
-			$('#tanggal_kejadian').attr('min', minimum)
-			var maximum = getDateString(today)
-			var minimum = new Date(Date.now() - 1000*60*60*48);
-			minimum = getDateString(minimum)
-			$('#tanggal_kejadian').attr('max', maximum)
-			$('#tanggal_kejadian').attr('min', minimum)
 			$('#hari').change(function(){
 				if($('#hari').is(":checked")){
-					$('#tanggal_kejadian').attr('max', maximum)
-					$('#tanggal_kejadian').attr('min', minimum)
 					$('#form_keterangan_kejadian').addClass('d-none')
 					$('#keterangan_kejadian').prop('required', false)
-					$('#tanggal_kejadian').val(maximum)
+					$('#tanggal_kejadian').datepicker('option', 'minDate', '-2D')
 				}else{
 					$('#form_keterangan_kejadian').removeClass('d-none')
 					$('#keterangan_kejadian').prop('required', true)
-					$('#tanggal_kejadian').attr('max', maximum)
-					$('#tanggal_kejadian').attr('min', '2000-01-01')
+					$('#tanggal_kejadian').datepicker('option', 'minDate', '-20Y')
 				}
 			})
 	    });

@@ -40,48 +40,38 @@ $size = $pdf->addLine( $y, $line );
 $y   += $size + 2;
 
 
-    if(is_null($data['no_telp'])){
-        $line = array(  "1" => "Lokasi",
-        "2" => $data['nama_lokasi'],
-        "3" => "Contact",
-        "4" =>  "Tidak Diketahui");
-    }else{
-        $line = array(  "1" => "Lokasi",
-        "2" => $data['nama_lokasi'],
-        "3" => "No Telpon",
-        "4" => $data['no_telp']);
-    }
-    $size = $pdf->addLine( $y, $line );
-    $y   += $size + 2;
-
     if(is_null($data['nama_perusahaan'])){
-        $line = array(  "1" => "Detail Lokasi",
-        "2" => $data['nama_detail_lokasi'],
+        $line = array(  "1" => "Lokasi",
+        "2" => $data['nama_lokasi'],
         "3" => "Nama Perusahaan",
         "4" =>  "Tidak Diketahui");
     }else{
-        $line = array(  "1" => "Detail Lokasi",
-        "2" => $data['nama_detail_lokasi'],
+        $line = array(  "1" => "Lokasi",
+        "2" => $data['nama_lokasi'],
         "3" => "Nama Perusahaan",
         "4" => $data['nama_perusahaan']);
     }
     $size = $pdf->addLine( $y, $line );
     $y   += $size + 2;
 
-
-
     if(is_null($data['nama_perusahaan'])){
-        $line = array(  "1" => "Departemen",
-        "2" => $data['nama_departemen'],
+        $line = array(  "1" => "Detail Lokasi",
+        "2" => $data['nama_detail_lokasi'],
         "3" => "Gerai",
         "4" =>  "Tidak Diketahui");
     }else{
-        $line = array(  "1" => "Departemen",
-        "2" => $data['nama_departemen'],
+        $line = array(  "1" => "Detail Lokasi",
+        "2" => $data['nama_detail_lokasi'],
         "3" => "Gerai",
         "4" => $data['gerai']);
     }
+    $size = $pdf->addLine( $y, $line );
+    $y   += $size + 2;
 
+
+    $line = array(  "1" => "Departemen",
+    "2" => $data['nama_departemen'],
+    "3" =>" ","4"=>" ");
     $size = $pdf->addLine( $y, $line );
     $y   += $size + 2;
 

@@ -26,6 +26,9 @@
 	}
 	include('header.php');
 ?>
+<script>
+
+</script>
 <!doctype html>
 	<body class="login">
 	<div class="image-container set-full-height">
@@ -143,9 +146,8 @@
 															<label class="custom-control-label" for='hari'>3 Hari terakhir</label>
 														</div>
 													</div>
-													<?php
-														echo '<input name="waktu_kejadian" type="date" class="form-control" id="tanggal_kejadian" value="'.$row1['waktu_kejadian'].'" required />';
-													?>
+														<input name="waktu_kejadian" type="text" class="form-control" 
+																id="tanggal_kejadian" required />
 												</div>
 												<div class=<?php echo ($row1['3hari']==1?"'form-group'":"'form-group d-none'")?> id="form_keterangan_kejadian">
 													<label>Keterangan Kejadian</label>
@@ -222,31 +224,25 @@
 							$('#perihal').prop('required', false);
 						}
 					})
-					var today = new Date()
-					$('#tanggal_kejadian').attr('min', minimum)
-					var maximum = getDateString(today)
-					var minimum = new Date(Date.now() - 1000*60*60*48);
-					minimum = getDateString(minimum)
-					$('#tanggal_kejadian').attr('max', maximum)
 					<?php
-						if($row1['3hari']==0){
-					?>
-					$('#tanggal_kejadian').attr('min', minimum)
-					<?php
+						if(is_null($row1['keterangan_kejadian'])){
+							echo"$('#tanggal_kejadian').datepicker({'minDate':'-2D', 'maxDate':-0, 'dateFormat':'dd/mm/yy'});";
+						}else{
+							echo"$('#tanggal_kejadian').datepicker({'minDate':'-20Y', 'maxDate':-0, 'dateFormat':'dd/mm/yy'});";
 						}
+						$tanggal_kejadian = date_create_from_format('Y-m-d', $row1['waktu_kejadian']);
+						$tanggal_kejadian = date_format($tanggal_kejadian, 'd/m/Y');
+						echo "$('#tanggal_kejadian').datepicker('setDate', '$tanggal_kejadian');";
 					?>
 					$('#hari').change(function(){
 						if($('#hari').is(":checked")){
-							$('#tanggal_kejadian').attr('max', maximum)
-							$('#tanggal_kejadian').attr('min', minimum)
+							$('#tanggal_kejadian').datepicker('option', 'minDate', '-2D')
 							$('#form_keterangan_kejadian').addClass('d-none')
 							$('#keterangan_kejadian').prop('required', false)
-							$('#tanggal_kejadian').val(maximum)
 						}else{
 							$('#form_keterangan_kejadian').removeClass('d-none')
 							$('#keterangan_kejadian').prop('required', true)
-							$('#tanggal_kejadian').attr('max', maximum)
-							$('#tanggal_kejadian').attr('min', '2000-01-01')
+							$('#tanggal_kejadian').datepicker('option', 'minDate', '-20Y')
 						}
 					})
 				});

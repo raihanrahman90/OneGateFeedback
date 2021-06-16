@@ -4,14 +4,19 @@
 	$data_kembali["label"]=[];
 	$data_kembali["data"]=[];
 	$rentang = $_POST['rentang'];
-	$from = $_POST['from'];
-	$to = $_POST['to'];
+	$from =	date_create_from_format('d/m/Y', $_POST['from']);
+	$to = date_create_from_format('d/m/Y', $_POST['to']);
+	$from = date_format($from, 'd-m-Y');
+	$to = date_format($to, 'd-m-Y');
 	$departemen = $_POST['departemen'];
 	$unit = $_POST['unit'];
 	$kelompok = $_POST['kelompok'];
 	if($rentang=='Bulan'){
         $from = date('Y-m-01', strtotime($from));
-        $to = date('Y-m-t', strtotime($to));
+        $to = date('Y-m-d', strtotime($to));
+	}else{
+		$from = date('Y-m-d', strtotime($from));
+		$to = date('Y-m-d', strtotime($to));
 	}
 	
 		if($departemen=='all'){
@@ -76,7 +81,7 @@
 													inner join tb_unit on tb_unit.id_unit = tb_aduan.id_unit
 													where date(waktu_kirim)>=date('".$from."') and 
 													tb_unit.id_departemen = '".$departemen."' and
-													date(waktu_kirim) <= date('".$to."') group by $kelompok
+													date(waktu_kirim) <= date('".$to."') group by $kelompok,
 													 DATE_FORMAT(date(waktu_kirim),'%d-%m-%Y') order by waktu_kirim");
 					foreach($data as $row){
 						$data_kembali["data"][$row[$kelompok]][$row["DATE_FORMAT(date(waktu_kirim),'%d-%m-%Y')"]]=$row['count(id_aduan)'];
@@ -117,8 +122,9 @@
 													FROM tb_aduan 
 													where date(waktu_kirim)>=date('".$from."') and 
 													tb_aduan.id_unit = '".$unit."' and
-													date(waktu_kirim) <= date('".$to."') group by $kelompok
+													date(waktu_kirim) <= date('".$to."') group by $kelompok,
 													 DATE_FORMAT(date(waktu_kirim),'%d-%m-%Y') order by waktu_kirim");
+
 					foreach($data as $row){
 						$data_kembali["data"][$row[$kelompok]][$row["DATE_FORMAT(date(waktu_kirim),'%d-%m-%Y')"]]=$row['count(id_aduan)'];
 						if(!in_array($row["DATE_FORMAT(date(waktu_kirim),'%d-%m-%Y')"], $data_kembali["label"])){

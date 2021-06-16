@@ -1,10 +1,9 @@
 <?php
-    function htmltophp($tanggal) {
-        $mm = substr($tanggal,0,2);
-        $dd = substr($tanggal,3,5);
+    function jquerytophp($tanggal) {
+        $dd = substr($tanggal,0,2);
+        $mm = substr($tanggal,3,5);
         $yy = substr($tanggal,6, 10);
-        $tanggalHasil = $yy."-".$mm."-".$dd;
-        echo $tanggal;
+        $tanggalHasil = $mm."/".$dd."-".$yy;
         return $tanggalHasil;
     }
     function phptohtml($tanggal){

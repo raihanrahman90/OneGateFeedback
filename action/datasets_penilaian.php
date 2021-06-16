@@ -4,14 +4,19 @@
 	$data_kembali["label"]=[];
 	$data_kembali["data"]=[];
 	$rentang = $_POST['rentang'];
-	$from = $_POST['from'];
-	$to = $_POST['to'];
+	$from =	date_create_from_format('d/m/Y', $_POST['from']);
+	$to = date_create_from_format('d/m/Y', $_POST['to']);
+	$from = date_format($from, 'd-m-Y');
+	$to = date_format($to, 'd-m-Y');
 	$departemen = $_POST['departemen'];
 	$unit = $_POST['unit'];
 	$kelompok = $_POST['kelompok'];
 	if($rentang=='Bulan'){
         $from = date('Y-m-01', strtotime($from));
-        $to = date('Y-m-t', strtotime($to));
+        $to = date('Y-m-d', strtotime($to));
+	}else{
+		$from = date('Y-m-d', strtotime($from));
+		$to = date('Y-m-d', strtotime($to));
 	}
 	if($kelompok=="rata-rata"){
 		if($departemen=='all'){
