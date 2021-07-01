@@ -1,11 +1,12 @@
 <?php
     session_start();
     include '../koneksi.php';
-    $pertanyaan = $_POST['pertanyaan'];
+    $pertanyaan = $koneksi->real_escape_string($_POST['pertanyaan']);
     $id = $koneksi -> real_escape_string($_POST['id']);
+    $nama = $koneksi -> real_escape_string($_POST['nama']);
     $id_akun = $_SESSION['id_akun'];
     $id_aduan = $id;
-    $query= mysqli_query($koneksi, "INSERT INTO tb_keterangan_tambahan VALUES(0, '$id','$id_akun', '$pertanyaan', NULL,NULL, NULL)") or die(mysqli_error($koneksi));
+    $query= mysqli_query($koneksi, "INSERT INTO tb_keterangan_tambahan VALUES(0, '$id','$id_akun', '$pertanyaan oleh $nama', NULL,NULL, NULL)") or die(mysqli_error($koneksi));
     $id_keterangan =mysqli_insert_id($koneksi);
     $id_link = md5($id_keterangan);
     $update = mysqli_query($koneksi, "UPDATE tb_keterangan_tambahan SET link = '$id_link' where id_keterangan='$id_keterangan'") or die(mysqli_error($koneksi));

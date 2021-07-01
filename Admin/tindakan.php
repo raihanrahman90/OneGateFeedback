@@ -50,7 +50,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><label>Bukti Gambar</label></td>
+                      <td><label>Bukti Gambar (PNG/JPG)</label></td>
                       <td><label>:</label></td>
                       <td><input type="file" name="Bukti" id="bukti" accept='image/*'></td>
                     </tr>

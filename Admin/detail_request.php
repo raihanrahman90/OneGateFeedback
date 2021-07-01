@@ -349,6 +349,8 @@
                             }
                         echo"</select>
                         
+                            <label>Nama Admin</label>
+                            <input type='text' name='nama' class='form-control unit' placeholder='Masukkan nama anda' required/>
                             <label>Keterangan.</label>
                             <input type='text' name='keterangan' class='form-control unit' />
                           </div>
@@ -378,8 +380,10 @@
                         </div>
                         <form action='../action/add_keterangan_tambahan.php' method='post' id='my_form'>
                           <div class='modal-body'>
+                            <label>Nama</label>
+                            <input type='text' name='nama' class='form-control' placeholder='Masukkan Nama Anda' required>
                             <label>Masukkan Keterangan yang anda butuhkan</label>
-                            <input type='text' name='pertanyaan' class='form-control'>
+                            <input type='text' name='pertanyaan' class='form-control' placeholder='Masukkan pesan yang dikirimkan ke customer' required>
                           </div>
                           <div class='modal-footer'>
                             <button class='btn btn-secondary' type='button' data-dismiss='modal'>Batal</button>

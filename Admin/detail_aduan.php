@@ -238,8 +238,6 @@ include 'header.php';
                                   }
                                   
                       echo"</div>";
-                      
-                      if($row["tindakan"]!=NULL){
                         #tindakan ditemukan
                         echo"
                         <div class='row'>
@@ -284,7 +282,6 @@ include 'header.php';
                           </div>
                         </div>";
                         ///tindakan ditemukan
-                      }
                       echo "
                       <a href='#' data-toggle='modal' data-target='#keteranganModal' style='margin-left:10px;' class='btn btn-primary btn-icon-split float-right' >
                         <span class='icon text-white-50'>
@@ -346,15 +343,38 @@ include 'header.php';
                         </div>";
                     if(($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin2')&& $status !='Closed'){
                         #status belum closed & login sebagai customer service
-                      echo "<form action='../action/selesai.php' id='my_form' method='post'>
-                            <a href='javascript:{}' onclick='lakukan()').submit();' type='submit' value='Tambah' class='btn btn-success btn-icon-split float-right' style='margin-left:10px;'>
+                      echo "
+                            <a href='#' data-toggle='modal' data-target='#selesaiModal'  style='margin-left:10px;' class='btn btn-success btn-icon-split float-right' >
                               <span class='icon text-white-50'>
                                 <i class='fas fa-check'></i>
                               </span>
                               <span class='text'>Selesai</span>
                             </a>
+                            <!-- Logout Modal-->
+                            <form action='../action/selesai.php' method='post'>
                             <input type='hidden' value = '$id' name='id'>
-                            </form>
+                            <div class='modal fade' id='selesaiModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                              <div class='modal-dialog' role='document'>
+                                <div class='modal-content'>
+                                  <div class='modal-header'>
+                                    <h5 class='modal-title' id='selesaiModalLabel'>Menutup Feedback</h5>
+                                    <button class='close' type='button' data-dismiss='modal' aria-label='Close'>
+                                      <span aria-hidden='true'>×</span>
+                                    </button>
+                                  </div>
+                                    <div class='modal-body'>
+                                        <label>Nama Admin</label>
+                                        <input type='text' class='form-control form-control-user' name='nama' placeholder='Masukkan nama anda' required>
+                                        </input>
+                                        </div>
+                                          <div class='modal-footer'>
+                                              <button class='btn btn-secondary' type='button' data-dismiss='modal'>Batal</button>
+                                              <button class='btn btn-info' type='submit'>Kirim</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              </form>
                             ";
                         ///status belum closed & login sebagai customer service
                     } 
@@ -367,7 +387,7 @@ include 'header.php';
                         <span class='text'>Tambahkan tindakan</span>
                       </a>
 
-                      <a href='#' data-toggle='modal' data-target='#kembaliModal' class='btn btn-danger btn-icon-split float-right' >
+                      <a href='#' data-toggle='modal' data-target='#kembaliModal'  style='margin-left:10px;' class='btn btn-danger btn-icon-split float-right' >
                         <span class='icon text-white-50'>
                           <i class='fas fa-undo'></i>
                         </span>
@@ -432,7 +452,11 @@ include 'header.php';
                                   </button>
                                 </div>
                                   <div class='modal-body'>
-                                      <input type='text' class='form-control form-control-user' name='keterangan' placeholder='Wifi masih rusak' required>
+                                      <label>Nama Admin</label>
+                                      <input type='text' class='form-control form-control-user' name='nama' placeholder='Masukkan Nama Anda' required>
+                                      </input>
+                                      <label>Keterangan</label>
+                                      <input type='text' class='form-control form-control-user' name='keterangan' placeholder='Masukkan Keterangan' required>
                                       </input>
                                       </div>
                                         <div class='modal-footer'>
