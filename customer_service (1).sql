@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Jul 2021 pada 06.24
+-- Waktu pembuatan: 06 Agu 2021 pada 13.52
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.4
 
@@ -62,7 +62,7 @@ INSERT INTO `tb_aduan` (`id_aduan`, `id_akun`, `id_customer`, `id_unit`, `nama_u
 (6, 132, NULL, 9, 'Airport Facilities', 'Technical', 'ini detail lokasi', 'Perkantoran AP1', 'Keluhan', 1, 'Konsleting Listrik', 'Mitra', 'ini keternagan', 'Closed', '2021-06-07 13:14:53', '2021-06-07 12:34:26', NULL, NULL, NULL, 4),
 (7, 132, NULL, 10, 'Airport Equipment (Mechanical)', 'Technical', 'ini detail lokasi', 'Gedung parkir terminal', 'Keluhan', 1, 'Konsleting Listrik', 'Mitra', 'ini keterangan', 'Closed', '2021-06-14 12:37:15', '2021-06-09 12:34:26', NULL, NULL, '7.png', 4),
 (8, 132, 116, 9, 'Airport Facilities', 'Technical', 'Kantor CSC keberangkatan', 'Ruang Tunggu Gate 7', 'Keluhan', 0, 'Lampu ruang csc perihalnya agak dipanjangin biar turun ke bawah buat mvp', 'Mitra', 'Selamat pagi , Ijin menginformasikan salahsatu lampu di ruangan CSC mati. Terimakasih Case ini diambil dari WAG Service Imrpovement sebagai trial                \r\n Selamat pagi , Ijin menginformasikan salahsatu lampu di ruangan CSC mati. Terimakasih Case ini diambil dari WAG Service Imrpovement sebagai trial                \r\n Selamat pagi , Ijin menginformasikan salahsatu lampu di ruangan CSC mati. Terimakasih Case ini diambil dari WAG Service Imrpovement sebagai trial                \r\n ', 'Progress', '2021-06-03 19:09:44', '2021-06-03 12:34:26', NULL, NULL, '8.jpeg', 4),
-(14, 132, 116, 9, 'Airport Facilities', 'Technical', 'demat tangga', 'Gedung parkir terminal', 'Keluhan', 1, 'Konsleting Listrik', 'Mitra', 'Listrik di Dekat tanga mati', 'Open', '2021-07-01 09:45:45', '2021-06-11 16:55:28', NULL, NULL, NULL, 1),
+(14, 132, 116, 9, 'Airport Facilities', 'Technical', 'demat tangga', 'Gedung parkir terminal', 'Keluhan', 1, 'Konsleting Listrik', 'Mitra', 'Listrik di Dekat tanga mati', 'Open', '2021-07-01 09:45:45', '2021-06-11 16:55:28', NULL, NULL, NULL, 4),
 (15, NULL, 116, NULL, NULL, NULL, 'Lebih 3 hari', 'Gedung parkir terminal', 'Keluhan', 1, 'Konsleting Listrik', 'Mitra', 'Ini yang lebih 3 hari', 'Request', '2021-06-13 13:09:03', '2021-06-10 16:55:28', NULL, NULL, NULL, 0),
 (16, 132, 116, 9, 'Airport Facilities', 'Technical', 'kursi', 'Gedung parkir terminal', 'Keluhan', 1, 'Konsleting Listrik', 'Mitra', 'Coba lagi', 'Open', '2021-06-13 16:32:56', '2021-06-15 16:57:00', NULL, NULL, NULL, 4),
 (17, NULL, 116, NULL, NULL, NULL, 'dede', 'Gedung parkir terminal', 'Keluhan', 1, 'Konsleting Listrik', 'Mitra', 'dede', 'Request', '2021-06-13 18:34:02', '2021-06-08 16:57:28', NULL, NULL, NULL, 0),

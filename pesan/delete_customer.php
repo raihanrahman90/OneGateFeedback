@@ -14,9 +14,12 @@ $text = '<!DOCTYPE html>
     Akun anda belum dapat diaktifkan, silahkan registrasi ulang pada link berikut <br>
     <a href="'.$link.'register">Klik Disini</a><br>
         Atau hubungi Admin pada email berikut<br>
+        novita.milana@ap1.co.id<br>
+        theodora.davita@ap1.co.id<br>
         nawang.ayunanda@ap1.co.id<br>
-        Theodora.Davita@ap1.co.id<br>
-        tasyakha.a@gmail.com
+        tasyakha.a@gmail.com<br>
+        dnperdana18@gmail.com<br>
+        henryfaturrahman@gmail.com<br>
   </div>
 </div>
 </body>

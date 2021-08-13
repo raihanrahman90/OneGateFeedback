@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost","root","Airport2020","customer_service");
+$koneksi = mysqli_connect("localhost","root","","customer_service");
 //mysqli_connect(server, user, password, database)
 // Check connection
 //https://github.com/kingsakti87/bandara

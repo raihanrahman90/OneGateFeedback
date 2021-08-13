@@ -26,7 +26,8 @@ include 'header.php';
                       }
                     }
             				$id = $_GET['id'];
-            				$data = mysqli_query($koneksi, "SELECT nama_perusahaan,gerai, nama, email, no_telp, pass_bandara, foto, status, id_pass_bandara, masa_berlaku, kontrak 
+            				$data = mysqli_query($koneksi, "SELECT nama_perusahaan,gerai, nama, email, no_telp, pass_bandara, foto, status, 
+                                                          id_pass_bandara, masa_berlaku, kontrak, tanggal_pembuatan
                                                     from tb_customer where tb_customer.id_customer ='$id'") or die(mysqli_error($koneksi));
             				$cek = mysqli_num_rows($data);
 							if($cek > 0){
@@ -110,6 +111,15 @@ include 'header.php';
                             </label>
                             <div class='col-lg-8'>
                                 <input type='text' class='form-control' disabled value='".$row['id_pass_bandara']."'>
+                            </div>
+                        </div>
+                        <div class='row mb-2'>
+                          <!-- Default Card Example -->
+                            <label class='col-lg-4'>
+                              Tanggal Pembuatan
+                            </label>
+                            <div class='col-lg-8'>
+                                <input type='text' class='form-control' disabled value='".$row['tanggal_pembuatan']."'>
                             </div>
                         </div>
                     </div>

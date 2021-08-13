@@ -41,7 +41,8 @@ if($cek = mysqli_fetch_array($data)){
 			kontrak='$kontrak',
     		id_pass_bandara='$id_pass_bandara',
     		pass_bandara=NULL,
-    		foto=NULL
+    		foto=NULL,
+			tanggal_pembuatan=now()
     		where Email ='$email' 
     	") or die(mysqli_error($koneksi));
         $id = $cek['id_customer'];
@@ -110,7 +111,8 @@ if($cek = mysqli_fetch_array($data)){
 		'$kontrak',
 		'$id_pass_bandara',
 		NULL,
-		NULL
+		NULL,
+		now()
 	)") or die(mysqli_error($koneksi));
     $id = mysqli_insert_id($koneksi);
 	if(is_uploaded_file($_FILES['foto']['tmp_name'])){
