@@ -12,5 +12,6 @@
     	#masuk tanpa login
 		$result= json_encode(array('success'=>false,'message'=>'Anda Tidak memilih akses ke halaman ini'));
     }
+    echo $result;
     
 ?>

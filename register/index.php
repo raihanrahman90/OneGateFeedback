@@ -75,7 +75,7 @@ include('header.php');
 											</div>
 											<div class="col-sm-12">
 												<div class="form-group">
-												    <label>Masukkan Id Sisi Darat atau Foto Pass Bandara</label>
+												    <label>Masukkan Id Sisi Darat atau Foto Pass Bandara(jpg/png)</label>
 												    <div class="row">
     												    <div class="col-sm-6">
     													    <input type="file" id="pass_bandara" accept="image/*" name='pass_bandara' required/>
@@ -114,8 +114,8 @@ include('header.php');
 														<img src="../assets/img/default-avatar.jpg" class="picture-src" id="wizardPicturePreview2" title="" />
 														
 													</div>
-													<h6>Foto Anda</h6>
-													<input type="file" id="wizard-picture2"name='foto' required>
+													<h6>Foto Anda(jpg/png)</h6>
+													<input type="file" id="wizard-picture2"name='foto' accept='image/*' required>
 												</div>
 											</div>	
 		                                    <div class="col-sm-6">
