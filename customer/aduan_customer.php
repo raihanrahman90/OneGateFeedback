@@ -38,7 +38,8 @@ include 'header.php';
 								Halaman web ini membutuhkan javascript untuk bekerja dengan baik, mohon aktifkan javascript pada peramban Anda. 
 								</div>
 							</noscript>
-		                    <form method="post" action="../action/aduan_customer.php" onsubmit="return validasi();" enctype="multipart/form-data" id="myform">
+		                    <form method="post" action="../action/aduan_customer.php" 
+									onsubmit="return validate(this);" enctype="multipart/form-data" id="myform">
 		                <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
 
 		                    	<div class="wizard-header text-center">
@@ -119,8 +120,8 @@ include 'header.php';
 													<textarea name="keterangan_kejadian" id='keterangan_kejadian' rows="4" class="form-control" placeholder="alasan pelaporan lebih dari 3 hari" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 												</div>
 												<div class="form-group">
-													<label>Foto</label>
-													<input name="foto" type="file">
+													<label>Foto(jpg/jpeg)</label>
+													<input name="foto" type="file" accept="image/png, image/jpg, image/jpeg" id="foto" required>
 												</div>
 											</div>
 										</div>
@@ -141,6 +142,43 @@ include 'header.php';
 		</div> <!--  big container -->
 	</div>
     <script type="text/javascript">
+		function getExtension(filename) {
+			var parts = filename.split('.');
+			return parts[parts.length - 1];
+		}
+
+		function isImage(filename) {
+			var ext = getExtension(filename);
+			switch (ext.toLowerCase()) {
+				case 'jpg':
+				case 'gif':
+				case 'bmp':
+				case 'png':
+				//etc
+				return true;
+			}
+			return false;
+		}
+
+
+		$(function() {
+			$('#myform').submit(function() {
+				function failValidation(msg) {
+					alert(msg); // just an alert for now but you can spice this up later
+					return false;
+				}
+
+				var file = $('#foto');
+				if (!isImage(file.val())) {
+					return failValidation('Mohon hanya memasukkan gambar pada input foto');
+				}
+				
+				$('input[type="submit"]').attr('disabled',true)
+				$('input[type="submit"]').val("Mohon Tunggu")
+				return true; // prevent form submitting anyway - remove this in your environment
+			});
+
+		});
 		function getDateString(date){
 			dd = date.getDate()
 			mm = date.getMonth()+1
@@ -177,6 +215,7 @@ include 'header.php';
 				}
 			})
 	    });
+		
 	</script>
 </body>
 </html>

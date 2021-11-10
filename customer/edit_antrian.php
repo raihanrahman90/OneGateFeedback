@@ -157,7 +157,7 @@
 												</div>
 												<div class="form-group">
 													<label>Foto</label>
-													<input name="foto" type="file">
+													<input name="foto" type="file" id="foto">
 												</div>
 											</div>
 		                    	            <input type='hidden' name='id_aduan' value=<?php echo '"'.$id_aduan.'"'?> />
@@ -191,6 +191,46 @@
 
 			<script type="text/javascript">
 			
+				function getExtension(filename) {
+					var parts = filename.split('.');
+					return parts[parts.length - 1];
+				}
+
+				function isImage(filename) {
+					var ext = getExtension(filename);
+					switch (ext.toLowerCase()) {
+						case 'jpg':
+						case 'gif':
+						case 'bmp':
+						case 'png':
+						//etc
+						return true;
+					}
+					return false;
+				}
+
+
+				$(function() {
+					$('#myform').submit(function() {
+						function failValidation(msg) {
+							alert(msg); // just an alert for now but you can spice this up later
+							return false;
+						}
+
+						var file = $('#foto');
+						if (!file.val()){
+							$('input[type="submit"]').attr('disabled',true)
+							$('input[type="submit"]').val("Mohon Tunggu")
+							return true; 
+						}else if(!isImage(file.val())){
+							return failValidation('Mohon hanya memasukkan gambar pada input foto');
+						}
+						$('input[type="submit"]').attr('disabled',true)
+						$('input[type="submit"]').val("Mohon Tunggu")
+						return true; // prevent form submitting anyway - remove this in your environment
+					});
+
+				});
 				function getDateString(date){
 					dd = date.getDate()
 					mm = date.getMonth()+1

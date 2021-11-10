@@ -18,22 +18,22 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>No</th>
                       <th>ID</th>
                       <th>Nama</th>
                       <th>Nama Perusahaan</th>
                       <th>Masa Berlaku</th>
+                      <th>Tanggal Daftar</th>
                       <th>Status</th>
                       <th>Lakukan</th>  
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>No</th>
                       <th>ID</th>
                       <th>Nama</th>
                       <th>Nama Perusahaan</th>
                       <th>Masa Berlaku</th>
+                      <th>Tanggal Daftar</th>
                       <th>Status</th>
                       <th>Lakukan</th>  
                     </tr>
@@ -41,14 +41,13 @@
                   <tbody>
                     <?php
                       $mahasiswa = mysqli_query($koneksi, "SELECT * from tb_customer ORDER BY status ASC");
-                      $edit =false;$no=1;
                       foreach ( $mahasiswa as $row){
                           echo "<tr>
-                              <td>$no</td>
                               <td>".$row['id_customer']."</td>
                               <td>".$row['nama']."</td>
                               <td>".$row['nama_perusahaan']."</td>
                               <td>".$row['masa_berlaku']."</td>
+                              <td>".$row['tanggal_pembuatan']."</td>
                               <td>
                               ";
                               if($row['status']=='0'){  
@@ -73,7 +72,6 @@
                               </a>
                               </td>
                             </tr>";
-                          $no++;
                     }
                     ?>
                   </tbody>

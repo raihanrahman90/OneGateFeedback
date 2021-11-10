@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Jul 2021 pada 06.24
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.4
+-- Waktu pembuatan: 05 Nov 2021 pada 13.05
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -198,20 +198,21 @@ CREATE TABLE `tb_customer` (
   `kontrak` date DEFAULT NULL,
   `id_pass_bandara` varchar(30) NOT NULL,
   `pass_bandara` text DEFAULT NULL,
-  `foto` text DEFAULT NULL
+  `foto` text DEFAULT NULL,
+  `tanggal_pembuatan` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tb_customer`
 --
 
-INSERT INTO `tb_customer` (`id_customer`, `nama_perusahaan`, `gerai`, `nama`, `email`, `no_telp`, `password`, `status`, `masa_berlaku`, `kontrak`, `id_pass_bandara`, `pass_bandara`, `foto`) VALUES
-(67, 're', 're', 're', 'rege@gmail.com', '63', '12eccbdd9b32918131341f38907cbbb5', 2, '2021-06-17', NULL, '32', '67.jpeg', '67.jpeg'),
-(100, 'de', 'de', 'de', 'dede@gmail.com', '858585', 'b4be1c568a6dc02dcaf2849852bdb13e', 1, '2022-09-29', NULL, '', '100.jpeg', NULL),
-(104, 'Yosan', 'Balikpapan', 'Yosan', 'raihanrahman@re-beat.xyz', '555', '137bf89f73807f094fbba5ff97385077', 1, '2021-11-23', NULL, '2020', '104.jpeg', '104.jpeg'),
-(105, 'Perusahaan', 'Balikpapan', 'lolo', 'lolo@gmail.com', '082323232', 'd6581d542c7eaf801284f084478b5fcc', 1, '2022-09-09', NULL, '', '105.jpg', '105.jpg'),
-(106, 'nama Perusahaan', 'Nama gerai', 'perdana', 'dnperdana18@gmail.com', '882323232', '9ac807dbc2df694054e4bcab80405b3c', 1, '2021-09-29', NULL, '', '106.jpg', '106.jpg'),
-(116, 'hacker', 'hacker', 'riahan', 'hackerouroboros39@gmail.com', '0909', 'daa6b8d04ce72d953d5501adc53ddd82', 1, '9999-02-09', '9999-02-09', '1234', '116.png', '116.png');
+INSERT INTO `tb_customer` (`id_customer`, `nama_perusahaan`, `gerai`, `nama`, `email`, `no_telp`, `password`, `status`, `masa_berlaku`, `kontrak`, `id_pass_bandara`, `pass_bandara`, `foto`, `tanggal_pembuatan`) VALUES
+(67, 're', 're', 're', 'rege@gmail.com', '63', '12eccbdd9b32918131341f38907cbbb5', 2, '2021-06-17', NULL, '32', '67.jpeg', '67.jpeg', NULL),
+(100, 'de', 'de', 'de', 'dede@gmail.com', '858585', 'b4be1c568a6dc02dcaf2849852bdb13e', 1, '2022-09-29', NULL, '', '100.jpeg', NULL, NULL),
+(104, 'Yosan', 'Balikpapan', 'Yosan', 'raihanrahman@re-beat.xyz', '555', '137bf89f73807f094fbba5ff97385077', 1, '2021-11-23', NULL, '2020', '104.jpeg', '104.jpeg', NULL),
+(105, 'Perusahaan', 'Balikpapan', 'lolo', 'lolo@gmail.com', '082323232', 'd6581d542c7eaf801284f084478b5fcc', 1, '2022-09-09', NULL, '', '105.jpg', '105.jpg', NULL),
+(106, 'nama Perusahaan', 'Nama gerai', 'perdana', 'dnperdana18@gmail.com', '882323232', '9ac807dbc2df694054e4bcab80405b3c', 1, '2021-09-29', NULL, '', '106.jpg', '106.jpg', NULL),
+(116, 'hacker', 'hacker', 'riahan', 'hackerouroboros39@gmail.com', '0909', 'daa6b8d04ce72d953d5501adc53ddd82', 1, '9999-02-09', '9999-02-09', '1234', '116.png', '116.png', NULL);
 
 -- --------------------------------------------------------
 

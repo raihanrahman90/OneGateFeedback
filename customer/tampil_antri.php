@@ -295,9 +295,7 @@
 																if($selesai){
 																	$gambar= mysqli_query($koneksi, "SELECT * FROM tb_progress 
 																									where id_aduan='$id_aduan' and 
-																									tindakan<>'Diteruskan ke unit' and
-																									tindakan<>'Dikembalikan ke cs dengan keterangan Kurang Data' and
-																									tindakan<>'Closed'
+																									tindakan like 'Feedback telah selesai%'
 																									order by id_progress desc") or die(mysqli_error($koneksi));
 																	if($gambar = mysqli_fetch_array($gambar)){
 																		if(!is_null($gambar['bukti'])){

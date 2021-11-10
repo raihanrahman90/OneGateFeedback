@@ -72,7 +72,8 @@ include 'header.php';
                               <div class='col-lg-8'>
                                 <input type='text' class='form-control' disabled value='".$row['ulasan']."'></input>
                               </div>
-                            </div>";
+                            </div>
+                            ";
                           /**Menampilkan ulasan customer */
                           /**Mengupdate data aduan telah dibuka */
                           mysqli_query($koneksi, "update tb_penilaian set open=1 where id_aduan=".$id) or die(mysqli_error($koneksi));
@@ -81,12 +82,21 @@ include 'header.php';
                                    echo"
                                 <div class='row mb-2'>
                                   <div class='col-lg-4'>
+                                    <label>Id Aduan<label>
+                                  </div>
+                                  <div class='col-lg-8'>
+                                    <input type='text' class='form-control' disabled value='".$id."'></input>
+                                  </div>
+                                </div>
+                                <div class='row mb-2'>
+                                  <div class='col-lg-4'>
                                     <label>Jenis<label>
                                   </div>
                                   <div class='col-lg-8'>
                                     <input type='text' class='form-control' disabled value='".$row['jenis']."'></input>
                                   </div>
-                                </div>";
+                                </div>
+                                ";
                               if($row['jenis']=='Keluhan'){
                                   echo"
                                   <div class='row mb-2'>

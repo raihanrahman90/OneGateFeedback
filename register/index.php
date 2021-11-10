@@ -1,4 +1,4 @@
-<?php 
+z<?php 
 include('header.php');
 ?>
 		                <div class="card wizard-card" data-color="blue" id="wizardProfile">
@@ -30,9 +30,12 @@ include('header.php');
                               							Kami akan konfirmasi data diri anda, silahkan tunggu e-mail konfirmasi
                           							</div>';
                           						$_SESSION['status']='';
-		                        			}
-		                        		} else {
-
+		                        			} else if($_SESSION['status']=='Salah ekstensi'){
+												echo '<div class="alert alert-warning alert-dismissible ">
+													Mohon hanya mengupload gambar dengan ekstensi jpg, jpeg, atau png
+												</div>';
+												$_SESSION['status']='';
+											}
 		                        		}
 		                        	?>
 		                    	</div>
@@ -75,10 +78,10 @@ include('header.php');
 											</div>
 											<div class="col-sm-12">
 												<div class="form-group">
-												    <label>Masukkan Id Sisi Darat atau Foto Pass Bandara</label>
+												    <label>Masukkan Id Sisi Darat atau Foto Pass Bandara(jpg/png)</label>
 												    <div class="row">
     												    <div class="col-sm-6">
-    													    <input type="file" id="pass_bandara" accept="image/*" name='pass_bandara' required/>
+    													    <input type="file" id="pass_bandara" accept="image/png, image/jpg, image/jpeg" name='pass_bandara' required/>
             											</div>
             											<div class="col-sm-6">
             											    <input type="number" id="id_pass_bandara" name="id_pass_bandara" class="form-control" placeholder="Masukkan Id sisi darat" required>
@@ -94,7 +97,7 @@ include('header.php');
         									</div>
         									<div class="col-sm-12">
         									    <div class="form-group">
-        									        <label>Masa Berlaku Kontrak</label>
+        									        <label>Masa Berlaku Kontrak Kerja Perusahaan Dengan PT AP 1</label>
         									        <input type="date" name="kontrak" class="form-control">
         									    </div>
         									</div>
@@ -114,8 +117,8 @@ include('header.php');
 														<img src="../assets/img/default-avatar.jpg" class="picture-src" id="wizardPicturePreview2" title="" />
 														
 													</div>
-													<h6>Foto Anda</h6>
-													<input type="file" id="wizard-picture2"name='foto' required>
+													<h6>Foto Anda(jpg/png)</h6>
+													<input type="file" id="wizard-picture2"name='foto' accept="image/png, image/jpg, image/jpeg" required>
 												</div>
 											</div>	
 		                                    <div class="col-sm-6">

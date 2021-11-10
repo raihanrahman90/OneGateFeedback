@@ -21,7 +21,9 @@ include 'header.php';
                         <th>Jenis</th>
                         <th>Departemen</th>
                         <th>Unit</th>
+                        <th>Perusahaan</th>
                         <th>Perihal</th>
+                        <th>Tanggal Kirim</th>
                           <th class='sorting_desc' aria-sort="descending">Status</th>
                           <th>Level</th>
                       <th>Lakukan</th>  
@@ -33,7 +35,9 @@ include 'header.php';
                       <th>Jenis</th>
                       <th>Departemen</th>
                       <th>Unit</th>
+                      <th>Perusahaan</th>
                       <th>Perihal</th>
+                      <th>Tanggal Kirim</th>
                       <th>Status</th>
                       <th>Level</th>
                       <th>Lakukan</th>
@@ -43,29 +47,32 @@ include 'header.php';
                     <?php
                     ###login sebagai unit
                     if(($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses'] == 'Admin2' || $_SESSION['hak_akses']=='Pengawas Internal' || $_SESSION['hak_akses']=='Admin1') || ($_SESSION['status_akun']=='AOC Head' || $_SESSION['status_akun']=='General Manager')){
-                      $sintax = "SELECT tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, status, level, progress.id_aduan as merah, tb_aduan.waktu from tb_aduan 
+                      $sintax = "SELECT tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, tb_aduan.status, level, progress.id_aduan as merah, tb_aduan.waktu, nama_perusahaan, waktu_kirim from tb_aduan 
                           left join tb_unit ON tb_aduan.id_unit=tb_unit.id_unit 
                           left join tb_departemen on tb_unit.id_departemen = tb_departemen.id_departemen 
                           left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
                                 on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu
-                          WHERE status <> 'Request' and status <> 'Returned' 
+                          left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
+                          WHERE tb_aduan.status <> 'Request' and tb_aduan.status <> 'Returned' 
                           GROUP BY tb_aduan.id_aduan
-                          ORDER BY field(status,'Progress' ,'Open', 'Closed'), tb_aduan.waktu DESC";
+                          ORDER BY field(tb_aduan.status,'Progress' ,'Open', 'Closed'), tb_aduan.waktu DESC";
                     }else if($_SESSION['status_akun']=='Manager'||$_SESSION['status_akun']=='Unit'){
                       /** Hanya menampilkan aduan terhadap unit */
-                      $sintax="SELECT  tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, status, level, progress.id_aduan as merah, tb_aduan.waktu from tb_aduan 
+                      $sintax="SELECT  tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, tb_aduan.status, level, progress.id_aduan as merah, tb_aduan.waktu, waktu_kirim from tb_aduan 
                                 inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen 
                                 left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
                                         on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu
+                                left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
                                 where tb_unit.id_unit = '".$_SESSION['id_unit']."'";
                       /** Hanya menampilkan aduan terhadap unit */
 
                     }else if($_SESSION['status_akun']=='Senior Manager'){
                       /** Hanya menampilkan aduan terhadap departemen dari senior manager */
-                      $sintax="SELECT  tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, status, level, progress.id_aduan as merah, tb_aduan.waktu from tb_aduan 
+                      $sintax="SELECT  tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, tb_aduan.status, level, progress.id_aduan as merah, tb_aduan.waktu, waktu_kirim from tb_aduan 
                               inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen 
                               left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
                                     on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu 
+                              left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
                               where tb_departemen.id_departemen = '".$_SESSION['id_departemen']."'";
                       /** Hanya menampilkan aduan terhadap departemen dari senior manager */
                     }
@@ -76,7 +83,8 @@ include 'header.php';
                               <td>".$row['id_aduan']."</td>
                               <td>".$row['jenis']."</td>
                               <td>".$row['Departemen']."</td>
-                              <td>".$row['nama_unit']."</td>";
+                              <td>".$row['nama_unit']."</td>
+                              <td>".$row['nama_perusahaan']."</td>";
                               /**mewarnai aduan yang berstatus urgen**/    
                               if($row['urgensi']==1){
                                 echo"<td><span class='badge badge-pill badge-danger' style='auto;'>".$row['perihal']."</span></td>";
@@ -86,6 +94,7 @@ include 'header.php';
                               }
                               /**mewarnai aduan yang berstatus urgen**/
                               ####status
+                              echo "<td>".$row['waktu_kirim']."</td>";
                               if($row['status']=='Closed'){  
                                   echo"<td> 
                                           <span class='badge badge-pill badge-success' style='width:100px;'>".$row['status']."</span>
