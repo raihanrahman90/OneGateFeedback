@@ -1,0 +1,78 @@
+[21-Sep-2020 07:01:49 Asia/Jakarta] PHP Notice:  Undefined index: token in /home/rebeatne/public_html/action/kirim_token.php on line 4
+[25-Sep-2020 21:05:59 Asia/Jakarta] PHP Fatal error:  Uncaught Error: Cannot use object of type mysqli_result as array in /home/rebeatne/public_html/pesan/kirim_email_unit.php:23
+Stack trace:
+#0 /home/rebeatne/public_html/action/teruskan.php(12): include()
+#1 {main}
+  thrown in /home/rebeatne/public_html/pesan/kirim_email_unit.php on line 23
+[25-Sep-2020 21:07:46 Asia/Jakarta] PHP Notice:  Undefined variable: query in /home/rebeatne/public_html/pesan/closed_aduan.php on line 20
+[25-Sep-2020 21:07:46 Asia/Jakarta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/rebeatne/public_html/pesan/closed_aduan.php on line 20
+[25-Sep-2020 21:07:46 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/rebeatne/public_html/pesan/closed_aduan.php on line 21
+[19-Nov-2020 13:22:24 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[19-Nov-2020 13:22:24 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 14:26:13 Asia/Jakarta] PHP Notice:  Undefined index: token in /home/rebeatne/public_html/pesan/kirim_email_unit.php on line 24
+[21-Nov-2020 14:26:13 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 14:26:13 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 14:58:09 Asia/Jakarta] PHP Notice:  Undefined index: token in /home/rebeatne/public_html/pesan/kirim_email_unit.php on line 24
+[21-Nov-2020 14:58:09 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 14:58:09 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 15:01:02 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 15:01:02 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 15:01:02 Asia/Jakarta] PHP Notice:  Undefined index: Email in /home/rebeatne/public_html/pesan/kirim_email_unit.php on line 30
+[21-Nov-2020 15:01:02 Asia/Jakarta] PHP Notice:  Undefined index: Nama in /home/rebeatne/public_html/pesan/kirim_email_unit.php on line 30
+[21-Nov-2020 15:01:02 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 15:01:02 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 15:01:03 Asia/Jakarta] PHP Notice:  Undefined index: Email in /home/rebeatne/public_html/pesan/kirim_email_unit.php on line 30
+[21-Nov-2020 15:01:03 Asia/Jakarta] PHP Notice:  Undefined index: Nama in /home/rebeatne/public_html/pesan/kirim_email_unit.php on line 30
+[21-Nov-2020 15:17:59 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 15:17:59 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 15:17:59 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 15:17:59 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[21-Nov-2020 15:49:00 Asia/Jakarta] PHP Notice:  Undefined variable: query in /home/rebeatne/public_html/pesan/closed_aduan.php on line 20
+[21-Nov-2020 15:49:00 Asia/Jakarta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/rebeatne/public_html/pesan/closed_aduan.php on line 20
+[21-Nov-2020 15:49:00 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/rebeatne/public_html/pesan/closed_aduan.php on line 21
+[21-Nov-2020 15:51:29 Asia/Jakarta] PHP Notice:  Undefined variable: query in /home/rebeatne/public_html/pesan/closed_aduan.php on line 20
+[21-Nov-2020 15:51:29 Asia/Jakarta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/rebeatne/public_html/pesan/closed_aduan.php on line 20
+[21-Nov-2020 15:51:29 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/rebeatne/public_html/pesan/closed_aduan.php on line 21
+[22-Nov-2020 11:44:55 Asia/Jakarta] PHP Notice:  Undefined variable: subject in /home/rebeatne/public_html/pesan/header.php on line 40
+[22-Nov-2020 11:44:55 Asia/Jakarta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, object given in /home/rebeatne/public_html/pesan/aktifkan.php on line 19
+[22-Nov-2020 11:44:55 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/rebeatne/public_html/pesan/aktifkan.php on line 20
+[22-Nov-2020 12:45:38 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/rebeatne/public_html/pesan/keterangan_tambahan.php on line 21
+[22-Nov-2020 13:16:15 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 13:16:15 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 13:16:15 Asia/Jakarta] PHP Notice:  Undefined index: Email in /home/rebeatne/public_html/pesan/add_jawaban.php on line 31
+[22-Nov-2020 13:16:15 Asia/Jakarta] PHP Notice:  Undefined index: Nama in /home/rebeatne/public_html/pesan/add_jawaban.php on line 31
+[22-Nov-2020 14:47:15 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 14:47:15 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:18:52 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:18:52 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:20:31 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:20:31 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:20:31 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:20:31 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:21:00 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:21:00 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:21:00 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:21:00 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:24:49 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:24:49 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:24:49 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:24:49 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:32:35 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:32:35 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:36:50 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:36:50 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:37:17 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:37:17 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:42:44 Asia/Jakarta] PHP Notice:  Undefined variable: message in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 15:42:44 Asia/Jakarta] PHP Notice:  Undefined variable: id in /home/rebeatne/public_html/pesan/kirim_notif.php on line 9
+[22-Nov-2020 18:55:11 Asia/Jakarta] PHP Notice:  Undefined index: detail in /home/rebeatne/public_html/action/add_lokasi.php on line 14
+[22-Nov-2020 18:55:11 Asia/Jakarta] PHP Warning:  Invalid argument supplied for foreach() in /home/rebeatne/public_html/action/add_lokasi.php on line 14
+[22-Nov-2020 19:04:59 Asia/Jakarta] PHP Notice:  Undefined index: default in /home/rebeatne/public_html/action/pengaturan.php on line 15
+[22-Nov-2020 19:36:19 Asia/Jakarta] PHP Notice:  Undefined variable: subject in /home/rebeatne/public_html/pesan/header.php on line 40
+[22-Nov-2020 19:36:19 Asia/Jakarta] PHP Notice:  Undefined variable: nama in /home/rebeatne/public_html/pesan/forgot_password.php on line 30
+[22-Nov-2020 19:37:25 Asia/Jakarta] PHP Notice:  Undefined variable: subject in /home/rebeatne/public_html/pesan/header.php on line 40
+[22-Nov-2020 19:37:25 Asia/Jakarta] PHP Notice:  Undefined variable: nama in /home/rebeatne/public_html/pesan/forgot_password.php on line 30
+[22-Nov-2020 20:13:22 Asia/Jakarta] PHP Notice:  Undefined variable: nama in /home/rebeatne/public_html/pesan/forgot_password.php on line 31
+[22-Nov-2020 21:33:51 Asia/Jakarta] PHP Notice:  Undefined variable: subject in /home/rebeatne/public_html/pesan/header.php on line 40
+[22-Nov-2020 21:33:51 Asia/Jakarta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, object given in /home/rebeatne/public_html/pesan/aktifkan.php on line 19
+[22-Nov-2020 21:33:51 Asia/Jakarta] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/rebeatne/public_html/pesan/aktifkan.php on line 20

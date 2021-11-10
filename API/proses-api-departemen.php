@@ -12,21 +12,7 @@
 		else $result =json_encode(array('success'=>false));
 		echo $result;
 	}elseif($postjson['aksi']=='get-departemen'){
-	    $data=array();
-		$query=mysqli_query($koneksi, "SELECT tb_departemen.id_departemen,tb_departemen.Departemen, count(id_unit) as jumlah from tb_departemen
-		left join tb_unit on tb_departemen.id_departemen = tb_unit.id_departemen 
-		group by tb_departemen.id_departemen") or die(mysqli_error($koneksi));
-		while($row = mysqli_fetch_array($query)){
-			$data[] = array(
-				'id_departemen' => $row['id_departemen'],
-				'nama_departemen' => $row['Departemen'],
-				'jumlah'=>$row['jumlah']
-				
-			);
-	    }
-	    if($query) $result=json_encode(array('success'=>true, 'result'=>$data));
-		else $result = json_encode(array('success'=>false));
-		echo $result;
+	    
 	}elseif($postjson['aksi']=='update-departemen'){
 	    $nama_departemen = $koneksi ->real_escape_string($postjson['nama_departemen']);
 		$query = mysqli_query($koneksi, "UPDATE tb_departemen set Departemen='$nama_departemen' where id_departemen='$postjson[id_departemen]'");

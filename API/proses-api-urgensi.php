@@ -13,16 +13,6 @@
 		else $result =json_encode(array('success'=>false));
 		echo $result;
 	}elseif($postjson['aksi'] == 'get-urgensi'){
-	    $data = array();
-	    $query=mysqli_query($koneksi, "SELECT * from tb_urgensi");
-	    while($row = mysqli_fetch_array($query)){
-	        $data[] = array(
-	            'id_urgensi' => $row['id_urgensi'],
-	            'perihal' => $row['perihal']
-	        );
-	    }
-	    if($query) $result=json_encode(array('success'=>true, 'result'=>$data));
-	    else $result=json_encode(array('success'=>false));
 	    echo $result;
 	} elseif($postjson['aksi']=="update-urgensi"){
         $perihal = $koneksi-> real_escape_string($postjson['perihal']);
