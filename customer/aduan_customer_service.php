@@ -42,13 +42,12 @@ include 'header.php'
 		                            			<div class="col-sm-10 col-sm-offset-1">
 													<div class='form-group'>
 														<div class="col-sm-4">
-
-																<input type="radio" name="jenis" value='Keluhan' required>
-																<label>Keluhan</label>
+															<input type="radio" name="jenis" value='Keluhan' required>
+															<label>Keluhan</label>
 														</div>
 														<div class="col-sm-4">
-																<input type="radio" name="jenis" value='Informasi'>
-																<label>Informasi</label>
+															<input type="radio" name="jenis" value='Informasi'>
+															<label>Informasi</label>
 														</div>
 														<div class="col-sm-4">
 															<input type="radio" name="jenis" value='Saran'>

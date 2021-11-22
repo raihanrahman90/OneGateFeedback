@@ -20,7 +20,7 @@
                     left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
                             on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu
                     left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
-                    where tb_unit.id_unit = '".$_SESSION['id_unit']."'";
+                    where tb_unit.id_unit = '".$_POST['user_id_unit']."'";
         /** Hanya menampilkan aduan terhadap unit */
 
         }else if($status_akun=='Senior Manager'){
@@ -30,7 +30,7 @@
                 left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
                         on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu 
                 left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
-                where tb_departemen.id_departemen = '".$_SESSION['id_departemen']."'";
+                where tb_departemen.id_departemen = '".$_POST['user_id_departemen']."'";
         /** Hanya menampilkan aduan terhadap departemen dari senior manager */
         }
     $data = mysqli_query($koneksi,$sintax) or die(mysqli_error($koneksi));
