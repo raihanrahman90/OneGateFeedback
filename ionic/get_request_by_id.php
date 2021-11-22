@@ -2,7 +2,7 @@
     require('../koneksi.php');
     $hak_akses = $_POST['user_hak_akses'];
     $status_akun = $_POST['user_status_akun'];
-    $id_aduan = $_POST['id_aduan'];
+    $id_aduan = $_GET['id_aduan'];
     $aduan = array();
     $data = mysqli_query($koneksi, "SELECT pelapor, Nama,no_telp, email,jenis, 
                                     perihal, ket, tb_aduan.foto, tb_aduan.status, 
@@ -26,7 +26,9 @@
         'perihal'=>$data['perihal'],
         'keterangan'=>$data['ket'],
         'foto'=>$data['tb_aduan.foto'],
-        ''
+        'status'=>$data['status'],
+        'nama_lokasi'=>$data['nama_lokasi'],
+        'nama_detail_lokasi'=>$data['nama_detail_lokasi']
     );
     echo json_encode(array('success'=>true, 'data'=>$aduan));
 ?>

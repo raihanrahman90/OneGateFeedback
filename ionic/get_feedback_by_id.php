@@ -2,6 +2,7 @@
     require('../koneksi.php');
     $hak_akses = $_POST['user_hak_akses'];
     $status_akun = $_POST['user_status_akun'];
+    $id = $_GET['id_aduan'];
     $aduan = array();
     $data = mysqli_query($koneksi,"SELECT Email, jenis, pelapor, ket, nama_lokasi, nama_detail_lokasi, 
                                         tb_aduan.status, tb_aduan.foto, tindakan, bukti, tb_progress.waktu as waktu_progress, 
