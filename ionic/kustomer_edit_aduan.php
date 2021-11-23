@@ -27,17 +27,20 @@
 		$status='Closed';
 	}
 	$data = mysqli_fetch_array($data);
-	if(isset($_FILES['foto'])&&is_uploaded_file($_FILES['foto']['tmp_name'])){
-		$nama = $_FILES['foto']['name'];
+	if(isset($_FILES['gambar'])&&is_uploaded_file($_FILES['gambar']['tmp_name'])){
+		$nama = $_FILES['gambar']['name'];
 		$x = explode('.', $nama);
 		$ekstensi = strtolower(end($x));
-		$tipe_file = $_FILES['foto']['type'];
-		$tmp_file = $_FILES['foto']['tmp_name'];
+		$tipe_file = $_FILES['gambar']['type'];
+		$tmp_file = $_FILES['gambar']['tmp_name'];
 		// menyeleksi data ke dalam tb_aduan
 		$id = $data['id_aduan'];
 		$id1 = $id.".".$ekstensi;
-		// menghitung jumlah data yang ditemukan
-		unlink('../gambar/aduan/'.$id1);
+		$datahapus = mysqli_query($koneksi, "SELECT foto from tb_aduan where id_aduan=$id_aduan");
+		$datahapus = mysqli_fetch_array($datahapus);
+		if(file_exists('../gambar/aduan/'.$datahapus['foto'])){
+			unlink('../gambar/aduan/'.$datahapus['foto']);
+		}
 		move_uploaded_file($tmp_file, "../gambar/aduan/".$id1);
 		$cek = mysqli_query($koneksi,"UPDATE tb_aduan SET foto='$id1' WHERE id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
 	}
