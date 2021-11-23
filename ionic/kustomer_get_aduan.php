@@ -8,7 +8,6 @@
         $id_aduan = $_POST['id_aduan'];
         $id_customer = $_POST['user_id_kustomer'];
         $aduan = mysqli_query($koneksi, "SELECT * FROM tb_aduan 
-                                            inner join tb_lokasi on tb_lokasi.nama_lokasi = tb_aduan.nama_lokasi
                                             where id_aduan=$id_aduan");
         if($aduan = mysqli_fetch_array($aduan)){
             if($aduan['id_customer']==$id_customer && $aduan['level']==-1){
@@ -43,9 +42,13 @@
                                                         id_aduan=$id_aduan and 
                                                         tindakan like 'Feedback telah selesai%'
                                                         order by id_progress desc");
-                $datacomplete = mysqli_fetch_array($datacomplete);
-                $fotocomplete = $datacomplete['bukti'];
-                $tindakancomplete = $datacomplete['tindakan'];
+                if($datacomplete = mysqli_fetch_array($datacomplete)){
+                    $fotocomplete = $datacomplete['bukti'];
+                    $tindakancomplete = $datacomplete['tindakan'];
+                }else{
+                    $tindakancomplete = null;
+                    $fotocomplete = null;
+                }
             }else{
                 $tindakancomplete = null;
                 $fotocomplete = null;
@@ -54,11 +57,16 @@
                 $dataprogress = mysqli_query($koneksi, "SELECT * FROM tb_progress 
                                                         where 
                                                         id_aduan=$id_aduan and 
-                                                        tindakan like 'Feedback telah selesai%'
+                                                        tindakan like 'Feedback direspons oleh unit dengan keterangan%'
                                                         order by id_progress desc");
-                $dataprogress = mysqli_fetch_array($dataprogress);
-                $fotoprogress = $dataprogress['bukti'];
-                $tindakanprogress = $dataprogress['tindakan'];
+                if($dataprogress = mysqli_fetch_array($dataprogress)){
+                    $fotoprogress = $dataprogress['bukti'];
+                    $tindakanprogress = $dataprogress['tindakan'];
+                }else{
+                    
+                $fotoprogress= null;
+                $tindakanprogress = null;
+                }
             }else{
                 $fotoprogress= null;
                 $tindakanprogress = null;
@@ -70,7 +78,7 @@
                 'perihal'=>$aduan['perihal'],
                 'urgensi'=>$aduan['urgensi'],
                 'keterangan'=>$aduan['ket'],
-                'id_lokasi'=>$aduan['id_lokasi'],
+                'nama_lokasi'=>$aduan['nama_lokasi'],
                 'nama_detail_lokasi'=>$aduan['nama_detail_lokasi'],
                 'tanggal_kejadian'=>$aduan['waktu_kejadian'],
                 'keterangan_kejadian'=>$aduan['keterangan_kejadian'],

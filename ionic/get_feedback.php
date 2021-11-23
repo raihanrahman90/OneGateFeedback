@@ -12,25 +12,29 @@
             left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
             WHERE tb_aduan.status <> 'Request' and tb_aduan.status <> 'Returned' 
             GROUP BY tb_aduan.id_aduan
-            ORDER BY field(tb_aduan.status,'Progress' ,'Open', 'Closed'), tb_aduan.waktu DESC";
+            ORDER BY field(tb_aduan.status,'Complete', 'Progress' ,'Open', 'Closed'), tb_aduan.waktu DESC";
         }else if($status_akun=='Manager'||$status_akun=='Unit'){
         /** Hanya menampilkan aduan terhadap unit */
+        $id_unit = $_POST['user_id_unit'];
         $sintax="SELECT  tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, tb_aduan.status, level, progress.id_aduan as merah, tb_aduan.waktu, waktu_kirim from tb_aduan 
                     inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen 
                     left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
                             on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu
                     left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
-                    where tb_unit.id_unit = '".$_POST['user_id_unit']."'";
+                    WHERE tb_unit.id_unit = '$id_unit' 
+                    ORDER BY field(tb_aduan.status, 'Open','Progress','Complete','Closed')";
         /** Hanya menampilkan aduan terhadap unit */
 
         }else if($status_akun=='Senior Manager'){
         /** Hanya menampilkan aduan terhadap departemen dari senior manager */
+        $id_departemen = $_POST['user_id_departemen'];
         $sintax="SELECT  tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, tb_aduan.status, level, progress.id_aduan as merah, tb_aduan.waktu, waktu_kirim from tb_aduan 
                 inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit inner join tb_departemen on tb_departemen.id_departemen =tb_unit.id_departemen 
                 left join (select id_aduan, waktu from tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
                         on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu 
                 left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
-                where tb_departemen.id_departemen = '".$_POST['user_id_departemen']."'";
+                where tb_departemen.id_departemen = '$id_departemen'
+                order by field(tb_aduan.status, 'Open', 'Progress','Complete','Clodes')";
         /** Hanya menampilkan aduan terhadap departemen dari senior manager */
         }
     $data = mysqli_query($koneksi,$sintax) or die(mysqli_error($koneksi));

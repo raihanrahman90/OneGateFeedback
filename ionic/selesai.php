@@ -5,8 +5,8 @@ include '../koneksi.php';
 
 // menangkap data yang dikirim dari form
 if($_POST['user_hak_akses']=='Super Admin' || $_POST['user_hak_akses']=='Admin2'){
-	$id_aduan = $_POST['id'];
-	$id_akun = $_SESSION['id_akun'];
+	$id_aduan = $_POST['id_aduan'];
+	$id_akun = $_SESSION['user_id_akun'];
 	$nama = $koneksi ->real_escape_string($_POST['nama']);
 	$data = mysqli_query($koneksi, "UPDATE tb_aduan SET status = 'Closed' WHERE id_aduan ='$id_aduan'") or die(mysqli_error($koneksi));
 	$data = mysqli_query($koneksi, "SELECT nama, email from tb_aduan 

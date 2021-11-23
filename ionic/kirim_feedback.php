@@ -12,6 +12,8 @@
                 }else{
                     if($id_customer==$row['id_customer']){
                         mysqli_query($koneksi, "UPDATE tb_aduan set level=0 where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
+                        $level = 1;
+                        $id = $id_aduan;
                         include "../pesan/kirim_pesan_admin1.php";
                         $result = json_encode(array('success'=>true));
                         echo $result;
