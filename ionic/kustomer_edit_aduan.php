@@ -33,7 +33,7 @@ if($jenis=='Keluhan'){
     $status='Closed';
 }
 $data = mysqli_fetch_array($data);
-if(is_uploaded_file($_FILES['foto']['tmp_name'])){
+if(isset($_FILES['foto'])&&is_uploaded_file($_FILES['foto']['tmp_name'])){
 	$nama = $_FILES['foto']['name'];
 	$x = explode('.', $nama);
 	$ekstensi = strtolower(end($x));

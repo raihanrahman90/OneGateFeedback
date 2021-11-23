@@ -1,7 +1,7 @@
 <?php
 include('../koneksi.php');
 $id = $koneksi-> real_escape_string($_POST['id_aduan']);
-$id_akun = $_SESSION['user_id_akun'];
+$id_akun = $_POST['user_id_akun'];
 $keterangan = $koneksi-> real_escape_string($_POST['keterangan']);
 $nama = $koneksi -> real_escape_string($_POST['nama']);
 $data = mysqli_query($koneksi, "UPDATE tb_aduan SET  status ='Open', waktu=now(), level=1 WHERE id_aduan ='$id'") or die(mysqli_error($koneksi));

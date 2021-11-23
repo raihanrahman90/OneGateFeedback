@@ -45,7 +45,7 @@
 	NULL,#foto
 	-1)") or die(mysqli_error($koneksi));#level
 	$id = mysqli_insert_id($koneksi);
-if(is_uploaded_file($_FILES['gambar']['tmp_name'])){
+if(isset($_FILES['gambar'])&&is_uploaded_file($_FILES['gambar']['tmp_name'])){
 	$nama = $_FILES['gambar']['name'];
 	$x = explode('.', $nama);
 	$ekstensi = strtolower(end($x));
