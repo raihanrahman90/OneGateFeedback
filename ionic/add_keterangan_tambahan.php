@@ -1,9 +1,9 @@
 <?php
     include '../koneksi.php';
     $pertanyaan = $koneksi->real_escape_string($_POST['pertanyaan']);
-    $id = $koneksi -> real_escape_string($_POST['id']);
+    $id = $koneksi -> real_escape_string($_POST['id_aduan']);
     $nama = $koneksi -> real_escape_string($_POST['nama']);
-    $id_akun = $_SESSION['id_akun'];
+    $id_akun = $_POST['id_akun'];
     $id_aduan = $id;
     $query= mysqli_query($koneksi, "INSERT INTO tb_keterangan_tambahan VALUES(0, '$id','$id_akun', '$pertanyaan oleh $nama', NULL,NULL, NULL)") or die(mysqli_error($koneksi));
     $id_keterangan =mysqli_insert_id($koneksi);

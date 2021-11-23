@@ -4,8 +4,8 @@
 include '../koneksi.php';
 
 // menangkap data yang dikirim dari form
-$username = $koneksi -> real_escape_string($_POST['E-mail']);
-$password = $koneksi -> real_escape_string($_POST['Password']);
+$username = $koneksi -> real_escape_string($_POST['email']);
+$password = $koneksi -> real_escape_string($_POST['password']);
 // menyeleksi data admin dengan username dan password yang sesuai
 $data = mysqli_query($koneksi,"SELECT * FROM tb_akun WHERE Email='$username' and Password=md5('$password')");
 $data1 = mysqli_fetch_array($data);
@@ -14,7 +14,7 @@ $cek = mysqli_num_rows($data);
 $hasil = array();
 if($cek > 0){
 	$hasil['nama'] = $data1['Nama'];
-	$_SESSION['status'] = "login";
+	$hasil['status'] = "login";
 	$hasil['id_akun'] = $data1['Id_akun'];
 	$hasil['email'] = $username;
 	$hasil['status_akun'] = $data1['status'];
@@ -30,9 +30,24 @@ if($cek > 0){
 		$hasil['nama_unit'] = $data1['nama_unit'];
 		$hasil['status_akun'] = $data1['status'];
 		$hasil['hak_akses'] = $data1['hak_akses'];
-		echo json_encode(array('success'=>true, 'data'=>$hasil));
+		echo json_encode(
+			array(
+				'success'=>true, 
+				'id_departemen'=>$hasil['id_departemen'],
+				'msg'=>'admin',
+				'departemen'=>$hasil['departemen'],
+				'id_unit'=>$hasil['id_unit'],
+				'nama_unit'=>$hasil['nama_unit'],
+				'status_akun'=>$hasil['status_akun'],
+				'hak_akses'=>$hasil['hak_akses'],
+				'email'=>$hasil['email'],
+				'status_akun'=>$hasil['status_akun'],
+				'id_akun'=>$hasil['id_akun'],
+				'nama'=>$hasil['nama']
+			)
+		);
 	} else {
-		echo json_encode(array('success'=>true, 'data'=>$hasil));
+		echo json_encode(array('success'=>true, 'data'=>$hasil, 'msg'=>'kustomer'));
 	}
 }else{
 	$data = mysqli_query($koneksi,"SELECT * FROM tb_customer WHERE Email='$username' and Password=md5('$password')") or die(mysqli_error($koneksi));
@@ -41,17 +56,23 @@ if($cek > 0){
 		$data = mysqli_fetch_array($data);
 		$hasil['email']=$username;
 		if($data['status']==1){
-			$status_sebelumnya = $hasil['status'];
 			$hasil['id_customer'] = $data['id_customer'];
-			$hasil['status'] = "login customer";
-			echo json_encode(array('success'=>true, 'data'=>$hasil, 'status'=>$data['status']));
+			echo json_encode(
+				array(
+					'success'=>true, 
+					'id_customer'=>$hasil['id_customer'],
+					'email'=>$hasil['email'], 
+					'status'=>$data['status'], 
+					'msg'=>'kustomer'
+				)
+			);
 		} else if($data['status']==2){
 		    $hasil['status']='aktivasi ulang';
 			$hasil['id_customer'] = 2;
 			echo json_encode(array('success'=>false, 'data'=>$hasil, 'status'=>$data['status']));
 		}else {
 			$_SESSION['status']=0;
-			echo json_encode(array('success'=>true, 'data'=>$hasil, 'msg'=>'Akun Anda belum teraktivasi silahkan periksa Email Anda untuk informasi lebih lengkap'));
+			echo json_encode(array('success'=>true, 'data'=>$hasil, 'status'=>$data['status'], 'msg'=>'kustomer'));
 		}		
 	}else{
 		echo json_encode(array('success'=>false, 'msg'=>'Data yang anda masukkan tidak ditemukan'));

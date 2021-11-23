@@ -2,7 +2,7 @@
 	include '../koneksi.php';
 	$id_akun = $_POST['id_customer'];
 	$jenis = $koneksi -> real_escape_string($_POST['jenis']);
-	$check_box_3_hari = isset($_POST['hari']);
+	$check_box_3_hari = isset($_POST['lebih_3_hari']);
 	$tanggal_kejadian = $koneksi -> real_escape_string($_POST['tanggal_kejadian']);
 	$tanggal_kejadian = date_create_from_format('d/m/Y', $tanggal_kejadian);
 	$tanggal_kejadian = date_format($tanggal_kejadian, 'Y-m-d');
@@ -17,7 +17,7 @@
 	} else {
 	    $status = 'Closed';
 	}
-	$perihalUrgent = $koneksi ->real_escape_string($_POST['perihalUrgent']);
+	$perihalUrgent = $koneksi ->real_escape_string($_POST['perihal_urgent']);
 	if($perihalUrgent=='Tidak Urgent'){
 		$urgensi = 0;
 		$perihal = $koneksi -> real_escape_string($_POST['perihal']);
@@ -51,12 +51,12 @@
 	NULL,#foto
 	-1)") or die(mysqli_error($koneksi));#level
 	$id = mysqli_insert_id($koneksi);
-if(is_uploaded_file($_FILES['foto']['tmp_name'])){
-	$nama = $_FILES['foto']['name'];
+if(is_uploaded_file($_FILES['gambar']['tmp_name'])){
+	$nama = $_FILES['gambar']['name'];
 	$x = explode('.', $nama);
 	$ekstensi = strtolower(end($x));
-	$tipe_file = $_FILES['foto']['type'];
-	$tmp_file = $_FILES['foto']['tmp_name'];
+	$tipe_file = $_FILES['gambar']['type'];
+	$tmp_file = $_FILES['gambar']['tmp_name'];
 	// menyeleksi data ke dalam tb_aduan
 	
 	$id = mysqli_insert_id($koneksi);
@@ -72,6 +72,6 @@ $id_keluhan = $id;
 $email = $query['email'];
 $nama = $query['nama'];
 include "../pesan/aduan_customer.php";
-$result = json_encode(array('success'=>true));
+$result = json_encode(array('success'=>true, 'id_aduan'=>$id_keluhan));
 echo $result;
 ?>

@@ -1,7 +1,7 @@
 <?php
     include('../koneksi.php');
-    $id = $koneksi-> real_escape_string($_POST['id']);
-    $id_akun = $_SESSION['id_akun'];
+    $id = $koneksi-> real_escape_string($_POST['id_aduan']);
+    $id_akun = $_POST['user_id_akun'];
     $keterangan = $koneksi-> real_escape_string($_POST['keterangan']);
     $penjelasan = $koneksi-> real_escape_string($_POST['penjelasan']);
     if($keterangan=='Kurang Data'){

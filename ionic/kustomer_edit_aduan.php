@@ -46,14 +46,9 @@ if(is_uploaded_file($_FILES['foto']['tmp_name'])){
 	unlink('../gambar/aduan/'.$id1);
 	move_uploaded_file($tmp_file, "../gambar/aduan/".$id1);
 	$cek = mysqli_query($koneksi,"UPDATE tb_aduan SET foto='$id1' WHERE id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
-    
 }
     $cek = mysqli_query($koneksi,"UPDATE tb_aduan SET jenis='$jenis', ket='$keterangan', perihal='$perihal', status='$status', urgensi='$urgensi',
 									nama_lokasi='$lokasi', nama_detail_lokasi='$detail_lokasi', waktu_kejadian='$tanggal_kejadian', keterangan_kejadian=$keterangan_kejadian
 									WHERE id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
-	echo "UPDATE tb_aduan SET jenis='$jenis', ket='$keterangan', perihal='$perihal', status='$status', urgensi='$urgensi',
-	nama_lokasi='$lokasi', nama_detail_lokasi='$detail_lokasi', waktu_kejadian='$waktu_kejadian', keterangan_kejadian=$keterangan_kejadian
-	WHERE id_aduan = '$id_aduan'";
-    header('Location:../customer/tampil_antri.php?id='.$id_aduan);
-    die();
+	echo json_encode(array('success'=>true));
 ?>

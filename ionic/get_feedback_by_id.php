@@ -1,7 +1,5 @@
 <?php
     require('../koneksi.php');
-    $hak_akses = $_POST['user_hak_akses'];
-    $status_akun = $_POST['user_status_akun'];
     $id = $_GET['id_aduan'];
     $aduan = array();
     $data = mysqli_query($koneksi,"SELECT Email, jenis, pelapor, ket, nama_lokasi, nama_detail_lokasi, 
@@ -21,8 +19,8 @@
         'ket'=>$data['ket'],
         'nama_lokasi'=>$data['nama_lokasi'],
         'nama_detail_lokasi'=>$data['nama_detail_lokasi'],
-        'status'=>$data['tb_aduan.status'],
-        'foto'=>$data['tb_aduan.foto'],
+        'status'=>$data['status'],
+        'foto'=>$data['foto'],
         'nama_departemen'=>$data['nama_departemen'],
         'nama_unit'=>$data['nama_unit'],
         'penilaian'=>$data['penilaian'],

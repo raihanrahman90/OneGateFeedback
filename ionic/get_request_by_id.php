@@ -13,19 +13,19 @@
                                     left join tb_progress ON tb_aduan.id_aduan = tb_progress.id_aduan
                                 where tb_aduan.id_aduan ='$id_aduan'") or die(mysqli_error($koneksi));
     $data = mysqli_fetch_array($data);
-    if($data['tb_aduan.status']=='Returned'){
+    if($data['status']=='Returned'){
         $keterangan_return = mysqli_query($koneksi, "SELECT * FROM tb_progress where id_aduan='$id_aduan'");
         $keterangan_return = mysqli_fetch_array($keterangan_return);
     }
     $aduan = array(
         'pelapor'=>$data['pelapor'],
-        'nama'=>$data['nama'],
+        'nama'=>$data['Nama'],
         'no_telp'=>$data['no_telp'],
         'email'=>$data['email'],
         'jenis'=>$data['jenis'],
         'perihal'=>$data['perihal'],
         'keterangan'=>$data['ket'],
-        'foto'=>$data['tb_aduan.foto'],
+        'foto'=>$data['foto'],
         'status'=>$data['status'],
         'nama_lokasi'=>$data['nama_lokasi'],
         'nama_detail_lokasi'=>$data['nama_detail_lokasi']

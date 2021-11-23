@@ -20,10 +20,10 @@ if(is_uploaded_file($_FILES['pass_bandara']['tmp_name'])){
 	$x = explode('.', $nama);
 	$ekstensiPassBandara = strtolower(end($x));
 }
-if($ekstensiPassBandara!='jpg'&&$ekstensiPassBandara!='jpeg'&&$ekstensiPassBandara!='png'){		
+if(($ekstensiPassBandara!='jpg'&&$ekstensiPassBandara!='jpeg'&&$ekstensiPassBandara!='png') && is_uploaded_file($_FILES['pass_bandara']['tmp_name'])){		
 	$_SESSION['status']='Salah ekstensi';
 	header("location:../register");
-}elseif($ekstensiFoto!='jpg'&&$ekstensiFoto!='jpeg'&&$ekstensiFoto!='png'){
+}elseif(($ekstensiFoto!='jpg'&&$ekstensiFoto!='jpeg'&&$ekstensiFoto!='png')&&is_uploaded_file($_FILES['foto']['tmp_name'])){
 	$_SESSION['status']='Salah ekstensi';
 	header("location:../register");
 }else{
