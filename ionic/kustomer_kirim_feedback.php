@@ -2,14 +2,13 @@
 	include '../koneksi.php';
 	$id_akun = $_POST['id_customer'];
 	$jenis = $koneksi -> real_escape_string($_POST['jenis']);
-	$check_box_3_hari = isset($_POST['lebih_3_hari']);
 	$tanggal_kejadian = $koneksi -> real_escape_string($_POST['tanggal_kejadian']);
 	$tanggal_kejadian = date_create_from_format('d/m/Y', $tanggal_kejadian);
 	$tanggal_kejadian = date_format($tanggal_kejadian, 'Y-m-d');
-	if(!$check_box_3_hari){
-		$keterangan_kejadian = "'".($koneksi -> real_escape_string($_POST['keterangan_kejadian']))."'";
-	}else{
+	if(empty($_POST['keterangan_kejadian'])){
 		$keterangan_kejadian = "NULL";
+	}else{
+		$keterangan_kejadian = "'".($koneksi -> real_escape_string($_POST['keterangan_kejadian']))."'";
 	}
 	$keterangan = $koneksi -> real_escape_string(htmlspecialchars($_POST['keterangan']));
 	if($jenis=="Keluhan"){
@@ -17,14 +16,9 @@
 	} else {
 	    $status = 'Closed';
 	}
-	$perihalUrgent = $koneksi ->real_escape_string($_POST['perihal_urgent']);
-	if($perihalUrgent=='Tidak Urgent'){
-		$urgensi = 0;
-		$perihal = $koneksi -> real_escape_string($_POST['perihal']);
-	}else{
-		$urgensi = 1;
-		$perihal = $perihalUrgent;
-	}
+	$urgensi = $koneksi ->real_escape_string($_POST['perihal_urgent']);
+	$perihal = $koneksi -> real_escape_string($_POST['perihal']);
+	
 	/**setting lokasi */
 	$lokasi = $koneksi -> real_escape_string($_POST['lokasi']);
 	$detail_lokasi = $koneksi -> real_escape_string($_POST['detail_lokasi']);

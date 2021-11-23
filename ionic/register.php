@@ -6,21 +6,23 @@
 	$email = $koneksi -> real_escape_string($_POST['email']);
 	$data = mysqli_query($koneksi,"SELECT id_customer, status FROM tb_customer WHERE Email='$email'");
 	$data1 = mysqli_query($koneksi, "SELECT id_akun FROM tb_akun WHERE Email='$email'");
+	$ekstensiPassBandara = '';
+	$ekstensiFoto = '';
 	// menghitung jumlah data yang ditemukan
-	if(is_uploaded_file($_FILES['foto']['tmp_name'])){
+	if(isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])){
 		$nama = $_FILES['foto']['name'];
 		$x = explode('.', $nama);
 		$ekstensiFoto = strtolower(end($x));
 	}
-	if(is_uploaded_file($_FILES['pass_bandara']['tmp_name'])){
+	if(isset($_FILES['pass_bandara']) && is_uploaded_file($_FILES['pass_bandara']['tmp_name'])){
 		$nama = $_FILES['pass_bandara']['name'];
 		$x = explode('.', $nama);
 		$ekstensiPassBandara = strtolower(end($x));
 	}
-	if($ekstensiPassBandara!='jpg'&&$ekstensiPassBandara!='jpeg'&&$ekstensiPassBandara!='png' && is_uploaded_file($_FILES['pass_bandara']['tmp_name'])){	
+	if($ekstensiPassBandara!='jpg'&&$ekstensiPassBandara!='jpeg'&&$ekstensiPassBandara!='png' && isset($_FILES['pass_bandara']['tmp_name'])){	
 		$result = json_encode(array('success'=>false, 'msg'=>'Upload gambar dengan ekstensi jpg, jpeg, atau png'));
 		echo $result;
-	}elseif($ekstensiFoto!='jpg'&&$ekstensiFoto!='jpeg'&&$ekstensiFoto!='png' && is_uploaded_file($_FILES['foto']['tmp_name'])){
+	}elseif($ekstensiFoto!='jpg'&&$ekstensiFoto!='jpeg'&&$ekstensiFoto!='png' && isset($_FILES['foto']['tmp_name'])){
 		$result = json_encode(array('success'=>false, 'msg'=>'Upload gambar dengan ekstensi jpg, jpeg, atau png'));
 		echo $result;
 	}else{
@@ -155,7 +157,7 @@
 				$cek = mysqli_query($koneksi,"UPDATE tb_customer SET foto='$id_foto' WHERE id_customer = '$id'") or die(mysqli_error($koneksi));
 				move_uploaded_file($tmp_foto, $path_foto.$id_foto);
 			}
-			if(is_uploaded_file($_FILES['pass_bandara']['tmp_name'])){
+			if(isset($_FILES['pass_bandara']) && is_uploaded_file($_FILES['pass_bandara']['tmp_name'])){
 				$tmp_pass = $_FILES['pass_bandara']['tmp_name'];
 				$nama = $_FILES['pass_bandara']['name'];
 				$x = explode('.', $nama);
