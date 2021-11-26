@@ -10,7 +10,7 @@ if(isset($_POST)){
 			$result = json_encode(array('success'=>false, 'msg'=>'Data tidak valid'));
 			echo $result;
 		} else {
-			$id = $_GET['id'];
+			$id = $_GET['id_akun'];
 			mysqli_query($koneksi, "DELETE FROM tb_akun WHERE id_akun='$id'") or die(mysqli_error($koneksi));
 			$result = json_encode(array('success'=>true));
 			echo $result;

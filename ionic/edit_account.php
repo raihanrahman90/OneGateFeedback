@@ -5,12 +5,14 @@ if(isset($_POST['user_hak_akses'])){
 	if($_POST['user_hak_akses']=='Super Admin'){
         	$id_akun = $koneksi-> real_escape_string($_POST['id_akun']);
         	$status = $koneksi-> real_escape_string($_POST['status']);
-        	$id_unit = $koneksi-> real_escape_string($_POST['unit']);
-        	$id_departemen = $koneksi-> real_escape_string($_POST['departemen']);
+        	$id_unit = $koneksi-> real_escape_string($_POST['id_unit']);
+        	$id_departemen = $koneksi-> real_escape_string($_POST['id_departemen']);
         	$nama = $koneksi-> real_escape_string($_POST['Nama']);
         	$email = $koneksi-> real_escape_string($_POST['E-mail']);
         	$no_telp = $koneksi-> real_escape_string($_POST['Telp']);
-        	$password = $koneksi -> real_escape_string($_POST['password']);
+			if(isset($_POST['password'])){
+				$password = $koneksi -> real_escape_string($_POST['password']);
+			}
         	$hak_akses = $koneksi -> real_escape_string($_POST['hak_akses']);
         	$data_email_akun = mysqli_query($koneksi, "SELECT * FROM tb_akun WHERE Email='$email'") or die(mysqli_error($koneksi));
         	$data_email_akun = mysqli_fetch_array($data_email_akun);

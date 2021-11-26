@@ -1,7 +1,7 @@
 <?php 
 
 // menghubungkan dengan koneksi
-include '../koneksi.php';
+include 'header.php';
 
 // menangkap data yang dikirim dari form
 if(isset($_POST['user_hak_akses'])){

@@ -1,8 +1,8 @@
 <?php
 
-include '../koneksi.php';
-if(isset($_SESSION)){
-	if($_SESSION['user_hak_akses']!='Super Admin'){
+include 'header.php';
+if(isset($_POST)){
+	if($_POST['user_hak_akses']!='Super Admin'){
 		$result = json_encode(array('success'=>false, 'msg'=>'Tidak memiliki akses'));
 		echo $result;
 	} else {
@@ -10,7 +10,7 @@ if(isset($_SESSION)){
 			$result = json_encode(array('success'=>false, 'msg'=>'Data tidak valid'));
 			echo $result;
 		} else {
-			$id = $_GET['id'];
+			$id = $_POST['id_customer'];
 			$data = mysqli_query($koneksi, "SELECT * FROM tb_customer where id_customer='$id'") or die(mysqli_error($koneksi));
 			$data = mysqli_fetch_array($data);
 			$foto = $data['foto'];

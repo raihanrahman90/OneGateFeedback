@@ -18,12 +18,12 @@ if($status == 'Complete' && !isset($_FILES['Bukti']['tmp_name'])){
     }else if($status=='Progress'){
         $tindakan = "Feedback direspons oleh unit dengan keterangan ".$tindakan;
     }
-    $id_akun = $_SESSION['id_akun'];
+    $id_akun = $_POST['id_akun'];
     // menyeleksi data admin dengan username dan password yang sesuai
     $data = mysqli_query($koneksi,"INSERT INTO tb_progress VALUES(0,$id_akun,$id_aduan, '$tindakan',NULL,now())") or die(mysqli_error($koneksi));
     $id = mysqli_insert_id($koneksi);
     $la = mysqli_query($koneksi,"UPDATE tb_aduan set status='$status' WHERE id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
-    if(isset($_FILES['bukti']) &&is_uploaded_file($_FILES['Bukti']['tmp_name'])){
+    if(isset($_FILES['Bukti']) &&is_uploaded_file($_FILES['Bukti']['tmp_name'])){
         $nama = $_FILES['Bukti']['name'];
         $x = explode('.', $nama);
         $ekstensi = strtolower(end($x));
@@ -34,7 +34,7 @@ if($status == 'Complete' && !isset($_FILES['Bukti']['tmp_name'])){
         $cek = mysqli_query($koneksi,"UPDATE tb_progress SET bukti='$id1' WHERE id_progress = '$id'") or die(mysqli_error($koneksi));
         move_uploaded_file($tmp_file, "../gambar/bukti/".$id1);
     }
-    if(isset($_FILES['bukti']) && is_uploaded_file($_FILES['laporan']['tmp_name'])){
+    if(isset($_FILES['laporan']) && is_uploaded_file($_FILES['laporan']['tmp_name'])){
         $tmp_laporan = $_FILES['laporan']['tmp_name'];
         $namaLaporan = $id.'.pdf';
         move_uploaded_file($tmp_laporan, "../gambar/bukti/".$namaLaporan);

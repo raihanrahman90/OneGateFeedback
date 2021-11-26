@@ -9,8 +9,8 @@ if(isset($_POST['user_hak_akses'])){
         $email = $koneksi -> real_escape_string($_POST['E-mail']);
         $telp = $koneksi -> real_escape_string($_POST['Telp']);
         $status = $koneksi -> real_escape_string($_POST['status']);
-        $departemen = $koneksi -> real_escape_string($_POST['departemen']);
-        $unit = $koneksi -> real_escape_string($_POST['unit']);
+        $departemen = $koneksi -> real_escape_string($_POST['id_departemen']);
+        $unit = $koneksi -> real_escape_string($_POST['id_unit']);
         $hak_akses = $koneksi -> real_escape_string($_POST['hak_akses']);
         $password = $_POST['password'];
         // menyeleksi data admin dengan username dan password yang sesuai

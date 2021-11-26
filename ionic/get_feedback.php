@@ -3,6 +3,7 @@
     $hak_akses = $_POST['user_hak_akses'];
     $status_akun = $_POST['user_status_akun'];
     $aduan = array();
+    
     if(($hak_akses=='Super Admin' || $hak_akses == 'Admin2' || $hak_akses=='Pengawas Internal' || $hak_akses=='Admin1') || ($status_akun=='AOC Head' || $status_akun=='General Manager')){
         $sintax = "SELECT tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, tb_aduan.status, level, progress.id_aduan as merah, tb_aduan.waktu, nama_perusahaan, waktu_kirim from tb_aduan 
             left join tb_unit ON tb_aduan.id_unit=tb_unit.id_unit 

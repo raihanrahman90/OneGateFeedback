@@ -1,5 +1,5 @@
 <?php
-    require('../koneksi.php');
+    require('header.php');
     if(!isset($_POST['id_aduan'])){
         echo json_encode(array('success'=>false, 'msg'=>'Id Aduan tidak ditemukan'));
     }else if(!isset($_POST['user_id_kustomer'])){
@@ -72,6 +72,16 @@
                 $tindakanprogress = null;
             }
             //timeline
+            if($aduan['status']=='Closed'){
+                $querynilai = mysqli_query($koneksi, "SELECT penilaian from tb_penilaian where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
+                if(mysqli_fetch_array($querynilai)){
+                    $rateAvailable = false;
+                }else{
+                    $rateAvailable = true;
+                }
+            }else{
+                $rateAvailable = false;
+            }
             $data = array(
                 'id_aduan'=>$id_aduan,
                 'jenis'=>$aduan['jenis'],
@@ -87,7 +97,8 @@
                 'kirim'=>$kirim,
                 'timeline'=>$timeline,
                 'foto_complete'=>$fotocomplete,
-                'tindakan_complete'=>$tindakancomplete
+                'tindakan_complete'=>$tindakancomplete,
+                'rate_available'=>$rateAvailable
             );
             
             echo json_encode(array('success'=>true, 'data'=>$data));

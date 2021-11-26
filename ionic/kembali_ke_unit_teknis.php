@@ -10,6 +10,7 @@ $data = mysqli_query($koneksi, "SELECT id_unit from tb_aduan where id_aduan='$id
 if($row = mysqli_fetch_array($data)){
     $id_unit = $row['id_unit'];
 }
+$id_aduan = $id;
 include('../pesan/kembali_ke_unit_teknis.php');
 
 $result = json_encode(array('success'=>true));
