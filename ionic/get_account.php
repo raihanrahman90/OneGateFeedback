@@ -14,7 +14,7 @@
                 'status'=>$row['status'],
                 'departemen'=>$row['Departemen'],
                 'unit'=>$row['nama_unit'],
-                'nama'=>$row['nama']
+                'nama'=>$row['Nama']
             )
             );
     }

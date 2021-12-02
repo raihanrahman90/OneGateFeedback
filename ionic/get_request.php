@@ -3,7 +3,19 @@
     $hak_akses = $_POST['user_hak_akses'];
     $status_akun = $_POST['user_status_akun'];
     $aduan = array();
-    $data = mysqli_query($koneksi, "SELECT * from tb_aduan WHERE (status = 'Request' or status='Returned') and level > -1 ORDER BY waktu DESC") or die(mysqli_error($koneksi));
+    $sort = $_POST['sort'];
+    $order = $_POST['order'];
+    if($sort=="id"){
+        $sort = "id_aduan";
+    }else{
+        $sort = "field(tb_aduan.status,'Complete', 'Progress' ,'Open', 'Closed'), tb_aduan.waktu";
+    }
+    if($order == "asc"){
+        $order = "ASC";
+    }else{
+        $order = "DESC";
+    }
+    $data = mysqli_query($koneksi, "SELECT * from tb_aduan WHERE (status = 'Request' or status='Returned') and level > -1 ORDER BY $sort $order") or die(mysqli_error($koneksi));
     foreach($data as $row){
         array_push(
             $aduan, 

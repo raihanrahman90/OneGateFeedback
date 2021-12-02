@@ -3,7 +3,18 @@
     $hak_akses = $_POST['user_hak_akses'];
     $status_akun = $_POST['user_status_akun'];
     $aduan = array();
-    
+    $sort = $_POST['sort'];
+    $order = $_POST['order'];
+    if($sort=="id"){
+        $sort = "id_aduan";
+    }else{
+        $sort = "field(tb_aduan.status,'Complete', 'Progress' ,'Open', 'Closed'), tb_aduan.waktu";
+    }
+    if($order == "asc"){
+        $order = "ASC";
+    }else{
+        $order = "DESC";
+    }
     if(($hak_akses=='Super Admin' || $hak_akses == 'Admin2' || $hak_akses=='Pengawas Internal' || $hak_akses=='Admin1') || ($status_akun=='AOC Head' || $status_akun=='General Manager')){
         $sintax = "SELECT tb_aduan.id_aduan, jenis, Departemen, tb_aduan.nama_unit, urgensi, perihal, tb_aduan.status, level, progress.id_aduan as merah, tb_aduan.waktu, nama_perusahaan, waktu_kirim from tb_aduan 
             left join tb_unit ON tb_aduan.id_unit=tb_unit.id_unit 
@@ -13,7 +24,7 @@
             left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
             WHERE tb_aduan.status <> 'Request' and tb_aduan.status <> 'Returned' 
             GROUP BY tb_aduan.id_aduan
-            ORDER BY field(tb_aduan.status,'Complete', 'Progress' ,'Open', 'Closed'), tb_aduan.waktu DESC";
+            ORDER BY $sort $order";
         }else if($status_akun=='Manager'||$status_akun=='Unit'){
         /** Hanya menampilkan aduan terhadap unit */
         $id_unit = $_POST['user_id_unit'];
@@ -23,7 +34,7 @@
                             on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu
                     left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
                     WHERE tb_unit.id_unit = '$id_unit' 
-                    ORDER BY field(tb_aduan.status, 'Open','Progress','Complete','Closed')";
+                    ORDER BY $sort $order";
         /** Hanya menampilkan aduan terhadap unit */
 
         }else if($status_akun=='Senior Manager'){
@@ -35,7 +46,7 @@
                         on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu 
                 left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
                 where tb_departemen.id_departemen = '$id_departemen'
-                order by field(tb_aduan.status, 'Open', 'Progress','Complete','Clodes')";
+                order by $sort $order";
         /** Hanya menampilkan aduan terhadap departemen dari senior manager */
         }
     $data = mysqli_query($koneksi,$sintax) or die(mysqli_error($koneksi));

@@ -4,7 +4,9 @@
 	$nama = $koneksi-> real_escape_string($_POST['Nama']);
 	$email = $koneksi-> real_escape_string($_POST['Email']);
 	$no_telp = $koneksi-> real_escape_string($_POST['Telp']);
-	$password = $koneksi -> real_escape_string($_POST['password']);
+	if($_POST['default']){
+		$password = $koneksi -> real_escape_string($_POST['password']);
+	}
 	$query = mysqli_query($koneksi, "SELECT * FROM tb_akun WHERE Email='$email'") or die(mysqli_error($koneksi));
 	$jumlah_data = mysqli_num_rows($query);
 	$data_email_akun = mysqli_fetch_array($query);

@@ -1,5 +1,5 @@
 <?php
-    include "../koneksi.php";
+    include "header.php";
     $token = $koneksi-> real_escape_string($_POST['token']);
     $data = mysqli_query($koneksi, "SELECT * FROM tb_forgot_password where token='$token' and end>now()") or die(mysqli_error($koneksi));
     if(mysqli_num_rows($data)>0){
@@ -12,8 +12,8 @@
                 where email='$email'") or die(mysqli_error($koneksi));
            	$data1 = mysqli_fetch_array($data);
 			$result = json_encode(array(
-								'success'=>false, 
-								'id'=>$data['Id_akun'], 
+								'success'=>true, 
+								'id'=>$data1['Id_akun'], 
 								'status_akun'=>$data1['status'], 
 								'hak_akses'=>$data1['hak_akses'],
 								'nama_departemen'=>$data1['Departemen'],
@@ -28,7 +28,7 @@
         	if($cek > 0){
         		$data = mysqli_fetch_array($data);
         		if($data['status']==1){
-					$result = json_encode(array('success'=>false, 'id'=>$data['id_customer'], 'status'=>"customer"));
+					$result = json_encode(array('success'=>true, 'id'=>$data['id_customer'], 'status'=>"customer"));
 					echo $result;
         		} else {
 					$result = json_encode(array('success'=>false, 'msg'=>'Akun anda belum diaktivasi oleh admin'));

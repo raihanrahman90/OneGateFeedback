@@ -16,7 +16,7 @@ if(isset($_POST['user_hak_akses'])){
         	$hak_akses = $koneksi -> real_escape_string($_POST['hak_akses']);
         	$data_email_akun = mysqli_query($koneksi, "SELECT * FROM tb_akun WHERE Email='$email'") or die(mysqli_error($koneksi));
         	$data_email_akun = mysqli_fetch_array($data_email_akun);
-        	if($data_email_akun['Id_akun']!=$id_akun && isset($data_email_akun['Id_akun'])){
+        	if(isset($data_email_akun['Id_akun']) && $data_email_akun['Id_akun']!=$id_akun ){
 				$result = json_encode(array('success'=>false, 'msg'=>'Email telah digunakan'));
 				echo $result;
         	} else {

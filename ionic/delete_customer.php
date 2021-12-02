@@ -6,10 +6,6 @@ if(isset($_POST)){
 		$result = json_encode(array('success'=>false, 'msg'=>'Tidak memiliki akses'));
 		echo $result;
 	} else {
-		if(!isset($_GET)){
-			$result = json_encode(array('success'=>false, 'msg'=>'Data tidak valid'));
-			echo $result;
-		} else {
 			$id = $_POST['id_customer'];
 			$data = mysqli_query($koneksi, "SELECT * FROM tb_customer where id_customer='$id'") or die(mysqli_error($koneksi));
 			$data = mysqli_fetch_array($data);
@@ -27,7 +23,6 @@ if(isset($_POST)){
 	    	include '../pesan/delete_customer.php';
 			$result = json_encode(array('success'=>true));
 			echo $result;
-		}
 	}
 } else {
 	$result = json_encode(array('success'=>false, 'msg'=>'Tidak memiliki akses'));

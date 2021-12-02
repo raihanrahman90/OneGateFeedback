@@ -1,4 +1,6 @@
 <?php
+    require('header.php');
+    
     $token = $koneksi -> real_escape_string($_POST['token']);
     $status = $koneksi -> real_escape_string($_POST['status']);
     $id = $koneksi -> real_escape_string($_POST['id']);

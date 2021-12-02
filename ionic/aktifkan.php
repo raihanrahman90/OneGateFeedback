@@ -17,6 +17,7 @@ if(isset($_POST)){
 			##pengaktifan akun
 		}else if($data['status']=='1'){
 			##penonaktifan akun
+			$perihal = "Penonaktifan Akun";
 			include '../pesan/nonaktifkan.php';
 			$nonaktifkan = mysqli_query($koneksi, "UPDATE tb_customer SET status=2 where id_customer = '$id_customer'") or die(mysqli_error($koneksi));
 			mysqli_query($koneksi, "DELETE from tb_notif where email='$email_customer'");

@@ -31,5 +31,8 @@
         'waktu_kejadian'=>$data['waktu_kejadian'],
         'keterangan_kejadian'=>$data['keterangan_kejadian']
     );
+    if($data['penilaian']!=null){
+        mysqli_query($koneksi, "update tb_penilaian set open=1 where id_aduan=".$id) or die(mysqli_error($koneksi));
+    }
     echo json_encode(array('success'=>true, 'data'=>$aduan));
 ?>

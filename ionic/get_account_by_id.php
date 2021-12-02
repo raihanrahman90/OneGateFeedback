@@ -19,10 +19,10 @@
                     'status'=>$akun['status'],
                     'hak_akses'=>$akun['hak_akses'],
                     'Email'=>$akun['Email'],
-                    'id_akun'=>$akun['id_akun'],
+                    'id_akun'=>$akun['Id_akun'],
                     'no_telp'=>$akun['No_Telp'],
                     'nama_unit'=>$akun['nama_unit'],
-                    'nama_departemen'=>$akun['nama_departemen']
+                    'nama_departemen'=>$akun['Departemen']
                 );
 
                 echo json_encode(array('success'=>true, 'data'=>$data));
