@@ -26,8 +26,9 @@ foreach ($data as $row) {
         $row['token'], 
         "Tindakan Baru", 
         "Tindakan baru telah dilakukan pada aduan dengan id ".$id_aduan,
-        "/side/aduan-list/aduan-detail/".$id_aduan,
-        '','');
+        "admin",
+        'aduan',
+        $id_aduan);
   }
     $mail->addAddress($row['Email'], $row['Nama']);
 }

@@ -23,9 +23,9 @@ if($result = mysqli_fetch_array($query)){
         $result['token'], 
         'Beri Penilaian Pada Customer Service', 
         'Customer Service telah menutup keluhan anda, silahkan berikan penilaian',
-        '/customer/customer-aduan-detail/'.$id_aduan,
-        '',
-        ''
+        'kustomer',
+        'penilaian',
+        $id_aduan
     );
 }
 $mail->msgHTML($text, __DIR__);

@@ -25,9 +25,9 @@
             $row['token'], 
             'Feedback Baru Terhadap Unit Anda', 
             'Feedback Baru Terhadap Unit Anda',
-            '/side/aduan-list/aduan-detail/'.$id_aduan,
-            '',
-            '');
+            'admin',
+            'aduan',
+            $id_aduan);
         $mail->addAddress($row['Email'], $row['Nama']);
     }
     $mail->send();

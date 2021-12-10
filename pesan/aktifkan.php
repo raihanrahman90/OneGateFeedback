@@ -31,8 +31,8 @@ if($result = mysqli_fetch_array($query)){
         $result['token'], 
         'Aktivasi Akun', 
         'Akun anda berhasil diverifikasi, silahkan login',
-        '/login',
-        '',
+        'akun',
+        'login',
         ''
     );
 }

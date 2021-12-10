@@ -2,11 +2,11 @@
 function sendPushNotification($to='', $judulNotif='',$isiNotif='', $action='', $message='', $id=''){
     $url = "https://fcm.googleapis.com/fcm/send";
     $token =$to;
-    $serverKey = "AAAAJcvh1pc:APA91bHUYop_UOqbZ4Jfb6s90vu6pT9OhCiKosOR03jb4c7cec0pF_lKMiSd1HMp1MBblhogkaBk8HzatbBsx136FyckPodf9cg79TYoX-z_LJnw5exzH5G6B0pC5vMnT2A2pIS2IveI";
+    $serverKey = "AAAA3vEDnEE:APA91bGFfQQZkaO1AAKtHw7uls1FxrBAtZxhJfcsQoE5yxYLukj-TVAz54uExMc9LHfWx3hieI-jLronJ9a3-GDQwXt86af3Fseei428U0aFdQ55oyIAfkU-CJqR1NbBf_V_Y6QaIMGq";
     $title = $judulNotif;
     $body = $isiNotif;
     $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1');
-    $data = array('message'=>$message,'action'=>$action,'id'=>$id);
+    $data = array('halaman'=>$message,'akses'=>$action,'id'=>$id);
     $arrayToSend = array('to' => $token, 'notification' => $notification,'priority'=>'high', 'data'=>$data);
     $json = json_encode($arrayToSend);
     $headers = array();

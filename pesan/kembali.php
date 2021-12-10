@@ -26,9 +26,9 @@ while($row = mysqli_fetch_array($data)) {
         $row['token'], 
         "Aduan Dikembalikan", 
         "Aduan dengan id ".$id_aduan." telah dikembalikan kepada customer service",
-        '/side/request-list/request-detail/'.$id,
-        '',
-        '');
+        'admin',
+        'request',
+        $id);
 }
 $data = mysqli_query($koneksi, "SELECT Email, Nama FROM tb_akun where (hak_akses ='Admin1' or hak_akses='Super Admin')");
 while($row = mysqli_fetch_array($data)) {

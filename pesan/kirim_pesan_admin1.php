@@ -28,9 +28,9 @@ while($row = mysqli_fetch_array($data)) {
         $row['token'], 
         "Tindakan selesai", 
         "Keluhan dengan id ".$id_aduan." selesai ditindak",
-        '/side/aduan-list/aduan-detail/'.$id_aduan,
-        '',
-        '');
+        'admin',
+        'request',
+        $id_aduan);
     }
     $mail->addAddress($row['Email'], $row['Nama']);
 }

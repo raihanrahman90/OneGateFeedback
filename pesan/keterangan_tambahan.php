@@ -23,9 +23,9 @@ if($result = mysqli_fetch_array($query)){
         $result['token'], 
         "Keterangan tambahan", 
         "Customer service membutuhkan keterangan lebih lanjut untuk menindak lanjuti aduan anda",
-        '/customer/customer-keterangan-tambahan/'.$id_aduan,
-        '',
-        '');
+        'kustomer'.$id_aduan,
+        'keterangan_tambahan',
+        $id_aduan);
 }
 $mail->msgHTML($text, __DIR__);
     $mail->addAddress($email, $nama);

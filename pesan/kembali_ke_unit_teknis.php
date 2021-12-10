@@ -24,9 +24,9 @@
             $row['token'], 
             'Feedback Telah Dikembalikan ke Unit Teknis', 
             'Feedback Telah Dikembalikan ke Unit Teknis',
-            '/side/aduan-list/aduan-detail/'.$id_aduan,
-            '',
-            '');
+            'admin',
+            'aduan',
+            $id_aduan);
         $mail->addAddress($row['Email'], $row['Nama']);
     }
     $mail->send();
