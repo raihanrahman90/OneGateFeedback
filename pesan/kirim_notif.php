@@ -1,11 +1,12 @@
 <?php
-function sendPushNotification($to='', $judulNotif='',$isiNotif='', $action='', $message='', $id=''){
+function sendPushNotification($to='', $judulNotif='',$isiNotif='', $action='', $message='', $id='')
+{
     $url = "https://fcm.googleapis.com/fcm/send";
     $token =$to;
     $serverKey = "AAAA3vEDnEE:APA91bGFfQQZkaO1AAKtHw7uls1FxrBAtZxhJfcsQoE5yxYLukj-TVAz54uExMc9LHfWx3hieI-jLronJ9a3-GDQwXt86af3Fseei428U0aFdQ55oyIAfkU-CJqR1NbBf_V_Y6QaIMGq";
     $title = $judulNotif;
     $body = $isiNotif;
-    $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1');
+    $notification = array('title' =>$title , 'text' => $body, 'sound' => 'default', 'badge' => '1', 'body'=>$body);
     $data = array('halaman'=>$message,'akses'=>$action,'id'=>$id);
     $arrayToSend = array('to' => $token, 'notification' => $notification,'priority'=>'high', 'data'=>$data);
     $json = json_encode($arrayToSend);

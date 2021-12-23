@@ -23,7 +23,7 @@ if($result = mysqli_fetch_array($query)){
         $result['token'], 
         "Keterangan tambahan", 
         "Customer service membutuhkan keterangan lebih lanjut untuk menindak lanjuti aduan anda",
-        'kustomer'.$id_aduan,
+        'kustomer',
         'keterangan_tambahan',
         $id_aduan);
 }

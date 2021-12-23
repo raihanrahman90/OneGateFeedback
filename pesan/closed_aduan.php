@@ -24,7 +24,7 @@ if($result = mysqli_fetch_array($query)){
         'Beri Penilaian Pada Customer Service', 
         'Customer Service telah menutup keluhan anda, silahkan berikan penilaian',
         'kustomer',
-        'penilaian',
+        'keterangan_tambahan',
         $id_aduan
     );
 }
