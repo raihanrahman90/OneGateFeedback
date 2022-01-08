@@ -75,10 +75,10 @@
         $jumlah_open_merah = mysqli_num_rows($jumlah_open_merah);
     }
     
-    $jumlah_belum_dibuka = mysqli_query($koneksi, "SELECT count(tb_aduan.id_aduan) as jumlah from tb_penilaian 
+    $jumlah_belum_dibuka = mysqli_query($koneksi, "SELECT tb_aduan.id_aduan as jumlah from tb_penilaian 
         inner join tb_aduan on tb_aduan.id_aduan  = tb_penilaian.id_aduan
         where tb_penilaian.open='0'") or die(mysqli_error($koneksi));
-    $jumlah_penilaian = mysqli_fetch_array($jumlah_belum_dibuka)['jumlah'];
+    $jumlah_penilaian = mysqli_num_rows($jumlah_belum_dibuka);
 
     $jumlah_request = mysqli_query($koneksi, "SELECT id_aduan from tb_aduan where status='Request' and level='0'") or die(mysqli_error($koneksi));
     $jumlah_request = mysqli_num_rows($jumlah_request);

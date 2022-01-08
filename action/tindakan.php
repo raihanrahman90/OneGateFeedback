@@ -41,9 +41,11 @@ if($status == 'Complete' && !is_uploaded_file($_FILES['Bukti']['tmp_name'])){
         $namaLaporan = $id.'.pdf';
         move_uploaded_file($tmp_laporan, "../gambar/bukti/".$namaLaporan);
     }
-    if($status='Complete'){
+    if($status=='Complete'){
         $subject = 'Satu keluhan telah diselesaikan';
         include '../pesan/kirim_email_selesai.php';
+    }else{
+        include '../pesan/kirim_email_tindakan.php';
     }
     header("Location:../Admin");
     /**Status Complete menyertakan bukti gambar */	

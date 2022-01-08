@@ -74,7 +74,7 @@ if($cek > 0){
 		} else if($data['status']==2){
 		    $_SESSION['status']='aktivasi ulang';
 			$_SESSION['id_customer'] = $data['id_customer'];
-		    header("Location:../register/aktivasi.php");
+		    header("Location:../register/index.php");
 		}else {
 			$_SESSION['status']='tidak aktif';
 			header("Location:../index.php");

@@ -39,9 +39,11 @@ if($status == 'Complete' && !isset($_FILES['Bukti']['tmp_name'])){
         $namaLaporan = $id.'.pdf';
         move_uploaded_file($tmp_laporan, "../gambar/bukti/".$namaLaporan);
     }
-    if($status='Complete'){
+    if($status=='Complete'){
         $subject = 'Satu keluhan telah diselesaikan';
         include '../pesan/kirim_email_selesai.php';
+    }else{
+        include '../pesan/kirim_email_tindkan.php';
     }
 	$result = json_encode(array('success'=>true));
 	echo $result;

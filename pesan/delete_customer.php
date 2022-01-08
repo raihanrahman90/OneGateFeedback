@@ -19,7 +19,6 @@ $text = '<!DOCTYPE html>
         nawang.ayunanda@ap1.co.id<br>
         tasyakha.a@gmail.com<br>
         dnperdana18@gmail.com<br>
-        henryfaturrahman@gmail.com<br>
   </div>
 </div>
 </body>
