@@ -6,9 +6,9 @@ session_start();
 if(isset($_SESSION['status'])){
     if($_SESSION['status']=='login'){
       if($_SESSION['e-mail']=='bpn.ph@ap1.co.id'){
-        header("Location:customer/customer_service.php");
+        header("Location:../customer/customer_service.php");
       } else{
-        header("Location:Admin");
+        header("Location:../Admin");
       }
     }
   }
