@@ -37,8 +37,11 @@ if($status == 'Complete' && !is_uploaded_file($_FILES['Bukti']['tmp_name'])){
         move_uploaded_file($tmp_file, "../gambar/bukti/".$id1);
     }
     if(is_uploaded_file($_FILES['laporan']['tmp_name'])){
+        $nama_laporan = $_FILES['laporan']['name'];
+        $x_laporan = explode('.', $nama_laporan);
+        $ekstensi_laporan = strtolower(end($x_laporan));
         $tmp_laporan = $_FILES['laporan']['tmp_name'];
-        $namaLaporan = $id.'.pdf';
+        $namaLaporan = $id.'.'.$ekstensi_laporan;
         move_uploaded_file($tmp_laporan, "../gambar/bukti/".$namaLaporan);
     }
     if($status=='Complete'){
