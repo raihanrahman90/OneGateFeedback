@@ -3,15 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD:customer_service.sql
--- Waktu pembuatan: 05 Nov 2021 pada 13.05
--- Versi server: 10.4.21-MariaDB
--- Versi PHP: 8.0.12
-=======
 -- Waktu pembuatan: 06 Agu 2021 pada 13.52
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.4
->>>>>>> ba254d09689aeeb5e71dba59c31def7e7db0a122:customer_service (1).sql
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;

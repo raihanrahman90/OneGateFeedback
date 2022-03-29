@@ -68,7 +68,6 @@ if($cek > 0){
 				unset($_SESSION['id_aduan']);
 				header("Location:../customer/tampil_antri.php?id=".$id_aduan);
 			}else{
-				echo "yah dis ini";
 				header("Location:../customer/");
 			}
 		} else if($data['status']==2){

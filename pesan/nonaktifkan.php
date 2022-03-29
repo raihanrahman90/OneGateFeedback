@@ -35,10 +35,10 @@ $mail->Subject = $perihal;
     if($result = mysqli_fetch_array($query)){
         sendPushNotification(
             $result['token'], 
-            'Aktivasi Akun', 
-            'Akun anda berhasil diverifikasi, silahkan login',
-            '/login',
-            '',
+            'Akun Anda telah dinonaktifkan', 
+            'Akun Customer Service Bandara SAMS Sepinggan Balikpapan anda telah dinonaktifkan oleh Bandara SAMS Sepinggan Balikpapan',
+            'kustomer',
+            'login',
             ''
         );
     }

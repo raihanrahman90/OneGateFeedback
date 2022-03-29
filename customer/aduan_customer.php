@@ -154,6 +154,7 @@ include 'header.php';
 				case 'gif':
 				case 'bmp':
 				case 'png':
+				case 'jpeg':
 				//etc
 				return true;
 			}

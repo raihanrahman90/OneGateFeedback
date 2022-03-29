@@ -5,7 +5,7 @@ $subject = 'Feedback Baru telah dikirimkan';
     $text = '<!DOCTYPE html>
     <html lang="en">
     <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <title>Feedback memasuki level '.$level.'</title>
+      <title>Feedback baru telah dikirim</title>
     </head>
     <body>
     <div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;">
@@ -21,13 +21,13 @@ $mail->msgHTML($text, __DIR__);
 //Attach an image file
 //send the message, check for errors
 $data = mysqli_query($koneksi, "SELECT tb_token.token, Email, Nama FROM tb_akun 
-left join (SELECT * from tb_token where status='akun') as tb_token on tb_akun.id_akun = tb_token.id where hak_akses ='Admin1'");
+left join (SELECT * from tb_token where status='akun') as tb_token on tb_akun.id_akun = tb_token.id where hak_akses ='Admin1' or hak_akses='Super Admin'");
 while($row = mysqli_fetch_array($data)) {
     if(!is_null($row['token'])){
       sendPushNotification(
         $row['token'], 
-        "Tindakan selesai", 
-        "Keluhan dengan id ".$id_aduan." selesai ditindak",
+        "Feedback baru telah dikirim", 
+        "Feedback baru telah dikirim",
         'admin',
         'request',
         $id_aduan);
