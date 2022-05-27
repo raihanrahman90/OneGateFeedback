@@ -22,6 +22,11 @@
                                                         on progress.id_aduan = tb_aduan.id_aduan and progress.waktu >= tb_aduan.waktu
                                                         where status ='Open' and progress.waktu is not null group by tb_aduan.id_aduan");
         $jumlah_open_merah = mysqli_num_rows($jumlah_open_merah);
+        $jumlah_progress = mysqli_query($koneksi, "SELECT tb_aduan.id_aduan from tb_aduan 
+                                                            left join (SELECT id_aduan, waktu FROM tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
+                                                            on progress.id_aduan = tb_aduan.id_aduan and progress.waktu >= tb_aduan.waktu
+                                                            where status='Progress' group by tb_aduan.id_aduan") or die(mysqli_error($koneksi));
+        $jumlah_progress = mysqli_num_rows($jumlah_progress);
     }else if($status_akun=='Unit' || $status_akun=='Manager'){
         $jumlah_open_kuning = mysqli_query($koneksi, "SELECT tb_aduan.id_aduan from tb_aduan
                                                         left join (SELECT id_aduan, waktu FROM tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
@@ -33,6 +38,10 @@
                                                         on progress.id_aduan = tb_aduan.id_aduan and progress.waktu >= tb_aduan.waktu
                                                         where status='Open' and id_unit='$id_unit' and progress.waktu is not null") or die(mysqli_error($koneksi));
         $jumlah_open_merah = mysqli_num_rows($jumlah_open_merah);
+        $jumlah_progress = mysqli_query($koneksi, "SELECT tb_aduan.id_aduan from tb_aduan 
+                                                        where status='Progress' and 
+                                                        id_unit='$id_unit'") or die(mysqli_error($koneksi));
+        $jumlah_progress = mysqli_num_rows($jumlah_progress);
     }else if($status_akun=='Senior Manager'){
         $id_departemen = $_POST['id_departemen'];
         $sintax="SELECT tb_aduan.id_aduan FROM tb_aduan 
@@ -51,6 +60,12 @@
                 where tb_departemen.id_departemen = '".$id_departemen."' and level>=2 and status='Open' and progress.waktu is not null";
         $jumlah_open_merah = mysqli_query($koneksi, $sintax) or die(mysqli_error($koneksi));
         $jumlah_open_merah = mysqli_num_rows($jumlah_open_merah);
+        $jumlah_progress = mysqli_query($koneksi, "SELECT tb_aduan.id_aduan from tb_aduan 
+                                                        inner join tb_unit on tb_aduan.id_unit = tb_unit.id_unit
+                                                        inner join tb_departemen on tb_departemen.id_departemen = tb_unit.id_departemen
+                                                        where tb_departemen.id_departemen = '".$id_departemen."' and
+                                                        status='Progress'") or die(mysqli_error($koneksi));
+        $jumlah_progress = mysqli_num_rows($jumlah_progress);
     }else if($status_akun=='AOC Head'){
         $jumlah_open_kuning = mysqli_query($koneksi, "SELECT tb_aduan.id_aduan from tb_aduan 
                                                             left join (SELECT id_aduan, waktu FROM tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
@@ -62,6 +77,9 @@
                                                                                             on progress.id_aduan = tb_aduan.id_aduan and progress.waktu >= tb_aduan.waktu
                                                     where status='Open' and level>=3 and progress.waktu is not null") or die(mysqli_error($koneksi));
         $jumlah_open_merah = mysqli_num_rows($jumlah_open_merah);
+        $jumlah_progress = mysqli_query($koneksi, "SELECT tb_aduan.id_aduan from tb_aduan 
+                                                        where status='Progress'") or die(mysqli_error($koneksi));
+        $jumlah_progress = mysqli_num_rows($jumlah_progress);
     }else if($status_akun=='General Manager'){
         $jumlah_open_kuning = mysqli_query($koneksi, "SELECT tb_aduan.id_aduan from tb_aduan 
                                                             left join (SELECT id_aduan, waktu FROM tb_progress where tindakan like 'Dikembalikan ke unit teknis%') as progress
@@ -73,6 +91,9 @@
                                                                                             on progress.id_aduan = tb_aduan.id_aduan and progress.waktu >= tb_aduan.waktu
                                                     where status='Open' and level>=4 and progress.waktu is not null") or die(mysqli_error($koneksi));
         $jumlah_open_merah = mysqli_num_rows($jumlah_open_merah);
+        $jumlah_progress = mysqli_query($koneksi, "SELECT tb_aduan.id_aduan from tb_aduan 
+                                                        where status='Progress'") or die(mysqli_error($koneksi));
+        $jumlah_progress = mysqli_num_rows($jumlah_progress);
     }
     
     $jumlah_belum_dibuka = mysqli_query($koneksi, "SELECT tb_aduan.id_aduan as jumlah from tb_penilaian 
@@ -92,6 +113,7 @@
                 'feedback_merah'=>$jumlah_open_merah,
                 'feedback_kuning'=>$jumlah_open_kuning,
                 'feedback_biru'=>$jumlah_complete,
+                'feedback_abu_abu'=>$jumlah_progress,
                 'customer_biru'=>$jumlah_customer,
                 'penilaian_biru'=>$jumlah_penilaian
                 )

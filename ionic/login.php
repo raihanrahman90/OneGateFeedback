@@ -72,7 +72,7 @@ if($cek > 0){
 			echo json_encode(array('success'=>false, 'data'=>$hasil, 'status'=>$data['status']));
 		}else {
 			$_SESSION['status']=0;
-			echo json_encode(array('success'=>true, 'data'=>$hasil, 'status'=>$data['status'], 'msg'=>'kustomer'));
+			echo json_encode(array('success'=>false, 'data'=>$hasil, 'status'=>$data['status'], 'msg'=>'kustomer'));
 		}		
 	}else{
 		echo json_encode(array('success'=>false, 'msg'=>'Data yang anda masukkan tidak ditemukan'));

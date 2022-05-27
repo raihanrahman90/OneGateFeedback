@@ -96,7 +96,6 @@
 				}else{
 					mysqli_query($koneksi, "INSERT INTO tb_notif value('".$email."', NOW() + INTERVAL 1 DAY)");
 				}
-				$_SESSION['status']= 'daftar';
 				$to = $email;
 				$nama_penerima = $nama;
 				$subject = 'Konfirmasi Data Akun';

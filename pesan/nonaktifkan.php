@@ -36,7 +36,7 @@ $mail->Subject = $perihal;
         sendPushNotification(
             $result['token'], 
             'Akun Anda telah dinonaktifkan', 
-            'Akun Customer Service Bandara SAMS Sepinggan Balikpapan anda telah dinonaktifkan oleh Bandara SAMS Sepinggan Balikpapan',
+            'Akun OGFS anda telah dinonaktifkan. Silahkan login kembali dan perbaharui data Anda',
             'kustomer',
             'login',
             ''
