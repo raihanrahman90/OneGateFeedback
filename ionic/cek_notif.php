@@ -9,6 +9,7 @@
     $jumlah_customer = mysqli_num_rows($jumlah_customer);
     $jumlah_complete = 0;
     $jumlah_open = 0;
+    $jumlah_progress = 0;
     if($hak_akses=='Super Admin' || $hak_akses=='Admin2' || $hak_akses=='Pengawas Internal' || $hak_akses=='Admin1'){
         $jumlah_complete = mysqli_query($koneksi, "SELECT id_aduan from tb_aduan where status='Complete'") or die(mysqli_error($koneksi));
         $jumlah_complete = mysqli_num_rows($jumlah_complete);
