@@ -55,6 +55,7 @@ if($customer = mysqli_fetch_array($getCustomer)){
   </body>
   </html>';
   $email = $customer['email'];
+  $nama = $customer['nama'];
   $query = mysqli_query($koneksi, "SELECT token from tb_customer inner join tb_token on tb_customer.id_customer = tb_token.id where email='$email'");
   if($result = mysqli_fetch_array($query)){
     sendPushNotification(
