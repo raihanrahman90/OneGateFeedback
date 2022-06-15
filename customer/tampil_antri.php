@@ -253,14 +253,30 @@
                                                     <?php
 		                    	                        if(($data['status_progress']=='Closed' || $data['status_progress']=='Complete' || $data['status_progress']=='Progress')){
 															echo  "<li class='timeline__step done'>";
-															$selesai = true;
+															$progres = true;
 		                    	                        } else {
 															echo  "<li class='timeline__step'>";
-															$selesai = false;
+															$progres = false;
 		                    	                        }
 		                    	                    ?>
                                                         <span class="timeline__step-title">
-															Progress</br>
+															Progress
+															<?php 
+																//picture progres if exist
+																if($progres){
+																	$gambar= mysqli_query($koneksi, "SELECT * FROM tb_progress 
+																									where id_aduan='$id_aduan' and 
+																									tindakan like 'Feedback direspons oleh unit dengan keterangan%'
+																									order by id_progress desc") or die(mysqli_error($koneksi));
+																	if($gambar = mysqli_fetch_array($gambar)){
+																		if(!is_null($gambar['bukti'])){
+																			echo '<a href="../gambar/bukti/'.$gambar['bukti'].'" class="btn btn-success">Bukti</a>';
+																		}
+																	}
+																}
+																//picture progres if exist
+															?>
+															</br>
 															<?php 
 																$progresQuery= mysqli_query($koneksi, "SELECT * FROM tb_progress 
 																								where id_aduan='$id_aduan' and 
@@ -292,6 +308,7 @@
                                                         <span class="timeline__step-title">
 															Complete
 															<?php 
+																//picture complete if exist
 																if($selesai){
 																	$gambar= mysqli_query($koneksi, "SELECT * FROM tb_progress 
 																									where id_aduan='$id_aduan' and 
@@ -303,10 +320,29 @@
 																		}
 																	}
 																}
-															?></br>
-															<span class="timeline__step-subtitle">
-																Keluhan ditindaklanjuti dan menunggu konfirmasi dari customer service
-															</span></span>
+																//picture complete if exist
+															?>
+															</br>
+															
+															<?php 
+															// dinamis teks for complete
+																$completeQuery= mysqli_query($koneksi, "SELECT * FROM tb_progress 
+																								where id_aduan='$id_aduan' and 
+																								tindakan like 'Feedback telah selesai%'
+																								order by id_progress desc") or die(mysqli_error($koneksi));
+																if($complete = mysqli_fetch_array($completeQuery)){
+																	echo 
+																	'<span class="timeline__step-subtitle">
+																		'.$complete['tindakan'].'
+																	</span></span>';
+																}else{
+																	echo 
+																	'<span class="timeline__step-subtitle">
+																	Keluhan ditindaklanjuti dan menunggu konfirmasi dari customer service
+																	</span></span>';
+																}
+																// end dinamis teks for complete
+															?>
                                                         <i class="timeline__step-marker"></i>
                                                     </li>
                                                     <?php

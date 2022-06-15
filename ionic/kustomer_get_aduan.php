@@ -63,9 +63,8 @@
                     $fotoprogress = $dataprogress['bukti'];
                     $tindakanprogress = $dataprogress['tindakan'];
                 }else{
-                    
-                $fotoprogress= null;
-                $tindakanprogress = null;
+                    $fotoprogress= null;
+                    $tindakanprogress = null;
                 }
             }else{
                 $fotoprogress= null;
@@ -97,6 +96,8 @@
                 'kirim'=>$kirim,
                 'timeline'=>$timeline,
                 'foto_complete'=>$fotocomplete,
+                'foto_progress'=>$fotoprogress,
+                'tindakan_progress'=>$tindakanprogress,
                 'tindakan_complete'=>$tindakancomplete,
                 'rate_available'=>$rateAvailable
             );
