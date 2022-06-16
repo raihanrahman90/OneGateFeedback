@@ -3,6 +3,7 @@
 	// menghubungkan dengan koneksi
 	include '../koneksi.php';
 	// menangkap data yang dikirim dari form
+	$id_akun = $koneksi -> real_escape_string($_POST['id_customer']);
 	$id_aduan = $koneksi -> real_escape_string($_POST['id_aduan']);
 	$jenis = $koneksi -> real_escape_string($_POST['jenis']);
 	$tanggal_kejadian = $koneksi -> real_escape_string($_POST['tanggal_kejadian']);
@@ -44,8 +45,15 @@
 		move_uploaded_file($tmp_file, "../gambar/aduan/".$id1);
 		$cek = mysqli_query($koneksi,"UPDATE tb_aduan SET foto='$id1' WHERE id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
 	}
-    $cek = mysqli_query($koneksi,"UPDATE tb_aduan SET jenis='$jenis', ket='$keterangan', perihal='$perihal', status='$status', urgensi='$urgensi',
-									nama_lokasi='$lokasi', nama_detail_lokasi='$detail_lokasi', waktu_kejadian='$tanggal_kejadian', keterangan_kejadian=$keterangan_kejadian
-									WHERE id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
+	if($id_akun == 0){
+		$pengguna = $koneksi->real_escape_string($_POST['pengguna']);
+		$cek = mysqli_query($koneksi,"UPDATE tb_aduan SET jenis='$jenis', ket='$keterangan', perihal='$perihal', status='$status', urgensi='$urgensi',
+		nama_lokasi='$lokasi', nama_detail_lokasi='$detail_lokasi', waktu_kejadian='$tanggal_kejadian', keterangan_kejadian=$keterangan_kejadian, pelapor='$pengguna'
+		WHERE id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
+	}else{
+		$cek = mysqli_query($koneksi,"UPDATE tb_aduan SET jenis='$jenis', ket='$keterangan', perihal='$perihal', status='$status', urgensi='$urgensi',
+		nama_lokasi='$lokasi', nama_detail_lokasi='$detail_lokasi', waktu_kejadian='$tanggal_kejadian', keterangan_kejadian=$keterangan_kejadian
+		WHERE id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
+	}
 	echo json_encode(array('success'=>true));
 ?>

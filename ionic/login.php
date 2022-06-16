@@ -47,7 +47,20 @@ if($cek > 0){
 			)
 		);
 	} else {
-		echo json_encode(array('success'=>true, 'data'=>$hasil, 'msg'=>'kustomer'));
+		
+		$data = mysqli_query($koneksi,"SELECT * FROM tb_akun  
+										WHERE Email='$username' and Password=md5('$password')");
+		if($data1 = mysqli_fetch_array($data)){
+			echo json_encode(
+				array(
+					'success'=>true, 
+					'id_customer'=>$data1['Id_akun'],
+					'email'=>'bpn.ph@ap1.co.id', 
+					'status'=>1, 
+					'msg'=>'bpn.ph@ap1.co.id'
+				)
+			);
+		}
 	}
 }else{
 	$data = mysqli_query($koneksi,"SELECT * FROM tb_customer WHERE Email='$username' and Password=md5('$password')") or die(mysqli_error($koneksi));
@@ -71,7 +84,7 @@ if($cek > 0){
 			$hasil['id_customer'] = 2;
 			echo json_encode(array('success'=>false, 'data'=>$hasil, 'status'=>$data['status']));
 		}else {
-			$_SESSION['status']=0;
+			$hasil['status']=0;
 			echo json_encode(array('success'=>false, 'data'=>$hasil, 'status'=>$data['status'], 'msg'=>'kustomer'));
 		}		
 	}else{

@@ -351,7 +351,7 @@ include 'header.php';
                                 </div>
                             </div>
                         </div>";
-                    if(($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin2')&& $status !='Closed'){
+                    if(($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin2')&& $status =='Complete'){
                         #status belum closed & login sebagai customer service
                       echo "
                             <a href='#' data-toggle='modal' data-target='#selesaiModal'  style='margin-left:10px;' class='btn btn-success btn-icon-split float-right' >

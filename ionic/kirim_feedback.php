@@ -10,7 +10,7 @@
                     $result = json_encode(array('success'=>true));
                     echo $result;
                 }else{
-                    if($id_customer==$row['id_customer']){
+                    if($id_customer==$row['id_customer'] || $id_customer == 0){
                         mysqli_query($koneksi, "UPDATE tb_aduan set level=0 where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
                         $level = 1;
                         $id = $id_aduan;

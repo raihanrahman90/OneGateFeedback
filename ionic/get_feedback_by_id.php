@@ -23,6 +23,7 @@
         'foto'=>$data['foto'],
         'nama_departemen'=>$data['nama_departemen'],
         'nama_unit'=>$data['nama_unit'],
+        'id_unit'=>$data['unit'],
         'penilaian'=>$data['penilaian'],
         'ulasan'=>$data['ulasan'],
         'perihal'=>$data['perihal'],

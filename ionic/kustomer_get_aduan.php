@@ -12,6 +12,8 @@
         if($aduan = mysqli_fetch_array($aduan)){
             if($aduan['id_customer']==$id_customer && $aduan['level']==-1){
                 $edit = true;
+            }elseif($id_customer == 0 && $aduan['level']==-1){
+                $edit = true;
             }else{
                 $edit = false;
             }
@@ -90,6 +92,7 @@
                 'nama_lokasi'=>$aduan['nama_lokasi'],
                 'nama_detail_lokasi'=>$aduan['nama_detail_lokasi'],
                 'tanggal_kejadian'=>$aduan['waktu_kejadian'],
+                'pengguna'=>$aduan['pelapor'],
                 'keterangan_kejadian'=>$aduan['keterangan_kejadian'],
                 'foto'=>$aduan['foto'],
                 'edit'=>$edit,
