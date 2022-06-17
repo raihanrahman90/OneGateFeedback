@@ -88,7 +88,7 @@ if(isset($_FILES['gambar'])&&is_uploaded_file($_FILES['gambar']['tmp_name'])){
 	move_uploaded_file($tmp_file, "../gambar/aduan/".$id1);
 }
 if($id_akun == 0){
-	$tambahTanggalPengiriman = mysqli_query($koneksi, "INSERT INTO tb_progress value(0,NULL,$id,'feedback dikirim oleh Admin CS (bpn.os@ap1.co.id)', NULL, now())") or die(mysyqli_error($koneksi));
+	$tambahTanggalPengiriman = mysqli_query($koneksi, "INSERT INTO tb_progress value(0,NULL,$id,'feedback dikirim oleh Admin CS (bpn.ph@ap1.co.id)', NULL, now())") or die(mysyqli_error($koneksi));
 }else{
 	$tambahTanggalPengiriman = mysqli_query($koneksi, "INSERT INTO tb_progress value(0,NULL,$id,'Feedback dikirim oleh Mitra', NULL, now())") or die(mysyqli_error($koneksi));
 	$query = mysqli_query($koneksi, "SELECT * FROM tb_customer WHERE id_customer='$id_akun'") or die(mysqli_error($koneksi));

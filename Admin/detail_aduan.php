@@ -351,8 +351,8 @@ include 'header.php';
                                 </div>
                             </div>
                         </div>";
-                    if(($_SESSION['hak_akses']=='Super Admin' || $_SESSION['hak_akses']=='Admin2')&& $status =='Complete'){
-                        #status belum closed & login sebagai customer service
+                    if(($_SESSION['hak_akses']=='Super Admin') || ($_SESSION['hak_akses']=='Admin2'&& $status =='Complete')){
+                        #status super admin atau (admin2 dan status complete)
                       echo "
                             <a href='#' data-toggle='modal' data-target='#selesaiModal'  style='margin-left:10px;' class='btn btn-success btn-icon-split float-right' >
                               <span class='icon text-white-50'>
@@ -386,7 +386,7 @@ include 'header.php';
                               </div>
                               </form>
                             ";
-                        ///status belum closed & login sebagai customer service
+                            #status super admin atau (admin2 dan status complete)
                     } 
                     if ($status!='Closed' && (($_SESSION['id_unit']==$id_unit) || $_SESSION['hak_akses']=='Super Admin')){
                       #status belum ditutup & bukan customer service
@@ -481,7 +481,8 @@ include 'header.php';
                     }////kondisi data ditemukan
                     #Data tidak ditemukan
                     else {
-            			echo"<tr>
+            			echo"
+                  <tr>
             				<td><label>Data tidak Ditemukan</label></td>
             			</tr>";
             		}
