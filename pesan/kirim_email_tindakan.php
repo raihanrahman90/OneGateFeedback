@@ -17,6 +17,7 @@
     </html>';
 $mail->msgHTML($text, __DIR__);
 //Attach an image file
+$mail->Subject = "Telah Dilakukan Tindakan Terhadap Feedback";
 //send the message, check for errors
 $data = mysqli_query($koneksi, "SELECT token, Email, Nama FROM tb_akun 
 left join (SELECT * from tb_token where status='akun') as tb_token on tb_token.id = tb_akun.id_akun where (hak_akses ='Admin2' or hak_akses='Super Admin')");

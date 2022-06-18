@@ -55,7 +55,7 @@ include 'header.php';
                           left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
                           WHERE tb_aduan.status <> 'Request' and tb_aduan.status <> 'Returned' 
                           GROUP BY tb_aduan.id_aduan
-                          ORDER BY field(tb_aduan.status,'Progress' ,'Open', 'Closed'), tb_aduan.waktu DESC";
+                          ORDER BY tb_aduan.waktu DESC";
                     }else if($_SESSION['status_akun']=='Manager'||$_SESSION['status_akun']=='Unit'){
                       /** Hanya menampilkan aduan terhadap unit */
                       $id_unit = $_SESSION['id_unit'];
