@@ -98,7 +98,7 @@ include('header.php');
         									<div class="col-sm-12">
         									    <div class="form-group">
         									        <label>Masa Berlaku Kontrak Kerja Perusahaan Dengan PT AP 1</label>
-        									        <input type="date" name="kontrak" class="form-control">
+        									        <input type="date" name="kontrak" class="form-control" required>
         									    </div>
         									</div>
 											<div class="col-sm-12 text-center pull-right">

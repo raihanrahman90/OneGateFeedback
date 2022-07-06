@@ -2,6 +2,12 @@
 $halaman ='Aduan';
 include 'hak_akses.php';
 include 'header.php';
+if(!isset($_GET['sortBy'])){
+  $sortBy = 'tb_aduan.id_aduan';
+}
+if(!isset($_GET['direction'])){
+  $direction = 'desc';
+}
 ?>
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -13,7 +19,7 @@ include 'header.php';
             <div class="card-header py-3">
             </div>
             <div class="card-body">
-              <div class="table-responsive">
+              <div class="">
                 <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
@@ -55,7 +61,7 @@ include 'header.php';
                           left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
                           WHERE tb_aduan.status <> 'Request' and tb_aduan.status <> 'Returned' 
                           GROUP BY tb_aduan.id_aduan
-                          ORDER BY tb_aduan.waktu DESC";
+                          ORDER BY $sortBy $direction";
                     }else if($_SESSION['status_akun']=='Manager'||$_SESSION['status_akun']=='Unit'){
                       /** Hanya menampilkan aduan terhadap unit */
                       $id_unit = $_SESSION['id_unit'];
@@ -65,7 +71,7 @@ include 'header.php';
                                         on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu
                                 left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
                                 where tb_unit.id_unit = '$id_unit'
-                                ORDER BY tb_aduan.waktu DESC";
+                                ORDER BY $sortBy $direction";
                       /** Hanya menampilkan aduan terhadap unit */
 
                     }else if($_SESSION['status_akun']=='Senior Manager'){
@@ -77,7 +83,7 @@ include 'header.php';
                                     on tb_aduan.id_aduan = progress.id_aduan and progress.waktu >= tb_aduan.waktu 
                               left join tb_customer on tb_customer.id_customer = tb_aduan.id_customer
                               where tb_departemen.id_departemen = '$id_departemen'
-                              ORDER BY tb_aduan.waktu DESC  ";
+                              ORDER BY $sortBy $direction";
                       /** Hanya menampilkan aduan terhadap departemen dari senior manager */
                     }
                       $query = mysqli_query($koneksi, $sintax) or die(mysqli_error($koneksi));

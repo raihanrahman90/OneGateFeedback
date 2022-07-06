@@ -69,7 +69,6 @@ if(is_uploaded_file($_FILES['foto']['tmp_name'])){
 	$cek = mysqli_query($koneksi,"UPDATE tb_aduan SET foto='$id1' WHERE id_aduan = '$id'") or die(mysqli_error($koneksi));
 	move_uploaded_file($tmp_file, "../gambar/aduan/".$id1);
 }
-$tambahTanggalPengiriman = mysqli_query($koneksi, "INSERT INTO tb_progress value(0,NULL,$id,'Feedback dikirim oleh Mitra', NULL, now())") or die(mysyqli_error($koneksi));
 $query = mysqli_query($koneksi, "SELECT * FROM tb_customer WHERE id_customer='$id_akun'") or die(mysqli_error($koneksi));
 $query = mysqli_fetch_array($query);
 $id_keluhan = $id;

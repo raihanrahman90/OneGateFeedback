@@ -12,6 +12,10 @@
                     header('Location:../customer/tampil_antri.php?id='.$id_aduan);
                 }else{
                     if($id_customer==$row['id_customer']){
+                        
+                        $tambahTanggalPengiriman = mysqli_query($koneksi, "INSERT INTO tb_progress value(
+                                                                            0,NULL,$id_aduan,'Feedback dikirim oleh Mitra', NULL, now()
+                                                                            )") or die(mysyqli_error($koneksi));
                         mysqli_query($koneksi, "UPDATE tb_aduan set level=0 where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
                         $level = 0;
                         $id = $id_aduan;

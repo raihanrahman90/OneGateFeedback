@@ -171,7 +171,7 @@
                                         <label>Keterangan Return<label>
                                       </div>
                                       <div class='col-lg-8'>
-                                        <input type='text' class='form-control' disabled value='".$keterangan_kembali_row['tindakan']."'></input>
+                                        <textarea class='form-control' disabled rows=4>".$keterangan_kembali_row['tindakan']."</textarea>
                                       </div>
                                     </div>";
                           }

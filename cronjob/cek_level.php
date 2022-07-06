@@ -63,6 +63,9 @@ while($row = mysqli_fetch_array($level2)){
     } else {
         echo 'Message sent!';
     }
+    $tambahTanggalPengiriman = mysqli_query($koneksi, "INSERT INTO tb_progress value(
+                                                        0,NULL,$id_aduan,'Feedback dikirim oleh Mitra', NULL, now()
+                                                        )") or die(mysyqli_error($koneksi));
 }
 $level1 = mysqli_query($koneksi, "UPDATE tb_aduan set level=0 where TIMESTAMPDIFF(MINUTE, waktu,now()) >= 30 and level=-1") or die(mysqli_error($koneksi));
 
