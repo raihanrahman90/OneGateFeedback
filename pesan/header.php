@@ -30,7 +30,7 @@
     //Username to use for SMTP authentication - use full email address for gmail
     $mail->Username = 'serviceimprovementbpn@gmail.com';
     //Password to use for SMTP authentication
-    $mail->Password = 'Airport2020';
+    $mail->Password = 'kiqiffzktqkealjp';
     //Set who the message is to be sent from
     $mail->setFrom('serviceimprovementbpn@gmail.com', 'Customer Service Bandara SAMS Sepinggan Balikpapan');
     //Set an alternative reply-to address

@@ -20,7 +20,6 @@
                         $level = 0;
                         $id = $id_aduan;
                         include "../pesan/kirim_pesan_admin1.php";
-                        header('Location:../customer/tampil_antri.php?id='.$id_aduan);
                     }else{
                         $_SESSION['status_jalan'] = 'bukan pengirim';        
                         header('Location:../customer/tampil_antri.php?id='.$id_aduan);
