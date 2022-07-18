@@ -87,6 +87,7 @@ if(isset($_FILES['gambar'])&&is_uploaded_file($_FILES['gambar']['tmp_name'])){
 	$cek = mysqli_query($koneksi,"UPDATE tb_aduan SET foto='$id1' WHERE id_aduan = '$id'") or die(mysqli_error($koneksi));
 	move_uploaded_file($tmp_file, "../gambar/aduan/".$id1);
 }
+$id_keluhan = $id;
 if($id_akun == 0){
 	$tambahTanggalPengiriman = mysqli_query($koneksi, "INSERT INTO tb_progress value(0,NULL,$id,'feedback dikirim oleh Admin CS (bpn.ph@ap1.co.id)', NULL, now())") or die(mysyqli_error($koneksi));
 }else{
@@ -97,7 +98,6 @@ if($id_akun == 0){
 	$nama = $query['nama'];
 	include "../pesan/aduan_customer.php";
 }
-$id_keluhan = $id;
 $result = json_encode(array('success'=>true, 'id_aduan'=>$id_keluhan));
 echo $result;
 ?>z

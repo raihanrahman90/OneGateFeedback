@@ -24,7 +24,7 @@ function getPesan($level, $id, $link){
 $level0 = mysqli_query($koneksi, "SELECT * FROM tb_aduan 
 where TIMESTAMPDIFF(MINUTE, waktu,now()) >= 30 and level=-1");
 
-while($row = mysqli_fetch_array($level2)){
+while($row = mysqli_fetch_array($level0)){
     $id_aduan = $row['id_aduan'];
     $text = '<!DOCTYPE html>
     <html lang="en">
