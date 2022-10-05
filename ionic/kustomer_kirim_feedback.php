@@ -100,4 +100,4 @@ if($id_akun == 0){
 }
 $result = json_encode(array('success'=>true, 'id_aduan'=>$id_keluhan));
 echo $result;
-?>z
+?>
