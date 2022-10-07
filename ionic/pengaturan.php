@@ -1,6 +1,6 @@
 <?php
 	include '../koneksi.php';
-	echo json_encode(array('success'=>false, 'msg'=>'nah'));/*
+	echo json_encode(array('success'=>false, 'msg'=>$_POST['default']));/*
 	$id_akun = $_POST['id_akun'];
 	$nama = $koneksi-> real_escape_string($_POST['Nama']);
 	$email = $koneksi-> real_escape_string($_POST['Email']);
