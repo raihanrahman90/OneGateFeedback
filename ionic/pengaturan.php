@@ -14,14 +14,11 @@
 	if($data_email_akun['Id_akun']!=$id_akun && $jumlah_data>0){
 		echo json_encode(array('success'=>false, 'msg'=>'Email sudah digunakan'));
 	} else {
-		echo json_encode(array('success'=>false, 'msg'=>$_POST['default']));
     	if($_POST['default']){
     		$data = mysqli_query($koneksi, "UPDATE tb_akun SET Nama='$nama', Email='$email', No_Telp='$no_telp', password=md5('$password') where id_akun='$id_akun'")or die(mysqli_error($koneksi));
-		
-			echo json_encode(array('success'=>false, 'msg'=>true));
 		} else {
     	    $data = mysqli_query($koneksi, "UPDATE tb_akun SET Nama='$nama', Email='$email', No_Telp='$no_telp' where id_akun='$id_akun'")or die(mysqli_error($koneksi));
-			echo json_encode(array('success'=>false, 'msg'=>false));
     	}
+		echo json_encode(array('success'=>true));
 	}
 ?>
