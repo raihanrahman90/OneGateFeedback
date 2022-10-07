@@ -1,6 +1,6 @@
 <?php
 	include '../koneksi.php';
-	echo json_encode(array('success'=>false, 'msg'=>$_POST['default']));/*
+	$_POST['default'];
 	$id_akun = $_POST['id_akun'];
 	$nama = $koneksi-> real_escape_string($_POST['Nama']);
 	$email = $koneksi-> real_escape_string($_POST['Email']);
@@ -17,9 +17,11 @@
 		echo json_encode(array('success'=>false, 'msg'=>$_POST['default']));
     	if($_POST['default']){
     		$data = mysqli_query($koneksi, "UPDATE tb_akun SET Nama='$nama', Email='$email', No_Telp='$no_telp', password=md5('$password') where id_akun='$id_akun'")or die(mysqli_error($koneksi));
+		
+			echo json_encode(array('success'=>false, 'msg'=>true));
 		} else {
     	    $data = mysqli_query($koneksi, "UPDATE tb_akun SET Nama='$nama', Email='$email', No_Telp='$no_telp' where id_akun='$id_akun'")or die(mysqli_error($koneksi));
+			echo json_encode(array('success'=>false, 'msg'=>false));
     	}
-		echo json_encode(array('success'=>false, 'msg'=>$_POST['default']));
-	}*/
+	}
 ?>
