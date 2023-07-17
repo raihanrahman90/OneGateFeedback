@@ -1,7 +1,7 @@
 <?php
 
     //Read the filename
-    $filename = 'http://ogfs-bpn.sepinggan-airport.com/Bandara/koneksi.php';
+    $filename = 'https://ogfs-bpn.sepinggan-airport.com/Bandara/koneksi.php';
     //Check the file exists or not
     if(file_exists($filename)) {
 
