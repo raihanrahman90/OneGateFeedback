@@ -1,0 +1,32 @@
+.application-button{
+  width: 100%;
+  aspect-ratio: 1/1;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.application-button-green{
+  background-color: #2ecc71;
+}
+.application-button-green:hover{
+  background-color: white;
+  border: #2ecc71 1px solid;
+  color: #2ecc71;
+}
+
+.application-button-blue{
+  background-color: #3498db;
+}
+
+.application-button-blue:hover{
+  background-color: white;
+  border: #3498db 1px solid;
+  color: #3498db;
+}
+
+.application-button .fa{
+  font-size: 60px;
+}
