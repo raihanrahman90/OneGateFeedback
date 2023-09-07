@@ -57,7 +57,7 @@ if(isset($_SESSION['status'])){
                     <a class="col-6" href="https://ogfs-bpn.sepinggan-airport.com/Bandara/">
                       <div class="application-button application-button-green">Partner</div>
                     </a>
-                    <a class="col-6" href="http://103.150.92.47:3000/">
+                    <a class="col-6" href="http://lostfound.bware.my.id/">
                       <div class="application-button application-button-blue flex-wrap">
                         Kustomer
                       </div>
