@@ -55,11 +55,11 @@ if(isset($_SESSION['status'])){
                   </div>
                   <div class="row">
                     <a class="col-6" href="https://ogfs-bpn.sepinggan-airport.com/Bandara/">
-                      <div class="application-button application-button-green">Partner</div>
+                      <div class="application-button application-button-green">Komunitas Bandara - OGFS SAMS Sepinggan Airport</div>
                     </a>
                     <a class="col-6" href="http://lostfound.bware.my.id/">
                       <div class="application-button application-button-blue flex-wrap">
-                        Kustomer
+                        Umum - Lost and Found SAMS Sepinggan Airport
                       </div>
                     </a>
                   </div>
