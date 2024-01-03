@@ -73,14 +73,14 @@ if($cek > 0){
 		} else if($data['status']==2){
 		    $_SESSION['status']='aktivasi ulang';
 			$_SESSION['id_customer'] = $data['id_customer'];
-		    header("Location:../register/index.php");
+		    header("Location:../register/ogfs.php");
 		}else {
 			$_SESSION['status']='tidak aktif';
-			header("Location:../index.php");
+			header("Location:../ogfs.php");
 		}		
 	}else{
 		$_SESSION['status']="gagal login";
-		header("location:../index.php");
+		header("location:../ogfs.php");
 	}
 }
 ?>

@@ -2,16 +2,6 @@
 <!------ Include the above in your HEAD tag ---------->
 <?php
 // Always start this first
-session_start();
-if(isset($_SESSION['status'])){
-    if($_SESSION['status']=='login'){
-      if($_SESSION['e-mail']=='bpn.ph@ap1.co.id'){
-        header("Location:customer/customer_service.php");
-      } else{
-        header("Location:Admin");
-      }
-    }
-  }
 ?>
 <html lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -22,19 +12,20 @@ if(isset($_SESSION['status'])){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Login</title>
+  <title>SAMS Sepinggan Balikpapan</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="assets/css/sb-admin-2.css" rel="stylesheet">
-  <link href="assets/css/custom.css" rel="stylesheet" />
-  <link rel="icon" href="./assets/logo.png">
+  <link href="./assets/css/sb-admin-2.css" rel="stylesheet">
+  <link href="./assets/css/custom.css" rel="stylesheet" />
+  <link href="./application/application.css" rel="stylesheet"/>
+  <link rel="icon" href="../assets/logo.png">
 </head>
 
-<body class="login">
+<body class="login d-flex justify-content-center align-items-center">
 
   <div class="container">
 
@@ -50,66 +41,19 @@ if(isset($_SESSION['status'])){
               <div class="col-lg-12">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Silahkan Masuk</h1>
-                    <?php 
-                      if(isset($_SESSION['status'])){
-                        if($_SESSION['status'] == "gagal login"){
-                        echo '<div class="alert alert-warning alert-dismissible fade show">
-                              Email atau Password yang anda masukkan salah
-                          </div>';
-                          $_SESSION['status'] = "";
-                        }else if($_SESSION['status'] == "logout"){
-                          echo '<div class="alert alert-info alert-dismissible fade show">
-                              Anda berhasil Log out
-                          </div>';
-                          $_SESSION['status'] = "";
-                        } else if($_SESSION['status'] == 'nerobos'){
-                          echo '<div class="alert alert-info alert-dismissible fade show">
-                          Mohon login terlebih dahulu sebelum mengakses halaman
-                          </div>';
-                          $_SESSION['status'] = "";
-                        }else if($_SESSION['status'] == 'tidak aktif'){
-                          echo '<div class="alert alert-info alert-dismissible fade show">
-                          Akun anda belum dikonfirmasi oleh customer service
-                          </div>';
-                          $_SESSION['status'] = "";
-                        }else if($_SESSION['status'] == 'Forgot Password'){
-                          echo '<div class="alert alert-info alert-dismissible fade show">
-                          Silahkan check email anda untuk mengubah password
-                          </div>';
-                          $_SESSION['status'] = "";
-                        }else if($_SESSION['status'] == 'daftar'){
-                          echo '<div class="alert alert-info alert-dismissible fade show">
-                          Data anda sedang kami konfirmasi, akun anda akan aktif dalam 1x24 jam hari kerja
-                          </div>';
-                          $_SESSION['status'] = "";
-                        }
-                      }
-                      if(isset($_COOKIE['cookielogin'])){
-                        ?>
-                          <script type="text/javascript">
-                            alert("P");
-                          </script>
-                        <?php
-                      }
-                    ?>  
+                    <h1 class="h4 text-gray-900 mb-4">Silahkan Pilih Aplikasi</h1>
                   </div>
-                  <form action="action/cek_login.php" class="user" method="post" onsubmit="return validasi()">
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Alamat E-mail" name="E-mail" id="E-mail" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user" placeholder="Kata Sandi" name="Password" id="Password" required>
-                    </div>
-                    <input type="submit" value="Masuk" class="btn btn-primary btn-user btn-block">
-                  </form>
+                  <div class="row">
+                    <a class="col-6" href="https://ogfs-bpn.sepinggan-airport.com/Bandara/">
+                      <div class="application-button application-button-green text-center">Komunitas Bandara - OGFS SAMS Sepinggan Airport</div>
+                    </a>
+                    <a class="col-6" href="https://ogfs-bpn.sepinggan-airport.com/LostFound/">
+                      <div class="application-button application-button-blue text-center">
+                        Umum - Lost and Found SAMS Sepinggan Airport
+                      </div>
+                    </a>
+                  </div>
                   <hr>
-                  <div class="text-center">
-                    <a class="small" href="customer/forgot_password.php">Lupa Kata Sandi?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="register">Buat Akun!</a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -123,14 +67,14 @@ if(isset($_SESSION['status'])){
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="assets/js/sb-admin-2.min.js"></script>
+  <script src="../assets/js/sb-admin-2.min.js"></script>
 
 </body> 
 </html>
