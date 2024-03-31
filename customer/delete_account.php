@@ -1,18 +1,8 @@
 
 <!------ Include the above in your HEAD tag ---------->
 <?php
-// Always start this first  
-session_start();
-if(isset($_SESSION['status'])){
-    if($_SESSION['status']=='login'){
-      if($_SESSION['e-mail']=='bpn.ph@ap1.co.id'){
-        header("Location:customer/customer_service.php");
-      } else{
-        header("Location:Admin");
-      }
-    }
-  }
-require_once('header_2.php')
+// Always start this first
+  require_once('header_2.php');
 ?>
 
 <body class="bg-gradient-primary login">
@@ -31,13 +21,14 @@ require_once('header_2.php')
               <div class="col-lg-12">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Silahkan Masukkan Email Anda Melakukan Penghapusan Akun</h1> 
+                    <h1 class="h4 text-gray-900 mb-4">Ingin melakukan penghapusan Akun?</h1> 
                   </div>
                   <form class="user" method="post" onsubmit="return validasi()">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Alamat E-mail" name="E-mail" id="E-mail" required>
+                      <p>
+                        Kirim email ke alamat nawang.ayunanda@ap1.co.id untuk meminta penghapusan Akun
+                      </p>
                     </div>
-                    <input type="submit" value="Masuk" class="btn btn-primary btn-user btn-block">
                   </form>
                 </div>
               </div>
