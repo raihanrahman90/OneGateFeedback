@@ -29,7 +29,7 @@ if(isset($_SESSION['status'])){
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="assets/css/sb-admin-2.css" rel="stylesheet">
+  <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
   <link href="assets/css/custom.css" rel="stylesheet" />
   <link rel="icon" href="./assets/logo.png">
 </head>
@@ -39,7 +39,7 @@ if(isset($_SESSION['status'])){
   <div class="container">
 
     <!-- Outer Row -->
-    <div class="row justify-content-center">
+    <div class="row justify-content-center items-align-center w-100">
 
       <div class="col-xl-6 col-lg-6 col-md-9">
 

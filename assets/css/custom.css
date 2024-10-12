@@ -236,7 +236,14 @@
 }
 body.login{
    background-image:url('../background.jpg') !important;
-   background-size:cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover; 
+   backdrop-filter: blur(2px); /* Safari support */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
 }
 .penilaian-checked {
   color: orange;
@@ -264,4 +271,10 @@ body.login{
     position: absolute;
     right: 10px;
     color: #495057;
+}
+.drop-shadow{
+  filter: drop-shadow(5px 5px 10px #000000);
+}
+.drop-shadow-min{
+  filter: drop-shadow(2px 2px 5px #000000);
 }

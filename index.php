@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="./assets/css/sb-admin-2.css" rel="stylesheet">
+  <link href="./assets/css/sb-admin-2.min.css" rel="stylesheet">
   <link href="./assets/css/custom.css" rel="stylesheet" />
   <link href="./application/application.css" rel="stylesheet"/>
   <link rel="icon" href="../assets/logo.png">
@@ -32,7 +32,7 @@
     <!-- Outer Row -->
     <div class="row justify-content-center">
 
-      <div class="col-xl-6 col-lg-6 col-md-9">
+      <div class="col-xl-6 col-lg-6 col-md-9 drop-shadow">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
@@ -43,7 +43,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Silahkan Pilih Aplikasi</h1>
                   </div>
-                  <div class="row">
+                  <div class="row drop-shadow-min">
                     <a class="col-6" href="https://ogfs-bpn.sepinggan-airport.com/Bandara/">
                       <div class="application-button application-button-green text-center">Komunitas Bandara - OGFS SAMS Sepinggan Airport</div>
                     </a>

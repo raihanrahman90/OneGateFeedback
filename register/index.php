@@ -81,10 +81,10 @@ include('header.php');
 												    <label>Masukkan Id Sisi Darat atau Foto Pass Bandara(jpg/png)</label>
 												    <div class="row">
     												    <div class="col-sm-6">
-    													    <input type="file" id="pass_bandara" accept="image/png, image/jpg, image/jpeg" name='pass_bandara' required/>
+    													    <input type="file" id="pass_bandara" accept="image/png, image/jpg, image/jpeg" name='pass_bandara' required max="2050-12-30"/>
             											</div>
             											<div class="col-sm-6">
-            											    <input type="number" id="id_pass_bandara" name="id_pass_bandara" class="form-control" placeholder="Masukkan Id sisi darat" required>
+            											    <input type="number" id="id_pass_bandara" name="id_pass_bandara" class="form-control" placeholder="Masukkan Id sisi darat" required required max="2050-12-30">
         										        </div>
         										    </div>
         										</div>
