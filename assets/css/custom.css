@@ -235,15 +235,17 @@
    rgba(0, 0, 0, 0.57);
 }
 body.login{
-   background-image:url('../background.jpg') !important;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover; 
-   backdrop-filter: blur(2px); /* Safari support */
-   display: flex;
-   justify-content: center;
-   align-items: center;
-
+  background-image:url('../background.jpg') !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  backdrop-filter: blur(2px); /* Safari support */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
 }
 .penilaian-checked {
   color: orange;
@@ -276,5 +278,26 @@ body.login{
   filter: drop-shadow(5px 5px 10px #000000);
 }
 .drop-shadow-min{
+  filter: drop-shadow(2px 2px 5px #000000);
+}
+
+.customer-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-image:url('../background.jpg') !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  backdrop-filter: blur(2px); /* Safari support */
+}
+
+.customer-card{
+  width: 100%;
+  max-width: 600px;
+  margin:24px 32px;
+  background-color: white;
   filter: drop-shadow(2px 2px 5px #000000);
 }

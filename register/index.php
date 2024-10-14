@@ -1,4 +1,4 @@
-z<?php 
+<div?php 
 include('header.php');
 ?>
 		                <div class="card wizard-card" data-color="blue" id="wizardProfile">
@@ -14,7 +14,6 @@ include('header.php');
 								</div>
 							</noscript>
 		                    <form method="post" action="../action/register.php" onsubmit="return validasi();" enctype="multipart/form-data">
-		                <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
 
 		                    	<div class="wizard-header text-center">
 		                        	<h3 class="wizard-title">Buat Akun</h3>
@@ -172,14 +171,7 @@ include('header.php');
 		        </div>
 	    	</div><!-- end row -->
 		</div> <!--  big container -->
-		<div class="footer">
-	        <div class="container text-center">
-	            Made with <i class="fa fa-heart heart"></i> by <a href="https://www.creative-tim.com">Creative Tim
-	        </div>
-	    </div>
-	</div>
-
-</body>
+	</body>
 <script type="text/javascript">
 	function validasi(){
 		var pass1 = document.getElementById("password1");

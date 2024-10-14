@@ -28,20 +28,10 @@
 	
 	</head>
 
-	<body class="login">
-		<!-- Google Tag Manager (noscript) -->
-	<!-- End Google Tag Manager (noscript) -->
-	<div class="image-container set-full-height">
-	    <!--   Creative Tim Branding   -->
-	    
-
-		<!--  Made With Paper Kit  -->
-		<
-	    <!--   Big container   -->
-	    <div class="container">
-	        <div class="row">
-		        <div class="col-sm-8 col-sm-offset-2">
-
-		            <!--      Wizard container        -->
-		            <div class="wizard-container">
+	<body>
+		<div class="customer-container">
+			<div class="customer-card">
+					<div class="col-sm-8 col-sm-offset-2">
+						<!--      Wizard container        -->
+						<div class="wizard-container">
 		            	

@@ -29,101 +29,84 @@ if(isset($_SESSION['status'])){
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="assets/css/custom.css" rel="stylesheet" />
+  <link href="assets/css/new-bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/new-custom.css" rel="stylesheet" />
   <link rel="icon" href="./assets/logo.png">
 </head>
 
-<body class="login">
-
-  <div class="container">
-
-    <!-- Outer Row -->
-    <div class="row justify-content-center items-align-center w-100">
-
-      <div class="col-xl-6 col-lg-6 col-md-9">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Silahkan Masuk</h1>
-                    <?php 
-                      if(isset($_SESSION['status'])){
-                        if($_SESSION['status'] == "gagal login"){
-                        echo '<div class="alert alert-warning alert-dismissible fade show">
-                              Email atau Password yang anda masukkan salah
-                          </div>';
-                          $_SESSION['status'] = "";
-                        }else if($_SESSION['status'] == "logout"){
-                          echo '<div class="alert alert-info alert-dismissible fade show">
-                              Anda berhasil Log out
-                          </div>';
-                          $_SESSION['status'] = "";
-                        } else if($_SESSION['status'] == 'nerobos'){
-                          echo '<div class="alert alert-info alert-dismissible fade show">
-                          Mohon login terlebih dahulu sebelum mengakses halaman
-                          </div>';
-                          $_SESSION['status'] = "";
-                        }else if($_SESSION['status'] == 'tidak aktif'){
-                          echo '<div class="alert alert-info alert-dismissible fade show">
-                          Akun anda belum dikonfirmasi oleh customer service
-                          </div>';
-                          $_SESSION['status'] = "";
-                        }else if($_SESSION['status'] == 'Forgot Password'){
-                          echo '<div class="alert alert-info alert-dismissible fade show">
-                          Silahkan check email anda untuk mengubah password
-                          </div>';
-                          $_SESSION['status'] = "";
-                        }else if($_SESSION['status'] == 'daftar'){
-                          echo '<div class="alert alert-info alert-dismissible fade show">
-                          Data anda sedang kami konfirmasi, akun anda akan aktif dalam 1x24 jam hari kerja
-                          </div>';
-                          $_SESSION['status'] = "";
-                        }
-                      }
-                    ?>  
-                  </div>
-                  <form action="action/cek_login.php" class="user" method="post" onsubmit="return validasi()">
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Alamat E-mail" name="E-mail" id="E-mail" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user" placeholder="Kata Sandi" name="Password" id="Password" required>
-                    </div>
-                    <input type="submit" value="Masuk" class="btn btn-primary btn-user btn-block">
-                  </form>
-                  <hr>
-                  <div class="text-center">
-                    <a class="small" href="customer/forgot_password.php">Lupa Kata Sandi?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="register">Buat Akun!</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <body>
+      <div class="row position-relative container vh-100 vw-100">
+        <div class="col-4 bg-new-primary p-5">
+          <img class="logo-top-left" src="./assets/logo.png"/>
+          <div class="bottom-left text-white">
+            <h3 class="mb-3 h4">Open Gate Feedback Solution (OGFS) - SAMS Sepinggan Airport</h3>
+            <p class="font-size-1">
+              All in one solution untuk meningkatkan kenyamanan Anda di Bandara SAMS Sepinggan Balikpapan
+            </p>
           </div>
         </div>
-
+        <div class="col row p-5 align-items-center justify-content-center">
+          <form action="action/cek_login.php" 
+            class="col col-md-8" 
+            method="post" 
+            onsubmit="return validasi()">
+            <h1 class="new-h1 mb-3">Silahkan Masuk</h1>
+            <?php 
+              if(isset($_SESSION['status'])){
+                if($_SESSION['status'] == "gagal login"){
+                echo '<div class="alert alert-warning alert-dismissible fade show">
+                      Email atau Password yang anda masukkan salah
+                  </div>';
+                  $_SESSION['status'] = "";
+                }else if($_SESSION['status'] == "logout"){
+                  echo '<div class="alert alert-info alert-dismissible fade show">
+                      Anda berhasil Log out
+                  </div>';
+                  $_SESSION['status'] = "";
+                } else if($_SESSION['status'] == 'nerobos'){
+                  echo '<div class="alert alert-info alert-dismissible fade show">
+                  Mohon login terlebih dahulu sebelum mengakses halaman
+                  </div>';
+                  $_SESSION['status'] = "";
+                }else if($_SESSION['status'] == 'tidak aktif'){
+                  echo '<div class="alert alert-info alert-dismissible fade show">
+                  Akun anda belum dikonfirmasi oleh customer service
+                  </div>';
+                  $_SESSION['status'] = "";
+                }else if($_SESSION['status'] == 'Forgot Password'){
+                  echo '<div class="alert alert-info alert-dismissible fade show">
+                  Silahkan check email anda untuk mengubah password
+                  </div>';
+                  $_SESSION['status'] = "";
+                }else if($_SESSION['status'] == 'daftar'){
+                  echo '<div class="alert alert-info alert-dismissible fade show">
+                  Data anda sedang kami konfirmasi, akun anda akan aktif dalam 1x24 jam hari kerja
+                  </div>';
+                  $_SESSION['status'] = "";
+                }
+              }
+            ?>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Alamat E-mail" name="E-mail" id="E-mail" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control form-control-user" placeholder="Kata Sandi" name="Password" id="Password" required>
+            </div>
+            <div class="row justify-content-end mr-0 mb-2">
+              <a href="./customer/forgot_password.php" class="text-end text-new-primary">
+                Forgot Password?
+              </a>
+            </div>
+            <input type="submit" value="Masuk" class="btn bg-new-primary btn-user btn-block text-white">
+            <p class="text-center mt-3">
+              Belum punya akun? 
+              <a href="./register" class="text-new-primary">Daftar</a>
+            </p>
+          </form>
+        </div>
       </div>
-
     </div>
-
-  </div>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="assets/js/sb-admin-2.min.js"></script>
-
-</body> 
+  </body> 
 </html>

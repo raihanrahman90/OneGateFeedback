@@ -1,80 +1,59 @@
-
-<!------ Include the above in your HEAD tag ---------->
-<?php
-// Always start this first
-?>
 <html lang="en">
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <title>SAMS Sepinggan Balikpapan</title>
 
-  <title>SAMS Sepinggan Balikpapan</title>
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom fonts for this template-->
-  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="./assets/css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="./assets/css/custom.css" rel="stylesheet" />
-  <link href="./application/application.css" rel="stylesheet"/>
-  <link rel="icon" href="../assets/logo.png">
-</head>
-
-<body class="login d-flex justify-content-center align-items-center">
-
-  <div class="container">
-
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-
-      <div class="col-xl-6 col-lg-6 col-md-9 drop-shadow">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Silahkan Pilih Aplikasi</h1>
-                  </div>
-                  <div class="row drop-shadow-min">
-                    <a class="col-6" href="https://ogfs-bpn.sepinggan-airport.com/Bandara/">
-                      <div class="application-button application-button-green text-center">Komunitas Bandara - OGFS SAMS Sepinggan Airport</div>
-                    </a>
-                    <a class="col-6" href="https://ogfs-bpn.sepinggan-airport.com/LostFound/">
-                      <div class="application-button application-button-blue text-center">
-                        Umum - Lost and Found SAMS Sepinggan Airport
-                      </div>
-                    </a>
-                  </div>
-                  <hr>
-                </div>
-              </div>
-            </div>
-          </div>
+    <!-- Custom styles for this template-->
+     <link href="./assets/css/new-bootstrap.min.css" rel="stylesheet"/>
+     <link href="./assets/css/new-custom.css" rel="stylesheet" />
+     <link rel="icon" href="../assets/logo.png">
+  </head>
+  <body>
+    <div class="row position-relative container vh-100 vw-100">
+      <div class="col-4 bg-new-primary p-5">
+        <img class="logo-top-left" src="./assets/logo.png"/>
+        <div class="bottom-left text-white">
+          <h3>SAMS Sepinggan Airport</h3>
         </div>
-
       </div>
-
+      <div class="col row p-5 align-items-center">
+        <h1 class="new-h1">Silahkan Pilih Aplikasi</h1>
+        <p>
+          Silahkan Pilih Aplikasi yang ingin Anda gunakan<br/>
+          Pilih <span class="text-new-primary">Komunitas - Feedback</span> untuk memberikan feedback kepada pihak bandara<br/>
+          Pilih <span class="text-new-primary">Umum - Lost & Found</span> untuk mencari barang kamu yang hilang di bandara<br/>
+        </p>
+        <a href="./ogfs.php" class="button-application">
+          <div class="col-2 row align-items-center">
+            <img src="./assets/img/OGFS.png" class="w-100"/>
+          </div>
+          <div class="col">
+            <h2 class="text-new-primary">Komunitas - Feedback</h2>
+            <p class="text-new-dark">
+              Website OGFS untuk memberikan feedback berupa keluhan atau saran kepada pihak bandara SAMS Sepinggan.
+            </p>
+          </div>
+        </a>
+        <a href="/LostFound" class="button-application">
+          <div class="col-2 row align-items-center">
+            <img src="./assets/img/LostFound.png" class="w-100"/>
+          </div>
+          <div class="col">
+            <h2 class="h-4 text-new-primary">Umum - Lost & Found</h2>
+            <p class="text-new-dark">
+              Website Lost & Found untuk mencari barang kamu yang hilang di bandara SAMS Sepinggan
+            </p>
+          </div>
+        </a>
+      </div>
     </div>
-
-  </div>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="../assets/js/sb-admin-2.min.js"></script>
-
-</body> 
+  </body> 
 </html>

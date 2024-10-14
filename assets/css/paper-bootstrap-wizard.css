@@ -1201,7 +1201,8 @@ input[type="button"]:focus {
 .wizard-card {
   min-height: 410px;
   box-shadow: 0 20px 16px -15px rgba(0, 0, 0, 0.57);
-}.wizard-card-baru {
+}
+.wizard-card-baru {
   min-height: 100px;
   box-shadow: 0 20px 16px -15px rgba(0, 0, 0, 0.57);
 }
