@@ -24,10 +24,11 @@
           <h3>SAMS Sepinggan Airport</h3>
         </div>
       </div>
-      <div class="col-md col-12 p-md-5 pt-5 p-3 d-flex flex-column justify-content-center order-1 order-md-2 mt-sm-5 content">
+      <div class="col-md col-12 p-md-5 pt-5 p-3 d-flex flex-column justify-content-center order-1 order-md-2 content">
         <div class="logo-injourney">
           <img src="./assets/img/logo-injourney.png" class="w-100 h-100"/>
         </div>
+        <form>
         <h1 class="new-h1">Silahkan Pilih Aplikasi</h1>
         <p>
           Silahkan Pilih Aplikasi yang ingin Anda gunakan<br/>
@@ -41,7 +42,7 @@
           <div class="col d-flex flex-column justify-content-center">
             <h2 class="text-new-primary new-h1">Komunitas - Feedback</h2>
             <p class="text-new-dark">
-              Website OGFS untuk memberikan feedback berupa keluhan atau saran kepada pihak bandara SAMS Sepinggan.
+              Website OGFS digunakan untuk penyampaian feedback berupa informasi, saran atau keluhan yang bersumber dari Komunitas Bandara SAMS Sepinggan Balikpapan guna meningkatkan kenyamanan anda.
             </p>
           </div>
         </a>
@@ -55,7 +56,7 @@
               Website Lost & Found untuk mencari barang kamu yang hilang di bandara SAMS Sepinggan
             </p>
           </div>
-        </a>
+        </a></form>
       </div>
     </div>
   </body> 

@@ -9,29 +9,25 @@
 	} else {
 		header("Location:../");
 	}
-include 'header.php'
+include './new-header.php'
 ?>
-	<body class="login">
-		<!-- Google Tag Manager (noscript) -->
-	<div class="gambar-container set-full-height" >
-	    <!--   Creative Tim Branding   -->
-	    
-
-		<!--  Made With Paper Kit  -->
-	    <!--   Big container   -->
-	    <div class="container">
-	        <div class="row">
-		        <div class="col-sm-6 col-sm-offset-3">
-
-		            <!--      Wizard container        -->
-		            <div class="wizard-container">
-		            	
-		                <div class="card wizard-card" data-color="blue" id="wizardProfile">
-		                    <form method="post" action="../action/aduan_customer_service.php" onsubmit="return validasi();" enctype="multipart/form-data" id='myform'>
+							<noscript>
+								<style type="text/css">
+								form{
+									display:none;
+								}
+								</style>
+								<div  class="alert alert-danger alert-dismissible">
+								Halaman web ini membutuhkan javascript untuk bekerja dengan baik, mohon aktifkan javascript pada peramban Anda. 
+								</div>
+							</noscript>
+		                    <form method="post" action="../action/aduan_customer_service.php" 
+									onsubmit="return validate(this);" enctype="multipart/form-data" id="form"
+									class="h-100 overflow-auto">
 		                <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
 
 		                    	<div class="wizard-header text-center">
-		                        	<h3 class="wizard-title">Buat Aduan</h3>
+		                        	<h3 class="wizard-title">Silahkan Isi Form</h3>
 		                    	</div>
 
 		                            <div class="tab-pane tab-content-baru" id="about">
@@ -42,12 +38,13 @@ include 'header.php'
 		                            			<div class="col-sm-10 col-sm-offset-1">
 													<div class='form-group'>
 														<div class="col-sm-4">
-															<input type="radio" name="jenis" value='Keluhan' required>
-															<label>Keluhan</label>
+
+																<input type="radio" name="jenis" value='Keluhan' required>
+																<label>Keluhan</label>
 														</div>
 														<div class="col-sm-4">
-															<input type="radio" name="jenis" value='Informasi'>
-															<label>Informasi</label>
+																<input type="radio" name="jenis" value='Informasi'>
+																<label>Informasi</label>
 														</div>
 														<div class="col-sm-4">
 															<input type="radio" name="jenis" value='Saran'>
@@ -57,21 +54,6 @@ include 'header.php'
 												</div>
 											</div>
 											<div class="col-sm-10 col-sm-offset-1">
-												<div class="form-group">
-													<label>Pengguna Jasa<small>(required)</small></label>
-													<select name='pengguna' class='form-control'>
-														<option value='Penumpang'>Penumpang</option>
-														<option value='Pengantar/Penjemput'>Pengantar/Penjemput</option>
-														<option value='Tenant'>Tenant</option>
-														<option value='Airlines/Groundhandling'>Airlines/Groundhandling</option>
-														<option value='CIQEMPU/Cargo'>CIQEMPU/Cargo</option>
-														<option value='AP1'>AP1</option>
-														<option value="Masyarakat">Masyarakat</option>
-														<option value="Aircrew">Aircrew</option>
-														<option value="Mitra">Mitra</option>
-														<option value='Lain-lain'>Lain-lain</option>
-													</select>
-												</div>
 												<div class="form-group">
 													<label>Jenis Urgency Feedback<small>(required)</small></label>
 													<select  name="perihalUrgent" type="text" class="form-control" placeholder="Toilet" required id="perihalUrgent">
@@ -86,9 +68,9 @@ include 'header.php'
 													<input name="perihal" type="text" class="form-control d-none mt-3" placeholder="Isikan perihal anda" id="perihal">
 												</div>
 												<div class="form-group">
-													<label>Keterangan<small>(required)</small></label>	
+													<label>Keterangan<small>(required)</small></label>
+													
 													<textarea name="keterangan" rows="4" class="form-control" placeholder="Toilet pria mati air" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' required></textarea>
-												
 												</div>
 												<div class="form-group">
 												    <label>Lokasi<small>(required)</small></label>
@@ -103,46 +85,73 @@ include 'header.php'
 												</div>
 												<div class="form-group">
 												    <label>Detail Lokasi<small>(required)</small></label>
-													<input name="detail_lokasi" type="text" class="form-control" placeholder="Detail Lokasi" id="detail_lokasi" required>
+													<input name="detail_lokasi" type="text" class="form-control tm" placeholder="Detail Lokasi" 
+														id="detail_lokasi" required>
 												</div>
 												<div class="form-group">
 												    <label>Tanggal Kejadian<small>(required)</small></label><br/>
 													<div class="form-group">
 														<div class="custom-control custom-checkbox">
-															<input type="checkbox" class="custom-control-input" name="hari" id='hari' checked />
-															<label class="custom-control-label" for='hari'>3 Hari terakhir</label>
+															<input type="checkbox" class="custom-control-input" name="isLast3Days" id='isLast3Days' checked />
+															<label class="custom-control-label" for='isLast3Days'>3 Hari terakhir</label>
 														</div>
 													</div>
-													<input name="tanggal_kejadian" type="text" class="form-control"  autocomplete="off" 
-														 id="tanggal_kejadian" required />
+													<input name="tanggal_kejadian" type="text" class="form-control"  autocomplete="off"
+													id="tanggal_kejadian" required />
 												</div>
 												<div class="form-group d-none" id="form_keterangan_kejadian">
 												    <label>Keterangan Tanggal Kejadian<small>(required)</small></label><br/>
-													<textarea name="keterangan_kejadian" id='keterangan_kejadian' rows="4" class="form-control" placeholder="Bulan lalu ketika saya berangkat ke bandung" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+													<textarea name="keterangan_kejadian" id='keterangan_kejadian' rows="4" class="form-control" placeholder="alasan pelaporan lebih dari 3 hari" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 												</div>
 												<div class="form-group">
-													<label>Foto</label>
-													<input name="foto" type="file">
+													<label>Foto(jpg/jpeg)</label>
+													<input name="foto" type="file" accept="image/png, image/jpg, image/jpeg" id="foto" required>
 												</div>
 											</div>
 										</div>
-		                        <div class="wizard-footer">
-		                            <div class="pull-right">
-		                                <input type='submit' class='btn btn-finish btn-fill btn-warning btn-wd' name='finish' value='Finish' />
-		                            </div>
-		                            <div class="pull-left">
-		                                <a href="index.php" class='btn btn-finish btn-fill btn-secondary btn-wd'>Kembali<a>
-		                            </div>
-		                            <div class="clearfix"></div>
+		                                <input type='submit' class='btn btn-new-primary w-100' name='finish' value='Kirim' />
 		                        </div>
 		                    </form>
-		                </div>
-		            </div> <!-- wizard container -->
-		        </div>
-	    	</div><!-- end row -->
-		</div> <!--  big container -->
-	</div>
     <script type="text/javascript">
+		function getExtension(filename) {
+			var parts = filename.split('.');
+			return parts[parts.length - 1];
+		}
+
+		function isImage(filename) {
+			var ext = getExtension(filename);
+			switch (ext.toLowerCase()) {
+				case 'jpg':
+				case 'gif':
+				case 'bmp':
+				case 'png':
+				case 'jpeg':
+				//etc
+				return true;
+			}
+			return false;
+		}
+
+
+		$(function() {
+			$('#form').submit(function() {
+            	$('#loading-screen').addClass("d-block");
+				function failValidation(msg) {
+					alert(msg); // just an alert for now but you can spice this up later
+					return false;
+				}
+
+				var file = $('#foto');
+				if (!isImage(file.val())) {
+					return failValidation('Mohon hanya memasukkan gambar pada input foto');
+				}
+				
+				$('input[type="submit"]').attr('disabled',true)
+				$('input[type="submit"]').val("Mohon Tunggu")
+				return true; // prevent form submitting anyway - remove this in your environment
+			});
+
+		});
 		function getDateString(date){
 			dd = date.getDate()
 			mm = date.getMonth()+1
@@ -155,7 +164,6 @@ include 'header.php'
 			}
 			return yy+"-"+mm+"-"+dd
 		}
-		
 		$('#tanggal_kejadian').datepicker({'minDate':"-2D", 'maxDate':-0})
 		$('#tanggal_kejadian').datepicker('option', 'dateFormat', 'dd/mm/yy')
 	    $(document).ready(function(){
@@ -168,10 +176,8 @@ include 'header.php'
 					 $('#perihal').prop('required', false);
 				 }
             })
-			
-			var today = new Date()
-			$('#hari').change(function(){
-				if($('#hari').is(":checked")){
+			$('#isLast3Days').change(function(){
+				if($('#isLast3Days').is(":checked")){
 					$('#form_keterangan_kejadian').addClass('d-none')
 					$('#keterangan_kejadian').prop('required', false)
 					$('#tanggal_kejadian').datepicker('option', 'minDate', '-2D')
@@ -182,6 +188,7 @@ include 'header.php'
 				}
 			})
 	    });
+		
 	</script>
-</body>
-</html>
+
+<?php require_once("./footer.php"); ?>

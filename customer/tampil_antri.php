@@ -21,13 +21,10 @@
 	    $_SESSION['status']='nerobos';
 		header("Location:../");
 	}
-	include('header.php');
+	include('./new-header.php');
 ?>
-<!doctype html>
-	<body onpageshow="myFunction()" class="login">
-	<div class="image-container set-full-height">
 	
-	<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="d-flex h-100 w-100 d-flex">
 					<div class="row align-self-center modal-dialog d-flex col-12 col-md-6" role="document">
 						<div class="modal-content">
@@ -53,7 +50,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-								<button type="submit" class="btn btn-primary">Kirim</button>
+								<button type="submit" class="btn btn-new-primary">Kirim</button>
 							</div>
 						</form>
 						</div>
@@ -61,13 +58,10 @@
 				</div>
 			</div>
 	    <!--   Big container   -->
-	    <div class="container h-100">
-	        <div class="row justify-content-center">
-		        <div class="col-sm-6">
-
+	    <div class="container h-100 w-100 row justify-content-center align-items-center">
+		        <div class="col-md-8">
 		            <!--      Wizard container        -->
-		            <div class="wizard-container">
-		                <div class="card wizard-card-baru" data-color="blue" id="wizardProfile">
+		                <div class="card py-3" data-color="blue" id="wizardProfile">
 		                        <?php
 		                        $id_aduan = $_GET['id'];
 		                        $data1 = mysqli_query($koneksi, "SELECT *, tb_aduan.status as status_progress from tb_aduan 
@@ -76,10 +70,8 @@
                                 		                        where tb_aduan.id_aduan = '$id_aduan'") or die(mysqli_error($koneksi));
 		                        $data = mysqli_fetch_array($data1);
 		                        ?>
-    		                    <div class="wizard-header text-center">
-		                        	<h3 class="wizard-title">Detail Antrian</h3>
-		                    	</div>
-		                    	<div class="col-sm-10 col-sm-offset-1">
+								<h3 class="text-center">Detail Antrian</h3>
+		                    	<div class="col-sm-12 col-sm-offset-1">
 		                    	<?php
 		                    	    if(mysqli_num_rows($data1)==0){
 		                    	        echo '<div class="form-group">
@@ -246,19 +238,19 @@
                                                             Keluhan telah naik ke level 3</br>
 															<span class="timeline__step-subtitle">
 																Keluhan telah naik ke level 3 untuk dikoordinasikan oleh Manajer
-															</span></span>
-                                                        
+															</span>
+														</span>
                                                         <i class="timeline__step-marker"></i>
                                                     </li>
-                                                    <?php
-		                    	                        if(($data['status_progress']=='Closed' || $data['status_progress']=='Complete' || $data['status_progress']=='Progress')){
-															echo  "<li class='timeline__step done'>";
-															$progres = true;
-		                    	                        } else {
-															echo  "<li class='timeline__step'>";
-															$progres = false;
-		                    	                        }
-		                    	                    ?>
+														<?php
+															if(($data['status_progress']=='Closed' || $data['status_progress']=='Complete' || $data['status_progress']=='Progress')){
+																echo  "<li class='timeline__step done'>";
+																$progres = true;
+															} else {
+																echo  "<li class='timeline__step'>";
+																$progres = false;
+															}
+														?>
                                                         <span class="timeline__step-title">
 															Progress
 															<?php 
@@ -385,45 +377,38 @@
 		                    	    }
 		                    	?>
 		                    
-		                    <div class="wizard-footer">
-		                            <div class="pull-left">
-		                                <a href="index.php" class='btn btn-finish btn-fill btn-secondary btn-wd'>Kembali<a>
-		                            </div>
 		  
-		                            <?php
-									/**Button Penilaian */
-									if(mysqli_num_rows($data1)!=0 && isset($_SESSION['id_customer'])&&
-										$data['id_customer']==$_SESSION['id_customer'] && is_null($data['ulasan']) 
-										&& $data['status']=='Closed' && $data['level']>-1	){
-										echo '<div class="pull-right">
-										<button type="button" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#exampleModal">
-											<span class="icon text-white-50">
-												<i class="fas fa-star"></i>
-											</span>
-											<span class="text">
-												Beri Penilaian
-											</span>
-										</button>
-									</div>';
-									}
-										
-									/**Button penilaian */
-									/**button  edit */
-                                          if($level==-1){
-											  if(!isset($data['id_customer'])||$data['id_customer']==$_SESSION['id_customer']){
-													echo"<div class='pull-right'>
-														<a href='edit_antrian.php?id=".$id_aduan."' class='btn btn-finish btn-fill btn-warning btn-wd'>Edit</a>
-														<form action='../action/terima.php?id=".$id_aduan."' method='post'>
-															<button type='submit' class='btn btn-finish btn-fill btn-success btn-wd'>Kirim</button>
-														</form>
-													</div>";
-											  }
-            		                      }
-		                            ?>
-		                            <div class="clearfix"></div>
-		                        </div>
-		                    	</div>
-		            </div> <!-- wizard container -->
+					<?php
+					/**Button Penilaian */
+					if(mysqli_num_rows($data1)!=0 && isset($_SESSION['id_customer'])&&
+						$data['id_customer']==$_SESSION['id_customer'] && is_null($data['ulasan']) 
+						&& $data['status']=='Closed' && $data['level']>-1	){
+						echo '<div class="pull-right">
+						<button type="button" class="btn btn-new-primary w-100 btn-icon-split" data-toggle="modal" data-target="#exampleModal">
+							<span class="icon text-white-50">
+								<i class="fas fa-star"></i>
+							</span>
+							<span class="text">
+								Beri Penilaian
+							</span>
+						</button>
+					</div>';
+					}
+						
+					/**Button penilaian */
+					/**button  edit */
+						if($level==-1){
+							if(!isset($data['id_customer'])||$data['id_customer']==$_SESSION['id_customer']){
+								echo"
+									<a href='edit_antrian.php?id=".$id_aduan."' class='btn btn-finish btn-fill btn-warning btn-wd w-100 mt-3'>Edit</a>
+									<form action='../action/terima.php?id=".$id_aduan."' method='post' id='kirim-sekarang'>
+										<button type='submit' class='btn btn-new-primary w-100 mt-3'>Kirim Sekarang</button>
+									</form>";
+							}
+						}
+					?>
+					<a href="index.php" class='btn btn-finish btn-fill btn-secondary btn-wd w-100 mt-3'>Kembali<a>
+					<div class="clearfix"></div>
 		        </div>
 	    	</div><!-- end row -->
 			<script >
@@ -447,6 +432,11 @@
 	<script src="../assets/js/sb-admin-2.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			$('#kirim-sekarang').on('submit', function() {
+        // Show the loading screen
+            	$('#loading-screen').addClass("d-block");
+        	});
 			$('#nilai_1').click(function(){
 				$('#nilai').val(1)
 				$('#nilai_1').addClass('penilaian-checked')
@@ -489,5 +479,5 @@
 			})
 		})
 	</script>
-</body>
-</html>
+
+<?php require_once("./footer.php"); ?>

@@ -10,24 +10,8 @@
 	    $_SESSION['status']='nerobos';
 		header("Location:../");
 	}
-include 'header.php';
+include './new-header.php';
 ?>
-	<body class="login">
-		<!-- Google Tag Manager (noscript) -->
-	<div class="image-container set-full-height">
-	    <!--   Creative Tim Branding   -->
-	    
-
-		<!--  Made With Paper Kit  -->
-	    <!--   Big container   -->
-	    <div class="container">
-	        <div class="row">
-		        <div class="col-sm-6 col-sm-offset-3">
-
-		            <!--      Wizard container        -->
-		            <div class="wizard-container">
-		            	
-		                <div class="card wizard-card" data-color="blue" id="wizardProfile">
 							<noscript>
 								<style type="text/css">
 								form{
@@ -39,7 +23,8 @@ include 'header.php';
 								</div>
 							</noscript>
 		                    <form method="post" action="../action/aduan_customer.php" 
-									onsubmit="return validate(this);" enctype="multipart/form-data" id="myform">
+									onsubmit="return validate(this);" enctype="multipart/form-data" id="form"
+									class="h-100 overflow-auto">
 		                <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
 
 		                    	<div class="wizard-header text-center">
@@ -108,8 +93,8 @@ include 'header.php';
 												    <label>Tanggal Kejadian<small>(required)</small></label><br/>
 													<div class="form-group">
 														<div class="custom-control custom-checkbox">
-															<input type="checkbox" class="custom-control-input" name="hari" id='hari' checked />
-															<label class="custom-control-label" for='hari'>3 Hari terakhir</label>
+															<input type="checkbox" class="custom-control-input" name="isLast3Days" id='isLast3Days' checked />
+															<label class="custom-control-label" for='isLast3Days'>3 Hari terakhir</label>
 														</div>
 													</div>
 													<input name="tanggal_kejadian" type="text" class="form-control"  autocomplete="off"
@@ -125,22 +110,9 @@ include 'header.php';
 												</div>
 											</div>
 										</div>
-		                        <div class="wizard-footer">
-		                            <div class="pull-right">
-		                                <input type='submit' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='Kirim' />
-		                            </div>
-		                            <div class="pull-left">
-		                                <a href="index.php" class='btn btn-finish btn-fill btn-secondary btn-wd'>Kembali<a>
-		                            </div>
-		                            <div class="clearfix"></div>
+		                                <input type='submit' class='btn btn-new-primary w-100' name='finish' value='Kirim' />
 		                        </div>
 		                    </form>
-		                </div>
-		            </div> <!-- wizard container -->
-		        </div>
-	    	</div><!-- end row -->
-		</div> <!--  big container -->
-	</div>
     <script type="text/javascript">
 		function getExtension(filename) {
 			var parts = filename.split('.');
@@ -163,7 +135,8 @@ include 'header.php';
 
 
 		$(function() {
-			$('#myform').submit(function() {
+			$('#form').submit(function() {
+            	$('#loading-screen').addClass("d-block");
 				function failValidation(msg) {
 					alert(msg); // just an alert for now but you can spice this up later
 					return false;
@@ -204,8 +177,8 @@ include 'header.php';
 					 $('#perihal').prop('required', false);
 				 }
             })
-			$('#hari').change(function(){
-				if($('#hari').is(":checked")){
+			$('#isLast3Days').change(function(){
+				if($('#isLast3Days').is(":checked")){
 					$('#form_keterangan_kejadian').addClass('d-none')
 					$('#keterangan_kejadian').prop('required', false)
 					$('#tanggal_kejadian').datepicker('option', 'minDate', '-2D')
@@ -218,5 +191,5 @@ include 'header.php';
 	    });
 		
 	</script>
-</body>
-</html>
+
+<?php require_once("./footer.php"); ?>

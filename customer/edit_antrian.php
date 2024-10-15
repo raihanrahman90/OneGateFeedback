@@ -24,23 +24,9 @@
 	    $_SESSION['status']='nerobos';
 		header("Location:../");
 	}
-	include('header.php');
+	include('./new-header.php');
 ?>
-<script>
-
-</script>
-<!doctype html>
-	<body class="login">
-	<div class="image-container set-full-height">
-	    <!--   Big container   -->
-	    <div class="container">
-	        <div class="row">
-		        <div class="col-sm-6 col-sm-offset-3">
-
-		            <!--      Wizard container        -->
-		            <div class="wizard-container">
-		                <div class="card wizard-card-baru" data-color="blue" id="wizardProfile">
-		                    <form method="post" action="../action/edit_aduan.php" onsubmit="return validasi();" enctype="multipart/form-data" id="myform">
+		                    <form method="post" action="../action/edit_aduan.php" onsubmit="return validasi();" enctype="multipart/form-data" id="form">
 		                        <?php
 		                        $id_aduan = $_GET['id'];
 		                        $data1 = mysqli_query($koneksi, "SELECT *, tb_aduan.status as status_progress from tb_aduan 
@@ -164,20 +150,17 @@
 		                    	        <?php
 		                    	    }
 		                    	?>
-		                    	<div class="wizard-footer">
 		                            
 		                            <?php
-		                            echo "<div class='pull-left'>
-		                                <a href='tampil_antri.php?id=".$id_aduan."' class='btn btn-finish btn-fill btn-secondary btn-wd'>Batal</a>
-		                            </div>";
+		                            echo "
+		                                <a href='tampil_antri.php?id=".$id_aduan."' class='btn btn-finish btn-fill btn-secondary btn-wd w-100'>Batal</a>";
     		                              $d1 = new DateTime($row1['waktu_kirim']);
                                           $d2 = new DateTime($row1['sekarang']);
                                           $interval = $d2->diff($d1);
                                           $interval = $interval->h;
                                           if($interval<1 && $data['id_customer']==$_SESSION['id_customer']){
-                                          echo"<div class='pull-right'>
-            		                                <button type='submit' class='btn btn-finish btn-fill btn-warning btn-wd'>Simpan</button>
-            		                            </div>";
+                                          echo"
+												<button type='submit' class='btn btn-new-primary w-100 mt-3'>Simpan</button>";
                                           } 
 		                            ?>
 		                            <div class="clearfix"></div>
@@ -185,9 +168,6 @@
 		                
 		                    	</div>
 		                    </form>
-		            </div> <!-- wizard container -->
-		        </div>
-	    	</div><!-- end row -->
 
 			<script type="text/javascript">
 			
@@ -212,7 +192,7 @@
 
 
 				$(function() {
-					$('#myform').submit(function() {
+					$('#form').submit(function() {
 						function failValidation(msg) {
 							alert(msg); // just an alert for now but you can spice this up later
 							return false;
@@ -288,6 +268,4 @@
 					})
 				});
 			</script>
-</body>
-</html>
-
+<?php require_once("./footer.php"); ?>

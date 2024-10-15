@@ -19,6 +19,11 @@
   <!-- Custom styles for this template-->
   <link href="../assets/css/new-bootstrap.min.css" rel="stylesheet">
   <link href="../assets/css/new-custom.css" rel="stylesheet" />
+  <!-- Custom styles for this page -->
+  <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <script src="../assets/jquery-ui/external/jquery/jquery.js"></script>
+  <script src="../assets/jquery-ui/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="../assets/jquery-ui/jquery-ui.min.css">
   <link rel="icon" href="../assets/logo.png">
   <script src="../assets/js/all.min.js"></script>
 </head>
@@ -34,7 +39,7 @@
         </p>
       </div>
     </div>
-    <div class="col-md col-12 p-md-5 pt-5 p-3 d-flex flex-column align-items-center justify-content-center order-1 order-md-2 mt-sm-5 content">
+    <div class="col-md col-12 p-md-5 pt-5 p-3 d-flex flex-column align-items-center justify-content-center order-1 order-md-2 content">
       <div id="loading-screen">
         <div id="loading-spinner">Loading...</div>
       </div>

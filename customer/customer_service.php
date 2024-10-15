@@ -8,71 +8,47 @@
 	} else {
 		header("Location:../");
 	}
-	include 'header.php';
+	include './new-header.php';
 ?>	
-<!doctype html>
-	<body class="login">
-	<div class="image-container set-full-height">
-	    <!--   Creative Tim Branding   -->
-	    
-
-		<!--  Made With Paper Kit  -->
-	    <!--   Big container   -->
-	    <div class="container">
-	        <div class="row">
-		        <div class="col-sm-6 col-sm-offset-3">
-
-		            <!--      Wizard container        -->
-		            <div class="wizard-container">
-		                <div class="card wizard-card" data-color="blue" id="wizardProfile">
-							
-		                    <form method="post" action="../action/register.php" onsubmit="return validasi();">
-		                <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
-
-		                    	<div class="wizard-header text-center">
-		                        	<h3 class="wizard-title">Feedback</h3>
-		                    	</div>
-
-		                            <div class="tab-pane tab-content-baru" id="about">
-		                            	<div class="row" style="padding-left: 15px;">
-											<div class="col-sm-12 col-sm-offset-0">
-		                                        <div class="col-sm-6">
-		                                            <div class="choice" data-toggle="wizard-checkbox">
-		                                                <a href="aduan_customer_service.php" style="text-decoration:none;">
-		                                                <div class="card card-checkboxes card-hover-effect">
-		                                                    <i class="ti-export"></i>
-															<p>Kirim Feedback</p>
-		                                                </div>
-		                                            </a>
-		                                            </div>
-		                                        </div>
-		                                        <div class="col-sm-6">
-		                                            <div class="choice" data-toggle="wizard-checkbox">
-		                                                <a href="cari.php" style="text-decoration:none;">
-		                                                <div class="card card-checkboxes card-hover-effect">
-		                                                    <i class="ti-search"></i>
-															<p>Cari Feedback</p>
-		                                                </div>
-		                                            </a>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-											</div>
-											
-										</div>
-		                        <div class="wizard-footer">
-		                            <div class="pull-left">
-		                                <a href="../action/logout.php" class='btn btn-finish btn-fill btn-secondary btn-wd'>Log Out<a>
-		                            </div>
-		                            <div class="clearfix"></div>
-		                        </div>
-		                    </form>
-		                </div>
-		            </div> <!-- wizard container -->
-		        </div>
-	    	</div><!-- end row -->
-		</div> <!--  big container -->
-	</div>
-
-</body>
-</html>
+<form>
+		<h1 class="new-h1">Selamat Datang di Layanan One Gate Feedback Solution Bandara SAMS Sepinggan Balikpapan</h1>
+        <div class="w-100 mb-3">
+			Silahkan pilih menu<br/>
+			Pilih <span class="text-new-primary">Kirim Feedback</span> untuk memberikan saran, informasi, atau keluhan. <br/>
+			Pilih <span class="text-new-primary">Cari Feedback</span> untuk mengetahui progres dari keluhan yang anda kirimkan
+        </div>
+        <a href="./aduan_customer_service.php" class="button-application mb-3 w-100">
+          <div class="col-6 col-md-2 row align-items-center text-new-primary">
+			<i class="fa-solid fa-file-export w-100 h1"></i>
+          </div>
+          <div class="col d-flex flex-column justify-content-center">
+            <h2 class="text-new-primary new-h1">Kirim Feeback</h2>
+            <p class="text-new-dark">
+				Berikan Saran, Infomasi, atau Keluhan
+            </p>
+          </div>
+        </a>
+        <a href="./cari.php" class="button-application mb-3 w-100">
+          <div class="col-6 col-md-2 row align-items-center text-new-primary">
+		  	<i class="fa-solid fa-search w-100 h1"></i>
+          </div>
+          <div class="col d-flex flex-column justify-content-center">
+            <h2 class="h-4 text-new-primary">Cari Keluhan</h2>
+            <p class="text-new-dark">
+				Cari keluhan
+            </p>
+          </div>
+        </a>
+		<a href="../action/logout.php" class="button-application w-100">
+          <div class="col-6 col-md-2 row align-items-center text-new-primary">
+			<i class="fa-solid fa-right-from-bracket w-100 h1"></i>
+          </div>
+          <div class="col d-flex flex-column justify-content-center">
+            <h2 class="h-4 text-new-primary">Log Out</h2>
+            <p class="text-new-dark">
+				Keluar dari akun Anda dengan aman. Semua sesi aktif akan dihentikan, dan Anda akan diarahkan ke halaman login
+            </p>
+          </div>
+        </a>
+	</form>
+	<?php require_once("./footer.php"); ?>

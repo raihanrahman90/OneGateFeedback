@@ -301,3 +301,6 @@ body.login{
   background-color: white;
   filter: drop-shadow(2px 2px 5px #000000);
 }
+#dataTable th, #dataTable td{
+  font-size: 12px !important;
+}
