@@ -86,6 +86,14 @@ body{
     line-height: 29.26px;
     text-align: left;
 }
+@media screen and (max-width: 768px) {
+  .button-application h2{
+    font-size: 1rem;
+  }
+  .button-application p{
+      font-size: 0.8rem !important;
+  }
+}
 .button-application p{
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
@@ -182,6 +190,12 @@ body{
     max-height: 80%;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .content form{
+    height: 100vh;
+  }
 }
 
 

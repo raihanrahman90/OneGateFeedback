@@ -36,7 +36,7 @@
           Pilih <span class="text-new-primary">Umum - Lost & Found</span> untuk mencari barang kamu yang hilang di bandara<br/>
         </p>
         <a href="./ogfs.php" class="button-application mb-3">
-          <div class="col-6 col-md-2 row align-items-center">
+          <div class="col-4 col-md-2 row align-items-center">
             <img src="./assets/img/OGFS.png" class="w-100"/>
           </div>
           <div class="col d-flex flex-column justify-content-center">
@@ -47,7 +47,7 @@
           </div>
         </a>
         <a href="/LostFound" class="button-application">
-          <div class="col-6 col-md-2 row align-items-center">
+          <div class="col-4 col-md-2 row align-items-center">
             <img src="./assets/img/LostFound.png" class="w-100"/>
           </div>
           <div class="col d-flex flex-column justify-content-center">
