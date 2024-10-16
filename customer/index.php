@@ -5,7 +5,7 @@
 		if($_SESSION['status']!='login customer' && $_SESSION['status']!='login'){
 		    $_SESSION['status']='nerobos';
 			header("Location:../");
-		}else if($_SESSION['email']=='bpn.ph@ap1.co.id'){
+		}else if($_SESSION['e-mail']=='bpn.ph@ap1.co.id' || $_SESSION['e-mail'=='bpn.os@injourneyairports.id']){
 		    header("Location:../customer/customer_service.php");
 		}
 	} else {

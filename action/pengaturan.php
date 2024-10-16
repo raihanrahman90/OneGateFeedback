@@ -17,7 +17,7 @@
 		} else {
     	    $data = mysqli_query($koneksi, "UPDATE tb_akun SET Nama='$nama', Email='$email', No_Telp='$no_telp' where id_akun='$id_akun'")or die(mysqli_error($koneksi));
     	}
-		$_SESSION['email'] = $email;
+		$_SESSION['e-mail'] = $email;
 		$_SESSION['nama'] = $nama;
 	}
 	header("Location:../Admin/pengaturan.php");

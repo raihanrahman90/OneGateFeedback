@@ -45,7 +45,7 @@ while($row = mysqli_fetch_array($cek_notif)){
     <div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;">
       <div align="left">
        Akun customer service anda belum diaktivasi oleh Admin Customer Service, silahkan lakukan pendaftaran ulang pada link berikut<br>
-        <a href="'.$link.'register">Klik Disini</a><br>
+        <a href="'.$link.'customer/register.php">Klik Disini</a><br>
         Atau hubungi customer service pada email berikut<br>
         nawang.ayunanda@ap1.co.id<br>
         Theodora.Davita@ap1.co.id

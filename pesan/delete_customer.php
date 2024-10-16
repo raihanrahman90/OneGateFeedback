@@ -12,7 +12,7 @@ $text = '<!DOCTYPE html>
 <div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;">
   <div align="left">
     Akun anda belum dapat diaktifkan, silahkan registrasi ulang pada link berikut <br>
-    <a href="'.$link.'register">Klik Disini</a><br>
+    <a href="'.$link.'customer/register.php">Klik Disini</a><br>
         Atau hubungi Admin pada email berikut<br>
         novita.milana@ap1.co.id<br>
         theodora.davita@ap1.co.id<br>

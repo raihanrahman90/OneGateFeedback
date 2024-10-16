@@ -13,4 +13,3 @@
         $tanggalHasil = $mm."-".$dd."-".$yy;
         return $tanggalHasil;
     }
-?>

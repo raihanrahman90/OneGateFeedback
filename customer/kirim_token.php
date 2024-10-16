@@ -35,7 +35,7 @@ if(isset($_SESSION['status'])){
                     </p>
                     <p class="text-center mt-3">
                       Belum punya akun? 
-                      <a href="./register" class="text-new-primary">Daftar</a>
+                      <a href="./customer/register.php" class="text-new-primary">Daftar</a>
                     </p>
                   </form>
 <?php 

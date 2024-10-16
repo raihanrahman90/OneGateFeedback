@@ -20,9 +20,9 @@ if($cek > 0){
 	$_SESSION['nama'] = $data1['Nama'];
 	$_SESSION['status'] = "login";
 	$_SESSION['id_akun'] = $data1['Id_akun'];
-	$_SESSION['email'] = $username;
+	$_SESSION['e-mail'] = $username;
 	$_SESSION['status_akun'] = $data1['status'];
-	if($username!= 'bpn.ph@ap1.co.id'){
+	if($username!= 'bpn.ph@ap1.co.id' && $username!='bpn.os@injourneyairports.id'){
 		$data = mysqli_query($koneksi,"SELECT * FROM tb_akun 
 										LEFT JOIN tb_unit on tb_akun.id_unit = tb_unit.id_unit 
 										LEFT JOIN tb_departemen on tb_departemen.id_departemen = tb_akun.id_departemen 
@@ -57,7 +57,7 @@ if($cek > 0){
 	$cek= mysqli_num_rows($data);
 	if($cek > 0){
 		$data = mysqli_fetch_array($data);
-		$_SESSION['email']=$username;
+		$_SESSION['e-mail']=$username;
 		if($data['status']==1){
 			$status_sebelumnya = $_SESSION['status'];
 			$_SESSION['id_customer'] = $data['id_customer'];

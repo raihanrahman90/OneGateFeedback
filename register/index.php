@@ -1,5 +1,5 @@
-<div?php 
-include('header.php');
+<?php 
+	include('header.php');
 ?>
 		                <div class="card wizard-card" data-color="blue" id="wizardProfile">
 							
@@ -102,19 +102,18 @@ include('header.php');
         									</div>
 											<div class="col-sm-12 text-center pull-right">
 												<a href="../">Sudah memiliki Akun? Silahkan 	Login</a>
-											</div><div class="col-sm-12 text-center pull-right">
+											</div>
+											<div class="col-sm-12 text-center pull-right">
 												<a href="../customer/forgot_password.php">Lupa Password?</a>
 											</div>
 										</div>
 		                            </div>
 		                            <div class="tab-pane" id="account">
 		                                <div class="row">
-
 											<div class="col-sm-4 col-sm-offset-1">
 												<div class="picture-container">
 													<div class="picture">
 														<img src="../assets/img/default-avatar.jpg" class="picture-src" id="wizardPicturePreview2" title="" />
-														
 													</div>
 													<h6>Foto Anda(jpg/png)</h6>
 													<input type="file" id="wizard-picture2"name='foto' accept="image/png, image/jpg, image/jpeg" required>
@@ -167,7 +166,7 @@ include('header.php');
 		                        </div>
 		                    </form>
 		                </div>
-		            </div> <!-- wizard container -->
+		            </> <!-- wizard container -->
 		        </div>
 	    	</div><!-- end row -->
 		</div> <!--  big container -->

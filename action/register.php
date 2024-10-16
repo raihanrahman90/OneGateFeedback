@@ -22,10 +22,10 @@ if(is_uploaded_file($_FILES['pass_bandara']['tmp_name'])){
 }
 if(($ekstensiPassBandara!='jpg'&&$ekstensiPassBandara!='jpeg'&&$ekstensiPassBandara!='png') && is_uploaded_file($_FILES['pass_bandara']['tmp_name'])){		
 	$_SESSION['status']='Salah ekstensi';
-	header("location:../register");
+	header("location:../customer/register.php");
 }elseif(($ekstensiFoto!='jpg'&&$ekstensiFoto!='jpeg'&&$ekstensiFoto!='png')&&is_uploaded_file($_FILES['foto']['tmp_name'])){
 	$_SESSION['status']='Salah ekstensi';
-	header("location:../register");
+	header("location:../customer/register.php");
 }else{
 		
 	$cek1 = mysqli_num_rows($data1);
@@ -99,14 +99,14 @@ if(($ekstensiPassBandara!='jpg'&&$ekstensiPassBandara!='jpeg'&&$ekstensiPassBand
 			$nama_penerima = $nama;
 			$subject = 'Konfirmasi Data Akun';
 			include '../pesan/customer_register.php';
-			header('location:../');    
+			header('location:../ogfs.php');
 		}else{
 			$_SESSION['status']='Email telah digunakan';
-			header("location:../register");    
+			header("location:../customer/register.php");    
 		}
 	}else if($cek1 > 0){
 		$_SESSION['status']='Email telah digunakan';
-		header("location:../register");
+		header("location:../customer/register.php");
 	}else{
 		$nama_perusahaan = $koneksi -> real_escape_string($_POST['nama_perusahaan']);
 		$gerai = $koneksi -> real_escape_string($_POST['gerai']);
@@ -165,7 +165,7 @@ if(($ekstensiPassBandara!='jpg'&&$ekstensiPassBandara!='jpeg'&&$ekstensiPassBand
 		$nama_penerima = $nama;
 		$subject = 'Konfirmasi Data Akun';
 		include '../pesan/customer_register.php';
-		header('location:../');
+		header('location:../ogfs.php');
 	}
 }
 

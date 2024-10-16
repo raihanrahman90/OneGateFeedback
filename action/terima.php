@@ -3,7 +3,7 @@
     include '../koneksi.php';
     if(isset($_SESSION)){
         $id_aduan = $_GET['id'];
-        if(isset($_SESSION['id_customer']) || $_SESSION['email']=='bpn.ph@ap1.co.id'){
+        if(isset($_SESSION['id_customer']) || ($_SESSION['e-mail']=='bpn.ph@ap1.co.id'||$_SESSION['e-mail']=='bpn.os@injourneyairports.id')){
             $id_customer = $_SESSION['id_customer'];
             $query = mysqli_query($koneksi, "SELECT * FROM tb_aduan where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
             if($row = mysqli_fetch_array($query)){
@@ -15,7 +15,7 @@
                         
                         $tambahTanggalPengiriman = mysqli_query($koneksi, "INSERT INTO tb_progress value(
                                                                             0,NULL,$id_aduan,'Feedback dikirim oleh Mitra', NULL, now()
-                                                                            )") or die(mysyqli_error($koneksi));
+                                                                            )") or die(mysqli_error($koneksi));
                         mysqli_query($koneksi, "UPDATE tb_aduan set level=0 where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
                         $level = 0;
                         $id = $id_aduan;
