@@ -47,8 +47,8 @@ while($row = mysqli_fetch_array($cek_notif)){
        Akun customer service anda belum diaktivasi oleh Admin Customer Service, silahkan lakukan pendaftaran ulang pada link berikut<br>
         <a href="'.$link.'customer/register.php">Klik Disini</a><br>
         Atau hubungi customer service pada email berikut<br>
-        nawang.ayunanda@ap1.co.id<br>
-        Theodora.Davita@ap1.co.id
+        nawang.ayunanda@injourneyairports.id<br>
+        bpn.os@injourneyairports.id
       </div>
     </div>
     </body>

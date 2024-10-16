@@ -14,11 +14,8 @@ $text = '<!DOCTYPE html>
     Akun anda belum dapat diaktifkan, silahkan registrasi ulang pada link berikut <br>
     <a href="'.$link.'customer/register.php">Klik Disini</a><br>
         Atau hubungi Admin pada email berikut<br>
-        novita.milana@ap1.co.id<br>
-        theodora.davita@ap1.co.id<br>
-        nawang.ayunanda@ap1.co.id<br>
-        tasyakha.a@gmail.com<br>
-        dnperdana18@gmail.com<br>
+        bpn.os@injourneyairports.id
+        nawang.ayunanda@injourneyairports.id<br>
   </div>
 </div>
 </body>

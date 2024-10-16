@@ -158,7 +158,7 @@
                 		                    	           echo' 
             		                    	            <div class="form-group col-md-12">
             		                    	                <label>Pertanyaan: '.$row['pertanyaan'].'</label><br>
-                        		                                <a href="keterangan_tambahan.php?id='.$row['link'].'" class="btn btn-fill btn-success btn-wd">Jawab</a>
+                        		                                <a href="keterangan_tambahan.php?id='.$row['link'].'" class="btn btn-fill btn-new-primary btn-wd">Jawab</a>
                         		                          </div>';
                         		                        }else {echo' 
             		                    	            <div class="form-group col-md-12">

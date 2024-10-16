@@ -5,7 +5,7 @@
   session_start();
   if(isset($_SESSION['status'])){
       if($_SESSION['status']=='login'){
-        if($_SESSION['e-mail']=='bpn.ph@ap1.co.id'){
+        if($_SESSION['e-mail']=='bpn.ph@ap1.co.id' || $_SESSION['e-mail']=='bpn.os@injourneyairports.id'){
           header("Location:customer/customer_service.php");
         } else{
           header("Location:Admin");

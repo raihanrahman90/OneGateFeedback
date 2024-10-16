@@ -11,29 +11,29 @@ $password = $koneksi -> real_escape_string($_POST['Password']);
 $_SESSION['e-mail'] = $username;
 
 // menyeleksi data admin dengan username dan password yang sesuai
-$data = mysqli_query($koneksi,"SELECT * FROM tb_akun WHERE Email='$username' and Password=md5('$password')");
-$data1 = mysqli_fetch_array($data);
+$query = mysqli_query($koneksi,"SELECT * FROM tb_akun WHERE Email='$username' and Password=md5('$password')");
+$dataAkun = mysqli_fetch_array($query);
 // menghitung jumlah data yang ditemukan
-$cek = mysqli_num_rows($data);
+$cek = mysqli_num_rows($query);
 
 if($cek > 0){
-	$_SESSION['nama'] = $data1['Nama'];
+	$_SESSION['nama'] = $dataAkun['Nama'];
 	$_SESSION['status'] = "login";
-	$_SESSION['id_akun'] = $data1['Id_akun'];
+	$_SESSION['id_akun'] = $dataAkun['Id_akun'];
 	$_SESSION['e-mail'] = $username;
-	$_SESSION['status_akun'] = $data1['status'];
+	$_SESSION['status_akun'] = $dataAkun['status'];
 	if($username!= 'bpn.ph@ap1.co.id' && $username!='bpn.os@injourneyairports.id'){
-		$data = mysqli_query($koneksi,"SELECT * FROM tb_akun 
+		$queryDepartemen = mysqli_query($koneksi,"SELECT * FROM tb_akun 
 										LEFT JOIN tb_unit on tb_akun.id_unit = tb_unit.id_unit 
 										LEFT JOIN tb_departemen on tb_departemen.id_departemen = tb_akun.id_departemen 
 										WHERE Email='$username' and Password=md5('$password')");
-		$data1 = mysqli_fetch_array($data);
-		$_SESSION['departemen'] = $data1['Departemen'];
-		$_SESSION['id_departemen'] = $data1['id_departemen'];
-		$_SESSION['id_unit'] = $data1['id_unit'];
-		$_SESSION['nama_unit'] = $data1['nama_unit'];
-		$_SESSION['status_akun'] = $data1['status'];
-		$_SESSION['hak_akses'] = $data1['hak_akses'];
+		$dataDepartemen = mysqli_fetch_array($queryDepartemen);
+		$_SESSION['departemen'] = $dataDepartemen['Departemen'];
+		$_SESSION['id_departemen'] = $dataDepartemen['id_departemen'];
+		$_SESSION['id_unit'] = $dataDepartemen['id_unit'];
+		$_SESSION['nama_unit'] = $dataDepartemen['nama_unit'];
+		$_SESSION['status_akun'] = $dataDepartemen['status'];
+		$_SESSION['hak_akses'] = $dataDepartemen['hak_akses'];
 		if(isset($_SESSION['id_aduan'])){
 			$id_aduan = $_SESSION['id_aduan'];
 			if($_SESSION['detail']=='Aduan'){
@@ -53,16 +53,15 @@ if($cek > 0){
 		header("location:../customer");
 	}
 }else{
-	$data = mysqli_query($koneksi,"SELECT * FROM tb_customer WHERE Email='$username' and Password=md5('$password')") or die(mysqli_error($koneksi));
-	$cek= mysqli_num_rows($data);
-	if($cek > 0){
-		$data = mysqli_fetch_array($data);
+	$queryCustomer = mysqli_query($koneksi,"SELECT * FROM tb_customer WHERE Email='$username' and Password=md5('$password')") or die(mysqli_error($koneksi));
+	$countCustomer= mysqli_num_rows($queryCustomer);
+	if($countCustomer > 0){
+		$dataCustomer = mysqli_fetch_array($queryCustomer);
 		$_SESSION['e-mail']=$username;
-		if($data['status']==1){
+		if($dataCustomer['status']==1){
 			$status_sebelumnya = $_SESSION['status'];
-			$_SESSION['id_customer'] = $data['id_customer'];
+			$_SESSION['id_customer'] = $dataCustomer['id_customer'];
 			$_SESSION['status'] = "login customer";
-			echo $status_sebelumnya;
 			if(isset($_SESSION['id_aduan'])){
 				$id_aduan = $_SESSION['id_aduan'];
 				unset($_SESSION['id_aduan']);
@@ -70,10 +69,10 @@ if($cek > 0){
 			}else{
 				header("Location:../customer/");
 			}
-		} else if($data['status']==2){
+		} else if($dataCustomer['status']==2){
 		    $_SESSION['status']='aktivasi ulang';
-			$_SESSION['id_customer'] = $data['id_customer'];
-		    header("Location:../register/ogfs.php");
+			$_SESSION['id_customer'] = $dataCustomer['id_customer'];
+		    header("Location:../customer/aktivasi.php");
 		}else {
 			$_SESSION['status']='tidak aktif';
 			header("Location:../ogfs.php");
@@ -83,4 +82,3 @@ if($cek > 0){
 		header("location:../ogfs.php");
 	}
 }
-?>

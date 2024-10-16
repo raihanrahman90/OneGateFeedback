@@ -15,11 +15,8 @@ $text = '<!DOCTYPE html>
     Data anda sudah kami terima, mohon menunggu proses konfirmasi. Setelah konfirmasi selesai, anda akan diberitahu melalui Email dalam kurun waktu 1x24 jam(hari kerja)<br>
     apabila dalam kurun waktu 1 x 24 jam tidak mendapat email notifikasi , silahkan melakukan pendaftaran ulang pada link berikut <a href="'.$link.'customer/register.php">Klik di sini</a> 
     atau hubungi Admin Customer Service pada email berikut<br>
-    novita.milana@ap1.co.id<br>
-    theodora.davita@ap1.co.id<br>
-    nawang.ayunanda@ap1.co.id<br>
-    tasyakha.a@gmail.com<br>
-    dnperdana18@gmail.com<br>
+    bpn.os@injourneyairports.id<br>
+    nawang.ayunanda@injourneyairports.id<br>
 </div>
 </body>
 </html>';

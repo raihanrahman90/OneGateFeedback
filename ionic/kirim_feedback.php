@@ -2,7 +2,7 @@
     include '../koneksi.php';
     if(isset($_POST)){
         $id_aduan = $_POST['id_aduan'];
-        if(isset($_POST['id_customer']) || $_POST['email']=='bpn.ph@ap1.co.id'){
+        if(isset($_POST['id_customer']) || $_POST['email']=='bpn.ph@ap1.co.id' || $_POST['email'] == 'bpn.os@injourneyairports.id'){
             $id_customer = $_POST['id_customer'];
             $query = mysqli_query($koneksi, "SELECT * FROM tb_aduan where id_aduan='$id_aduan'") or die(mysqli_error($koneksi));
             if($row = mysqli_fetch_array($query)){

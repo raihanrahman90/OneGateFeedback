@@ -18,7 +18,7 @@ if($cek > 0){
 	$hasil['id_akun'] = $data1['Id_akun'];
 	$hasil['email'] = $username;
 	$hasil['status_akun'] = $data1['status'];
-	if($username!= 'bpn.ph@ap1.co.id'){
+	if($username!= 'bpn.ph@ap1.co.id' && $username!='bpn.os@injourneyairports.id'){
 		$data = mysqli_query($koneksi,"SELECT * FROM tb_akun 
 										LEFT JOIN tb_unit on tb_akun.id_unit = tb_unit.id_unit 
 										LEFT JOIN tb_departemen on tb_departemen.id_departemen = tb_akun.id_departemen 
@@ -41,7 +41,6 @@ if($cek > 0){
 				'status_akun'=>$hasil['status_akun'],
 				'hak_akses'=>$hasil['hak_akses'],
 				'email'=>$hasil['email'],
-				'status_akun'=>$hasil['status_akun'],
 				'id_akun'=>$hasil['id_akun'],
 				'nama'=>$hasil['nama']
 			)
@@ -55,9 +54,9 @@ if($cek > 0){
 				array(
 					'success'=>true, 
 					'id_customer'=>$data1['Id_akun'],
-					'email'=>'bpn.ph@ap1.co.id', 
+					'email'=>$username, 
 					'status'=>1, 
-					'msg'=>'bpn.ph@ap1.co.id'
+					'msg'=>$username
 				)
 			);
 		}
@@ -91,4 +90,3 @@ if($cek > 0){
 		echo json_encode(array('success'=>false, 'msg'=>'Data yang anda masukkan tidak ditemukan'));
 	}
 }
-?>

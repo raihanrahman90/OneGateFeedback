@@ -106,7 +106,6 @@
     var currentForm = 'company';
     $(function() {
         $('#nextButton').on('click', function(event){
-            /*
             if(!$('#nama_perusahaan')[0].checkValidity()){
                 $('#nama_perusahaan')[0].reportValidity();
                 return;
@@ -126,7 +125,7 @@
             }else{
                 $('#pass_bandara').removeAttr("required");
                 $('#id_pass_bandara').removeAttr("required");
-            }*/
+            }
             $('.register-card-company').addClass('hide');
             $('.register-card-personal').addClass('visible');
         });

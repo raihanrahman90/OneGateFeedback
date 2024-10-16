@@ -5,7 +5,7 @@
 		if($_SESSION['status']!='login customer' && $_SESSION['status']!='login'){
 		    $_SESSION['status']='nerobos';
 			header("Location:../");
-		}else if($_SESSION['e-mail']=='bpn.ph@ap1.co.id' || $_SESSION['e-mail'=='bpn.os@injourneyairports.id']){
+		}else if($_SESSION['e-mail']=='bpn.ph@ap1.co.id' || $_SESSION['e-mail']=='bpn.os@injourneyairports.id'){
 		    header("Location:../customer/customer_service.php");
 		}
 	} else {
@@ -17,18 +17,18 @@
 	<form>
 		<h1 class="new-h1">Selamat Datang di Layanan One Gate Feedback Solution Bandara SAMS Sepinggan Balikpapan</h1>
         <div class="w-100 mb-3">
-			Silahkan pilih menu<br/>
-			Pilih <span class="text-new-primary">Kirim Feedback</span> untuk memberikan saran, informasi, atau keluhan. <br/>
-			Pilih <span class="text-new-primary">Cari Feedback</span> untuk mengetahui progres dari keluhan yang anda kirimkan
+          Silahkan pilih menu<br/>
+          Pilih <span class="text-new-primary">Kirim Feedback</span> untuk memberikan saran, informasi, atau keluhan. <br/>
+          Pilih <span class="text-new-primary">Cari Feedback</span> untuk mengetahui progres dari keluhan yang anda kirimkan
         </div>
         <a href="./aduan_customer.php" class="button-application mb-3 w-100">
           <div class="col-6 col-md-2 row align-items-center text-new-primary">
-			<i class="fa-solid fa-file-export w-100 h1"></i>
+			      <i class="fa-solid fa-file-export w-100 h1"></i>
           </div>
           <div class="col d-flex flex-column justify-content-center">
             <h2 class="text-new-primary new-h1">Kirim Feeback</h2>
             <p class="text-new-dark">
-				Berikan Saran, Infomasi, atau Keluhan
+				      Berikan Saran, Infomasi, atau Keluhan
             </p>
           </div>
         </a>
